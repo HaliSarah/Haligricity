@@ -1,0 +1,382 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --gold:#B8860B;--gold-light:#FFF8DC;--gold-mid:#DAA520;--gold-border:#C9A227;
+    --purple:#4A1060;--purple-mid:#6B2D8E;--purple-light:#EDE0F5;--purple-soft:#C9A8E0;
+    --ink:#1A1A1A;--gray:#555;--bg:#FFFDF0;
+  }
+  body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);min-height:100vh}
+  .quiz-wrap{max-width:680px;margin:0 auto;padding:2rem 1.5rem 3rem}
+  .quiz-header{text-align:center;padding:2rem 0 1.5rem;border-bottom:2px solid var(--gold-border);margin-bottom:2rem}
+  .quiz-header h1{font-size:1.7rem;font-weight:normal;color:var(--purple);letter-spacing:.04em;line-height:1.3;margin-bottom:.4rem}
+  .quiz-header p{font-size:.95rem;color:var(--gray);font-style:italic}
+  .progress-bar{height:4px;background:#E8E0C8;border-radius:2px;margin-bottom:2rem;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--purple-mid));border-radius:2px;transition:width .4s ease}
+  .progress-label{font-size:.78rem;color:var(--gray);text-align:right;margin-bottom:.4rem}
+  .question-card{background:#fff;border:1.5px solid var(--gold-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(180,140,0,.08)}
+  .question-num{font-size:.75rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+  .question-text{font-size:1.15rem;color:var(--purple);line-height:1.5;margin-bottom:1.4rem;font-weight:normal}
+  .options{display:flex;flex-direction:column;gap:.65rem}
+  .option{background:var(--gold-light);border:1.5px solid var(--gold-border);border-radius:8px;padding:.85rem 1.1rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:all .18s;text-align:left;font-family:Georgia,serif;display:flex;align-items:flex-start;gap:.7rem}
+  .option:hover{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple)}
+  .option.selected{background:var(--purple-light);border-color:var(--purple);color:var(--purple);font-weight:bold}
+  .option-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
+  .option.selected .option-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--purple)}
+  .btn-row{display:flex;justify-content:flex-end;gap:.8rem;margin-top:1.2rem}
+  .btn-back{background:transparent;border:1.5px solid var(--gold-border);color:var(--gold);border-radius:8px;padding:.6rem 1.3rem;cursor:pointer;font-family:Georgia,serif;font-size:.9rem;transition:all .18s}
+  .btn-back:hover{background:var(--gold-light)}
+  .btn-next{background:var(--purple);border:1.5px solid var(--purple);color:#fff;border-radius:8px;padding:.6rem 1.6rem;cursor:pointer;font-family:Georgia,serif;font-size:.95rem;transition:all .18s}
+  .btn-next:hover:not(:disabled){background:var(--purple-mid)}
+  .btn-next:disabled{opacity:.4;cursor:not-allowed}
+  .result-card{background:#fff;border:2px solid var(--gold-border);border-radius:16px;overflow:hidden}
+  .result-hero{background:var(--purple);color:#fff;padding:2rem;text-align:center}
+  .result-hero .label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-soft);margin-bottom:.5rem}
+  .result-hero h2{font-size:2rem;font-weight:normal;margin-bottom:.3rem}
+  .result-hero .meaning{font-size:.95rem;font-style:italic;color:var(--purple-soft)}
+  .result-body{padding:1.8rem}
+  .result-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+  .tag{background:var(--purple-light);color:var(--purple);border-radius:20px;padding:.3rem .85rem;font-size:.8rem;border:1px solid var(--purple-soft)}
+  .result-section{margin-bottom:1.3rem}
+  .result-section h3{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-weight:normal}
+  .result-section p{font-size:.95rem;line-height:1.65;color:var(--ink)}
+  .steps{list-style:none;counter-reset:step}
+  .steps li{counter-increment:step;display:flex;gap:.7rem;font-size:.93rem;line-height:1.55;margin-bottom:.55rem;color:var(--ink)}
+  .steps li::before{content:counter(step);min-width:22px;height:22px;background:var(--gold-mid);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:1px}
+  .ratio-box{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:8px;padding:.9rem 1.2rem;font-size:1rem;color:var(--purple);text-align:center;margin:.5rem 0 1rem;font-style:italic}
+  .caution-box{background:#FFF8E0;border-left:3px solid var(--gold);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.88rem;color:var(--gray);line-height:1.6;margin-top:.5rem}
+  .also-try{margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid #EEE8D0}
+  .also-try h3{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;font-weight:normal}
+  .also-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+  .pill{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:6px;padding:.35rem .8rem;font-size:.85rem;color:var(--gold);cursor:pointer;font-family:Georgia,serif;transition:all .15s}
+  .pill:hover{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple)}
+  .print-row{display:flex;justify-content:center;gap:1rem;margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid #EEE8D0}
+  .btn-print{background:var(--purple);color:#fff;border:none;border-radius:8px;padding:.7rem 1.8rem;cursor:pointer;font-family:Georgia,serif;font-size:.95rem;transition:background .18s}
+  .btn-print:hover{background:var(--purple-mid)}
+  .btn-restart{background:transparent;border:1.5px solid var(--gold-border);color:var(--gold);border-radius:8px;padding:.7rem 1.4rem;cursor:pointer;font-family:Georgia,serif;font-size:.95rem;transition:all .18s}
+  .btn-restart:hover{background:var(--gold-light)}
+  @media print{
+    .print-row,.btn-row,.progress-bar,.progress-label,.also-try{display:none!important}
+    .quiz-wrap{padding:0}
+    .result-card{border:1px solid #999;box-shadow:none}
+  }
+</style>
+
+<div class="quiz-wrap">
+  <div class="quiz-header">
+    <h1>Breath of Life &mdash; Find Your Pranayama</h1>
+    <p>Answer 8 questions to discover the practice your body and mind need most</p>
+  </div>
+  <div id="quiz-body"></div>
+</div>
+
+<script>
+var questions = [
+  {
+    q: "How would you describe your overall energy right now?",
+    opts: [
+      {text:"Anxious, racing, hard to slow down", scores:{bhramari:3,chandra:3,nadi:2,sheetali:2}},
+      {text:"Sluggish, tired, foggy &mdash; I need a lift", scores:{surya:3,kapalabhati:3,bhastrika:2}},
+      {text:"Stressed but holding it together", scores:{nadi:3,anuloma:2,ujjayi:2,bhramari:1}},
+      {text:"Fairly balanced &mdash; I want to go deeper", scores:{anuloma:3,ujjayi:2,nadi:2}}
+    ]
+  },
+  {
+    q: "What time of day are you most likely to practice?",
+    opts: [
+      {text:"Very early morning, before sunrise", scores:{nadi:2,anuloma:2,kapalabhati:2,surya:1}},
+      {text:"Morning, after waking up fully", scores:{kapalabhati:2,bhastrika:1,surya:1,ujjayi:2}},
+      {text:"Evening, to wind down", scores:{chandra:3,bhramari:3,sheetali:2,nadi:2}},
+      {text:"Any time &mdash; I am flexible", scores:{nadi:2,ujjayi:2,anuloma:1}}
+    ]
+  },
+  {
+    q: "What is your primary goal for this practice?",
+    opts: [
+      {text:"Calm my mind and reduce anxiety or anger", scores:{bhramari:3,chandra:3,nadi:2,sheetali:2}},
+      {text:"Build focus and energy for the day", scores:{kapalabhati:3,surya:2,bhastrika:2,ujjayi:1}},
+      {text:"Prepare for meditation or deepen spiritual practice", scores:{anuloma:3,nadi:3,ujjayi:2,bhramari:2}},
+      {text:"Improve breathing and lung capacity", scores:{ujjayi:3,anuloma:2,bhastrika:2}},
+      {text:"Cool down &mdash; I run hot or feel feverish", scores:{sheetali:3,sheetkari:3,chandra:2}},
+      {text:"Detox and cleanse &mdash; sluggish body", scores:{kapalabhati:3,bhastrika:2,surya:1}}
+    ]
+  },
+  {
+    q: "Do you have any of the following? (Pick the closest match)",
+    opts: [
+      {text:"High blood pressure or heart condition", scores:{bhramari:3,nadi:3,chandra:2,sheetali:2,kapalabhati:-5,bhastrika:-5,anuloma:-2}},
+      {text:"Anxiety, panic attacks, or PTSD", scores:{bhramari:3,chandra:3,nadi:2,sheetali:1,kapalabhati:-2,bhastrika:-3}},
+      {text:"Low energy, depression, or thyroid issues", scores:{surya:3,kapalabhati:2,ujjayi:2,chandra:-2}},
+      {text:"None of the above &mdash; I am generally healthy", scores:{anuloma:2,kapalabhati:1,bhastrika:1,ujjayi:2}}
+    ]
+  },
+  {
+    q: "How comfortable are you with breath retention (holding the breath)?",
+    opts: [
+      {text:"Complete beginner &mdash; I have never tried it", scores:{nadi:3,bhramari:3,kapalabhati:2,ujjayi:2,anuloma:-1}},
+      {text:"I can hold briefly but get nervous", scores:{nadi:3,ujjayi:2,kapalabhati:1,bhramari:2}},
+      {text:"I am comfortable holding for 8 to 16 counts", scores:{anuloma:3,ujjayi:2,surya:2,chandra:2}},
+      {text:"I have an established retention practice", scores:{anuloma:3,surya:3,chandra:3}}
+    ]
+  },
+  {
+    q: "How is your climate or body temperature right now?",
+    opts: [
+      {text:"I feel hot, overheated, or it is a warm season", scores:{sheetali:3,sheetkari:3,chandra:3,bhramari:1,kapalabhati:-2,bhastrika:-3,surya:-2}},
+      {text:"I feel cold or sluggish, or it is winter", scores:{surya:3,kapalabhati:2,bhastrika:2,sheetali:-2,sheetkari:-2,chandra:-1}},
+      {text:"I run about average &mdash; temperature is fine", scores:{nadi:2,anuloma:2,ujjayi:2,bhramari:1}}
+    ]
+  },
+  {
+    q: "Can you curl your tongue into a tube (like a straw)?",
+    opts: [
+      {text:"Yes, easily", scores:{sheetali:2}},
+      {text:"No &mdash; my tongue stays flat", scores:{sheetkari:2,sheetali:-3}},
+      {text:"Not sure / does not apply to my goal", scores:{nadi:1}}
+    ]
+  },
+  {
+    q: "Where are you in your yoga or meditation practice?",
+    opts: [
+      {text:"Complete beginner &mdash; just starting out", scores:{nadi:3,bhramari:3,kapalabhati:1,ujjayi:1,anuloma:-1,bhastrika:-2}},
+      {text:"Some experience &mdash; comfortable with the basics", scores:{nadi:2,kapalabhati:2,ujjayi:2,anuloma:1}},
+      {text:"Established practitioner &mdash; I have a daily practice", scores:{anuloma:3,ujjayi:2,surya:2,chandra:2,kapalabhati:1}},
+      {text:"Advanced &mdash; I work with bandhas and kumbhaka", scores:{anuloma:3,surya:3,chandra:3,bhastrika:2}}
+    ]
+  }
+];
+
+var results = {
+  nadi: {
+    name:"Nadi Shodhana",
+    meaning:"nadi = channel &nbsp;&bull;&nbsp; shodhana = purification",
+    tags:["Balancing","Beginner-friendly","Anytime","Calming"],
+    why:"Your answers point to a need for balance -- mentally and energetically. Nadi Shodhana works like a reset button for the nervous system, equalizing solar and lunar energy through simple alternate nostril breathing. It is the most universally appropriate pranayama and an ideal foundation for everything else.",
+    what:"A slow, rhythmic alternate nostril breath with no retention required. Left nostril activates the cooling lunar channel (Ida); right nostril activates the warming solar channel (Pingala). Alternating them brings both into balance, calming the mind while maintaining clarity.",
+    ratio:"Inhale : Exhale = 4 : 4 counts (equal). Progress to 4 : 8 when comfortable.",
+    steps:["Sit upright, spine tall. Right hand in Vishnu Mudra (fold index and middle fingers, thumb and ring finger extended).","Close right nostril with thumb. Inhale slowly through left for 4 counts.","Close both nostrils briefly. Then release thumb, close left with ring finger.","Exhale through right for 4 counts. Inhale through right for 4.","Close both. Release ring finger, close right with thumb. Exhale through left.","This is one round. Practice 5 to 20 rounds, building gradually.","After your session, sit quietly for 3 to 5 minutes and observe the stillness."],
+    caution:"Almost no contraindications. If severely congested, practice Ujjayi instead. Women may practice gently during menstruation, but skip retention.",
+    also:["Bhramari","Anuloma Viloma","Ujjayi"]
+  },
+  bhramari: {
+    name:"Bhramari",
+    meaning:"bhramara = large black bee &nbsp;&bull;&nbsp; named for its resonant hum",
+    tags:["Anxiety relief","Beginner-friendly","Evening","Sleep aid"],
+    why:"Your answers suggest that anxiety, agitation, or an overactive mind is your primary challenge. Bhramari is the fastest pranayama for calming the nervous system -- the humming sound directly stimulates the vagus nerve and the parasympathetic rest-and-digest response. Within 5 rounds, most people feel measurably calmer.",
+    what:"A deep inhalation followed by a smooth, continuous humming sound on the exhale -- like a large bee, resonating through the skull and chest. The vibration directly soothes the nervous system in a way no other breathing technique can match.",
+    ratio:"Inhale : Hum exhale = 1 : 2 or longer. No strict count required.",
+    steps:["Sit comfortably, spine erect. Optionally close the ears with thumbs and eyes with fingers (Shanmukhi Mudra) for a deeper experience.","Inhale deeply and fully through both nostrils.","Close the lips. Begin humming on the exhale -- steady, smooth, resonant throughout the full exhale.","Feel the vibration in your skull, sinuses, and chest.","Inhale again and repeat. Practice 7 to 21 rounds.","After the last round, sit in complete silence. Notice the profound inner quiet."],
+    caution:"Avoid if you have active ear infections. One of the safest pranayamas overall -- suitable for almost everyone including those with heart conditions and high blood pressure.",
+    also:["Nadi Shodhana","Chandra Bhedana","Sheetali"]
+  },
+  anuloma: {
+    name:"Anuloma Viloma",
+    meaning:"anuloma = with the grain &nbsp;&bull;&nbsp; viloma = against the grain",
+    tags:["Intermediate","With retention","Spiritual deepening","Morning"],
+    why:"You are ready for the full classical alternate nostril practice with breath retention (kumbhaka). This adds an entirely new dimension: the retained breath becomes a vehicle for directing prana into the central channel (Sushumna), building the conditions for deep meditative states.",
+    what:"The same alternating nostril pattern as Nadi Shodhana, but with breath held inside after each inhalation, using the classical 1:4:2 ratio. Jalandhara Bandha (chin lock) and Mula Bandha (root lock) are applied during retention to seal and direct prana upward.",
+    ratio:"Inhale : Retain : Exhale = 1 : 4 : 2 &nbsp; (e.g. 4 : 16 : 8 counts). Beginners start with 4 : 4 : 8.",
+    steps:["Sit in Padmasana or Sukhasana. Spine tall, shoulders relaxed.","Close right nostril with thumb. Inhale through left for 4 counts.","Close both nostrils. Lower chin slightly (Jalandhara Bandha). Contract perineum (Mula Bandha). Retain for 16 counts.","Release Mula Bandha, then Jalandhara. Open right nostril. Exhale through right for 8 counts.","Inhale right for 4. Close both. Apply both bandhas. Retain 16. Release, exhale left for 8.","This is one complete round. Build from 3 rounds to 12 over many months.","Progress ratio gradually: 4:4:8 then 4:8:8 then 4:8:16 then 4:16:8 over many months."],
+    caution:"Avoid with uncontrolled hypertension, heart conditions, epilepsy, glaucoma, or pregnancy. Never force the retention -- build slowly. Dizziness means stop.",
+    also:["Ujjayi","Nadi Shodhana","Bhramari"]
+  },
+  kapalabhati: {
+    name:"Kapalabhati",
+    meaning:"kapala = skull &nbsp;&bull;&nbsp; bhati = shining, illuminating",
+    tags:["Energizing","Morning only","Cleansing","Beginner technique"],
+    why:"Your body and mind are asking for activation -- clearing out stagnation and igniting your inner fire. Kapalabhati's rapid exhalations flush carbon dioxide, stimulate the abdominal organs, generate heat, and produce remarkable mental clarity. It is called skull shining because the head becomes luminously clear.",
+    what:"A series of sharp, forceful exhalations driven by the lower abdomen, with completely passive inhalations. Technically classified as a cleansing practice (Shat Kriya) rather than a pranayama, but always practiced as part of the pranayama sequence.",
+    ratio:"60 to 120 exhalations per minute. Start with 30 pumps per round, rest, repeat 3 times.",
+    steps:["Sit upright. Take a preparatory breath in.","Sharply contract the lower abdomen inward -- this forces air out through both nostrils in a burst.","Immediately release the abdomen completely. The lungs refill passively -- no active inhale.","Repeat rhythmically at 1 to 2 pumps per second. Keep the rhythm consistent.","After 30 pumps, inhale deeply and retain with chin lock and root lock. Hold comfortably.","Exhale slowly. Rest and observe. Repeat for 2 to 3 rounds.","After the final round, sit quietly for several minutes. Notice the mental clarity."],
+    caution:"Morning practice ONLY -- never at night. Stop immediately if dizzy. Not suitable for: pregnancy, menstruation, hypertension, heart conditions, hernia, glaucoma, epilepsy, or recent abdominal surgery.",
+    also:["Bhastrika","Surya Bhedana","Ujjayi"]
+  },
+  ujjayi: {
+    name:"Ujjayi",
+    meaning:"ud = upward, expanding &nbsp;&bull;&nbsp; jayi = victorious",
+    tags:["The Ocean Breath","Heating + calming","With asana","Lung capacity"],
+    why:"You are looking for a practice that works both during movement and in stillness -- one that generates warmth and focus without overstimulating. Ujjayi's gentle throat constriction creates a moving meditation: the sound becomes a mantra you generate yourself, pulling attention inward.",
+    what:"Breathing through both nostrils with a slight constriction of the glottis, producing a soft oceanic hissing sound heard by you but not by those across the room. Used in asana practice and as a complete pranayama with retention. Simultaneously heating and calming.",
+    ratio:"Without retention: Inhale : Exhale = 1 : 2. With retention: 1 : 4 : 2.",
+    steps:["Open your mouth and exhale as if fogging a mirror -- feel the soft sensation at the back of the throat. This is your target constriction.","Close the mouth and recreate that same throat constriction while breathing through your nose.","Both inhale and exhale should produce the same soft ocean-wave sound.","Keep the breath slow, smooth, and complete -- filling the lungs fully, emptying fully.","For meditation: after the full Ujjayi inhale, close the nostrils and retain with chin lock. Exhale through Ujjayi.","Practice 10 to 20 minutes in stillness, or throughout your entire asana practice.","The sound gives you immediate biofeedback -- if it becomes raspy or forced, soften."],
+    caution:"Very gentle practice -- suitable for most. Avoid forcing the throat constriction. Those with thyroid conditions should consult a doctor before extended practice.",
+    also:["Anuloma Viloma","Nadi Shodhana","Bhramari"]
+  },
+  surya: {
+    name:"Surya Bhedana",
+    meaning:"surya = sun &nbsp;&bull;&nbsp; bhedana = piercing",
+    tags:["Energizing","Solar channel","Morning","Winter practice"],
+    why:"Your answers show a need for solar activation -- more heat, more alertness, more digestive fire. Surya Bhedana specifically channels prana through the Pingala (solar) nadi, raising body temperature, sharpening mental clarity, and lifting mood.",
+    what:"Inhaling exclusively through the right nostril and exhaling through the left -- with retention after each inhale. The right nostril connects to the Pingala (solar) nadi, governing heat, activity, and left-brain function.",
+    ratio:"Inhale right : Retain : Exhale left = 1 : 4 : 2.",
+    steps:["Sit tall. Right hand in Vishnu Mudra.","Close the left nostril with ring and pinky fingers.","Inhale slowly and completely through the RIGHT nostril only.","Close both nostrils. Apply chin lock and root lock. Retain.","Release locks. Open LEFT nostril. Close right with thumb. Exhale through left completely.","Inhale is ALWAYS right; exhale ALWAYS left.","Practice 3 to 12 rounds until you feel a gentle warmth spreading through the body."],
+    caution:"Morning practice only. Avoid in summer or hot weather, with high blood pressure, Pitta imbalance, anxiety, or insomnia. If overheated at any point -- stop.",
+    also:["Kapalabhati","Bhastrika","Ujjayi"]
+  },
+  chandra: {
+    name:"Chandra Bhedana",
+    meaning:"chandra = moon &nbsp;&bull;&nbsp; bhedana = piercing",
+    tags:["Deeply calming","Evening","Cooling","Pitta balance"],
+    why:"You need cooling, calming, and the restoration of lunar energy. Chandra Bhedana channels prana through the Ida (lunar) nadi, activating the parasympathetic nervous system, lowering body temperature, and bringing the mind to a state of deep, soft receptivity.",
+    what:"The exact mirror image of Surya Bhedana -- inhaling exclusively through the left nostril and exhaling through the right. The left nostril connects to the Ida (lunar) nadi, governing cooling, calming, and right-brain activity.",
+    ratio:"Inhale left : Retain : Exhale right = 1 : 4 : 2. Can be practiced without retention as a sleep aid.",
+    steps:["Sit comfortably or lie down if practicing before sleep.","Right hand in Vishnu Mudra. Close right nostril with thumb.","Inhale slowly through the LEFT nostril only.","Close both nostrils. Apply bandhas if in formal sitting practice. Retain.","Release locks. Open right nostril. Exhale slowly through right only.","Inhale is ALWAYS left; exhale ALWAYS right.","Practice 3 to 15 rounds. For sleep: practice lying down without retention until drowsiness comes."],
+    caution:"Avoid with depression, low energy, cold constitutions, or hypothyroidism. Not recommended in winter for Kapha types who already feel heavy.",
+    also:["Bhramari","Sheetali","Nadi Shodhana"]
+  },
+  sheetali: {
+    name:"Sheetali",
+    meaning:"sheetal = cool, cold &nbsp;&bull;&nbsp; the cooling breath",
+    tags:["Cooling","Summer practice","Fever relief","Calming anger"],
+    why:"You need to cool -- physically, mentally, or both. Sheetali is one of the most elegant pranayamas: the curled tongue acts as a literal cooling coil, dramatically lowering the temperature of inhaled air. The classical texts prescribe it for fever, excess heat, and fiery emotions.",
+    what:"The tongue is curled lengthwise into a tube like a straw, and air is drawn through it on the inhale. The cool sensation spreads from the tongue through the throat and into the chest. Exhalation is through the nose.",
+    ratio:"Inhale through tongue : Retain (optional) : Exhale through nose = 1 : 2 : 2.",
+    steps:["Sit comfortably, spine erect.","Stick the tongue out slightly and curl both sides upward to form a tube shape.","Inhale slowly through this tongue-tube -- feel the cool air flowing over the tongue.","Draw the tongue in and close the mouth. Optionally retain briefly with a gentle chin lock.","Exhale slowly through BOTH NOSTRILS.","This is one round. Practice 8 to 15 rounds.","After practice, notice the cooling sensation in the body and the calming of the mind."],
+    caution:"Avoid with asthma, respiratory infections, low blood pressure, in cold climates, or if your constitution runs cold. If you cannot curl your tongue (a genetic trait in roughly 25 to 35 percent of people), practice Sheetkari instead.",
+    also:["Sheetkari","Chandra Bhedana","Bhramari"]
+  },
+  sheetkari: {
+    name:"Sheetkari",
+    meaning:"sheet = cold &nbsp;&bull;&nbsp; kari = producing &nbsp;&bull;&nbsp; the hissing breath",
+    tags:["Cooling","Alternative to Sheetali","Summer practice","Universal"],
+    why:"You need cooling but may not be able to curl your tongue, or you want the same cooling effect through a different method. Sheetkari produces identical results to Sheetali through a teeth-parting hissing technique available to everyone.",
+    what:"The upper and lower teeth are pressed lightly together, the lips are parted, and air is drawn in through the teeth with a soft hissing sound. The tongue rests naturally. Exhalation is through both nostrils.",
+    ratio:"Inhale through teeth : Retain (optional) : Exhale through nose = 1 : 2 : 2.",
+    steps:["Sit comfortably, spine erect.","Press upper and lower teeth together lightly. Part the lips to expose the teeth -- a slight, wide smile.","Inhale slowly through the teeth -- a soft hissing sound is produced.","Close the mouth. Optionally retain with a gentle chin lock.","Exhale slowly through BOTH NOSTRILS.","This is one round. Practice 8 to 15 rounds.","The cooling effect is nearly identical to Sheetali."],
+    caution:"Avoid with dental sensitivity to cold, respiratory infections, low blood pressure, and in cold weather or for cold constitutions.",
+    also:["Sheetali","Chandra Bhedana","Bhramari"]
+  },
+  bhastrika: {
+    name:"Bhastrika",
+    meaning:"bhastrika = bellows &nbsp;&bull;&nbsp; the blacksmith's bellows that fans a fire",
+    tags:["Advanced","Maximum energy","All-nadi purification","Morning only"],
+    why:"You are ready for the most powerful heating and purifying pranayama in the classical tradition. Bhastrika floods the body with prana, rapidly burns through energetic blockages, and builds an extraordinary charge of vitality. The classical texts say it destroys all diseases.",
+    what:"Unlike Kapalabhati where only the exhalation is active, Bhastrika uses equally forceful inhalation and exhalation -- like a blacksmith's bellows pumping hard in both directions. Followed by a deep retention after each round.",
+    ratio:"60 breaths per minute. 10 to 20 breaths per round for intermediate; up to 120 for advanced. Always followed by full retention.",
+    steps:["Sit upright, spine perfectly tall. Take a preparatory breath.","Begin forceful exhalation -- lower abdomen pumps in sharply.","Immediately follow with forceful inhalation -- lower abdomen expands out sharply.","Continue: forceful out, forceful in, same rhythm. Keep shoulders still.","After the round (10 to 20 breaths), take one very deep complete inhalation.","Retain with all three bandhas for as long as comfortable. Then exhale slowly.","Rest and absorb. Repeat 2 to 3 rounds maximum. Never more."],
+    caution:"All Kapalabhati cautions apply PLUS avoid with Pitta imbalance, in hot weather, and never more than 3 rounds without rest between them. Do not practice at high altitude.",
+    also:["Kapalabhati","Surya Bhedana","Anuloma Viloma"]
+  }
+};
+
+var allKeys = Object.keys(results);
+var current = 0;
+var answers = {};
+var scores = {};
+allKeys.forEach(function(k){ scores[k] = 0; });
+
+function render() {
+  var body = document.getElementById('quiz-body');
+  if (current >= questions.length) { renderResult(body); return; }
+  var q = questions[current];
+  var pct = Math.round((current / questions.length) * 100);
+  var html = '<div class="progress-label">Question ' + (current+1) + ' of ' + questions.length + '</div>';
+  html += '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
+  html += '<div class="question-card">';
+  html += '<div class="question-num">Question ' + (current+1) + '</div>';
+  html += '<div class="question-text">' + q.q + '</div>';
+  html += '<div class="options">';
+  for (var i = 0; i < q.opts.length; i++) {
+    var sel = answers[current] === i ? ' selected' : '';
+    html += '<button class="option' + sel + '" onclick="selectOpt(' + i + ')">';
+    html += '<span class="option-dot"></span><span>' + q.opts[i].text + '</span></button>';
+  }
+  html += '</div><div class="btn-row">';
+  if (current > 0) html += '<button class="btn-back" onclick="goBack()">&larr; Back</button>';
+  var disabled = answers[current] === undefined ? ' disabled' : '';
+  var label = current === questions.length - 1 ? 'See my practice &rarr;' : 'Next &rarr;';
+  html += '<button class="btn-next" id="btn-next" onclick="goNext()"' + disabled + '>' + label + '</button>';
+  html += '</div></div>';
+  body.innerHTML = html;
+}
+
+function selectOpt(i) {
+  answers[current] = i;
+  var opts = document.querySelectorAll('.option');
+  for (var j = 0; j < opts.length; j++) {
+    opts[j].classList.toggle('selected', j === i);
+  }
+  document.getElementById('btn-next').disabled = false;
+}
+
+function goNext() {
+  var q = questions[current];
+  var scr = q.opts[answers[current]].scores;
+  for (var k in scr) { if (scores[k] !== undefined) scores[k] += scr[k]; }
+  current++;
+  render();
+}
+
+function goBack() {
+  if (current > 0) { current--; render(); }
+}
+
+function getBest() {
+  var best = allKeys[0]; var top = scores[allKeys[0]];
+  for (var i = 1; i < allKeys.length; i++) {
+    if (scores[allKeys[i]] > top) { top = scores[allKeys[i]]; best = allKeys[i]; }
+  }
+  return best;
+}
+
+function renderResult(body) {
+  var best = getBest();
+  var r = results[best];
+  var html = '<div class="result-card">';
+  html += '<div class="result-hero"><div class="label">Your practice is</div>';
+  html += '<h2>' + r.name + '</h2>';
+  html += '<div class="meaning">' + r.meaning + '</div></div>';
+  html += '<div class="result-body">';
+  html += '<div class="result-tags">' + r.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('') + '</div>';
+  html += '<div class="result-section"><h3>Why this practice</h3><p>' + r.why + '</p></div>';
+  html += '<div class="result-section"><h3>What it is</h3><p>' + r.what + '</p></div>';
+  html += '<div class="result-section"><h3>Classical ratio</h3><div class="ratio-box">' + r.ratio + '</div></div>';
+  html += '<div class="result-section"><h3>Step-by-step practice</h3><ol class="steps">';
+  r.steps.forEach(function(s){ html += '<li>' + s + '</li>'; });
+  html += '</ol></div>';
+  html += '<div class="result-section"><h3>Safety notes</h3><div class="caution-box">' + r.caution + '</div></div>';
+  if (r.also && r.also.length) {
+    html += '<div class="also-try"><h3>Also worth exploring</h3><div class="also-pills">';
+    r.also.forEach(function(name){
+      html += '<button class="pill" onclick="showOther(\'' + name + '\')">' + name + '</button>';
+    });
+    html += '</div></div>';
+  }
+  html += '<div class="print-row">';
+  html += '<button class="btn-print" onclick="window.print()">Print / Save as PDF</button>';
+  html += '<button class="btn-restart" onclick="restart()">Retake quiz</button>';
+  html += '</div></div></div>';
+  body.innerHTML = html;
+}
+
+function showOther(name) {
+  var r = null; var key = null;
+  for (var k in results) { if (results[k].name === name) { r = results[k]; key = k; break; } }
+  if (!r) return;
+  var body = document.getElementById('quiz-body');
+  var html = '<div style="margin-bottom:1rem"><button class="btn-back" onclick="var b=getBest();renderResult(document.getElementById(\'quiz-body\'))">&larr; Back to my result</button></div>';
+  html += '<div class="result-card">';
+  html += '<div class="result-hero"><div class="label">Practice profile</div>';
+  html += '<h2>' + r.name + '</h2>';
+  html += '<div class="meaning">' + r.meaning + '</div></div>';
+  html += '<div class="result-body">';
+  html += '<div class="result-tags">' + r.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('') + '</div>';
+  html += '<div class="result-section"><h3>What it is</h3><p>' + r.what + '</p></div>';
+  html += '<div class="result-section"><h3>Classical ratio</h3><div class="ratio-box">' + r.ratio + '</div></div>';
+  html += '<div class="result-section"><h3>Step-by-step</h3><ol class="steps">';
+  r.steps.forEach(function(s){ html += '<li>' + s + '</li>'; });
+  html += '</ol></div>';
+  html += '<div class="result-section"><h3>Safety notes</h3><div class="caution-box">' + r.caution + '</div></div>';
+  html += '<div class="print-row"><button class="btn-print" onclick="window.print()">Print / Save as PDF</button></div>';
+  html += '</div></div>';
+  body.innerHTML = html;
+}
+
+function restart() {
+  current = 0; answers = {};
+  allKeys.forEach(function(k){ scores[k] = 0; });
+  render();
+}
+
+render();
+</script>

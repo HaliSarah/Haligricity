@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Haligric Practice Finder</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep:    #0e0e1a;
+    --mid:     #16162a;
+    --panel:   #1a1a30;
+    --border:  #3a3060;
+    --gold:    #c9a227;
+    --gold2:   #e8c455;
+    --rose:    #8b3a5a;
+    --sage:    #2a5a3a;
+    --sage2:   #3a7a50;
+    --violet:  #5b2d80;
+    --cream:   #f5f0e8;
+    --mist:    rgba(201,162,39,0.08);
+    --glow:    0 0 40px rgba(201,162,39,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Starfield ── */
+  #stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse at 20% 30%, #1a1030 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, #0a0a20 0%, transparent 60%),
+                var(--deep);
+  }
+  #stars::before, #stars::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 8%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 35%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5%  60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 75%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 82%, rgba(201,162,39,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 50%, rgba(201,162,39,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 48%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  }
+  #stars::after {
+    background-image:
+      radial-gradient(1px 1px at 8%  10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 68% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 18% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 92%, rgba(201,162,39,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 77% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 42% 62%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
+
+  /* ── Layout ── */
+  #app {
+    position: relative; z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeDown 1s ease both;
+  }
+  .symbol {
+    width: 72px; height: 72px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .symbol svg { width: 100%; height: 100%; }
+  .symbol-glow {
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.2) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  .site-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .site-header .subtitle {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    margin-bottom: 40px;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 10px;
+  }
+  .progress-track {
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ── Question card ── */
+  .question-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+    box-shadow: var(--glow), inset 0 1px 0 rgba(255,255,255,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+  .question-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .q-number {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+  .q-text {
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .q-sub {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  /* ── Options ── */
+  .options { display: grid; gap: 12px; }
+  .option-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .option-btn::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+    border-radius: 0 2px 2px 0;
+  }
+  .option-btn:hover {
+    background: rgba(201,162,39,0.08);
+    border-color: rgba(201,162,39,0.3);
+    transform: translateX(4px);
+  }
+  .option-btn:hover::before { transform: scaleY(1); }
+  .option-btn.selected {
+    background: rgba(201,162,39,0.12);
+    border-color: var(--gold);
+    transform: translateX(4px);
+  }
+  .option-btn.selected::before { transform: scaleY(1); }
+  .option-letter {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-right: 12px;
+    opacity: 0.8;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 32px;
+    gap: 16px;
+  }
+  .btn-back {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 12px 24px;
+    color: rgba(245,240,232,0.5);
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--cream);
+  }
+  .btn-next {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 14px 36px;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(139,58,90,0.3);
+    flex: 1;
+    max-width: 220px;
+    text-align: center;
+  }
+  .btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(139,58,90,0.4);
+  }
+  .btn-next:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ── Transitions ── */
+  .fade-in  { animation: fadeIn  0.5s ease both; }
+  .fade-out { animation: fadeOut 0.35s ease both; }
+
+  @keyframes fadeIn  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-12px); } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+
+  /* ── Loading ── */
+  #loading {
+    display: none;
+    text-align: center;
+    padding: 60px 0;
+  }
+  .spinner {
+    width: 56px; height: 56px;
+    margin: 0 auto 24px;
+    border: 2px solid rgba(201,162,39,0.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-style: italic;
+    color: rgba(245,240,232,0.5);
+    font-size: 1rem;
+  }
+
+  /* ── Result ── */
+  #result { display: none; }
+  .result-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .result-header .ashe {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .result-header h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .result-header .archetype {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .result-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 20px;
+    box-shadow: var(--glow);
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+  .result-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: 0.8;
+  }
+
+  /* Practice row */
+  .practice-list { display: grid; gap: 10px; }
+  .practice-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+  }
+  .p-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: grid; place-items: center;
+    background: var(--mist);
+    border-radius: 8px;
+    font-size: 1.2rem;
+  }
+  .p-info { flex: 1; }
+  .p-name {
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 3px;
+    font-size: 1rem;
+  }
+  .p-detail {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.4;
+  }
+  .p-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+  .badge-rise   { background: rgba(201,162,39,0.15); color: var(--gold); border: 1px solid rgba(201,162,39,0.3); }
+  .badge-daily  { background: rgba(42,90,58,0.2);   color: #6abf85;     border: 1px solid rgba(42,90,58,0.4); }
+  .badge-weekly { background: rgba(91,45,128,0.2);  color: #a87ad8;     border: 1px solid rgba(91,45,128,0.3); }
+  .badge-eve    { background: rgba(139,58,90,0.2);  color: #d87aab;     border: 1px solid rgba(139,58,90,0.3); }
+
+  /* Words to carry */
+  .words-card {
+    background: rgba(201,162,39,0.05);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .words-card .label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 14px;
+  }
+  .saying {
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .saying span { color: var(--gold); font-style: normal; }
+
+  /* Retake */
+  .retake-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 36px;
+  }
+  .btn-retake {
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 13px 30px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .btn-retake:hover {
+    background: rgba(201,162,39,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Footer note */
+  .footer-note {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.3);
+    line-height: 1.7;
+  }
+  .footer-note strong { color: rgba(201,162,39,0.6); font-style: normal; }
+
+  @media (max-width: 520px) {
+    #app { padding: 40px 16px 60px; }
+    .question-card { padding: 28px 20px; }
+    .result-card { padding: 24px 20px; }
+    .nav-row { flex-wrap: wrap; }
+    .btn-next { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div id="app">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="symbol">
+      <div class="symbol-glow"></div>
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" stroke="#c9a227" stroke-width="1.2" opacity="0.7"/>
+        <rect x="13.5" y="13.5" width="53" height="53" stroke="#c9a227" stroke-width="1.2" opacity="0.5" transform="rotate(0,40,40)"/>
+        <circle cx="40" cy="40" r="3" fill="#c9a227" opacity="0.9"/>
+        <line x1="40" y1="4" x2="40" y2="16" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
+        <line x1="40" y1="64" x2="40" y2="76" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
+        <line x1="4" y1="40" x2="16" y2="40" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
+        <line x1="64" y1="40" x2="76" y2="40" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
+      </svg>
+    </div>
+    <h1>The Haligric Practice Finder</h1>
+    <p class="subtitle">A living quiz — retake whenever your life changes</p>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="stepLabel">Question 1 of 9</span>
+      <span id="pctLabel">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Question area -->
+  <div id="quizArea">
+    <div class="question-card fade-in" id="questionCard">
+      <div class="q-number" id="qNum">Question 1</div>
+      <div class="q-text" id="qText"></div>
+      <div class="q-sub" id="qSub"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" id="btnBack" onclick="goBack()">← Back</button>
+      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p class="loading-text">Reading the field of your answers…</p>
+  </div>
+
+  <!-- Result -->
+  <div id="result"></div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <strong>Grand Rising.</strong> &nbsp;·&nbsp; <strong>Be More You.</strong> &nbsp;·&nbsp; <strong>Ashe.</strong><br>
+    Haligricity · Hali Sarah Parsons · realmagicintro.wixsite.com/mymagicworkbook
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// QUESTIONS
+// ══════════════════════════════════════════════════════════════
+const questions = [
+  {
+    text: "How does your energy feel right now, honestly?",
+    sub: "Not how you think it should feel. How it actually is.",
+    options: [
+      { letter:"A", text:"Depleted — I am running on empty and something needs to restore me." },
+      { letter:"B", text:"Scattered — lots of energy but it isn't landing anywhere useful." },
+      { letter:"C", text:"Flat — I'm functional but not really alive inside." },
+      { letter:"D", text:"Anxious or wired — too much happening and I can't settle." },
+      { letter:"E", text:"Actually pretty good — I want to go deeper, not just stabilize." },
+    ]
+  },
+  {
+    text: "Where does most of your tension live in the body?",
+    sub: "Pay attention for a moment before answering.",
+    options: [
+      { letter:"A", text:"Head and neck — mental overload, tight jaw, pressure behind the eyes." },
+      { letter:"B", text:"Chest and heart — heaviness, tightness, emotion stuck there." },
+      { letter:"C", text:"Belly and gut — anxiety in the stomach, digestive sensitivity." },
+      { letter:"D", text:"Hips and lower back — holding, clenching, unprocessed feeling below the waist." },
+      { letter:"E", text:"Full body — I am disconnected from sensation almost entirely." },
+    ]
+  },
+  {
+    text: "What is your primary intention right now?",
+    sub: "Choose the one that is most true, even if others also apply.",
+    options: [
+      { letter:"A", text:"Healing — something in my body or field needs repair and release." },
+      { letter:"B", text:"Clarity — I need to think straight again and get out of my own way." },
+      { letter:"C", text:"Grounding — I need to feel safe, present, and rooted in this moment." },
+      { letter:"D", text:"Expansion — I am ready to go deeper and access more of my capacity." },
+      { letter:"E", text:"Balance — I want to feel like myself again, whole and flowing." },
+    ]
+  },
+  {
+    text: "How much time can you realistically give your daily practice right now?",
+    sub: "Be honest. A small practice you do beats a large one you don't.",
+    options: [
+      { letter:"A", text:"10 to 15 minutes — I have a full life and I need something that fits inside it." },
+      { letter:"B", text:"20 to 30 minutes — I can make that space on most mornings." },
+      { letter:"C", text:"30 to 45 minutes — I'm committed and my schedule can hold this." },
+      { letter:"D", text:"An hour or more — this is a genuine priority and I will protect the time." },
+      { letter:"E", text:"It changes week to week — I need something flexible I can expand or contract." },
+    ]
+  },
+  {
+    text: "Which element do you feel most out of balance with right now?",
+    sub: "Feel your way into this one rather than thinking it through.",
+    options: [
+      { letter:"A", text:"Earth — I am ungrounded, unrooted, not fully in my body or the physical world." },
+      { letter:"B", text:"Water — emotions are overwhelming or completely cut off; flow is gone." },
+      { letter:"C", text:"Fire — creative energy is low, motivation has left, the inner flame is dim." },
+      { letter:"D", text:"Air — I am overthinking, overwhelmed by ideas, unable to arrive in the present." },
+      { letter:"E", text:"All of them — I need a reset from the beginning." },
+    ]
+  },
+  {
+    text: "How is your relationship to your own body right now?",
+    sub: "No judgment in either direction. Just what is true.",
+    options: [
+      { letter:"A", text:"Disconnected — I live mostly in my head and my body feels like a stranger." },
+      { letter:"B", text:"Critical — I notice what is wrong more than what is working." },
+      { letter:"C", text:"Tender — I am aware of sensitivity and need to approach gently." },
+      { letter:"D", text:"Curious — I want to understand and work with it more consciously." },
+      { letter:"E", text:"Pretty good — I want to go further and access what it is capable of." },
+    ]
+  },
+  {
+    text: "What has sound felt like for you lately?",
+    sub: "Notice whether you've been seeking silence or seeking sound.",
+    options: [
+      { letter:"A", text:"I crave silence — the world is too loud and I need relief from it." },
+      { letter:"B", text:"I find myself humming, singing, or wanting music constantly." },
+      { letter:"C", text:"I am numb to sound — music doesn't move me the way it used to." },
+      { letter:"D", text:"Certain sounds pierce me — I'm more sensitive than usual." },
+      { letter:"E", text:"I haven't thought about it — sound isn't on my radar." },
+    ]
+  },
+  {
+    text: "How do you most naturally connect with the earth and the seasons?",
+    sub: "This tells us which earth-based practices to emphasize.",
+    options: [
+      { letter:"A", text:"Physically — I want to put my feet in the dirt, garden, be outdoors." },
+      { letter:"B", text:"Cyclically — I feel the moon phases, the turning seasons, the rhythm of time." },
+      { letter:"C", text:"Creatively — nature moves through me in art, music, and making things." },
+      { letter:"D", text:"Ancestrally — I feel my connection to those who came before me." },
+      { letter:"E", text:"I'm not connected yet — I want to build this relationship from the beginning." },
+    ]
+  },
+  {
+    text: "What does your ideal day feel like at the end of it?",
+    sub: "Let yourself imagine before the mind offers objections.",
+    options: [
+      { letter:"A", text:"I feel rested, clear, and at peace — the day served life rather than consuming it." },
+      { letter:"B", text:"I feel alive and expressed — something was created, moved, or shared." },
+      { letter:"C", text:"I feel connected — to myself, to others, and to something larger." },
+      { letter:"D", text:"I feel strong — in body, in field, in the sense of my own sovereignty." },
+      { letter:"E", text:"I feel grateful — simply that. A quiet, full gratitude for the whole thing." },
+    ]
+  }
+];
+
+// ══════════════════════════════════════════════════════════════
+// PRACTICE LIBRARY
+// ══════════════════════════════════════════════════════════════
+const practices = {
+  inner_smile:  { icon:"☀️", name:"Inner Smile Meditation", badge:"badge-rise",  label:"Rise",   detail:"Stretch-tap sequence, gum massage, smile cultivation, swallow with love." },
+  earthing:     { icon:"🌱", name:"Barefoot Earthing",      badge:"badge-rise",  label:"Rise",   detail:"5 to 10 minutes bare feet on soil at the rise and before sleep." },
+  bath:         { icon:"🚿", name:"Crown-First Sacred Bath", badge:"badge-rise",  label:"Rise",   detail:"Cool water at the crown before the body. Intention set as you bathe." },
+  heaven_earth: { icon:"⚡", name:"Heaven-Earth Current",   badge:"badge-daily", label:"Daily",  detail:"Celestial light descending through the chakras into Earth. Earth energy rising to crown." },
+  light_bubble: { icon:"🔮", name:"Light Bubble Renewal",   badge:"badge-rise",  label:"Rise",   detail:"Double-helix gold spiral. Receives love. Returns all else with love." },
+  qigong:       { icon:"🌀", name:"Rising Qigong + Meridian Percussion", badge:"badge-rise", label:"Rise", detail:"Shaking, self-patting, arm and leg meridian striking, arm swinging, dantian close." },
+  sun_sal:      { icon:"🌅", name:"Sun Salutations",        badge:"badge-rise",  label:"Rise",   detail:"3 to 12 rounds after qigong. Builds heat. Moves the qi that qigong circulated." },
+  pranayama:    { icon:"💨", name:"Kapalabhati + Nadi Shodhana", badge:"badge-rise", label:"Rise", detail:"Skull-shining breath and alternate nostril. Separate sitting practice after movement." },
+  three_chamber:{ icon:"🫁", name:"Three-Chamber Breath",   badge:"badge-daily", label:"Daily",  detail:"Belly, chest, shoulders as one elliptical wave. 15 minutes daily." },
+  bhramari:     { icon:"🎶", name:"Bhramari — Humming Bee", badge:"badge-daily", label:"Daily",  detail:"Fastest available anxiety relief. Vagus nerve activation. Use anytime." },
+  lymph:        { icon:"🌊", name:"Lymphatic Self-Drainage", badge:"badge-eve",   label:"Evening",detail:"Neck, rubbish bins, abdomen 400-count, arms and legs. 10 minutes lying down." },
+  gua_sha:      { icon:"💎", name:"Gua Sha + Body Care",    badge:"badge-eve",   label:"Evening",detail:"Oil, stroke upward. Finish at the neck. Combined with lymphatic sequence." },
+  chakra_clear: { icon:"🌈", name:"Evening Chakra Clearing", badge:"badge-eve",   label:"Evening",detail:"Counter-clockwise drain through hands and feet into Earth. Clockwise refill with nature color." },
+  mudra:        { icon:"🤲", name:"Daily Mudra",             badge:"badge-daily", label:"Daily",  detail:"Draw one card at the rise. Work with that gesture throughout the day." },
+  sound_bowl:   { icon:"🔔", name:"Tibetan Bowl or Bell",    badge:"badge-eve",   label:"Evening",detail:"Clear the space. Clear the field. Mark the threshold between day and evening." },
+  gratitude:    { icon:"📖", name:"Tetralty Journal + Gratitude", badge:"badge-eve", label:"Evening", detail:"How did I feel, think, speak, and do today? Three specific things truly felt." },
+  ancestor:     { icon:"🕯️", name:"Ancestor Altar Visit",   badge:"badge-weekly",label:"Weekly", detail:"Light the candle. Share your news. Speak the names." },
+  ritual_bath:  { icon:"🛁", name:"Weekly Ritual Bath",      badge:"badge-weekly",label:"Weekly", detail:"Crystals, sea salt, intention. Crown-first entry. Release as the water drains." },
+  space_clear:  { icon:"✨", name:"Space Clearing",          badge:"badge-weekly",label:"Weekly", detail:"Bell, drum, sage, or intention. Every corner. Especially after conflict or illness." },
+  new_moon:     { icon:"🌑", name:"New Moon Ritual",         badge:"badge-weekly",label:"Monthly",detail:"Write intentions in present tense. Place in glass bowl in moonlight. Speak them aloud." },
+  full_moon:    { icon:"🌕", name:"Full Moon Release",       badge:"badge-weekly",label:"Monthly",detail:"Write what you release. Burn it. Bury your new moon intentions as seeds. Charge crystals." },
+  reflexology:  { icon:"👣", name:"Foot Reflexology",        badge:"badge-weekly",label:"Weekly", detail:"Heel, arch, ball, toes. Hold tender spots 30 to 60 seconds. Drink water after." },
+  food_blessing:{ icon:"🙏", name:"Meal Blessing",           badge:"badge-daily", label:"Daily",  detail:"Open palms to receive. Rub to activate. Hold over food. Snap: Ashe, thank you universe." },
+  creative:     { icon:"🎨", name:"Creative Practice",       badge:"badge-weekly",label:"Weekly", detail:"Free draw, pottery, song, journaling, any making done with full presence." },
+};
+
+// ══════════════════════════════════════════════════════════════
+// RESULT ENGINE — maps answer pattern to a practice set
+// ══════════════════════════════════════════════════════════════
+function buildResult(answers) {
+  // Score each practice dimension
+  let scores = {
+    grounding:0, emotional:0, creative:0, expansion:0, sound_focus:0,
+    earth_body:0, moon_cycle:0, morning_depth:0, evening_depth:0
+  };
+
+  // Q0 — energy state
+  if(answers[0]==="A") { scores.grounding+=2; scores.evening_depth+=1; }
+  if(answers[0]==="B") { scores.grounding+=1; scores.emotional+=1; }
+  if(answers[0]==="C") { scores.creative+=2; scores.sound_focus+=1; }
+  if(answers[0]==="D") { scores.sound_focus+=2; scores.grounding+=1; }
+  if(answers[0]==="E") { scores.expansion+=2; scores.morning_depth+=1; }
+
+  // Q1 — body tension
+  if(answers[1]==="A") { scores.sound_focus+=2; scores.grounding+=1; }
+  if(answers[1]==="B") { scores.emotional+=2; scores.sound_focus+=1; }
+  if(answers[1]==="C") { scores.emotional+=1; scores.grounding+=1; }
+  if(answers[1]==="D") { scores.grounding+=2; scores.earth_body+=1; }
+  if(answers[1]==="E") { scores.earth_body+=2; scores.grounding+=1; }
+
+  // Q2 — intention
+  if(answers[2]==="A") { scores.emotional+=2; scores.evening_depth+=1; }
+  if(answers[2]==="B") { scores.sound_focus+=2; scores.morning_depth+=1; }
+  if(answers[2]==="C") { scores.grounding+=2; scores.earth_body+=1; }
+  if(answers[2]==="D") { scores.expansion+=3; scores.morning_depth+=1; }
+  if(answers[2]==="E") { scores.emotional+=1; scores.grounding+=1; scores.sound_focus+=1; }
+
+  // Q3 — time
+  const timeCode = answers[3];
+  if(timeCode==="A") { scores.morning_depth-=1; }       // short: trim mornings
+  if(timeCode==="C"||timeCode==="D") { scores.morning_depth+=2; scores.evening_depth+=1; }
+
+  // Q4 — element
+  if(answers[4]==="A") { scores.earth_body+=3; scores.grounding+=2; }
+  if(answers[4]==="B") { scores.emotional+=3; scores.moon_cycle+=1; }
+  if(answers[4]==="C") { scores.creative+=2; scores.sound_focus+=1; }
+  if(answers[4]==="D") { scores.sound_focus+=2; scores.grounding+=1; }
+  if(answers[4]==="E") { scores.grounding+=2; scores.earth_body+=1; scores.emotional+=1; }
+
+  // Q5 — body relationship
+  if(answers[5]==="A") { scores.earth_body+=3; scores.grounding+=1; }
+  if(answers[5]==="B") { scores.emotional+=2; scores.creative+=1; }
+  if(answers[5]==="C") { scores.emotional+=2; scores.evening_depth+=1; }
+  if(answers[5]==="D") { scores.expansion+=2; scores.creative+=1; }
+  if(answers[5]==="E") { scores.expansion+=3; scores.morning_depth+=1; }
+
+  // Q6 — sound
+  if(answers[6]==="A") { scores.grounding+=2; }
+  if(answers[6]==="B") { scores.sound_focus+=3; scores.creative+=1; }
+  if(answers[6]==="C") { scores.sound_focus+=2; scores.emotional+=1; }
+  if(answers[6]==="D") { scores.emotional+=2; scores.sound_focus+=1; }
+  if(answers[6]==="E") { scores.grounding+=1; }
+
+  // Q7 — earth connection
+  if(answers[7]==="A") { scores.earth_body+=3; scores.grounding+=2; }
+  if(answers[7]==="B") { scores.moon_cycle+=3; scores.emotional+=1; }
+  if(answers[7]==="C") { scores.creative+=3; scores.sound_focus+=1; }
+  if(answers[7]==="D") { scores.moon_cycle+=2; scores.emotional+=2; }
+  if(answers[7]==="E") { scores.grounding+=3; scores.earth_body+=1; }
+
+  // Q8 — ideal day
+  if(answers[8]==="A") { scores.grounding+=2; scores.evening_depth+=1; }
+  if(answers[8]==="B") { scores.creative+=3; scores.sound_focus+=1; }
+  if(answers[8]==="C") { scores.emotional+=2; scores.moon_cycle+=1; }
+  if(answers[8]==="D") { scores.expansion+=2; scores.morning_depth+=1; }
+  if(answers[8]==="E") { scores.moon_cycle+=2; scores.grounding+=1; }
+
+  // ── Time factor adjustments ──
+  const shortTime = (answers[3]==="A");
+  const longTime  = (answers[3]==="C"||answers[3]==="D");
+
+  // ── Archetype ──
+  const maxScore = Math.max(...Object.values(scores));
+  const topDims  = Object.entries(scores).filter(([k,v])=>v===maxScore).map(([k])=>k);
+  const primary  = topDims[0];
+
+  const archetypes = {
+    grounding:      { name:"The Rooter",       desc:"One who returns to earth before all else" },
+    emotional:      { name:"The Feeler",        desc:"One who honors what moves through them" },
+    creative:       { name:"The Maker",         desc:"One whose healing comes through making" },
+    expansion:      { name:"The Deepener",      desc:"One who is ready for more" },
+    sound_focus:    { name:"The Listener",      desc:"One whose medicine arrives through sound" },
+    earth_body:     { name:"The Earth Walker",  desc:"One who heals through the body and the land" },
+    moon_cycle:     { name:"The Lunar",         desc:"One who moves with the rhythms of the moon" },
+    morning_depth:  { name:"The Riser",         desc:"One whose power builds at the rise" },
+    evening_depth:  { name:"The Settler",       desc:"One whose practice lives in the evening hours" },
+  };
+  const arch = archetypes[primary] || archetypes.grounding;
+
+  // ── Build practice list ──
+  const riseSet    = [];
+  const dailySet   = [];
+  const eveningSet = [];
+  const weeklySet  = [];
+
+  // Universal foundation — everyone
+  riseSet.push("bath", "earthing");
+  dailySet.push("food_blessing");
+  eveningSet.push("gratitude");
+  weeklySet.push("ancestor");
+
+  // By energy state
+  if(answers[0]==="A"||answers[0]==="C") { eveningSet.push("chakra_clear"); }
+  if(answers[0]==="D") { dailySet.push("bhramari"); }
+  if(answers[0]==="E") { riseSet.push("inner_smile"); }
+
+  // By element / dimension
+  if(scores.grounding>=3) { riseSet.push("earthing"); eveningSet.push("chakra_clear"); }
+  if(scores.emotional>=3) { eveningSet.push("lymph"); weeklySet.push("ritual_bath"); }
+  if(scores.creative>=3)  { weeklySet.push("creative"); dailySet.push("mudra"); }
+  if(scores.sound_focus>=3) { eveningSet.push("sound_bowl"); dailySet.push("bhramari"); }
+  if(scores.earth_body>=3) { riseSet.push("qigong"); eveningSet.push("gua_sha"); weeklySet.push("reflexology"); }
+  if(scores.moon_cycle>=3) { weeklySet.push("new_moon","full_moon"); }
+  if(scores.expansion>=3)  { riseSet.push("heaven_earth","light_bubble"); riseSet.push("pranayama"); }
+
+  // Time modifiers
+  if(shortTime) {
+    // Slim morning to the essentials only
+    const keep = ["bath","earthing","bhramari","three_chamber","food_blessing"];
+    riseSet.splice(0, riseSet.length, ...riseSet.filter(p=>keep.includes(p)));
+    if(!riseSet.includes("three_chamber")) riseSet.push("three_chamber");
+  } else {
+    if(longTime) riseSet.push("inner_smile","qigong","sun_sal");
+    riseSet.push("three_chamber");
+  }
+
+  // Body relationship
+  if(answers[5]==="A"||answers[5]==="B") {
+    if(!eveningSet.includes("gua_sha")) eveningSet.push("gua_sha");
+  }
+  if(answers[5]==="E") {
+    riseSet.push("light_bubble","heaven_earth");
+  }
+
+  // Deduplicate and cap each section
+  const dedup = arr => [...new Set(arr)].slice(0,6);
+  const rFinal = dedup(riseSet);
+  const dFinal = dedup(dailySet);
+  const eFinal = dedup(eveningSet);
+  const wFinal = dedup(weeklySet);
+
+  // ── Words to carry ──
+  const sayings = [
+    { text:"Grand Rising. Every breath is a new beginning.", highlight:"Grand Rising." },
+    { text:"Ashe. What you speak into the day, the day becomes.", highlight:"Ashe." },
+    { text:"Be More You. The release is the healing.", highlight:"Be More You." },
+    { text:"Accuse me — and own every inch of your presence.", highlight:"Accuse me" },
+    { text:"The universe hears what you feel, not only what you say.", highlight:null },
+    { text:"Your energy is currency. Spend it consciously.", highlight:null },
+    { text:"The earth is always available. Your feet are always an offering.", highlight:null },
+    { text:"What the body holds, sound can release.", highlight:null },
+  ];
+  const saying = sayings[Math.floor(Math.random()*sayings.length)];
+
+  return {
+    arch, primary, scores,
+    rFinal, dFinal, eFinal, wFinal,
+    saying, shortTime,
+  };
+}
+
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+let current = 0;
+const answers = new Array(questions.length).fill(null);
+let selectedIdx = null;
+
+// ══════════════════════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════════════════════
+function renderQuestion(idx, direction="forward") {
+  const q = questions[idx];
+  const card = document.getElementById("questionCard");
+
+  // Animate out
+  card.classList.remove("fade-in");
+  card.classList.add("fade-out");
+
+  setTimeout(()=>{
+    // Update content
+    document.getElementById("qNum").textContent = `Question ${idx+1}`;
+    document.getElementById("qText").textContent = q.text;
+    document.getElementById("qSub").textContent  = q.sub || "";
+
+    const optArea = document.getElementById("options");
+    optArea.innerHTML = "";
+    q.options.forEach((opt, oi)=>{
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      if(answers[idx] === opt.letter) btn.classList.add("selected");
+      btn.innerHTML = `<span class="option-letter">${opt.letter}</span>${opt.text}`;
+      btn.onclick = ()=>selectOption(opt.letter, btn);
+      optArea.appendChild(btn);
+    });
+
+    selectedIdx = answers[idx] ? answers[idx] : null;
+    document.getElementById("btnNext").disabled = !selectedIdx;
+    document.getElementById("btnBack").style.visibility = idx===0 ? "hidden":"visible";
+
+    // Progress
+    const pct = Math.round((idx / questions.length)*100);
+    document.getElementById("progressFill").style.width = pct+"%";
+    document.getElementById("stepLabel").textContent = `Question ${idx+1} of ${questions.length}`;
+    document.getElementById("pctLabel").textContent  = pct+"%";
+
+    card.classList.remove("fade-out");
+    card.classList.add("fade-in");
+  }, 320);
+}
+
+function selectOption(letter, btn) {
+  document.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected"));
+  btn.classList.add("selected");
+  selectedIdx = letter;
+  document.getElementById("btnNext").disabled = false;
+}
+
+function goNext() {
+  if(!selectedIdx) return;
+  answers[current] = selectedIdx;
+  selectedIdx = null;
+  if(current < questions.length-1) {
+    current++;
+    renderQuestion(current,"forward");
+  } else {
+    showResult();
+  }
+}
+
+function goBack() {
+  if(current===0) return;
+  current--;
+  renderQuestion(current,"back");
+}
+
+// ══════════════════════════════════════════════════════════════
+// SHOW RESULT
+// ══════════════════════════════════════════════════════════════
+function showResult() {
+  document.getElementById("quizArea").style.display="none";
+  document.getElementById("progressWrap").style.display="none";
+  document.getElementById("loading").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("loading").style.display="none";
+    const res = buildResult(answers);
+    renderResult(res);
+    document.getElementById("result").style.display="block";
+    document.getElementById("result").classList.add("fade-in");
+  }, 2200);
+}
+
+function renderResult(res) {
+  const el = document.getElementById("result");
+  const { arch, rFinal, dFinal, eFinal, wFinal, saying, shortTime } = res;
+
+  function practiceItems(keys) {
+    return keys.map(k=>{
+      const p = practices[k];
+      if(!p) return "";
+      return `
+        <div class="practice-item">
+          <div class="p-icon">${p.icon}</div>
+          <div class="p-info">
+            <div class="p-name">${p.name}</div>
+            <div class="p-detail">${p.detail}</div>
+          </div>
+          <span class="p-badge ${p.badge}">${p.label}</span>
+        </div>`;
+    }).join("");
+  }
+
+  let sayingHTML = saying.highlight
+    ? saying.text.replace(saying.highlight, `<span>${saying.highlight}</span>`)
+    : saying.text;
+
+  el.innerHTML = `
+    <div class="result-header">
+      <div class="ashe">Your Haligric Path</div>
+      <h2>${arch.name}</h2>
+      <div class="archetype">${arch.desc}</div>
+    </div>
+
+    <div class="words-card">
+      <div class="label">Words to Carry into the Day</div>
+      <div class="saying">${sayingHTML}</div>
+    </div>
+
+    ${rFinal.length ? `
+    <div class="result-card">
+      <h3>The Sacred Rise${shortTime ? " — Your Essential Core" : ""}</h3>
+      <div class="practice-list">${practiceItems(rFinal)}</div>
+    </div>` : ""}
+
+    ${dFinal.length ? `
+    <div class="result-card">
+      <h3>Throughout the Day</h3>
+      <div class="practice-list">${practiceItems(dFinal)}</div>
+    </div>` : ""}
+
+    ${eFinal.length ? `
+    <div class="result-card">
+      <h3>The Evening Wind-Down</h3>
+      <div class="practice-list">${practiceItems(eFinal)}</div>
+    </div>` : ""}
+
+    ${wFinal.length ? `
+    <div class="result-card">
+      <h3>Weekly and Monthly Ceremonies</h3>
+      <div class="practice-list">${practiceItems(wFinal)}</div>
+    </div>` : ""}
+
+    <div class="result-card" style="background:rgba(201,162,39,0.04); border-color:rgba(201,162,39,0.2);">
+      <h3>A Note from Haligricity</h3>
+      <p style="font-style:italic; color:rgba(245,240,232,0.7); line-height:1.7; font-size:0.98rem;">
+        This is your starting point, not your ceiling. Begin with one or two practices from the Rise and let them become automatic before adding the next. The goal is a life on autopilot that lets you be fully awake for what matters most.<br><br>
+        When your season changes — a move, a loss, a new relationship, a new creative direction — come back and retake this quiz. The path is meant to be rebuilt as you rebuild. It is a living practice, not a fixed prescription.<br><br>
+        Grand Rising. Be More You. Ashe.
+      </p>
+    </div>
+
+    <div class="retake-row">
+      <button class="btn-retake" onclick="restartQuiz()">Retake the Quiz</button>
+      <button class="btn-retake" onclick="window.print()">Save My Path</button>
+    </div>`;
+}
+
+function restartQuiz() {
+  current = 0;
+  answers.fill(null);
+  selectedIdx = null;
+
+  document.getElementById("result").style.display="none";
+  document.getElementById("progressWrap").style.display="block";
+  document.getElementById("quizArea").style.display="block";
+  renderQuestion(0);
+}
+
+// ══════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════
+renderQuestion(0);
+</script>
+</body>
+</html>

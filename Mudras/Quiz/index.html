@@ -1,0 +1,605 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FFFDF0;--gold:#C9A227;--gold-mid:#DAA520;--gold-border:#B8860B;
+  --gold-light:#FFF8DC;--gold-pale:#FFFAEC;
+  --purple:#4A1060;--purple-mid:#6B2D8E;--purple-light:#EDE0F5;--purple-soft:#C9A8E0;
+  --ink:#1A1A1A;--gray:#555;--gray-light:#888;
+}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:700px;margin:0 auto;padding:1.5rem 1.5rem 3rem}
+.header{text-align:center;padding:1.5rem 0 1.2rem;border-bottom:2px solid var(--gold-border);margin-bottom:1.5rem}
+.header h1{font-size:1.6rem;font-weight:normal;color:var(--purple);letter-spacing:.03em;line-height:1.3;margin-bottom:.3rem}
+.header p{font-size:.9rem;color:var(--gray);font-style:italic}
+.prog-label{font-size:.75rem;color:var(--gray);text-align:right;margin-bottom:.35rem}
+.prog-bar{height:4px;background:#E8E0C8;border-radius:2px;margin-bottom:1.5rem;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--purple-mid));border-radius:2px;transition:width .4s ease}
+.q-card{background:#fff;border:1.5px solid var(--gold-border);border-radius:12px;padding:1.8rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(180,140,0,.07)}
+.q-num{font-size:.72rem;color:var(--gold-border);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+.q-text{font-size:1.1rem;color:var(--purple);line-height:1.5;margin-bottom:1.2rem;font-weight:normal}
+.opts{display:flex;flex-direction:column;gap:.6rem}
+.opt{background:var(--gold-light);border:1.5px solid var(--gold-border);border-radius:8px;padding:.8rem 1rem;cursor:pointer;font-size:.93rem;color:var(--ink);transition:all .18s;text-align:left;font-family:Georgia,serif;display:flex;align-items:flex-start;gap:.65rem}
+.opt:hover{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple)}
+.opt.sel{background:var(--purple-light);border-color:var(--purple);color:var(--purple);font-weight:bold}
+.dot{width:17px;height:17px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
+.opt.sel .dot::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--purple)}
+.btn-row{display:flex;justify-content:flex-end;gap:.7rem;margin-top:1rem}
+.btn-back{background:transparent;border:1.5px solid var(--gold-border);color:var(--gold-border);border-radius:8px;padding:.55rem 1.2rem;cursor:pointer;font-family:Georgia,serif;font-size:.88rem;transition:all .18s}
+.btn-back:hover{background:var(--gold-light)}
+.btn-next{background:var(--purple);border:1.5px solid var(--purple);color:#fff;border-radius:8px;padding:.55rem 1.5rem;cursor:pointer;font-family:Georgia,serif;font-size:.92rem;transition:all .18s}
+.btn-next:hover:not(:disabled){background:var(--purple-mid)}
+.btn-next:disabled{opacity:.4;cursor:not-allowed}
+.res-card{background:#fff;border:2px solid var(--gold-border);border-radius:16px;overflow:hidden}
+.res-hero{background:var(--purple);color:#fff;padding:2rem;text-align:center}
+.res-hero .badge{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--purple-soft);margin-bottom:.5rem}
+.res-hero h2{font-size:1.9rem;font-weight:normal;margin-bottom:.25rem}
+.res-hero .meaning{font-size:.92rem;font-style:italic;color:var(--purple-soft)}
+.res-body{padding:1.6rem}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.3rem}
+.tag{background:var(--purple-light);color:var(--purple);border-radius:20px;padding:.28rem .8rem;font-size:.78rem;border:1px solid var(--purple-soft)}
+.rs{margin-bottom:1.2rem}
+.rs h3{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);margin-bottom:.45rem;font-weight:normal}
+.rs p,.rs li{font-size:.93rem;line-height:1.65;color:var(--ink)}
+.how-box{background:var(--gold-pale);border:1px solid var(--gold-border);border-radius:8px;padding:.9rem 1.1rem;margin:.4rem 0}
+.how-box ol{padding-left:1.2rem}
+.how-box li{font-size:.92rem;line-height:1.6;margin-bottom:.3rem;color:var(--ink)}
+.caution{background:#FFF8E0;border-left:3px solid var(--gold);padding:.75rem 1rem;border-radius:0 8px 8px 0;font-size:.86rem;color:var(--gray);line-height:1.6;margin-top:.5rem}
+.also{margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid #EEE8D0}
+.also h3{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);margin-bottom:.55rem;font-weight:normal}
+.pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.pill{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:6px;padding:.32rem .75rem;font-size:.83rem;color:var(--gold-border);cursor:pointer;font-family:Georgia,serif;transition:all .15s}
+.pill:hover{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple)}
+.prow{display:flex;justify-content:center;gap:.9rem;margin-top:1.7rem;padding-top:1.3rem;border-top:1px solid #EEE8D0}
+.btn-print{background:var(--purple);color:#fff;border:none;border-radius:8px;padding:.65rem 1.7rem;cursor:pointer;font-family:Georgia,serif;font-size:.92rem}
+.btn-print:hover{background:var(--purple-mid)}
+.btn-restart{background:transparent;border:1.5px solid var(--gold-border);color:var(--gold-border);border-radius:8px;padding:.65rem 1.3rem;cursor:pointer;font-family:Georgia,serif;font-size:.92rem}
+.btn-restart:hover{background:var(--gold-light)}
+@media print{.prow,.btn-row,.prog-bar,.prog-label,.also{display:none!important}.res-card{border:1px solid #999}}
+</style>
+<div class="wrap">
+<div class="header">
+  <h1>Which mudra does this moment need?</h1>
+  <p>Answer 9 questions &mdash; receive the sacred hand gesture your body, mind, and energy are calling for</p>
+</div>
+<div id="body"></div>
+</div>
+<script>
+var Q=[
+  {q:"How would you describe your energy right now?",opts:[
+    {t:"Scattered, restless, hard to settle",s:{gyan:3,chin:2,dhyana:3,adi:2,hakini:1}},
+    {t:"Heavy, tired, drained &mdash; I need fuel",s:{prana:3,surya:2,agni:2,shakti:2,linga:1}},
+    {t:"Anxious, tight in the chest",s:{hridaya:3,anjali:2,abhaya:2,shuni:1,lotus:2}},
+    {t:"Calm but disconnected &mdash; I want to go deeper",s:{dhyana:3,brahma:2,hakini:2,chin:2,adi:1}},
+    {t:"Balanced &mdash; I want to amplify what&rsquo;s here",s:{gyan:2,chin:2,prana:2,kundalini:1}},
+  ]},
+  {q:"Where in your body do you feel the most tension or heaviness?",opts:[
+    {t:"Head, mind, racing thoughts",s:{hakini:3,gyan:2,chin:2,brahma:2,dhyana:1}},
+    {t:"Chest, heart, difficulty breathing",s:{hridaya:3,lotus:3,anjali:2,abhaya:2,vayu:1}},
+    {t:"Stomach, gut, digestive unease",s:{apana:3,agni:2,surya:2,shankha:1,varun:1}},
+    {t:"Lower body, hips, feeling ungrounded",s:{prithvi:3,bhu:3,apana:2,muladhara_m:2}},
+    {t:"Throat, difficulty speaking my truth",s:{akash:3,shuni:2,vishuddhi_m:2,jnana:1}},
+  ]},
+  {q:"What is your primary intention for this practice?",opts:[
+    {t:"Focus, clarity, and mental sharpness",s:{gyan:3,hakini:3,chin:2,jnana:2,brahma:1}},
+    {t:"Healing &mdash; body or emotional",s:{prana:3,hridaya:3,apana:2,shakti:2,varun:1}},
+    {t:"Grounding and stability",s:{prithvi:3,bhu:3,bhumi:2,apana:2,muladhara_m:2}},
+    {t:"Opening the heart, more love and connection",s:{lotus:3,hridaya:3,anjali:2,padma:2}},
+    {t:"Spiritual awakening and higher consciousness",s:{chin:3,dhyana:3,kundalini:2,hakini:2,brahma:2}},
+    {t:"Protection and clearing negative energy",s:{abhaya:3,karana:3,kali_m:2,durga_m:2}},
+    {t:"Creativity and self-expression",s:{akash:2,shunya:2,vishuddhi_m:2,shakti:2}},
+  ]},
+  {q:"What element feels most out of balance in you right now?",opts:[
+    {t:"Earth &mdash; I feel unstable, unrooted",s:{prithvi:3,bhu:3,bhumi:2,muladhara_m:2,gyan:1}},
+    {t:"Water &mdash; I feel dry, stiff, emotionally blocked",s:{varun:3,jala:3,varuna_m:2}},
+    {t:"Fire &mdash; I feel cold, slow, low motivation",s:{agni:3,surya:3,linga:2,shakti:1}},
+    {t:"Air &mdash; I feel scattered, too much in my head",s:{vayu:3,gyan:2,apana:2,prana:1}},
+    {t:"Space/Ether &mdash; I feel constricted, no room to breathe",s:{akash:3,shunya:3,vishuddhi_m:2}},
+  ]},
+  {q:"How is your breathing right now?",opts:[
+    {t:"Shallow, fast, upper chest only",s:{hridaya:2,anjali:2,prana:2,vayu:1,lotus:1}},
+    {t:"Barely noticing it &mdash; very disconnected",s:{prana:3,gyan:2,dhyana:2,chin:1}},
+    {t:"Deep and slow but wanting to go deeper",s:{dhyana:3,brahma:2,hakini:2,kundalini:1}},
+    {t:"Slightly constricted or tight",s:{akash:2,vayu:2,hridaya:2,apana:1}},
+    {t:"Natural and fine &mdash; it&rsquo;s not the issue",s:{gyan:1,chin:1,prithvi:1}},
+  ]},
+  {q:"What emotion is most present for you?",opts:[
+    {t:"Anxiety or fear",s:{abhaya:3,hridaya:3,anjali:2,karana:1,gyan:1}},
+    {t:"Grief or sadness",s:{lotus:3,hridaya:3,apana:2,varun:1}},
+    {t:"Anger or frustration",s:{apana:3,shankha:2,durga_m:2,karana:1}},
+    {t:"Confusion or mental fog",s:{hakini:3,gyan:3,brahma:2,chin:2}},
+    {t:"Loneliness or disconnection",s:{anjali:3,lotus:2,hridaya:2,prithvi:1}},
+    {t:"Low motivation or depression",s:{prana:3,agni:3,surya:2,linga:2,shakti:1}},
+    {t:"Overstimulation or overwhelm",s:{dhyana:3,prithvi:3,varun:2,apana:2}},
+    {t:"Joy &mdash; I want to deepen or share it",s:{padma:3,lotus:2,anjali:2,chin:1}},
+  ]},
+  {q:"What time of day is it, and what is the general context?",opts:[
+    {t:"Early morning &mdash; starting the day",s:{surya:2,agni:2,prana:2,gyan:1}},
+    {t:"Midday &mdash; at work or mid-task",s:{hakini:2,gyan:2,chin:2,apana:1}},
+    {t:"Evening &mdash; winding down",s:{dhyana:3,prithvi:2,varun:2,hridaya:1}},
+    {t:"Before sleep &mdash; I want to rest deeply",s:{dhyana:3,hridaya:3,varun:2,apana:2}},
+    {t:"During meditation &mdash; I am sitting right now",s:{chin:3,dhyana:3,gyan:2,brahma:2,kundalini:1}},
+    {t:"Before a difficult conversation or event",s:{abhaya:3,karana:2,shankha:2,anjali:1}},
+  ]},
+  {q:"Which chakra feels most in need of attention?",opts:[
+    {t:"Root (Muladhara) &mdash; safety, survival, belonging",s:{muladhara_m:3,prithvi:3,bhu:2,apana:2}},
+    {t:"Sacral (Svadhisthana) &mdash; creativity, emotion, pleasure",s:{varun:3,jala:2,shakti:2,padma:1}},
+    {t:"Solar Plexus (Manipura) &mdash; will, confidence, power",s:{agni:3,surya:3,linga:2,shakti:2}},
+    {t:"Heart (Anahata) &mdash; love, compassion, grief",s:{hridaya:3,lotus:3,anjali:2,padma:2}},
+    {t:"Throat (Vishuddha) &mdash; truth, expression, voice",s:{vishuddhi_m:3,akash:3,shankha:2,shunya:1}},
+    {t:"Third Eye (Ajna) &mdash; intuition, clarity, insight",s:{hakini:3,gyan:3,chin:2,brahma:2}},
+    {t:"Crown (Sahasrara) &mdash; divine connection, oneness",s:{dhyana:3,brahma:3,kundalini:2,chin:2}},
+  ]},
+  {q:"If this moment were a body of water, what would it be?",opts:[
+    {t:"A stormy sea &mdash; turbulent and unpredictable",s:{hridaya:2,abhaya:2,prithvi:2,apana:1}},
+    {t:"A dry riverbed &mdash; depleted, wanting to flow again",s:{varun:3,prana:3,jala:2,shakti:1}},
+    {t:"A still lake at dawn &mdash; ready for depth",s:{dhyana:3,chin:3,brahma:2,kundalini:1}},
+    {t:"A rushing stream &mdash; energy moving too fast",s:{gyan:2,vayu:2,apana:2,prithvi:2}},
+    {t:"A warm spring &mdash; healing and nourishing",s:{hridaya:3,lotus:2,prana:2,varun:1}},
+    {t:"A deep ocean &mdash; vast, I want to touch the depths",s:{kundalini:3,brahma:3,dhyana:2,chin:2}},
+  ]}
+];
+
+var MUDRAS={
+  gyan:{
+    name:"Gyan Mudra",alt:"Mudra of Knowledge",
+    tags:["Focus","Mental clarity","Root chakra","All levels"],
+    why:"Your answers point to a mind that needs anchoring and clarity. Gyan Mudra is the most universal gesture of knowledge and consciousness &mdash; it connects the individual self (index finger) with universal awareness (thumb), creating a circuit that calms mental turbulence and sharpens focus.",
+    what:"Gyan (also spelled Jnana) means &lsquo;knowledge&rsquo; in Sanskrit. This is the gesture you see most often in meditation statues &mdash; the index finger and thumb forming a circle while the other fingers extend softly. It balances the Vata dosha (air energy) and stimulates the root chakra, creating mental stability.",
+    element:"Air (Vayu)",chakra:"Root (Muladhara) & Third Eye (Ajna)",
+    how:["Rest both hands on your knees, palms facing upward &mdash; receptive mode &mdash; or facing downward for grounding.",
+         "Connect the tip of your index finger to the tip of your thumb, forming a soft circle.",
+         "Allow the other three fingers to extend naturally, without strain.",
+         "Hold for 15 to 45 minutes, with or without breath practice.",
+         "Soften your gaze or close your eyes. Let the circuit draw scattered energy back toward center."],
+    caution:"Safe for virtually everyone. Those with Kapha imbalance (heaviness, lethargy) may prefer palms down to energize.",
+    also:["Chin Mudra","Hakini Mudra","Dhyana Mudra"]
+  },
+  chin:{
+    name:"Chin Mudra",alt:"Mudra of Consciousness",
+    tags:["Meditation","Consciousness","Spiritual depth","Calming"],
+    why:"You are being drawn toward depth &mdash; toward the recognition of your own consciousness as something vast and still. Chin Mudra is Gyan Mudra's meditative twin. The gesture&rsquo;s meaning is encoded in the fingers: thumb = universal consciousness, index = individual self, the three folded fingers = maya, karma, and ego. The connection of thumb and index finger is the union of the human and the divine.",
+    what:"Chin (pronounced &lsquo;cheen&rsquo;) means &lsquo;consciousness&rsquo; or &lsquo;awareness.&rsquo; Where Gyan Mudra uses palms up in receptivity, Chin Mudra places palms facing downward &mdash; directing consciousness inward and downward into the body. It is particularly powerful during pranayama and seated meditation.",
+    element:"Air (Vayu)",chakra:"Third Eye (Ajna) & Crown (Sahasrara)",
+    how:["Sit comfortably with spine erect. Rest the backs of your hands on your thighs.",
+         "Touch the tip of your index finger to the tip of your thumb.",
+         "Let the other three fingers extend naturally but remain soft.",
+         "Palms face down toward the earth &mdash; this is the key difference from Gyan Mudra.",
+         "Hold for the duration of your meditation. Notice how the gesture creates a sense of inner containment."],
+    caution:"No significant contraindications. Can be practiced for extended periods.",
+    also:["Gyan Mudra","Dhyana Mudra","Brahma Mudra"]
+  },
+  dhyana:{
+    name:"Dhyana Mudra",alt:"Mudra of Meditation",
+    tags:["Deep stillness","Meditation","Crown chakra","Evening"],
+    why:"Your energy calls for the deepest stillness available to you right now. Dhyana Mudra is the gesture of the Buddha in meditation &mdash; the gesture that holds the universe in a bowl formed by two open palms. It says: I am receiving. I am empty. I am present.",
+    what:"Dhyana means &lsquo;meditation&rsquo; or &lsquo;absorption&rsquo; in Sanskrit &mdash; the seventh of Patanjali&rsquo;s eight limbs. The gesture places the right hand in the left, palms facing upward, thumbs lightly touching &mdash; creating a triangle, symbol of the three jewels and spiritual fire. It is used in Vipassana, Zen, and Hindu meditation traditions worldwide.",
+    element:"All five elements in balance",chakra:"Crown (Sahasrara) & Third Eye (Ajna)",
+    how:["Sit in your preferred meditation posture, spine tall.",
+         "Rest both hands in your lap, right hand resting on top of the left.",
+         "Both palms face upward. The four fingers of each hand rest on the others.",
+         "Allow the thumbs to touch lightly at their tips, forming a triangle.",
+         "Close your eyes. Release all effort. This mudra holds you without you needing to hold anything.",
+         "Hold for the duration of your sit &mdash; 10 minutes to 1 hour."],
+    caution:"Virtually no contraindications. The most universally safe mudra.",
+    also:["Chin Mudra","Gyan Mudra","Brahma Mudra"]
+  },
+  prana:{
+    name:"Prana Mudra",alt:"Mudra of Life Force",
+    tags:["Energy activation","Healing","Immune system","Fatigue"],
+    why:"You are running low. The well needs refilling. Prana Mudra is one of the most immediately effective gestures for restoring depleted energy &mdash; it activates dormant prana throughout the body, stimulates the immune system, and is said to awaken the eyes and improve vision on both physical and inner levels.",
+    what:"Prana is life force itself &mdash; the animating energy behind every breath and heartbeat. This mudra connects the ring finger (earth) and little finger (water) to the thumb (fire), combining the three elements that most directly sustain the body. It is sometimes called the mudra of health and is recommended whenever you feel physically or energetically drained.",
+    element:"Earth, Water & Fire",chakra:"Root (Muladhara) & Sacral (Svadhisthana)",
+    how:["Rest both hands on your thighs, palms upward.",
+         "Bend the ring finger and little finger to touch the tip of the thumb.",
+         "Keep the index and middle fingers extended naturally.",
+         "Hold for 15 to 30 minutes. Can be practiced at any time including lying down.",
+         "Breathe slowly and imagine golden light entering through your hands with each inhale."],
+    caution:"Generally very safe. Those with Kapha imbalance (excess earth/water) may limit to 15 minutes daily.",
+    also:["Gyan Mudra","Shakti Mudra","Apana Mudra"]
+  },
+  hridaya:{
+    name:"Hridaya Mudra",alt:"Mudra of the Heart",
+    tags:["Heart opening","Emotional release","Grief","Anxiety"],
+    why:"Your heart needs attention. Hridaya Mudra diverts prana from the hands directly to the heart &mdash; a circuit described in classical texts as supporting the heart&rsquo;s physical and emotional function. Wherever grief, fear, or constriction lives, this mudra creates space.",
+    what:"Hridaya means &lsquo;heart&rsquo; in Sanskrit. This mudra is described in the Hatha Yoga Pradipika as beneficial for the heart&rsquo;s physical functioning. It is used in yoga therapy for heart conditions and emotional healing. The index finger folds to touch the base of the thumb, while ring and middle fingers extend to touch the thumb tip &mdash; drawing energy from the periphery into the heart center.",
+    element:"Air (Vayu)",chakra:"Heart (Anahata)",
+    how:["Sit comfortably, spine soft but upright.",
+         "Fold the index finger inward to touch the base of the thumb.",
+         "Bring the tips of the middle and ring fingers to touch the tip of the thumb.",
+         "Keep the little finger extended and relaxed.",
+         "Rest both hands on your knees, palms facing upward.",
+         "Close your eyes and breathe slowly into the chest. Hold for 15 minutes."],
+    caution:"Best practiced after eating has settled. Those with acute heart conditions should practice gently and briefly.",
+    also:["Lotus Mudra","Anjali Mudra","Padma Mudra"]
+  },
+  lotus:{
+    name:"Padma Mudra",alt:"Lotus Mudra / Mudra of the Flowering Heart",
+    tags:["Heart chakra","Compassion","Opening","Transformation"],
+    why:"You are ready to open. The lotus grows in muddy water and blooms untouched &mdash; this mudra carries that exact teaching. Whatever the difficulty you are moving through, Padma Mudra says: bloom anyway. It opens the heart center and invites compassion to flow both toward yourself and outward.",
+    what:"Padma is Sanskrit for lotus &mdash; the sacred flower that rises from darkness into light without being stained by the mud. The mudra begins in Anjali (prayer position) and blossoms open, with only the base of the palms, thumbs, and little fingers remaining connected. The open flower form is the heart in its most generous state.",
+    element:"Water & Air",chakra:"Heart (Anahata)",
+    how:["Begin with hands pressed together in Anjali Mudra at the heart.",
+         "Keep the heels of the palms pressed together, along with the thumbs and little fingers.",
+         "Open the ring, middle, and index fingers wide, spreading them like lotus petals opening.",
+         "Hold the mudra at your heart center. Breathe into the space you are creating.",
+         "As you exhale, feel the heart soften and expand. Hold for 10 to 20 minutes."],
+    caution:"No contraindications. One of the most universally gentle mudras.",
+    also:["Hridaya Mudra","Anjali Mudra","Padma Mudra"]
+  },
+  anjali:{
+    name:"Anjali Mudra",alt:"Prayer Gesture / Namaste",
+    tags:["Reverence","Connection","Greeting","Heart"],
+    why:"Something in you is seeking reconnection &mdash; to yourself, to others, to something larger. Anjali Mudra is the oldest gesture of acknowledgment in the world. By pressing the right and left palm together, you unite the two hemispheres of the brain, the masculine and feminine, the individual and the universal. You are saying: the light in me recognizes the light in you.",
+    what:"Anjali comes from Sanskrit meaning &lsquo;divine offering&rsquo; or a gesture of reverence. This is the Namaste mudra &mdash; used across India, Southeast Asia, and in yoga worldwide as greeting, prayer, and gratitude. At the heart, it represents unity. At the forehead (the highest position), it represents complete surrender to the divine.",
+    element:"All five elements",chakra:"Heart (Anahata) & Crown (Sahasrara)",
+    how:["Press both palms together flat, fingers pointing upward.",
+         "Lightly rest the thumbs at the sternum (heart position) or raise to the forehead (highest reverence).",
+         "Close your eyes. Feel the even pressure of both palms &mdash; one hand is the giving self, one is the receiving self.",
+         "Breathe softly. Hold for as long as feels natural &mdash; 1 minute to as long as you wish.",
+         "Can be used as a daily opening or closing gesture for any practice."],
+    caution:"No contraindications. Safe and appropriate for all people in all contexts.",
+    also:["Padma Mudra","Hridaya Mudra","Lotus Mudra"]
+  },
+  hakini:{
+    name:"Hakini Mudra",alt:"Mudra of the Mind / Third Eye Gesture",
+    tags:["Mental focus","Third eye","Memory","Brain balance"],
+    why:"Your mind needs integration &mdash; left and right, analytical and intuitive, doing and being. Hakini Mudra is associated with Hakini, the deity of the Ajna (third eye) chakra, and is one of the most scientifically studied mudras: research suggests it activates the frontal lobe and supports memory recall, creativity, and communication between the brain&rsquo;s hemispheres.",
+    what:"This mudra brings all five fingertips of both hands to meet their counterparts, creating a hollow sphere of interlaced fingers. The resulting form resembles the third eye &mdash; a space between two meeting points. It is used specifically when mental clarity, focused attention, or recall is needed, and is described in texts as stimulating the Ajna chakra.",
+    element:"Light (Tejas)",chakra:"Third Eye (Ajna)",
+    how:["Hold both hands in front of your body at chest or face height.",
+         "Bring all five fingertips of the right hand to meet all five of the left.",
+         "Create a ball of space between the palms &mdash; fingers touching but palms not pressing.",
+         "Optionally raise the mudra to the level of the third eye (between the eyebrows).",
+         "Breathe steadily. Visualize a sphere of light between your hands. Hold for 10 to 20 minutes."],
+    caution:"No contraindications. Excellent for use during study, creative work, or problem-solving.",
+    also:["Gyan Mudra","Chin Mudra","Brahma Mudra"]
+  },
+  prithvi:{
+    name:"Prithvi Mudra",alt:"Earth Mudra / Mudra of the Body",
+    tags:["Grounding","Stability","Root chakra","Physical strength"],
+    why:"You need earth beneath you &mdash; the felt sense of being held, rooted, substantial. Prithvi Mudra increases the earth element in the body, bringing stability to a nervous system that has been running on air. It is said to promote physical vitality, strengthen bones and tissues, and create the psychological experience of being held.",
+    what:"Prithvi is Sanskrit for earth. The ring finger corresponds to the earth element in Ayurveda, and connecting it to the thumb amplifies earth energy throughout the system. It is one of the foundational elemental mudras (Pancha Bhuta mudras) and is particularly recommended for those who feel physically weak, ungrounded, or psychologically unstable.",
+    element:"Earth (Prithvi)",chakra:"Root (Muladhara)",
+    how:["Sit on the floor if possible &mdash; the closer to the earth, the more powerful this mudra.",
+         "Rest both hands on your thighs, palms facing upward.",
+         "Connect the tip of your ring finger to the tip of your thumb.",
+         "Keep the other three fingers extended and relaxed.",
+         "Close your eyes. Feel the weight of your body. Let the earth receive you. Hold for 30 to 45 minutes daily for best effect."],
+    caution:"Those with Kapha imbalance (excess heaviness, congestion, or obesity) should limit to 15 minutes. Increases earth element.",
+    also:["Bhu Mudra","Apana Mudra","Muladhara Mudra"]
+  },
+  abhaya:{
+    name:"Abhaya Mudra",alt:"Mudra of Fearlessness / Gesture of Protection",
+    tags:["Protection","Courage","Fearlessness","Clearing"],
+    why:"Something is asking for courage right now. Abhaya Mudra is one of the most powerful protective gestures in the Hindu and Buddhist traditions &mdash; seen in virtually every deity image as the primary gesture of protection and reassurance. It says to your own nervous system: you are safe. It says to the world: I walk without fear.",
+    what:"Abhaya means &lsquo;fearlessness&rsquo; or &lsquo;without fear&rsquo; in Sanskrit. The right hand raises to shoulder height, palm facing outward &mdash; the universal gesture of stopping, blessing, and protection. In iconography it is held by Vishnu, Shiva, the Buddha, and most Hindu goddesses. It activates a sense of sovereign authority within the self.",
+    element:"Fire (Tejas) & Space (Akasha)",chakra:"Solar Plexus (Manipura) & Throat (Vishuddha)",
+    how:["Stand or sit with a straight spine.",
+         "Raise the right hand to shoulder height, palm facing outward, fingers pointing upward.",
+         "The left hand can rest in the lap or at the side.",
+         "Hold with intention: feel the palm as both a shield and a blessing extended outward.",
+         "Breathe from the belly. Hold for 5 to 15 minutes. Can be done while walking."],
+    caution:"No contraindications. Can be practiced during any moment of fear or before challenging situations.",
+    also:["Karana Mudra","Durga Mudra","Anjali Mudra"]
+  },
+  karana:{
+    name:"Karana Mudra",alt:"Mudra of Warding Off / Expelling Negativity",
+    tags:["Clearing negativity","Protection","Obstacles","Empowerment"],
+    why:"You are moving through energetic interference &mdash; whether internal (fear, depression, anxious thoughts) or external (difficult environments, draining relationships). Karana Mudra is the gesture of clearing. It actively expels what does not belong and creates a field of protective authority around you.",
+    what:"Karana Mudra is the gesture of warding off evil, obstacles, and negative energy. The middle finger and ring finger fold inward, held by the thumb, while the index and little finger extend upward &mdash; creating the classic protective sign found across cultures. In modern yoga therapy it is used specifically for lifting states of depression, anxiety, and energetic heaviness.",
+    element:"Fire (Tejas)",chakra:"Solar Plexus (Manipura)",
+    how:["With the right hand: fold the middle and ring fingers inward and hold them with the thumb.",
+         "Extend the index finger and little finger upward, pointing toward the sky.",
+         "Raise the arm to shoulder height with confidence.",
+         "Set your intention: I release what does not serve me. I am clear.",
+         "Hold for 5 to 10 minutes. Can be held while visualizing the obstacle dissolving."],
+    caution:"No contraindications. Use with clear intention &mdash; this mudra is most powerful when practiced consciously.",
+    also:["Abhaya Mudra","Durga Mudra","Shakti Mudra"]
+  },
+  apana:{
+    name:"Apana Mudra",alt:"Mudra of Elimination / Purification Gesture",
+    tags:["Detoxification","Emotional release","Digestive health","Lower chakras"],
+    why:"Something needs to be released. Apana Vayu is the downward-moving life force that governs elimination &mdash; of physical waste, emotional patterns, and energetic residue. This mudra activates that downward flow, supporting the body&rsquo;s natural intelligence to release what is no longer needed.",
+    what:"Apana means &lsquo;downward moving breath.&rsquo; This mudra connects the middle and ring fingers to the thumb &mdash; combining the Saturn (middle) and Sun (ring) fingers with fire (thumb) &mdash; to activate the body&rsquo;s eliminative and purifying systems. It supports digestive health, emotional processing, and the release of stagnant energy from the lower body.",
+    element:"Earth & Space",chakra:"Root (Muladhara) & Sacral (Svadhisthana)",
+    how:["Rest both hands on your thighs, palms facing upward.",
+         "Bring the tips of the middle finger and ring finger to touch the tip of the thumb.",
+         "Keep the index and little fingers extended naturally.",
+         "Breathe from the lower belly. On each exhale, feel a release &mdash; physically and energetically.",
+         "Hold for 15 to 45 minutes. Best practiced before meals or in morning practice."],
+    caution:"Avoid excessive practice during pregnancy. Those with Vata imbalance use in moderation.",
+    also:["Prana Mudra","Prithvi Mudra","Varun Mudra"]
+  },
+  agni:{
+    name:"Agni Mudra",alt:"Fire Mudra / Mudra of Digestion",
+    tags:["Inner fire","Metabolism","Motivation","Solar plexus"],
+    why:"Your inner fire needs stoking. Whether this is physical (sluggish digestion, cold extremities) or psychological (low motivation, difficulty taking action), Agni Mudra directly stimulates the fire element &mdash; raising body temperature, activating metabolism, and igniting the solar plexus&rsquo;s will and drive.",
+    what:"Agni is Sanskrit for fire. This mudra folds the ring finger (earth) and presses it with the thumb (fire) &mdash; fire diminishing earth, stimulating metabolic processes. It is the elemental mudra most associated with the digestive system and the Manipura (solar plexus) chakra. Classical texts describe it as awakening the body&rsquo;s transformative capacity.",
+    element:"Fire (Agni)",chakra:"Solar Plexus (Manipura)",
+    how:["Sit upright &mdash; this mudra works best when practiced on an empty stomach.",
+         "Fold the ring finger inward and press the second phalanx bone gently with the thumb.",
+         "Keep the index, middle, and little fingers extended.",
+         "Hold for 15 to 20 minutes in the morning, before meals.",
+         "Breathe into the navel center and feel warmth building in the belly."],
+    caution:"Practice on an empty stomach only. Those with Pitta imbalance (already running hot, inflammation, anger) should limit to 10 minutes or substitute Surya Mudra.",
+    also:["Surya Mudra","Shakti Mudra","Prana Mudra"]
+  },
+  surya:{
+    name:"Surya Mudra",alt:"Solar Mudra / Mudra of the Sun",
+    tags:["Solar energy","Metabolism","Warming","Morning"],
+    why:"You need the sun&rsquo;s energy. Surya Mudra is one of the most powerful elemental mudras &mdash; activating solar energy throughout the body, increasing body temperature, stimulating the thyroid gland, and providing a sustained sense of motivation and vitality. It is the morning mudra par excellence.",
+    what:"Surya means &lsquo;sun&rsquo; in Sanskrit. By folding the ring finger (earth element) and pressing it with the thumb (fire), this mudra simultaneously increases fire energy and decreases earth energy &mdash; making the body lighter and warmer. It is especially beneficial in cold weather, for those with slow metabolism, or when feeling heavy and unmotivated.",
+    element:"Fire (Agni)",chakra:"Solar Plexus (Manipura) & Root (Muladhara)",
+    how:["Sit upright. This mudra is best practiced on an empty stomach.",
+         "Fold the ring finger down toward the palm.",
+         "Press the second phalanx of the ring finger gently with the tip of the thumb.",
+         "Keep all other fingers extended and relaxed.",
+         "Hold for 15 to 20 minutes in the morning. Feel warmth spreading from the center."],
+    caution:"Do not practice in summer or when the body is already overheated. Avoid with Pitta imbalance.",
+    also:["Agni Mudra","Prana Mudra","Shakti Mudra"]
+  },
+  varun:{
+    name:"Varun Mudra",alt:"Water Mudra / Mudra of Fluid Balance",
+    tags:["Hydration","Skin health","Emotional fluidity","Cooling"],
+    why:"You are dry &mdash; physically, emotionally, or both. Varun Mudra increases the water element in the body, supporting hydration, skin health, blood purification, and the free flow of emotion. It is cooling, moistening, and deeply restorative.",
+    what:"Varun is Sanskrit for the god of water and cosmic order. This mudra connects the little finger (water element) to the thumb (fire), activating water throughout the system. It is prescribed in Ayurveda for dry skin, dehydration, constipation, and emotional states of &lsquo;dryness&rsquo; &mdash; the inability to feel, to flow, or to connect.",
+    element:"Water (Jala)",chakra:"Sacral (Svadhisthana)",
+    how:["Hold both hands with palms open and relaxed.",
+         "Gently touch the tip of the little finger to the tip of the thumb.",
+         "Keep the other three fingers extended naturally without strain.",
+         "Hold for 15 to 45 minutes. Can be practiced lying down.",
+         "Visualize water flowing through the body with each breath."],
+    caution:"Those with excess Kapha (water/earth imbalance: congestion, excess mucus) should limit to 15 minutes.",
+    also:["Jala Mudra","Apana Mudra","Prithvi Mudra"]
+  },
+  akash:{
+    name:"Akash Mudra",alt:"Space Mudra / Mudra of the Ether",
+    tags:["Throat chakra","Expression","Space","Communication"],
+    why:"You need room to breathe &mdash; room to speak, to be heard, to express what has been held back. Akash Mudra increases the space element (ether/akasha) in the body, activating the throat chakra and creating a sense of expansion where there was constriction. It is the mudra of the voice and of truth.",
+    what:"Akasha means &lsquo;space&rsquo; or &lsquo;ether&rsquo; in Sanskrit &mdash; the fifth and most subtle element, the medium through which all other elements move. This mudra connects the middle finger (the finger of Saturn, associated with space and spiritual openness) to the thumb, activating the Vishuddha (throat) chakra and supporting clear expression.",
+    element:"Space (Akasha)",chakra:"Throat (Vishuddha)",
+    how:["Sit with your spine tall and shoulders relaxed back and down.",
+         "Touch the tip of the middle finger to the tip of the thumb.",
+         "Keep the other three fingers extended and soft.",
+         "Hold for 15 to 30 minutes. Breathe into the throat and feel it open.",
+         "Optionally speak or chant while holding this mudra to amplify its effect on the voice."],
+    caution:"No significant contraindications.",
+    also:["Shunya Mudra","Vishuddhi Mudra","Gyan Mudra"]
+  },
+  vayu:{
+    name:"Vayu Mudra",alt:"Air Mudra / Mudra of Wind",
+    tags:["Vata balance","Restlessness","Air element","Nervous system"],
+    why:"You are carrying too much air &mdash; scattered thoughts, restlessness, difficulty settling. Vayu Mudra reduces the air element in the body, calming the nervous system, reducing anxiety, and settling the mind into the body. It is one of the most effective mudras for Vata imbalance.",
+    what:"Vayu means &lsquo;wind&rsquo; or &lsquo;air&rsquo; in Sanskrit. The index finger (associated with the air element) is folded down and pressed gently by the thumb, literally containing and reducing the air element in the body. Classical texts describe it as beneficial for gas, bloating, joint pain, and all conditions arising from excess Vata &mdash; including anxiety, insomnia, and overthinking.",
+    element:"Air (Vayu)",chakra:"Heart (Anahata)",
+    how:["Fold the index finger toward the palm until it touches the base of the thumb.",
+         "Press the folded index finger gently with the thumb.",
+         "Keep all other fingers extended and relaxed.",
+         "Rest both hands on your thighs, palms facing down.",
+         "Hold for 15 to 30 minutes. Breathe slowly. Feel the scattered energy collect."],
+    caution:"Do not use long-term for Vata conditions without a practitioner&rsquo;s guidance.",
+    also:["Gyan Mudra","Prithvi Mudra","Apana Mudra"]
+  },
+  brahma:{
+    name:"Brahma Mudra",alt:"Mudra of All-Pervading Consciousness",
+    tags:["Crown chakra","Divine connection","Awakening","Stillness"],
+    why:"You are ready for the deepest stillness &mdash; the recognition of awareness itself. Brahma Mudra is associated with Brahma, the creator, and with the primordial sound that underlies all creation. It is used at the highest levels of meditation and pranayama to stimulate the crown chakra and open the practitioner to the experience of pure, undivided consciousness.",
+    what:"Brahma refers to the absolute, all-pervading reality in Hindu philosophy. Both hands form a fist with the thumb tucked inside and placed at the navel, knuckles touching. This gesture contains all five elements in their most concentrated form. It is practiced with deep, slow breath and is particularly associated with the vowel sounds A-U-M, chanted one at a time to resonate through each area of the body.",
+    element:"All five elements",chakra:"Crown (Sahasrara)",
+    how:["Form both hands into a fist with the thumb tucked inside, resting on the fingers.",
+         "Place both fists at the navel, knuckles touching.",
+         "This mudra is often combined with chanting: hold &lsquo;A&rsquo; in the belly, &lsquo;U&rsquo; in the chest, &lsquo;M&rsquo; in the skull.",
+         "Breathe slowly and deeply into each resonating area.",
+         "Hold for 15 to 30 minutes in meditation."],
+    caution:"This mudra activates significant pranic energy &mdash; beginners should practice for shorter periods initially.",
+    also:["Dhyana Mudra","Chin Mudra","Kundalini Mudra"]
+  },
+  kundalini:{
+    name:"Kundalini Mudra",alt:"Mudra of the Awakening Force",
+    tags:["Kundalini energy","Spiritual awakening","Union","Deep practice"],
+    why:"Something is awakening in you. Kundalini Mudra is associated with the awakening of the primal creative energy that lies dormant at the base of the spine &mdash; the energy that, when it rises, transforms consciousness. This mudra is for moments of genuine spiritual movement, when you feel something larger stirring.",
+    what:"Kundalini is the coiled serpent energy described in Tantric and Hatha Yoga traditions as lying dormant at the Muladhara chakra until awakened through sustained practice. The Kundalini Mudra forms a fist with both hands interlocked, with only the index fingers extended and touching &mdash; creating a circuit of awakening energy between the two hands.",
+    element:"Fire & Space",chakra:"Root (Muladhara) through Crown (Sahasrara)",
+    how:["With both hands, form a loose fist.",
+         "Interlock the fingers of both hands together, right hand on the outside.",
+         "Extend only the two index fingers upward and press their tips together.",
+         "Hold at the level of the lower abdomen or navel center.",
+         "Breathe slowly. Hold for 15 to 20 minutes. Allow whatever arises."],
+    caution:"Practice with care. Kundalini energy can be intense. Grounding practices before and after are recommended. Not suitable for those experiencing psychological instability.",
+    also:["Brahma Mudra","Dhyana Mudra","Prana Mudra"]
+  },
+  shakti:{
+    name:"Shakti Mudra",alt:"Mudra of Divine Feminine Power",
+    tags:["Sacral chakra","Creative power","Rest","Pelvic energy"],
+    why:"You are being called to honor the body&rsquo;s feminine creative power &mdash; the capacity to both create and rest deeply. Shakti Mudra slows the breath, calms the mind, and directs energy into the pelvic region, supporting deep sleep, emotional healing, and the restoration of creative vitality.",
+    what:"Shakti is the divine feminine creative power in Hindu philosophy &mdash; the living force behind all of creation. This mudra presses ring and little fingers together with both thumbs folded inside the curled index and middle fingers. It has a strongly calming, sleep-inducing effect and is particularly used in yoga therapy for insomnia and pelvic floor tension.",
+    element:"Water (Jala)",chakra:"Sacral (Svadhisthana) & Root (Muladhara)",
+    how:["With both hands, fold the index and middle fingers over the thumbs (creating a partial fist).",
+         "Press the ring fingers and little fingers of both hands together &mdash; both pairs of two fingers touching their counterparts.",
+         "Rest the mudra in your lap, at the level of the lower abdomen.",
+         "Breathe slowly. This mudra naturally slows the breath. Hold for 10 to 20 minutes.",
+         "Excellent for bedtime &mdash; it can be held while lying down."],
+    caution:"Very strong calming effect &mdash; do not use when alertness is required. Avoid during Kapha-dominant states of excess lethargy.",
+    also:["Varun Mudra","Apana Mudra","Dhyana Mudra"]
+  },
+  muladhara_m:{
+    name:"Muladhara Mudra",alt:"Root Chakra Gesture",
+    tags:["Root chakra","Safety","Survival","Belonging"],
+    why:"Your root needs tending. The Muladhara chakra governs the most fundamental human needs &mdash; safety, belonging, the felt sense of having a right to exist. When this center is disturbed, no amount of higher work can stabilize what has not been grounded at the base.",
+    what:"Muladhara means &lsquo;root support&rsquo; in Sanskrit. This mudra specifically targets the root chakra by connecting the ring fingers while interlacing the other fingers &mdash; creating a grounding circuit through the base of the energetic body. It is often practiced with Mula Bandha (root lock) and with attention directed to the base of the spine.",
+    element:"Earth (Prithvi)",chakra:"Root (Muladhara)",
+    how:["Interlace the fingers of both hands, palms touching.",
+         "Extend both ring fingers and press their tips together pointing upward.",
+         "Hold the mudra at the level of the lower abdomen.",
+         "Close your eyes and direct your attention to the base of the spine.",
+         "Hold for 15 to 30 minutes. Breathe slowly into the pelvis and lower body."],
+    caution:"No contraindications. Particularly beneficial practiced outdoors or sitting on the earth.",
+    also:["Prithvi Mudra","Bhu Mudra","Apana Mudra"]
+  },
+  bhu:{
+    name:"Bhu Mudra",alt:"Earth-Touching Mudra",
+    tags:["Grounding","Earth connection","Stability","Root chakra"],
+    why:"You need to touch the ground &mdash; literally and energetically. Bhu Mudra is the gesture of the Buddha at the moment of his enlightenment, when he touched the earth to call it as witness. It connects you to the earth&rsquo;s stabilizing, witnessing intelligence in moments of turbulence or doubt.",
+    what:"Bhu (Bhumi) means &lsquo;earth&rsquo; in Sanskrit. This is the Bhumisparsha mudra of Buddhism &mdash; the earth-touching gesture. The right hand descends toward the earth with the index and middle fingers extended, touching or pointing toward the ground. It anchors the energy body into the earth&rsquo;s field and is used in moments that require steadiness, witness consciousness, and the courage to be fully present.",
+    element:"Earth (Prithvi)",chakra:"Root (Muladhara)",
+    how:["Sit with your left hand in Dhyana Mudra in your lap.",
+         "Allow the right hand to descend toward the earth, index and middle fingers pointing down or touching the floor.",
+         "Feel the connection between your fingertips and the earth below you.",
+         "Breathe. Feel the earth receiving you. Feel yourself received.",
+         "Hold for as long as needed &mdash; there is no time limit."],
+    caution:"No contraindications. This mudra can be held briefly or for extended periods.",
+    also:["Prithvi Mudra","Muladhara Mudra","Apana Mudra"]
+  },
+  vishuddhi_m:{
+    name:"Vishuddhi Mudra",alt:"Throat Chakra Gesture",
+    tags:["Throat chakra","Truth","Voice","Self-expression"],
+    why:"Your voice needs permission. Something true is waiting to be expressed, and the Vishuddha chakra &mdash; the center of purification and authentic speech &mdash; is the gateway. This mudra creates energetic space in the throat and supports you in speaking your truth with clarity and courage.",
+    what:"Vishuddha means &lsquo;pure&rsquo; or &lsquo;purification.&rsquo; The throat chakra governs not just speech but the purification of all experience into authentic expression. When blocked, we swallow words, feel misunderstood, or speak inauthentically. This mudra activates the throat center by linking the thumbs and index fingers in a specific configuration that directs prana to the throat.",
+    element:"Space (Akasha)",chakra:"Throat (Vishuddha)",
+    how:["Interlace all fingers except the thumbs.",
+         "Bring the tips of both thumbs together, pointing upward.",
+         "Hold the mudra at the throat level.",
+         "Breathe slowly and feel the space in the throat expand.",
+         "Optionally hum or chant while holding to amplify the effect."],
+    caution:"No contraindications.",
+    also:["Akash Mudra","Shankha Mudra","Shunya Mudra"]
+  },
+  padma:{
+    name:"Kamala Mudra",alt:"Full Lotus Blossom Gesture",
+    tags:["Joy","Heart","Devotion","Blossoming"],
+    why:"Joy is here &mdash; or trying to arrive. Kamala Mudra is the full blooming lotus, held over the heart. It celebrates, amplifies, and shares the heart&rsquo;s natural openness. When life is good, this mudra says: thank you, and let this goodness radiate.",
+    what:"Kamala is Sanskrit for lotus &mdash; the fully open, multi-petaled flower. Where Padma Mudra is the blossom beginning to open, Kamala is the flower at its fullest expression. All fingers spread open, the heels of the palms and little fingers touching, creating a many-petaled chalice. It is a mudra of devotion, celebration, and heart-centered gratitude.",
+    element:"Water & Fire",chakra:"Heart (Anahata) & Crown (Sahasrara)",
+    how:["Hold both hands in front of the heart, palms facing upward.",
+         "Keep the heels of the palms and the little fingers touching.",
+         "Spread all other fingers wide like petals opening in the sun.",
+         "Breathe into the spaciousness of this gesture. Feel the heart expand.",
+         "Hold for as long as feels natural. This mudra can be held outdoors toward the sun."],
+    caution:"No contraindications. A joyful mudra with no known risks.",
+    also:["Padma Mudra","Anjali Mudra","Hridaya Mudra"]
+  },
+  shankha:{
+    name:"Shankha Mudra",alt:"Conch Shell Mudra",
+    tags:["Throat","Voice","Transformation","Communication"],
+    why:"Something needs to be spoken, sung, or released through sound. Shankha Mudra creates a resonating chamber in the hands that mirrors the sacred conch shell &mdash; the instrument that opens ceremonies, announces the sacred, and awakens sleeping energy. Use it before speaking, chanting, or any moment requiring the power of your voice.",
+    what:"Shankha means conch shell &mdash; one of Vishnu&rsquo;s four sacred objects, blown to signal divine presence. The mudra wraps the right thumb inside the left fist, with the four left fingers curled around the right thumb. The extended right fingers touch the left thumb tip. The resulting form resembles a conch shell and is believed to resonate the throat chakra.",
+    element:"Space (Akasha)",chakra:"Throat (Vishuddha)",
+    how:["Wrap the four fingers of the left hand around the right thumb.",
+         "Touch the tip of the left thumb with the middle finger of the right hand.",
+         "The remaining right fingers extend naturally along the outside of the mudra.",
+         "Hold the mudra at the throat or chest, and chant &lsquo;Om&rsquo; or any mantra.",
+         "Feel the vibration resonate through the gesture and the throat."],
+    caution:"No contraindications.",
+    also:["Akash Mudra","Vishuddhi Mudra","Shunya Mudra"]
+  },
+  jala:{
+    name:"Jala (Varuna) Mudra",alt:"Water Gesture",
+    tags:["Water element","Emotional flow","Skin","Sacral chakra"],
+    why:"The water in you needs to move. Jala Mudra (also called Varuna Mudra) activates the water element &mdash; releasing emotional stagnation, supporting kidney and bladder function, and restoring the body&rsquo;s fluid balance. It is particularly indicated when emotions feel stuck or when the body feels tight and inflexible.",
+    what:"Jala means water in Sanskrit. Varuna is the Vedic deity of water and cosmic order. This mudra touches the little finger (water element) to the thumb, activating the sacral chakra and its governance of all fluid systems &mdash; including the emotional body, which Ayurveda understands as fundamentally water in nature.",
+    element:"Water (Jala)",chakra:"Sacral (Svadhisthana)",
+    how:["Rest both hands in your lap, palms facing upward.",
+         "Touch the tip of the little finger to the tip of the thumb.",
+         "Keep all other fingers extended softly.",
+         "Hold for 15 to 45 minutes, breathing slowly.",
+         "Visualize water flowing freely through every part of the body."],
+    caution:"Those with Kapha imbalance (excess water: congestion, sluggishness) should limit to 15 minutes.",
+    also:["Varun Mudra","Apana Mudra","Shakti Mudra"]
+  }
+};
+
+var keys=Object.keys(MUDRAS);
+var cur=0,answers={},scores={};
+keys.forEach(function(k){scores[k]=0});
+
+function render(){
+  var b=document.getElementById('body');
+  if(cur>=Q.length){showResult(b);return}
+  var q=Q[cur],pct=Math.round(cur/Q.length*100);
+  var h='<div class="prog-label">Question '+(cur+1)+' of '+Q.length+'</div>';
+  h+='<div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="q-card">';
+  h+='<div class="q-num">Question '+(cur+1)+'</div>';
+  h+='<div class="q-text">'+q.q+'</div>';
+  h+='<div class="opts">';
+  for(var i=0;i<q.opts.length;i++){
+    var s=answers[cur]===i?' sel':'';
+    h+='<button class="opt'+s+'" onclick="pick('+i+')"><span class="dot"></span><span>'+q.opts[i].t+'</span></button>';
+  }
+  h+='</div><div class="btn-row">';
+  if(cur>0)h+='<button class="btn-back" onclick="back()">&larr; Back</button>';
+  var dis=answers[cur]===undefined?' disabled':'';
+  var lbl=cur===Q.length-1?'Find my mudra &rarr;':'Next &rarr;';
+  h+='<button class="btn-next" id="nxt" onclick="next()"'+dis+'>'+lbl+'</button>';
+  h+='</div></div>';
+  b.innerHTML=h;
+}
+
+function pick(i){
+  answers[cur]=i;
+  document.querySelectorAll('.opt').forEach(function(o,j){o.classList.toggle('sel',j===i)});
+  document.getElementById('nxt').disabled=false;
+}
+
+function next(){
+  var sc=Q[cur].opts[answers[cur]].s;
+  for(var k in sc){if(scores[k]!==undefined)scores[k]+=sc[k]}
+  cur++;render();
+}
+
+function back(){if(cur>0){cur--;render();}}
+
+function getBest(){
+  var best=keys[0],top=scores[keys[0]];
+  for(var i=1;i<keys.length;i++){if(scores[keys[i]]>top){top=scores[keys[i]];best=keys[i]}}
+  return best;
+}
+
+function showResult(b){
+  var key=getBest(),m=MUDRAS[key];
+  var h='<div class="res-card">';
+  h+='<div class="res-hero"><div class="badge">Your mudra for this moment</div>';
+  h+='<h2>'+m.name+'</h2><div class="meaning">'+m.alt+'</div></div>';
+  h+='<div class="res-body">';
+  h+='<div class="tags">'+m.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div>';
+  h+='<div class="rs"><h3>Why this mudra</h3><p>'+m.why+'</p></div>';
+  h+='<div class="rs"><h3>What it is</h3><p>'+m.what+'</p>';
+  h+='<p style="margin-top:.5rem;font-size:.88rem;color:var(--gray)"><strong>Element:</strong> '+m.element+' &nbsp;&bull;&nbsp; <strong>Chakra:</strong> '+m.chakra+'</p></div>';
+  h+='<div class="rs"><h3>How to hold it</h3><div class="how-box"><ol>';
+  m.how.forEach(function(s){h+='<li>'+s+'</li>'});
+  h+='</ol></div></div>';
+  h+='<div class="rs"><h3>A note</h3><div class="caution">'+m.caution+'</div></div>';
+  h+='<div class="also"><h3>Also explore</h3><div class="pills">';
+  m.also.forEach(function(n){h+='<button class="pill" onclick="showMudra(\''+n+'\')">'+n+'</button>'});
+  h+='</div></div>';
+  h+='<div class="prow"><button class="btn-print" onclick="window.print()">Print / Save as PDF</button>';
+  h+='<button class="btn-restart" onclick="restart()">Retake quiz</button></div>';
+  h+='</div></div>';
+  b.innerHTML=h;
+}
+
+function showMudra(name){
+  var m=null,key=null;
+  for(var k in MUDRAS){if(MUDRAS[k].name===name||MUDRAS[k].alt.indexOf(name)>-1){m=MUDRAS[k];key=k;break}}
+  if(!m)return;
+  var b=document.getElementById('body');
+  var h='<div style="margin-bottom:1rem"><button class="btn-back" onclick="var bk=getBest();showResult(document.getElementById(\'body\'))">&larr; Back to my result</button></div>';
+  h+='<div class="res-card"><div class="res-hero"><div class="badge">Mudra profile</div>';
+  h+='<h2>'+m.name+'</h2><div class="meaning">'+m.alt+'</div></div>';
+  h+='<div class="res-body">';
+  h+='<div class="tags">'+m.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div>';
+  h+='<div class="rs"><h3>What it is</h3><p>'+m.what+'</p>';
+  h+='<p style="margin-top:.5rem;font-size:.88rem;color:var(--gray)"><strong>Element:</strong> '+m.element+' &nbsp;&bull;&nbsp; <strong>Chakra:</strong> '+m.chakra+'</p></div>';
+  h+='<div class="rs"><h3>How to hold it</h3><div class="how-box"><ol>';
+  m.how.forEach(function(s){h+='<li>'+s+'</li>'});
+  h+='</ol></div></div>';
+  h+='<div class="rs"><h3>A note</h3><div class="caution">'+m.caution+'</div></div>';
+  h+='<div class="prow"><button class="btn-print" onclick="window.print()">Print / Save as PDF</button></div>';
+  h+='</div></div>';
+  b.innerHTML=h;
+}
+
+function restart(){cur=0;answers={};keys.forEach(function(k){scores[k]=0});render();}
+render();
+</script>
