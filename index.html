@@ -86,10 +86,9 @@ document.addEventListener('click', function(e) {
     background: radial-gradient(circle, rgba(201,162,39,0.28) 0%, transparent 70%);
     animation: pulse 3.5s ease-in-out infinite;
   }
-  /* WHY: logo rotated 45deg everywhere per spec */
   .symbol-svg {
     width:100%; height:100%; position:relative;
-    transform: rotate(45deg);
+    object-fit: contain;
     filter: drop-shadow(0 0 10px rgba(201,162,39,0.4));
   }
   @keyframes pulse {
@@ -229,7 +228,7 @@ document.addEventListener('click', function(e) {
     box-shadow:0 6px 22px rgba(74,16,96,.18);
   }
   .practice-card:hover::before { opacity:1; }
-  .practice-mini-sym { width:34px; height:34px; margin-bottom:6px; transform: rotate(45deg); }
+  .practice-mini-sym { width:34px; height:34px; margin-bottom:6px; object-fit:contain; }
   .practice-card h4 {
     font-family:'Cinzel',serif; color:var(--purple);
     font-size:.95rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600;
@@ -545,15 +544,7 @@ document.addEventListener('click', function(e) {
 <nav class="top-nav">
   <div class="nav-left">
     <div class="nav-logo">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="36" fill="#FFFAEC" stroke="#C9A227" stroke-width="1.4" opacity="0.85"/>
-        <rect x="13.5" y="13.5" width="53" height="53" fill="#FFFAEC" stroke="#C9A227" stroke-width="1.4" opacity="0.6"/>
-        <circle cx="40" cy="40" r="3.5" fill="#4A1060"/>
-        <line x1="40" y1="4"  x2="40" y2="16" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-        <line x1="40" y1="64" x2="40" y2="76" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-        <line x1="4"  y1="40" x2="16" y2="40" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-        <line x1="64" y1="40" x2="76" y2="40" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-      </svg>
+      <img src="HaligricityLogo.png" alt="Haligricity" style="width:100%;height:100%;object-fit:contain;">
     </div>
     <div class="crumbs"><strong>Haligricity</strong></div>
   </div>
@@ -570,15 +561,7 @@ document.addEventListener('click', function(e) {
 <header class="hero">
   <div class="symbol-wrap">
     <div class="symbol-glow"></div>
-    <svg class="symbol-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="36" stroke="#C9A227" stroke-width="1.4" opacity="0.8"/>
-      <rect x="13.5" y="13.5" width="53" height="53" stroke="#C9A227" stroke-width="1.4" opacity="0.55"/>
-      <circle cx="40" cy="40" r="3.5" fill="#4A1060"/>
-      <line x1="40" y1="4"  x2="40" y2="16" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-      <line x1="40" y1="64" x2="40" y2="76" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-      <line x1="4"  y1="40" x2="16" y2="40" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-      <line x1="64" y1="40" x2="76" y2="40" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
-    </svg>
+    <img src="HaligricityLogo.png" alt="Haligricity" class="symbol-svg">
   </div>
   <div class="eyebrow">New Age Mysticism Synthesis</div>
   <h1>Haligricity</h1>
@@ -764,7 +747,7 @@ document.addEventListener('click', function(e) {
         </button>
         <div id="cm-msg" style="font-size:.82rem;color:var(--gold-border);font-style:italic;display:none;"></div>
       </div>
-      <a id="cm-link" href="https://IQProductionz.com/Haligricity/HaligricControversialManual.pdf" download
+      <a id="cm-link" href="https://Haligricity.IQProductionz.com/HaligricControversialManual.pdf" download
          style="display:none;margin-top:8px;" class="dl-btn purple">
         <span class="arrow">⬇</span> Download Controversial Manual
       </a>
@@ -823,31 +806,31 @@ document.addEventListener('click', function(e) {
 
     <div class="vares-card">
       <h4>Rising Varessence</h4>
-      <img class="vares-img" src="https://IQProductionz.com/Haligricity/Varessences/Rising.png" alt="Rising Varessence — spoken declaration for the opening of the day" onerror="this.style.display='none'">
+      <img class="vares-img" src="https://Haligricity.IQProductionz.com/Varessences/Rising.png" alt="Rising Varessence — spoken declaration for the opening of the day" onerror="this.style.display='none'">
       <p style="font-size:.92rem;color:var(--gray);line-height:1.6;">Spoken at the opening of the day, hands at heart center: <em>"I honor myself, on this day, and shine my light, along the way."</em></p>
       <div class="vares-actions">
-        <a class="mini-link" href="https://IQProductionz.com/Haligricity/Varessences/Rising.png" target="_blank">View</a>
-        <a class="mini-link solid" href="https://IQProductionz.com/Haligricity/Varessences/Rising.png" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Varessences/Rising.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://Haligricity.IQProductionz.com/Varessences/Rising.png" download>⬇ Download</a>
       </div>
     </div>
 
     <div class="vares-card">
       <h4>Astral Varessence</h4>
-      <img class="vares-img" src="https://IQProductionz.com/Haligricity/Varessences/Astral.png" alt="Astral Varessence — closing declaration before sleep" onerror="this.style.display='none'">
+      <img class="vares-img" src="https://Haligricity.IQProductionz.com/Varessences/Astral.png" alt="Astral Varessence — closing declaration before sleep" onerror="this.style.display='none'">
       <p style="font-size:.92rem;color:var(--gray);line-height:1.6;">Spoken at the close of the day: <em>"Gratitude fills my heart, I've done my part. I send love from the end to the start."</em></p>
       <div class="vares-actions">
-        <a class="mini-link" href="https://IQProductionz.com/Haligricity/Varessences/Astral.png" target="_blank">View</a>
-        <a class="mini-link solid" href="https://IQProductionz.com/Haligricity/Varessences/Astral.png" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Varessences/Astral.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://Haligricity.IQProductionz.com/Varessences/Astral.png" download>⬇ Download</a>
       </div>
     </div>
 
     <div class="vares-card">
       <h4>Dining Varessence</h4>
-      <img class="vares-img" src="https://IQProductionz.com/Haligricity/Varessences/Dining.png" alt="Dining Varessence — declaration spoken over food" onerror="this.style.display='none'">
+      <img class="vares-img" src="https://Haligricity.IQProductionz.com/Varessences/Dining.png" alt="Dining Varessence — declaration spoken over food" onerror="this.style.display='none'">
       <p style="font-size:.92rem;color:var(--gray);line-height:1.6;">Spoken over food with hand-cultivation movements: <em>"I plant the seeds of greatness… Ashe' Gratitude circulates in me!"</em></p>
       <div class="vares-actions">
-        <a class="mini-link" href="https://IQProductionz.com/Haligricity/Varessences/Dining.png" target="_blank">View</a>
-        <a class="mini-link solid" href="https://IQProductionz.com/Haligricity/Varessences/Dining.png" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Varessences/Dining.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://Haligricity.IQProductionz.com/Varessences/Dining.png" download>⬇ Download</a>
       </div>
     </div>
 
@@ -864,7 +847,7 @@ document.addEventListener('click', function(e) {
   <div class="gold-divider"></div>
 
   <div class="open-book">
-    <div class="book-img"><img src="https://IQProductionz.com/Haligricity/Varessences/Dining.png" alt="Dining Varessence reference card" onerror="this.style.display='none'"></div>
+    <div class="book-img"><img src="https://Haligricity.IQProductionz.com/Varessences/Dining.png" alt="Dining Varessence reference card" onerror="this.style.display='none'"></div>
 
     <div class="book-text"><div class="dining-steps">
       <h4 style="font-family:'Cinzel',serif;color:var(--purple);font-size:1rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;">Hand Movements for Energy Cultivation</h4>
@@ -1024,7 +1007,7 @@ document.addEventListener('click', function(e) {
 
 
 
-  <p style="text-align:center;font-size:.88rem;color:var(--gray);margin-top:1.5rem;font-style:italic;">If this seems like too much or not enough, <a href="https://IQProductionz.com/Haligricity/FindYourPractice/" style="color:var(--purple-mid);">take the practice finder quiz</a> to see what will work for you.</p>
+  <p style="text-align:center;font-size:.88rem;color:var(--gray);margin-top:1.5rem;font-style:italic;">If this seems like too much or not enough, <a href="https://Haligricity.IQProductionz.com/FindYourPractice/" style="color:var(--purple-mid);">take the practice finder quiz</a> to see what will work for you.</p>
 </section>
 
 <!-- ─── VISHNU MUDRA + PRANAYAMA GUIDE ─────────────────────────────── -->
@@ -1044,7 +1027,7 @@ document.addEventListener('click', function(e) {
       <h3>How to Form It</h3>
       <p>Lift your right hand to your face. <strong>Fold the index and middle fingers down into the palm.</strong> Keep the thumb, ring finger, and little finger extended. You will use the thumb to gently close the right nostril, and the ring + little fingers to close the left nostril.</p>
       <p>This is the traditional hand position for <em>Nadi Shodhana</em> (alternate-nostril breath), <em>Surya Bhedana</em> (the morning solar breath), and <em>Chandra Bhedana</em> (the evening lunar breath) — foundational Haligric pranayamas for moving and balancing the channels.</p>
-      <a class="dl-btn purple" href="https://IQProductionz.com/Haligricity/Pranayama/Pranayama_Complete_Guide.pdf" download>
+      <a class="dl-btn purple" href="https://Haligricity.IQProductionz.com/Pranayama/Pranayama_Complete_Guide.pdf" download>
         <span class="arrow">⬇</span> Download Pranayama Guide
       </a>
     </div>
@@ -1062,31 +1045,23 @@ document.addEventListener('click', function(e) {
 
   <div class="practice-grid" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:18px;justify-content:center;max-width:780px;margin:0 auto;">
     <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px;">
-      <a class="practice-card" href="https://IQProductionz.com/Haligricity/Mudras/Quiz/">
-        <svg class="practice-mini-sym" viewBox="0 0 80 80" fill="none">
-          <circle cx="40" cy="40" r="32" stroke="#C9A227" stroke-width="1.4" opacity="0.8"/>
-          <rect x="16" y="16" width="48" height="48" stroke="#C9A227" stroke-width="1.4" opacity="0.55"/>
-          <circle cx="40" cy="40" r="3" fill="#4A1060"/>
-        </svg>
+      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Mudras/Quiz/">
+        <img src="HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
         <h4>Mudra Finder</h4>
         <p>Nine questions. Receive the sacred hand gesture your body, mind, and energy are calling for.</p>
         <span class="go">Find Your Mudra →</span>
       </a>
-      <a href="https://IQProductionz.com/Haligricity/Mudras/Mudras_Deep_Dive.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Mudra Deep Dive PDF</a>
+      <a href="https://Haligricity.IQProductionz.com/Mudras/Mudras_Deep_Dive.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Mudra Deep Dive PDF</a>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px;">
-      <a class="practice-card" href="https://IQProductionz.com/Haligricity/Pranayama/Quiz/">
-        <svg class="practice-mini-sym" viewBox="0 0 80 80" fill="none">
-          <circle cx="40" cy="40" r="32" stroke="#C9A227" stroke-width="1.4" opacity="0.8"/>
-          <rect x="16" y="16" width="48" height="48" stroke="#C9A227" stroke-width="1.4" opacity="0.55"/>
-          <circle cx="40" cy="40" r="3" fill="#4A1060"/>
-        </svg>
+      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Pranayama/Quiz/">
+        <img src="HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
         <h4>Pranayama Finder</h4>
         <p>Discover the breath practice that meets the state you are in — for grounding, clarity, energizing, or stilling.</p>
         <span class="go">Find Your Breath →</span>
       </a>
-      <a href="https://IQProductionz.com/Haligricity/Pranayama/Pranayama_Complete_Guide.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Pranayama Complete Guide</a>
+      <a href="https://Haligricity.IQProductionz.com/Pranayama/Pranayama_Complete_Guide.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Pranayama Complete Guide</a>
     </div>
   </div>
 </section>
@@ -1104,27 +1079,27 @@ document.addEventListener('click', function(e) {
     <div class="region-card">
       <span class="area">United States · North</span>
       <span class="place">New England</span>
-      <div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
     <div class="region-card">
       <span class="area">United States · PNW</span>
       <span class="place">Pacific Northwest</span>
-      <div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
     <div class="region-card">
       <span class="area">United States · West</span>
       <span class="place">Pacific Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
     <div class="region-card">
       <span class="area">United States · Rockies</span>
       <span class="place">The Rockies</span>
-      <div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
     <div class="region-card">
       <span class="area">United States · South</span>
       <span class="place">The South</span>
-      <div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
     <div class="region-card" style="border-color:var(--purple-mid);background:var(--purple-light);">
       <span class="area" style="color:var(--purple-mid);">Your Region</span>
@@ -1157,32 +1132,32 @@ document.addEventListener('click', function(e) {
       <a class="download-mini" href="https://realmagicintro.wixsite.com/mymagicworkbook" target="_blank" rel="noopener" style="border-color:var(--purple-mid);color:var(--purple);">↗ Visit Book</a>
     </div>
 
-    <div class="region-card"><span class="area">Indigenous · Americas</span><span class="place">All My Relations — Native American Beliefs</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Indigenous · Australia</span><span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Indonesia</span><span class="place">Balinese Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">India · Hindu</span><span class="place">Bhagavad-Gita for Awakening</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">West Africa</span><span class="place">Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">China</span><span class="place">Confucianism — A Complete Philosophy Guide</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Synthesis</span><span class="place">Five Paths of the Living World</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Five_Paths_of_the_Living_World.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Five_Paths_of_the_Living_World.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Hellenic · Mystery</span><span class="place">Greek Mysteries &amp; Hermeticism</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">India</span><span class="place">Hinduism — Deep Dive into Rituals, Deities, Texts</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Middle East</span><span class="place">Islam &amp; Samaritanism — Complete Guide</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Northern Europe</span><span class="place">Norse Runes &amp; Pagan/Wiccan Gods</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Caribbean · Diaspora</span><span class="place">Rastafari — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Rastafari_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Rastafari_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Modern Movement</span><span class="place">Scientology — A Complete Factual Guide</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Mesoamerica</span><span class="place">Serpent &amp; Star — Aztec &amp; Mayan Beliefs</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Eastern Mediterranean</span><span class="place">The Byzantine Empire — Faith &amp; Ritual</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Celtic · British Isles</span><span class="place">The Druids — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Druids_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Druids_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Ancient Egypt</span><span class="place">The Heliopolitan Philosophy — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Synthesis</span><span class="place">The Indwelling Divine — Seven Paths</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Ancient Egypt</span><span class="place">The Wisdom of Kemet — Egyptian Beliefs</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Mesoamerica</span><span class="place">Zapotec Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">China</span><span class="place">Chinese Folk Religion — The Living Synthesis</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">China · Shamanism</span><span class="place">Wu — Chinese Shamanism Between Heaven &amp; Earth</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">China · Philosophy</span><span class="place">Mohism — Universal Love &amp; the Forgotten Philosophy</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">Pacific · Oceania</span><span class="place">Polynesian Mythology</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Polynesian_Mythology.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">West Africa · Diaspora</span><span class="place">Vodou — Haiti &amp; West African Roots</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
-    <div class="region-card"><span class="area">West Africa</span><span class="place">Yoruba — Tradition, Orisha &amp; Living Practice</span><div class="card-btns"><a class="download-mini" href="https://IQProductionz.com/Haligricity/HistoryCollection/Yoruba.pdf" download>⬇ Download</a><a class="read-online" href="https://IQProductionz.com/Haligricity/HistoryCollection/Yoruba.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Indigenous · Americas</span><span class="place">All My Relations — Native American Beliefs</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Indigenous · Australia</span><span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Indonesia</span><span class="place">Balinese Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">India · Hindu</span><span class="place">Bhagavad-Gita for Awakening</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">West Africa</span><span class="place">Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">China</span><span class="place">Confucianism — A Complete Philosophy Guide</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Synthesis</span><span class="place">Five Paths of the Living World</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Hellenic · Mystery</span><span class="place">Greek Mysteries &amp; Hermeticism</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">India</span><span class="place">Hinduism — Deep Dive into Rituals, Deities, Texts</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Middle East</span><span class="place">Islam &amp; Samaritanism — Complete Guide</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Northern Europe</span><span class="place">Norse Runes &amp; Pagan/Wiccan Gods</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Caribbean · Diaspora</span><span class="place">Rastafari — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Modern Movement</span><span class="place">Scientology — A Complete Factual Guide</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Mesoamerica</span><span class="place">Serpent &amp; Star — Aztec &amp; Mayan Beliefs</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Eastern Mediterranean</span><span class="place">The Byzantine Empire — Faith &amp; Ritual</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Celtic · British Isles</span><span class="place">The Druids — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Ancient Egypt</span><span class="place">The Heliopolitan Philosophy — A Deep Dive</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Synthesis</span><span class="place">The Indwelling Divine — Seven Paths</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Ancient Egypt</span><span class="place">The Wisdom of Kemet — Egyptian Beliefs</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Mesoamerica</span><span class="place">Zapotec Beliefs, Rituals &amp; Traditions</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">China</span><span class="place">Chinese Folk Religion — The Living Synthesis</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">China · Shamanism</span><span class="place">Wu — Chinese Shamanism Between Heaven &amp; Earth</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">China · Philosophy</span><span class="place">Mohism — Universal Love &amp; the Forgotten Philosophy</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">Pacific · Oceania</span><span class="place">Polynesian Mythology</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian%20Mythology.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian%20Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">West Africa · Diaspora</span><span class="place">Vodou — Haiti &amp; West African Roots</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
+    <div class="region-card"><span class="area">West Africa</span><span class="place">Yoruba — Tradition, Orisha &amp; Living Practice</span><div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" target="_blank" rel="noopener">↗ Read Online</a></div></div>
   </div>
 </section>
 
