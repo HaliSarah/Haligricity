@@ -294,8 +294,9 @@ document.addEventListener('click', function(e) {
   .vares-card .vares-img {
     width:100%; border-radius:8px; border:1px solid var(--gold-border);
     background:var(--gold-pale); object-fit:cover;
-    aspect-ratio:1/1; max-height:none;
+    height:160px;
   }
+  @media (max-width:640px) { .vares-card .vares-img { height:220px; } }
   .vares-card .vares-actions { display:flex; flex-wrap:wrap; gap:8px; }
   .vares-card .mini-link {
     font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.12em;
@@ -506,7 +507,7 @@ document.addEventListener('click', function(e) {
   .region-card a.read-online { display:inline-block; padding:4px 9px; border:1px solid var(--gold-border); border-radius:4px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
   .region-card a.read-online:hover { background:var(--gold-border); color:#fff; }
   .region-card .card-btns { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
-  @media (max-width:640px) { .vares-grid { grid-template-columns:1fr; } .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
+  @media (max-width:640px) { .vares-grid { grid-template-columns:1fr !important; display:grid !important; } .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
   @media (min-width:641px) { .mob-fab,.mob-drawer { display:none !important; } }
 
 
@@ -533,8 +534,8 @@ document.addEventListener('click', function(e) {
   }
   @media (max-width:640px) {
     .open-book { flex-direction:column; }
-    .open-book .book-img { border-right:none; border-bottom:1px solid var(--gold-border); max-height:260px; }
-    .open-book .book-img img { object-fit:cover; }
+    .open-book .book-img { border-right:none; border-bottom:1px solid var(--gold-border); height:260px; min-height:260px; width:100%; }
+    .open-book .book-img img { object-fit:cover; width:100%; height:100%; }
   }
 
 
@@ -856,7 +857,7 @@ document.addEventListener('click', function(e) {
 
   <div class="ety-card">
     <div class="open-book" style="margin-bottom:1.5rem;">
-      <div class="book-img"><a href="https://realmagicintro.wixsite.com/mymagicworkbook" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;"><img src="https://static.wixstatic.com/media/dc9602_e5e725fbfabf4a9e91036dfff238785d~mv2_d_1500_2100_s_2.gif" alt="Real Magic: An Introduction" style="width:100%;height:100%;object-fit:cover;display:block;"></a></div>
+      <div class="book-img"><a href="https://realmagicintro.wixsite.com/mymagicworkbook" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;"><img src="https://static.wixstatic.com/media/dc9602_e5e725fbfabf4a9e91036dfff238785d~mv2_d_1500_2100_s_2.gif" alt="Real Magic: An Introduction" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block;"></a></div>
       <div class="book-text">
     <p>Written by Hali Sarah Parsons and published February 10, 2017 — <em>Real Magic: An Introduction</em> is the first written record of the belief system that would grow into Haligricity. It was written as a workbook: practical, personal, and designed to be <em>used</em>, not just read.</p>
     <p>If you are new to the Haligric path, this is where to begin. It introduces the concepts of energy, intention, and the nature of reality that underpin every practice in the Well-Being and Rituals books.</p>
@@ -974,7 +975,7 @@ document.addEventListener('click', function(e) {
   <div class="vares-grid">
 
     <div class="vares-card">
-      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Rising.png" alt="Rising Varessence — spoken declaration for the opening of the day" onerror="this.style.opacity='0.3'" style="min-height:80px;background:var(--gold-pale);">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Rising.png" loading="lazy" alt="Rising Varessence — spoken declaration for the opening of the day" onerror="this.style.opacity='0.3'">
       <p style="font-size:.88rem;color:var(--gray);line-height:1.6;"><strong style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);">Rising</strong> — Spoken at the opening of the day, hands at heart center: <em>"I honor myself, on this day, and shine my light, along the way."</em></p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" target="_blank">View</a>
@@ -983,7 +984,7 @@ document.addEventListener('click', function(e) {
     </div>
 
     <div class="vares-card">
-      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" alt="Zenith Varessence" onerror="this.style.opacity='0.3'" style="min-height:60px;background:var(--gold-pale);">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" loading="lazy" alt="Zenith Varessence" onerror="this.style.opacity='0.3'">
       <p style="font-size:.88rem;color:var(--gray);line-height:1.6;"><strong style="font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);">Zenith</strong> — Spoken at the midpoint of the day while grounded to the earth — centering your focus and authority within the natural flow.</p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" target="_blank">View</a>
@@ -992,7 +993,7 @@ document.addEventListener('click', function(e) {
     </div>
 
     <div class="vares-card">
-      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Astral.png" alt="Astral Varessence — closing declaration before sleep" onerror="this.style.opacity='0.3'" style="min-height:80px;background:var(--gold-pale);">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Astral.png" loading="lazy" alt="Astral Varessence — closing declaration before sleep" onerror="this.style.opacity='0.3'">
       <p style="font-size:.88rem;color:var(--gray);line-height:1.6;"><strong style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);">Astral</strong> — Spoken at the close of the day: <em>"Gratitude fills my heart, I've done my part. I send love from the end to the start."</em></p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Astral.png" target="_blank">View</a>
@@ -1014,7 +1015,7 @@ document.addEventListener('click', function(e) {
   <div class="gold-divider"></div>
 
   <div class="open-book">
-    <div class="book-img"><img src="https://haligricity.iqproductionz.com/Varessence/Dining.png" alt="Dining Varessence reference card" onerror="this.style.opacity='0.3'" style="min-height:80px;background:var(--gold-pale);"></div>
+    <div class="book-img"><img src="https://haligricity.iqproductionz.com/Varessence/Dining.png" alt="Dining Varessence reference card" onerror="this.style.opacity='0.3'" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block;"></div>
 
     <div class="book-text"><div class="dining-steps">
       <h4 style="font-family:'Cinzel',serif;color:var(--purple);font-size:1rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;">Hand Movements for Energy Cultivation</h4>
@@ -1366,7 +1367,7 @@ document.addEventListener('click', function(e) {
   <p style="text-align:center;font-size:.9rem;color:var(--gray);margin-bottom:16px;">Browse the full collection below, or explore by region using the History menu above.</p>
   <div class="history-grid">
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yuruba.png" alt="Akan Tradition — Ghana &amp; Ivory Coast" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yuruba.png" loading="lazy" alt="Akan Tradition — Ghana &amp; Ivory Coast" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa · Ghana</span>
       <span class="place">Akan Tradition — Ghana &amp; Ivory Coast</span>
       <div class="card-btns">
@@ -1375,7 +1376,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Alabama.png" alt="Alabama-Coushatta Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Alabama.png" loading="lazy" alt="Alabama-Coushatta Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Alabama-Coushatta Traditions — Deep Dive</span>
       <div class="card-btns">
@@ -1384,7 +1385,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/NativeAmerican.png" alt="All My Relations — Native American Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/NativeAmerican.png" loading="lazy" alt="All My Relations — Native American Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">All My Relations — Native American Beliefs</span>
       <div class="card-btns">
@@ -1393,7 +1394,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Australian.png" alt="Australian Aboriginal Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Australian.png" loading="lazy" alt="Australian Aboriginal Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Australia · Aboriginal</span>
       <span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
@@ -1402,7 +1403,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/balinese.png" alt="Balinese Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/balinese.png" loading="lazy" alt="Balinese Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Bali · Hindu</span>
       <span class="place">Balinese Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
@@ -1411,7 +1412,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Bhagavad.png" alt="Bhagavad-Gita for Awakening" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Bhagavad.png" loading="lazy" alt="Bhagavad-Gita for Awakening" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">India · Hindu</span>
       <span class="place">Bhagavad-Gita for Awakening</span>
       <div class="card-btns">
@@ -1420,7 +1421,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/blackfoot.png" alt="Blackfoot Confederacy — Siksika, Kainai, Piikani" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/blackfoot.png" loading="lazy" alt="Blackfoot Confederacy — Siksika, Kainai, Piikani" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Blackfoot Confederacy — Siksika, Kainai, Piikani</span>
       <div class="card-btns">
@@ -1429,7 +1430,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/BoBoBwa.png" alt="Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/BoBoBwa.png" loading="lazy" alt="Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa · Nigeria</span>
       <span class="place">Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
@@ -1438,7 +1439,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Brazil.png" alt="Candomblé &amp; Umbanda — Brazil" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Brazil.png" loading="lazy" alt="Candomblé &amp; Umbanda — Brazil" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Brazil · Diaspora</span>
       <span class="place">Candomblé &amp; Umbanda — Brazil</span>
       <div class="card-btns">
@@ -1447,7 +1448,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Cherokee.png" alt="Cherokee Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Cherokee.png" loading="lazy" alt="Cherokee Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Cherokee Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
@@ -1456,7 +1457,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/ChinaFolk.jpeg" alt="Chinese Folk Religion — The Living Synthesis" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/ChinaFolk.jpeg" loading="lazy" alt="Chinese Folk Religion — The Living Synthesis" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">China</span>
       <span class="place">Chinese Folk Religion — The Living Synthesis</span>
       <div class="card-btns">
@@ -1465,7 +1466,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Confusious.png" alt="Confucianism — A Complete Philosophy Guide" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Confusious.png" loading="lazy" alt="Confucianism — A Complete Philosophy Guide" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">China · Philosophy</span>
       <span class="place">Confucianism — A Complete Philosophy Guide</span>
       <div class="card-btns">
@@ -1474,7 +1475,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Geez.png" alt="Ethiopian Orthodox &amp; Ge'ez — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Geez.png" loading="lazy" alt="Ethiopian Orthodox &amp; Ge'ez — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Ethiopia</span>
       <span class="place">Ethiopian Orthodox &amp; Ge'ez — A Deep Dive</span>
       <div class="card-btns">
@@ -1483,7 +1484,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/FivePaths.png" alt="Five Paths of the Living World" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/FivePaths.png" loading="lazy" alt="Five Paths of the Living World" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global · Synthesis</span>
       <span class="place">Five Paths of the Living World</span>
       <div class="card-btns">
@@ -1492,7 +1493,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/FreeMason.png" alt="Freemasonry — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/FreeMason.png" loading="lazy" alt="Freemasonry — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global</span>
       <span class="place">Freemasonry — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1501,7 +1502,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Gnostisism.png" alt="Gnosticism &amp; Kabbalah — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Gnostisism.png" loading="lazy" alt="Gnosticism &amp; Kabbalah — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Esoteric · Western</span>
       <span class="place">Gnosticism &amp; Kabbalah — Deep Dive</span>
       <div class="card-btns">
@@ -1510,7 +1511,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Greek.png" alt="Greek Mysteries &amp; Hermeticism" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Greek.png" loading="lazy" alt="Greek Mysteries &amp; Hermeticism" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Esoteric · Western</span>
       <span class="place">Greek Mysteries &amp; Hermeticism</span>
       <div class="card-btns">
@@ -1519,7 +1520,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Hinduism.png" alt="Hinduism — Deep Dive: Rituals, Deities &amp; Texts" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Hinduism.png" loading="lazy" alt="Hinduism — Deep Dive: Rituals, Deities &amp; Texts" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">India · Hindu</span>
       <span class="place">Hinduism — Deep Dive: Rituals, Deities &amp; Texts</span>
       <div class="card-btns">
@@ -1528,7 +1529,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Hopi.png" alt="Hopi Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Hopi.png" loading="lazy" alt="Hopi Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Hopi Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
@@ -1537,7 +1538,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Irish.png" alt="Irish Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Irish.png" loading="lazy" alt="Irish Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Europe · Celtic</span>
       <span class="place">Irish Heritage — Deep Dive</span>
       <div class="card-btns">
@@ -1546,7 +1547,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Islam.png" alt="Islam &amp; Samaritanism — Complete Guide" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Islam.png" loading="lazy" alt="Islam &amp; Samaritanism — Complete Guide" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Middle East · Islam</span>
       <span class="place">Islam &amp; Samaritanism — Complete Guide</span>
       <div class="card-btns">
@@ -1555,7 +1556,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Janism.png" alt="Jainism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Janism.png" loading="lazy" alt="Jainism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">India · Jain</span>
       <span class="place">Jainism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1564,7 +1565,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Jewish.png" alt="Jewish &amp; Hebrew Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Jewish.png" loading="lazy" alt="Jewish &amp; Hebrew Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Middle East · Hebrew</span>
       <span class="place">Jewish &amp; Hebrew Heritage — Deep Dive</span>
       <div class="card-btns">
@@ -1573,7 +1574,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Muism.png" alt="Korean Muism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Muism.png" loading="lazy" alt="Korean Muism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Korea</span>
       <span class="place">Korean Muism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1582,7 +1583,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Mohism.png" alt="Mohism — Universal Love &amp; the Forgotten Philosophy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Mohism.png" loading="lazy" alt="Mohism — Universal Love &amp; the Forgotten Philosophy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">China · Philosophy</span>
       <span class="place">Mohism — Universal Love &amp; the Forgotten Philosophy</span>
       <div class="card-btns">
@@ -1591,7 +1592,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Angolas.png" alt="Muwila Beliefs and Living Tradition" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Angolas.png" loading="lazy" alt="Muwila Beliefs and Living Tradition" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Angola</span>
       <span class="place">Muwila Beliefs and Living Tradition</span>
       <div class="card-btns">
@@ -1600,7 +1601,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Navajo.png" alt="Navajo (Diné) Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Navajo.png" loading="lazy" alt="Navajo (Diné) Beliefs, Traditions &amp; Rituals" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Navajo (Diné) Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
@@ -1609,7 +1610,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Pegan.png" alt="Norse Runes &amp; Pagan/Wiccan Gods" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Pegan.png" loading="lazy" alt="Norse Runes &amp; Pagan/Wiccan Gods" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Europe · Norse</span>
       <span class="place">Norse Runes &amp; Pagan/Wiccan Gods</span>
       <div class="card-btns">
@@ -1618,7 +1619,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Polynesian.png" alt="Polynesian Mythology" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Polynesian.png" loading="lazy" alt="Polynesian Mythology" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Polynesia</span>
       <span class="place">Polynesian Mythology</span>
       <div class="card-btns">
@@ -1627,7 +1628,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Rasta.png" alt="Rastafari — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Rasta.png" loading="lazy" alt="Rastafari — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Caribbean · Africa</span>
       <span class="place">Rastafari — A Deep Dive</span>
       <div class="card-btns">
@@ -1636,7 +1637,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Santaria.png" alt="Santería &amp; Lucumí — La Regla de Ocha" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Santaria.png" loading="lazy" alt="Santería &amp; Lucumí — La Regla de Ocha" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa · Diaspora</span>
       <span class="place">Santería &amp; Lucumí — La Regla de Ocha</span>
       <div class="card-btns">
@@ -1645,7 +1646,16 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/ScientologyFacts.png" alt="Scientology — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/ScientologyFacts.png" loading="lazy" alt="Scientology — Complete Factual Guide" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <span class="area">Global</span>
+      <span class="place">Scientology — Complete Factual Guide</span>
+      <div class="card-btns">
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" download>⬇ Download</a>
+        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
+    </div>
+    <div class="region-card">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scientology.png" loading="lazy" alt="Scientology — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global</span>
       <span class="place">Scientology — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1654,7 +1664,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scottish.png" alt="Scottish Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scottish.png" loading="lazy" alt="Scottish Heritage — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Europe · Celtic</span>
       <span class="place">Scottish Heritage — Deep Dive</span>
       <div class="card-btns">
@@ -1663,7 +1673,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Myan.png" alt="Serpent &amp; Star — Aztec &amp; Mayan Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Myan.png" loading="lazy" alt="Serpent &amp; Star — Aztec &amp; Mayan Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Aztec · Maya</span>
       <span class="place">Serpent &amp; Star — Aztec &amp; Mayan Beliefs</span>
       <div class="card-btns">
@@ -1672,7 +1682,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shamanism.png" alt="Shamanism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shamanism.png" loading="lazy" alt="Shamanism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global</span>
       <span class="place">Shamanism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1681,7 +1691,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shinto.png" alt="Shinto — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shinto.png" loading="lazy" alt="Shinto — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Japan</span>
       <span class="place">Shinto — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1690,7 +1700,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shipibo.png" alt="Shipibo Curanderismo — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shipibo.png" loading="lazy" alt="Shipibo Curanderismo — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Shipibo Curanderismo — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1699,7 +1709,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sikism.png" alt="Sikhism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sikism.png" loading="lazy" alt="Sikhism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">India · Sikh</span>
       <span class="place">Sikhism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1708,7 +1718,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sufism.png" alt="Sufism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sufism.png" loading="lazy" alt="Sufism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">South Asia · Sufi</span>
       <span class="place">Sufism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1717,7 +1727,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Byzatine.png" alt="The Byzantine Empire — Faith &amp; Ritual" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Byzatine.png" loading="lazy" alt="The Byzantine Empire — Faith &amp; Ritual" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Byzantine</span>
       <span class="place">The Byzantine Empire — Faith &amp; Ritual</span>
       <div class="card-btns">
@@ -1726,7 +1736,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Druids.png" alt="The Druids — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Druids.png" loading="lazy" alt="The Druids — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Europe · Celtic</span>
       <span class="place">The Druids — A Deep Dive</span>
       <div class="card-btns">
@@ -1735,7 +1745,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Heliopolitan.png" alt="The Heliopolitan Philosophy — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Heliopolitan.png" loading="lazy" alt="The Heliopolitan Philosophy — A Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Ancient Egypt</span>
       <span class="place">The Heliopolitan Philosophy — A Deep Dive</span>
       <div class="card-btns">
@@ -1744,7 +1754,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Indwelling.png" alt="The Indwelling Divine — Seven Paths" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Indwelling.png" loading="lazy" alt="The Indwelling Divine — Seven Paths" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global · Synthesis</span>
       <span class="place">The Indwelling Divine — Seven Paths</span>
       <div class="card-btns">
@@ -1753,7 +1763,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Egypt.png" alt="The Wisdom of Kemet — Egyptian Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Egypt.png" loading="lazy" alt="The Wisdom of Kemet — Egyptian Beliefs" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Ancient Egypt</span>
       <span class="place">The Wisdom of Kemet — Egyptian Beliefs</span>
       <div class="card-btns">
@@ -1762,7 +1772,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Witchita.png" alt="Tonkawa &amp; Wichita Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Witchita.png" loading="lazy" alt="Tonkawa &amp; Wichita Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Indigenous Americas</span>
       <span class="place">Tonkawa &amp; Wichita Traditions — Deep Dive</span>
       <div class="card-btns">
@@ -1771,7 +1781,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/vudoo.png" alt="Vodou — Haiti &amp; West African Roots" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/vudoo.png" loading="lazy" alt="Vodou — Haiti &amp; West African Roots" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa · Diaspora</span>
       <span class="place">Vodou — Haiti &amp; West African Roots</span>
       <div class="card-btns">
@@ -1780,7 +1790,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Welsh.png" alt="Welsh Sacred Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Welsh.png" loading="lazy" alt="Welsh Sacred Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Europe · Wales</span>
       <span class="place">Welsh Sacred Traditions — Deep Dive</span>
       <div class="card-btns">
@@ -1789,7 +1799,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shamanism.png" alt="Wu — Chinese Shamanism Between Heaven &amp; Earth" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Shamanism.png" loading="lazy" alt="Wu — Chinese Shamanism Between Heaven &amp; Earth" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">China · Shamanism</span>
       <span class="place">Wu — Chinese Shamanism Between Heaven &amp; Earth</span>
       <div class="card-btns">
@@ -1798,7 +1808,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yoruba.png" alt="Yoruba — Tradition, Orisha &amp; Living Practice" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yoruba.png" loading="lazy" alt="Yoruba — Tradition, Orisha &amp; Living Practice" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa</span>
       <span class="place">Yoruba — Tradition, Orisha &amp; Living Practice</span>
       <div class="card-btns">
@@ -1807,7 +1817,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zapotec.png" alt="Zapotec Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zapotec.png" loading="lazy" alt="Zapotec Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Zapotec</span>
       <span class="place">Zapotec Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
@@ -1816,7 +1826,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zimbabwae.png" alt="Zimbabwe Shona &amp; Ndebele Sacred Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zimbabwae.png" loading="lazy" alt="Zimbabwe Shona &amp; Ndebele Sacred Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Zimbabwe</span>
       <span class="place">Zimbabwe Shona &amp; Ndebele Sacred Traditions</span>
       <div class="card-btns">
@@ -1825,7 +1835,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sufism.png" alt="Zoroastrianism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Sufism.png" loading="lazy" alt="Zoroastrianism — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Persia · Iran</span>
       <span class="place">Zoroastrianism — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1834,7 +1844,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zulu2.png" alt="Zulu &amp; Bantu Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Zulu2.png" loading="lazy" alt="Zulu &amp; Bantu Traditions — Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">South Africa · Bantu</span>
       <span class="place">Zulu &amp; Bantu Traditions — Deep Dive</span>
       <div class="card-btns">

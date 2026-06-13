@@ -268,11 +268,11 @@
 
   /* VARESSENCE CARDS GRID */
   .vares-grid {
-    display:grid !important; grid-template-columns:repeat(3,1fr) !important; gap:14px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px;
   }
   .vares-card {
     background:#fff; border:1.5px solid var(--gold-border); border-radius:14px;
-    padding:12px; display:flex; flex-direction:column; gap:8px;
+    padding:22px 22px 24px; display:flex; flex-direction:column; gap:12px;
     box-shadow:0 2px 12px rgba(180,140,0,.08);
   }
   .vares-card h4 {
@@ -281,8 +281,7 @@
   }
   .vares-card .vares-img {
     width:100%; border-radius:8px; border:1px solid var(--gold-border);
-    background:var(--gold-pale); object-fit:cover;
-    aspect-ratio:1/1; max-height:none;
+    background:var(--gold-pale); object-fit:contain; max-height:280px;
   }
   .vares-card .vares-actions { display:flex; flex-wrap:wrap; gap:8px; }
   .vares-card .mini-link {
@@ -491,10 +490,10 @@
   .mob-drawer.open { display:flex; }
   .mob-drawer a { padding:8px 14px; border-radius:6px; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); text-decoration:none; transition:background .2s; }
   .mob-drawer a:hover { background:var(--purple-light); }
-  .region-card a.read-online { display:inline-block; padding:4px 9px; border:1px solid var(--gold-border); border-radius:4px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
+  .region-card a.read-online { display:inline-block; padding:5px 10px; border:1px solid var(--gold-border); border-radius:6px; font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
   .region-card a.read-online:hover { background:var(--gold-border); color:#fff; }
   .region-card .card-btns { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
-  @media (max-width:640px) { .vares-grid { grid-template-columns:1fr; } .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
+  @media (max-width:640px) { .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
   @media (min-width:641px) { .mob-fab,.mob-drawer { display:none !important; } }
 
 
@@ -580,7 +579,7 @@
     font-family:'Cinzel',serif; font-size:.75rem; letter-spacing:.08em;
     text-transform:uppercase; color:var(--purple); transition:background .2s;
   }
-  .step-acc-trigger:hover { background:#FFFDF0; border-color:var(--gold); }
+  .step-acc-trigger:hover { background:var(--gold-pale); border-color:var(--gold-border); }
   .step-acc-num {
     width:26px; height:26px; border-radius:50%;
     background:var(--purple); color:#fff; flex-shrink:0;
@@ -590,8 +589,8 @@
   .step-acc-title { flex:1; }
   .step-acc-arrow { font-size:.75rem; transition:transform .25s; }
   .step-acc.open .step-acc-arrow { transform:rotate(180deg); }
-  .step-acc.open .step-acc-trigger { background:#FFFDF0; }
-  .step-acc-body { display:none; padding:16px; background:#fff; border-top:1px solid rgba(201,162,39,0.15); }
+  .step-acc.open .step-acc-trigger { background:var(--gold-pale); }
+  .step-acc-body { display:none; padding:16px; background:#FAFAF8; border-top:1px solid rgba(201,162,39,0.15); }
   .step-acc.open .step-acc-body { display:block; }
 
 
@@ -602,11 +601,11 @@
   .acc-arrow { display:inline-block; transition:transform .25s; }
   .acc-item.open .acc-arrow { transform:rotate(180deg); }
   .step-acc { border:1px solid rgba(201,162,39,0.2); border-radius:8px; margin-bottom:8px; overflow:hidden; }
-  .step-acc-body { display:none; padding:16px; background:#fff; border-top:1px solid rgba(201,162,39,0.15); }
+  .step-acc-body { display:none; padding:16px; background:#FAFAF8; border-top:1px solid rgba(201,162,39,0.15); }
   .step-acc.open .step-acc-body { display:block; }
   .step-acc-arrow { display:inline-block; transition:transform .25s; }
   .step-acc.open .step-acc-arrow { transform:rotate(180deg); }
-  .step-acc.open .step-acc-trigger { background:#FFFDF0; }
+  .step-acc.open .step-acc-trigger { background:var(--gold-pale); }
 
 
   .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
@@ -632,30 +631,11 @@
   section[id] { scroll-margin-top: 75px; }
 
 
-  /* RISING — white card: pill cream default, open body white */
-  #s-daily .routine-card:not([style]) .step-acc-trigger { background:#FFFDF0; }
-  #s-daily .routine-card:not([style]) .step-acc-trigger:hover { background:#ffffff; border-color:var(--gold); }
-  #s-daily .routine-card:not([style]) .step-acc.open .step-acc-trigger { background:#ffffff; border-color:var(--gold); }
-  #s-daily .routine-card:not([style]) .step-acc-body { background:#ffffff; }
-
-  /* ZENITH — gold card: pill cream default, hover = gold, open body = gold card color */
-  #s-zenith .step-acc-trigger { background:#FFFDF0; color:var(--gold-border); border-color:rgba(255,255,255,0.6); }
-
-  #s-zenith .step-acc-num { background:var(--gold-border); color:#fff; }
-  #s-zenith .step-acc-trigger:hover .step-acc-num,
-  #s-zenith .step-acc.open .step-acc-num { background:#fff; color:var(--gold-border); }
-
-  #s-zenith .step-acc-trigger:hover { background:var(--gold-border); border-color:#fff; color:#fff; }
-  #s-zenith .step-acc-num:hover { background:#fff; color:var(--gold-border); }
-  #s-zenith .step-acc.open .step-acc-trigger { background:var(--gold-border); border-color:#fff; color:#fff; }
-  #s-zenith .step-acc-body { background:var(--gold-border); color:#fff; }
-
-  /* ASTRAL — purple card: pill cream default, hover = purple-light, open body = purple-light */
-  #s-daily .routine-card[style*="purple-light"] .step-acc-trigger { background:#FFFDF0; border-color:var(--purple-mid); color:var(--purple); }
-  #s-daily .routine-card[style*="purple-light"] .step-acc-num { background:var(--purple); color:#fff; }
-  #s-daily .routine-card[style*="purple-light"] .step-acc-trigger:hover { background:var(--purple-light); border-color:var(--purple); color:var(--purple); }
-  #s-daily .routine-card[style*="purple-light"] .step-acc.open .step-acc-trigger { background:var(--purple-light); border-color:var(--purple); color:var(--purple); }
-  #s-daily .routine-card[style*="purple-light"] .step-acc-body { background:var(--purple-light); }
+  #s-zenith .step-acc-trigger { color:#fff; background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.4); }
+  #s-zenith .step-acc-trigger:hover { background:rgba(255,255,255,0.3); border-color:#fff; }
+  #s-zenith .step-acc-num { background:#fff; color:var(--gold-border); }
+  #s-zenith .step-acc.open .step-acc-trigger { background:rgba(255,255,255,0.25); }
+  #s-zenith .step-acc-body { background:#fff; }
 
 </style>
 <style>.wrap{padding-top:80px !important;}</style>
@@ -678,15 +658,15 @@
       <a class="nav-link" href="#s-history" onclick="toggleHistoryMenu(event)" style="cursor:pointer;">History ▾</a>
       <div class="nav-submenu" id="historyMenu" style="display:none;position:absolute;top:100%;right:0;z-index:200;">
         <div class="nav-submenu-inner">
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/">Native American</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/">African</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/">Asian</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/">Indian</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/">Mesoamerican</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/">Island Peoples</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/">Middle East</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/">European Heritage</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Esoteric/">Western Esoteric</a>
+          <a href="NativeAmerican.html">Native American</a>
+          <a href="African.html">African</a>
+          <a href="Asian.html">Asian</a>
+          <a href="Indian.html">Indian</a>
+          <a href="Mesoamerican.html">Mesoamerican</a>
+          <a href="IslandPeoples.html">Island Peoples</a>
+          <a href="MiddleEast.html">Middle East</a>
+          <a href="European.html">European Heritage</a>
+          <a href="Esoteric.html">Western Esoteric</a>
         </div>
       </div>
     </div>
@@ -702,7 +682,7 @@
   <div class="gold-divider"></div>
   <div class="history-grid">
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Australian.png" alt="Australian Aboriginal Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Australian.png" alt="" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Australia · Aboriginal</span>
       <span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
@@ -711,21 +691,21 @@
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/balinese.png" alt="Balinese Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
-      <span class="area">Bali · Indonesia</span>
-      <span class="place">Balinese Beliefs, Rituals &amp; Traditions</span>
-      <div class="card-btns">
-        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
-      </div>
-    </div>
-    <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Polynesian.png" alt="Polynesian Mythology" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Polynesian.png" alt="" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Polynesia</span>
       <span class="place">Polynesian Mythology</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
+    </div>
+    <div class="region-card">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/balinese.png" alt="" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <span class="area">Bali · Indonesia</span>
+      <span class="place">Balinese Beliefs, Rituals &amp; Traditions</span>
+      <div class="card-btns">
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
+        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       </div>
     </div>
   </div>
@@ -739,15 +719,15 @@
   <a href="https://Haligricity.IQProductionz.com/#s-history" onclick="toggleDrawer()">History</a>
   <div class="drawer-group-label">History by Region</div>
   <div class="drawer-sub">
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/" onclick="toggleDrawer()">Native American</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/" onclick="toggleDrawer()">African</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/" onclick="toggleDrawer()">Asian</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/" onclick="toggleDrawer()">Indian</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/" onclick="toggleDrawer()">Mesoamerican</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/" onclick="toggleDrawer()">Island Peoples</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/" onclick="toggleDrawer()">Middle East</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/" onclick="toggleDrawer()">European Heritage</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Esoteric/" onclick="toggleDrawer()">Western Esoteric</a>
+    <a href="NativeAmerican.html" onclick="toggleDrawer()">Native American</a>
+    <a href="African.html" onclick="toggleDrawer()">African</a>
+    <a href="Asian.html" onclick="toggleDrawer()">Asian</a>
+    <a href="Indian.html" onclick="toggleDrawer()">Indian</a>
+    <a href="Mesoamerican.html" onclick="toggleDrawer()">Mesoamerican</a>
+    <a href="IslandPeoples.html" onclick="toggleDrawer()">Island Peoples</a>
+    <a href="MiddleEast.html" onclick="toggleDrawer()">Middle East</a>
+    <a href="European.html" onclick="toggleDrawer()">European Heritage</a>
+    <a href="Esoteric.html" onclick="toggleDrawer()">Western Esoteric</a>
   </div>
 </div>
 <footer class="ftr">
@@ -758,8 +738,6 @@
 function toggleDrawer(){document.getElementById('mobDrawer').classList.toggle('open');}
 function toggleHistoryMenu(e){e.stopPropagation();var m=document.getElementById('historyMenu');m.style.display=m.style.display==='block'?'none':'block';}
 document.addEventListener('click',function(){var m=document.getElementById('historyMenu');if(m)m.style.display='none';});
-function toggleAcc(btn){var i=btn.closest('.acc-item');if(i)i.classList.toggle('open');}
-function toggleStepAcc(btn){var i=btn.closest('.step-acc');if(i)i.classList.toggle('open');}
 </script>
 </body>
 </html>
