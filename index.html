@@ -889,8 +889,9 @@ document.addEventListener('click', function(e) {
   <p class="section-sub">These manuscripts are still being refined. Summaries here will become downloadable PDFs as each volume is finalized.</p>
   <div class="gold-divider"></div>
 
-  <div class="books-grid">
-
+  <div class="books-grid" style="display:grid;grid-template-columns:1fr;gap:16px;max-width:880px;margin:0 auto;">
+    <!-- Top row: two books centered -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;justify-items:center;">
     <div class="book-card">
       <span class="tag">Foundation Text</span>
       <h4>Haligricity — A Philosophy</h4>
@@ -904,12 +905,16 @@ document.addEventListener('click', function(e) {
       <p>The hands-on book: daily practices for body, breath, sound, movement, eating, and connection. Sample: <em>"Begin at the rise of the day with the neck — always the neck first. Open the lymphatic highway before anything else moves. The body knows the order. Trust it."</em></p>
       <div class="meta">Status: Final draft — refining</div>
     </div>
+    </div>
 
+    <!-- Bottom row: Ritual Guide centered -->
+    <div style="display:grid;grid-template-columns:repeat(1,minmax(0,480px));gap:16px;justify-content:center;">
     <div class="book-card">
       <span class="tag">Ritual Guide</span>
       <h4>Haligric — Rituals</h4>
       <p>Ceremony, seasonal observances, life-passage rites, and personal rituals — drawn from many traditions and re-rooted in the language of wholeness. Sample: <em>"Open your space before you enter it. You are not walking into a room — you are walking into a field. Acknowledge the field. The field will acknowledge you."</em></p>
       <div class="meta">Status: Final draft — refining</div>
+    </div>
     </div>
 
     <div class="book-card" id="controversial-card">
@@ -1278,7 +1283,7 @@ document.addEventListener('click', function(e) {
 <section id="s-practice">
   <div class="section-eyebrow">Practices</div>
   <h2 class="section-title">Find Your Practice</h2>
-  <p class="section-sub">Interactive tools to help you locate the practice your body, breath, and energy are asking for — right now.</p>
+  <p class="section-sub">Interactive tools to help you locate the practice your<br>body, breath, and energy are asking for — right now.</p>
   <div class="gold-divider"></div>
 
   <div class="practice-grid" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:18px;justify-content:center;max-width:780px;margin:0 auto;">
@@ -1364,7 +1369,7 @@ document.addEventListener('click', function(e) {
   <h2 class="section-title">The History Collection</h2>
   <p class="section-sub"><a href="#request-form" style="color:var(--purple-mid);text-decoration:underline;">If your tradition isn't listed, request it below.</a></p>
   <p class="section-sub" style="margin-top:4px;">Deep-dive PDFs into the world's spiritual, philosophical, and ritual traditions.</p>
-  <p class="section-sub" style="margin-top:10px;">After your research, you may want to visit temples to get a first-hand experience.<br><a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.08em;">We have compiled Temple Guides to help with this journey →</a></p>
+  <p class="section-sub" style="margin-top:10px;">After your research, you may want to visit temples to get a first-hand experience. <a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);text-decoration:underline;">These guides</a> will help you prepare.</p>
   <div style="background:var(--purple-light);border:1.5px solid var(--purple-mid);border-radius:10px;padding:16px 20px;margin:8px 0 16px;">
     <p style="font-size:.92rem;color:var(--purple);line-height:1.75;">
       <strong style="font-family:'Cinzel',serif;letter-spacing:.08em;">As above, so below.</strong>
@@ -1379,7 +1384,7 @@ document.addEventListener('click', function(e) {
   <p style="text-align:center;font-size:.9rem;color:var(--gray);margin-bottom:16px;">Browse the full collection below, or explore by region using the History menu above.</p>
   <div class="history-grid">
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yuruba.png" loading="lazy" alt="Akan Tradition — Ghana &amp; Ivory Coast" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Akan.png" loading="lazy" alt="Akan Tradition — Ghana &amp; Ivory Coast" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa · Ghana</span>
       <span class="place">Akan Tradition — Ghana &amp; Ivory Coast</span>
       <div class="card-btns">
