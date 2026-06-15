@@ -658,6 +658,10 @@
   #s-daily .routine-card[style*="purple-light"] .step-acc.open .step-acc-trigger { background:var(--purple-light); border-color:var(--purple); color:var(--purple); }
   #s-daily .routine-card[style*="purple-light"] .step-acc-body { background:var(--purple-light); }
 
+
+  .tg-top-card { flex:0 0 calc(33.33% - 8px); max-width:calc(33.33% - 8px); }
+  @media(max-width:640px){ .tg-top-card { max-width:100%; } }
+
 </style>
 <style>.wrap{padding-top:80px !important;}</style>
 </head>
@@ -669,7 +673,7 @@
     </div>
     <div class="crumbs"><strong>Haligricity</strong></div>
   </div>
-  <a class="nav-home" href="https://Haligricity.IQProductionz.com/">↩ Site Home</a>
+  <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:12px;">↩ Site Home</a>
     <div class="nav-links">
     <a class="nav-link" href="#s-varessence">Varessence</a>
     <a class="nav-link" href="#s-daily">Daily Practice</a>
@@ -701,9 +705,10 @@
     <a href="https://Haligricity.IQProductionz.com/#s-history" style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;">← History Collection</a>
   </div>
   <div class="gold-divider"></div>
-  <div class="history-grid">
-    <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Yuruba.png" alt="Akan West African Sacred Spaces Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+    <div style="display:flex;gap:14px;justify-content:center;">
+      <div class="region-card tg-top-card">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Akan.png" alt="Akan West African Sacred Spaces Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">West Africa</span>
       <span class="place">Akan West African Sacred Spaces Guide</span>
       <div class="card-btns">
@@ -711,7 +716,7 @@
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Akan_West_African_Sacred_Spaces_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       </div>
     </div>
-    <div class="region-card">
+      <div class="region-card tg-top-card">
       <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/balinese.png" alt="Balinese Temple Visitation Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Bali</span>
       <span class="place">Balinese Temple Visitation Guide</span>
@@ -720,6 +725,8 @@
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Balinese_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       </div>
     </div>
+    </div>
+    <div class="history-grid">
     <div class="region-card">
       <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/BuddistTemple.png" alt="Buddhist Temple Visitation Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Asia · Buddhism</span>
@@ -881,6 +888,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Zoroastrian_Fire_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Zoroastrian_Fire_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       </div>
+    </div>
     </div>
   </div>
 </div>

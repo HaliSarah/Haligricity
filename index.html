@@ -389,17 +389,6 @@ document.addEventListener('click', function(e) {
   .books-grid {
     display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;
   }
-  .books-featured-row {
-    grid-column: 1 / -1;
-    display:flex;
-    gap:16px;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  .books-featured-row .book-card {
-    flex: 1 1 260px;
-    max-width: calc(33.333% - 11px);
-  }
   .book-card {
     background:#fff; border:1.5px solid var(--gold-border); border-radius:12px;
     padding:22px 20px; display:flex; flex-direction:column; gap:8px;
@@ -498,13 +487,13 @@ document.addEventListener('click', function(e) {
   .ftr a:hover { color:var(--purple); }
 
   section[id] { scroll-margin-top: 75px; }
-  .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; gap:14px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
-  .top-nav .nav-left { display:flex; align-items:center; gap:14px; }
+  .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
+  .top-nav .nav-left { display:flex; align-items:center; gap:10px; }
   .top-nav .nav-logo { width:32px; height:32px; flex-shrink:0; }
   .top-nav .nav-logo svg { width:100%; height:100%; transform:rotate(45deg); }
   .top-nav .crumbs { font-family:'Cinzel',serif; font-size:11px; letter-spacing:2px; color:var(--gold-border); text-transform:uppercase; }
   .top-nav .crumbs strong { color:var(--purple); }
-  .nav-home { margin-left:6px; padding:7px 16px; border:1.5px solid var(--gold-border); border-radius:6px; background:transparent; color:var(--gold-border); font-family:'Cinzel',serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; }
+  .nav-home { padding:7px 16px; border:1.5px solid var(--gold-border); border-radius:6px; background:transparent; color:var(--gold-border); font-family:'Cinzel',serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; }
   .nav-home:hover { background:var(--purple); color:#fff; border-color:var(--purple); }
   .nav-links { display:flex; gap:10px; align-items:center; justify-content:flex-end; margin-left:auto; flex-wrap:wrap; }
   .nav-link { padding:6px 12px; border:1px solid var(--gold-border); border-radius:6px; font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
@@ -633,7 +622,7 @@ document.addEventListener('click', function(e) {
   .step-acc.open .step-acc-trigger { background:#FFFDF0; }
 
 
-  .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; gap:14px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
+  .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
   .nav-link { padding:6px 12px; border:1px solid var(--gold-border); border-radius:6px; font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
   .nav-link:hover { background:var(--purple); color:#fff; border-color:var(--purple); }
   /* Dropdown — padding-top creates hover bridge so mouse can reach submenu */
@@ -691,6 +680,36 @@ document.addEventListener('click', function(e) {
   }
   .nav-donate:hover { background:var(--purple-mid); }
 
+
+  /* Rising ritual — dark gold theme */
+  #s-daily .routine-card:not([style]) .routine-title { color:var(--gold-border) !important; }
+  #s-daily .routine-card:not([style]) .routine-flow { color:var(--gold-border) !important; }
+  #s-daily .routine-card:not([style]) .step-acc-num { background:var(--gold-border) !important; color:#fff !important; }
+  #s-daily .routine-card:not([style]) .step-acc-trigger { color:var(--gold-border) !important; }
+
+
+  .food-wrap { display:flex; flex-direction:column; gap:14px; }
+  .food-top { display:flex; gap:14px; justify-content:center; }
+  .food-top .region-card { flex:0 0 calc(33.33% - 10px); max-width:calc(33.33% - 10px); }
+  .food-bot { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media(max-width:640px){ .food-top{flex-direction:column;} .food-top .region-card{max-width:100%;} .food-bot{grid-template-columns:1fr;} }
+
+
+  /* Rising ritual step accordion body — gold text */
+  #s-daily .routine-card:not([style]) .step-acc-body { background:#FFFDF0; color:var(--gold-border); }
+  #s-daily .routine-card:not([style]) .step-acc-body p { color:var(--purple); }
+  #s-daily .routine-card:not([style]) .step-acc-body h5 { color:var(--gold-border); }
+
+
+  .books-featured-row {
+    grid-column: 1 / -1;
+    display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+  .books-featured-row .book-card {
+    flex: 1 1 260px; max-width: calc(33.333% - 11px);
+  }
+  @media(max-width:640px){ .books-featured-row .book-card { max-width:100%; } }
+
 </style>
 </head>
 <body>
@@ -702,8 +721,9 @@ document.addEventListener('click', function(e) {
     </div>
     <div class="crumbs"><strong>Haligricity</strong></div>
   </div>
+  <span style="width:14px;display:inline-block;flex-shrink:0;"></span>
   <a class="nav-donate" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener">♡ Donate</a>
-  <a class="nav-home" href="https://Haligricity.IQProductionz.com/">↩ Site Home</a>
+  <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:12px;">↩ Site Home</a>
     <div class="nav-links">
     <a class="nav-link" href="#s-varessence">Varessence</a>
     <a class="nav-link" href="#s-daily">Daily Practice</a>
@@ -746,7 +766,7 @@ document.addEventListener('click', function(e) {
 <section>
   <div class="section-eyebrow">Etymology</div>
   <h2 class="section-title">What the Name Holds</h2>
-  <p class="section-sub">Nine layered roots. Each one was chosen deliberately — together they tell you what Haligricity actually <em>is</em>.</p>
+  <p class="section-sub">Nine layered roots. Each one was chosen deliberately —<br>together they tell you what Haligricity actually <em>is</em>.</p>
   <div class="gold-divider"></div>
 
   <div class="ety-card acc-item">
@@ -872,14 +892,14 @@ document.addEventListener('click', function(e) {
 
 
 <!-- ─── REAL MAGIC ─────────────────────────────── -->
-<section id="s-realmagic" style="cursor:pointer;" onclick="window.location='https://Haligricity.IQProductionz.com/RealMagic/'">
+<section id="s-realmagic">
   <div class="section-eyebrow">Foundational Workbook</div>
   <h2 class="section-title">Real Magic · An Introduction</h2>
   <div class="gold-divider"></div>
 
   <div class="ety-card">
     <div class="open-book" style="margin-bottom:1.5rem;">
-      <div class="book-img"><a href="https://Haligricity.IQProductionz.com/RealMagic/" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;"><img src="https://static.wixstatic.com/media/dc9602_e5e725fbfabf4a9e91036dfff238785d~mv2_d_1500_2100_s_2.gif" alt="Real Magic: An Introduction" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block;"></a></div>
+      <div class="book-img"><a href="https://realmagicintro.wixsite.com/mymagicworkbook" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;"><img src="https://static.wixstatic.com/media/dc9602_e5e725fbfabf4a9e91036dfff238785d~mv2_d_1500_2100_s_2.gif" alt="Real Magic: An Introduction" style="width:100%;height:100%;min-height:200px;object-fit:cover;display:block;"></a></div>
       <div class="book-text">
     <p>Written by Hali Sarah Parsons and published February 10, 2017 — <em>Real Magic: An Introduction</em> is the first written record of the belief system that would grow into Haligricity. It was written as a workbook: practical, personal, and designed to be <em>used</em>, not just read.</p>
     <p>If you are new to the Haligric path, this is where to begin. It introduces the concepts of energy, intention, and the nature of reality that underpin every practice in the Well-Being and Rituals books.</p>
@@ -897,34 +917,46 @@ document.addEventListener('click', function(e) {
 <section id="s-library">
   <div class="section-eyebrow">Books in Progress</div>
   <h2 class="section-title">The Haligric Library</h2>
-  <p class="section-sub">These manuscripts are still being refined. Summaries here will become downloadable PDFs as each volume is finalized.</p>
+  <p class="section-sub">These manuscripts are still being refined.</p>
+  <p class="section-sub">Progressive documents are available now.</p>
   <div class="gold-divider"></div>
 
   <div class="books-grid">
 
     <div class="books-featured-row">
-
-    <div class="book-card">
+    <div class="book-card" style="cursor:pointer;">
       <span class="tag">Foundation Text</span>
       <h4>Haligricity — A Philosophy</h4>
       <p>The core text. Lays out the worldview, the etymology of <em>halig</em>, the framework of Varessence and Tetralty, and the relationship between wholeness, healing, and current. Sample: <em>"You are not broken. You have never been broken. You have been in a process — sometimes a painful one — of becoming whole. Haligricity does not fix you. It names what you already are."</em></p>
-      <div class="meta">Status: Final draft — refining</div>
+      <div class="meta">Status: Final draft — refining
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Philosophy.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Philosophy.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      </div></div>
     </div>
 
-    <div class="book-card">
+    <div class="book-card" style="cursor:pointer;">
       <span class="tag">Practice Manual</span>
       <h4>Haligric — Well-Being</h4>
       <p>The hands-on book: daily practices for body, breath, sound, movement, eating, and connection. Sample: <em>"Begin at the rise of the day with the neck — always the neck first. Open the lymphatic highway before anything else moves. The body knows the order. Trust it."</em></p>
-      <div class="meta">Status: Final draft — refining</div>
+      <div class="meta">Status: Final draft — refining
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_WellBeing.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_WellBeing.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      </div></div>
     </div>
 
-    </div><!-- end featured-row -->
+    </div><!-- end featured row -->
 
-    <div class="book-card">
+    <div class="book-card" style="cursor:pointer;">
       <span class="tag">Ritual Guide</span>
       <h4>Haligric — Rituals</h4>
       <p>Ceremony, seasonal observances, life-passage rites, and personal rituals — drawn from many traditions and re-rooted in the language of wholeness. Sample: <em>"Open your space before you enter it. You are not walking into a room — you are walking into a field. Acknowledge the field. The field will acknowledge you."</em></p>
-      <div class="meta">Status: Final draft — refining</div>
+      <div class="meta">Status: Final draft — refining
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Rituals.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Rituals.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      </div></div>
     </div>
 
     <div class="book-card" id="controversial-card">
@@ -948,14 +980,15 @@ document.addEventListener('click', function(e) {
       </a>
     </div>
 
-    <div class="book-card">
+    <div class="book-card" style="cursor:pointer;">
       <span class="tag draft">Advanced</span>
       <h4>Real Magic · Book 2 — Advanced Practice</h4>
       <p>The next volume of the Real Magic series. Deeper energy work, longer practice arcs, and the integration of Varessence and Tetralty into ongoing daily life. Sample: <em>"The beginner asks what to do. The advanced practitioner asks what is already happening — and learns to work with it."</em></p>
       <div class="meta" style="margin-bottom:10px;">Status: In progress (2026)</div>
-      <a class="dl-btn" href="https://realmagicintro.wixsite.com/mymagicworkbook" target="_blank" rel="noopener" style="font-size:.7rem;">
-        <span class="arrow">↗</span> Read Real Magic Introduction
-      </a>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      </div>
     </div>
 
   </div>
@@ -1002,11 +1035,15 @@ document.addEventListener('click', function(e) {
 
     <div class="vares-card">
       <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Rising.png" loading="lazy" alt="Rising Varessence — spoken declaration for the opening of the day" onerror="this.style.opacity='0.3'">
-      <p style="font-size:.88rem;color:var(--gray);line-height:1.6;"><strong style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);">Rising</strong> — Spoken at the opening of the day, hands at heart center: <em>"I honor myself, on this day, and shine my light, along the way."</em></p>
+      <p style="font-size:.88rem;color:var(--gray);line-height:1.6;"><strong style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);">Rising</strong> — Spoken at the opening of the day, hands at heart center: <em><span style="background:#FFFDF0;padding:2px 4px;border-radius:3px;">"I honor myself, on this day, and shine my light, along the way."</span></em></p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" target="_blank">View</a>
         <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" download>⬇ Download</a>
-      </div>
+      
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
+        <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      </div></div>
     </div>
 
     <div class="vares-card">
@@ -1037,7 +1074,7 @@ document.addEventListener('click', function(e) {
 <section id="s-dining">
   <div class="section-eyebrow">Eating as Practice</div>
   <h2 class="section-title">Dining Ritual</h2>
-  <p class="section-sub">A hand-and-breath ritual spoken over food.<br>Cultivate energy from sky and earth, direct it into your meal, and seal with Ashe'.</p>
+  <p class="section-sub">A hand-and-breath ritual spoken over food.<br>Cultivate energy from sky and earth, direct it into your meal.</p>
   <div class="gold-divider"></div>
 
   <div class="open-book">
@@ -1099,7 +1136,7 @@ document.addEventListener('click', function(e) {
           <span class="step-acc-arrow">▾</span>
         </button>
         <div class="step-acc-body"><p>Hands together at the heart center. Speak the Rising Varessence aloud — repeat if needed, until you can feel it land in the body.</p>
-        <div class="affirm">"I honor myself, on this day, and shine my light, along the way."</div></div>
+        <div class="affirm"><span style="background:#FFFDF0;padding:2px 4px;border-radius:3px;">"I honor myself, on this day, and shine my light, along the way."</span></div></div>
       </div>
       <div class="step-acc">
         <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
@@ -1180,12 +1217,8 @@ document.addEventListener('click', function(e) {
         </button>
         <div class="step-acc-body">
           <p>While grounded — feet or hands on the earth — speak the Zenith Varessence aloud:</p>
-          <div class="affirm" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);color:#fff;margin-top:10px;">
-            "This celestial body holds me.<br>
-            Wrapped in its natural rhythms closely,<br>
-            I allow the exchange of ions.<br>
-            Peace radiates from all my cells,<br>
-            anchoring me in Zion."
+          <div class="affirm" style="background:#fff;border-color:var(--gold-border);margin-top:10px;">
+            <span style="color:var(--gold-border);">"This celestial body holds me.<br>Wrapped in its natural rhythms closely,<br>I allow the exchange of ions.<br>Peace radiates from all my cells,<br>anchoring me in Zion."</span>
           </div>
           <p style="margin-top:10px;">Remain grounded for as long as feels right after speaking. Let the earth respond.</p>
         </div>
@@ -1203,7 +1236,7 @@ document.addEventListener('click', function(e) {
   </div>
   <div class="routine-card" style="background:var(--purple-light);border-color:var(--purple-mid);">
     <div class="routine-title">Astral Ritual</div>
-    <div class="routine-flow">Yoga · Qigong · Pranayama · Bowls · Varessence</div>
+    <div class="routine-flow" style="color:var(--purple);font-weight:600;">YOGA · QIGONG · PRANAYAMA · BOWLS · VARESSENCE</div>
       <div class="step-acc">
         <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
           <div class="step-acc-num">1</div>
@@ -1265,8 +1298,8 @@ document.addEventListener('click', function(e) {
 
 <!-- ─── VISHNU MUDRA + PRANAYAMA GUIDE ─────────────────────────────── -->
 <section id="s-pranayama">
-  <div class="section-eyebrow">Vishnu Mudra</div>
-  <h2 class="section-title">Pranayama</h2>
+  <div class="section-eyebrow">Pranayama</div>
+  <h2 class="section-title">Vishnu Mudra</h2>
   <p class="section-sub" style="margin-bottom:1.25rem;">Use Vishnu Mudra for alternate-nostril breath to direct airflow.</p>
   <div class="gold-divider"></div>
 
@@ -1296,28 +1329,32 @@ document.addEventListener('click', function(e) {
   <p class="section-sub">Interactive tools to help you locate the practice your<br>body, breath, and energy are asking for — right now.</p>
   <div class="gold-divider"></div>
 
-  <div class="practice-grid" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:18px;justify-content:center;max-width:780px;margin:0 auto;">
+      <div class="practice-grid" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:18px;justify-content:center;max-width:780px;margin:0 auto;">
     <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px;">
-      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Mudras/Quiz/">
-        <img src="HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
+      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Pranayama/Quiz/" target="_blank" rel="noopener">
+        <img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
+        <h4>Pranayama Finder</h4>
+        <p>Discover the breath practice that meets the state you are in — for grounding, clarity, energizing, or stilling.</p>
+        <span class="go">Find Your Breath →</span>
+      </a>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px;">
+      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Mudras/Quiz/" target="_blank" rel="noopener">
+        <img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
         <h4>Mudra Finder</h4>
         <p>Nine questions. Receive the sacred hand gesture your body, mind, and energy are calling for.</p>
         <span class="go">Find Your Mudra →</span>
       </a>
       <a href="https://Haligricity.IQProductionz.com/Mudras/Mudras_Deep_Dive.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Mudra Deep Dive PDF</a>
     </div>
-
-    <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:220px;">
-      <a class="practice-card" href="https://Haligricity.IQProductionz.com/Pranayama/Quiz/">
-        <img src="HaligricityLogo.png" alt="Haligricity" class="practice-mini-sym">
-        <h4>Pranayama Finder</h4>
-        <p>Discover the breath practice that meets the state you are in — for grounding, clarity, energizing, or stilling.</p>
-        <span class="go">Find Your Breath →</span>
-      </a>
-      <a href="https://Haligricity.IQProductionz.com/Pranayama/Pranayama_Complete_Guide.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Pranayama Complete Guide</a>
-    </div>
   </div>
 </section>
+
+
+
+    
+
 
 
 
@@ -1329,17 +1366,20 @@ document.addEventListener('click', function(e) {
   <p class="section-sub" style="margin-top:4px;">Each guide pulls together<br>native foods, seasonal eating, and regional traditions.</p>
   <div class="gold-divider"></div>
 
-  <div class="region-grid">
-    <div class="region-card">
+  <div class="food-wrap">
+    <div class="food-top">
+      <div class="region-card">
       <span class="area">United States · North</span>
       <span class="place">New England</span>
       <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
-    <div class="region-card">
+      <div class="region-card">
       <span class="area">United States · PNW</span>
       <span class="place">Pacific Northwest</span>
       <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
+    </div>
+    <div class="food-bot">
     <div class="region-card">
       <span class="area">United States · West</span>
       <span class="place">Pacific Coast</span>
@@ -1370,6 +1410,11 @@ document.addEventListener('click', function(e) {
       <span class="place">Temperate South</span>
       <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
     </div>
+    </div>
+  </div>
+  
+<!-- end food grid -->
+    </div>
   </div><!-- end food grid -->
 </section><!-- end food section -->
 
@@ -1379,6 +1424,7 @@ document.addEventListener('click', function(e) {
   <h2 class="section-title">The History Collection</h2>
   <p class="section-sub"><a href="#request-form" style="color:var(--purple-mid);text-decoration:underline;">If your tradition isn't listed, request it below.</a></p>
   <p class="section-sub" style="margin-top:4px;">Deep-dive PDFs into the world's spiritual, philosophical, and ritual traditions.</p>
+
   <div style="background:var(--purple-light);border:1.5px solid var(--purple-mid);border-radius:10px;padding:16px 20px;margin:8px 0 16px;">
     <p style="font-size:.92rem;color:var(--purple);line-height:1.75;">
       <strong style="font-family:'Cinzel',serif;letter-spacing:.08em;">As above, so below.</strong>
@@ -1681,7 +1727,7 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scientology.png" loading="lazy" alt="Scientology — Complete Deep Dive" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scientology.png" loading="lazy" alt="Scientology — Complete Deep Dive" onerror="this.src='https://Haligricity.IQProductionz.com/HistoryCollection/Images/scientology.png'" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global</span>
       <span class="place">Scientology — Complete Deep Dive</span>
       <div class="card-btns">
@@ -1879,7 +1925,6 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
   </div>
-  <p class="section-sub" style="margin-top:28px;">After your research, you may want <a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);text-decoration:underline;">guides</a> to visit temples.</p>
 </section>
 
 
@@ -1890,7 +1935,7 @@ document.addEventListener('click', function(e) {
 <section id="s-tools">
   <div class="section-eyebrow">Resources</div>
   <h2 class="section-title">Spiritual Tools</h2>
-  <p class="section-sub">Physical instruments that support the Haligric practices — sound, energy, and earth medicine.</p>
+  <p class="section-sub">Physical instruments that support<br>the Haligric practices — sound, energy, and earth medicine.</p>
   <div class="gold-divider"></div>
 
   <div class="history-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
@@ -1915,18 +1960,14 @@ document.addEventListener('click', function(e) {
       <span style="font-size:.85rem;color:var(--gray);line-height:1.5;">Handmade orgone pieces from I.Q. Productionz — pyramids, necklaces, keychains, and more for EMF protection and energy conversion.</span>
       <a class="download-mini" href="https://IQProductionz.com/Products/Orgonites" target="_blank" rel="noopener">↗ Visit</a>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
   </div>
 </section>
 
 
 
+
+    <p class="section-sub" style="margin-top:10px;">After your research, you may want to visit temples to get a first-hand experience.<br><a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.08em;">We have compiled Temple Guides to help with this journey →</a></p>
 
 <!-- ─── REQUEST FORM ─────────────────────────────── -->
 <section id="request-form">
