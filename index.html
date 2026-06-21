@@ -483,8 +483,8 @@ document.addEventListener('click', function(e) {
     font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.1em; color:var(--gold-border);
   }
   .ftr .blessing { color:var(--purple); margin-bottom:6px; }
-  .ftr a { color:var(--gold-border); text-decoration:none; }
-  .ftr a:hover { color:var(--purple); }
+  .ftr a { color:var(--gold-border) !important; text-decoration:none; }
+  .ftr a:hover { color:var(--purple) !important; }
 
   section[id] { scroll-margin-top: 75px; }
   .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
@@ -710,6 +710,37 @@ document.addEventListener('click', function(e) {
   }
   @media(max-width:640px){ .books-featured-row .book-card { max-width:100%; } }
 
+
+  .ftr a:hover { color:var(--purple) !important; }
+
+
+  @media(max-width:640px) {
+    .history-grid,
+    .history-grid[style],
+    .books-grid,
+    .food-bot,
+    .term-grid,
+    .tools-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .food-top {
+      flex-direction: column !important;
+    }
+    .food-top .region-card {
+      max-width: 100% !important;
+      flex: 1 1 100% !important;
+    }
+    .books-featured-row {
+      flex-direction: column !important;
+    }
+    .books-featured-row .book-card {
+      max-width: 100% !important;
+    }
+    .vares-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -760,7 +791,29 @@ document.addEventListener('click', function(e) {
   <div class="pronounce">/ ˈhɑːl·ɪ·ˌɡrɪs·ɪ·ti /</div>
 </header>
 
+<!-- ─── WHY HALIGRICITY EXISTS ─────────────────────────────── -->
+<section id="s-why" style="width:100%;box-sizing:border-box;background:linear-gradient(180deg,#FFFDF0 0%,#4A1060 12%,#4A1060 85%,#FFFDF0 100%);color:#f0ece3;padding:64px 24px 100px;">
+  <div style="max-width:760px;margin:0 auto;">
+    <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#1a0810;margin-bottom:24px;">Why Haligricity Exists</div>
+    <p style="font-family:'Cinzel',serif;font-size:clamp(18px,3vw,28px);font-weight:400;color:#f0ece3;line-height:1.25;margin-bottom:4px;letter-spacing:.03em;">They did not suppress religion.</p>
+    <p style="font-family:'Cinzel',serif;font-size:clamp(18px,3vw,28px);font-weight:400;color:#f0ece3;font-style:italic;line-height:1.25;margin-bottom:28px;letter-spacing:.03em;">They suppressed your power.</p>
+    <div style="width:48px;height:2px;background:var(--gold-border,#C9A227);margin-bottom:32px;"></div>
+    <p style="font-size:1.05rem;line-height:1.85;color:rgba(240,236,227,0.85);margin-bottom:22px;">Across every continent, across every culture, the story is the same. The sacred groves were cut down. The ceremonies were outlawed. The elders were silenced. Indigenous spiritual traditions — Native American, Polynesian, Zapotec, Druidic, African, Aboriginal — were not simply displaced. They were <strong style="color:#f0ece3;">deliberately destroyed</strong>, because they shared one dangerous truth: the divine is not outside of you. It lives within you, within nature, within your ancestors, within the land beneath your feet.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:rgba(240,236,227,0.85);margin-bottom:22px;">That truth was a threat. A person who knows they carry the sacred within them cannot be controlled in the same way. So the suppression was not primarily theological — it was political. Strip a people of their sacred relationship to themselves and to the earth, and you strip them of their <strong style="color:#f0ece3;">self-authority</strong>.</p>
+    <blockquote style="border-left:3px solid var(--gold-border,#C9A227);padding:18px 24px;margin:32px 0;background:rgba(201,162,39,0.1);border-radius:0 8px 8px 0;">
+      <p style="font-size:1.05rem;line-height:1.8;color:#f0ece3;font-style:italic;">"Any tradition that said 'the divine lives in you, in nature, in your ancestors, in this land' was a direct threat to any institution that claimed to be the only path to it."</p>
+    </blockquote>
+    <p style="font-size:1.05rem;line-height:1.85;color:rgba(240,236,227,0.85);margin-bottom:22px;">That is the wound Haligricity was built to heal.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:rgba(240,236,227,0.85);margin-bottom:22px;"><strong style="color:#f0ece3;">Haligricity is the work of reconnection.</strong> It is the practice of returning — to the sacred traditions that were taken, to the inner authority that was suppressed, and to the understanding that your body, mind, and spirit are not separate from the divine. They are the access point to it. The purer we become — in what we consume, what we believe, how we care for ourselves, how we move through the world — the more clearly that divinity can move through us.</p>
+    <p style="font-size:1.05rem;line-height:1.85;color:rgba(240,236,227,0.85);margin-bottom:22px;">This is not a passive pursuit. Every act of self-care is a reclamation. Every ceremony honored is perseverance. Every time you choose to listen inward rather than look outward for permission, you are raising the frequency — not just for yourself, but for the planet. <strong style="color:#f0ece3;">We are not separate from the earth's healing. We are the mechanism of it.</strong></p>
+    <p style="font-size:1.05rem;line-height:1.85;color:#1a0810;font-style:italic;"><em>The sacred was never lost. It was waiting — for you to remember that you were always the vessel.</em></p>
+  
+  </div>
+</section>
+
 <div class="wrap">
+
+
 
 <!-- ─── ETYMOLOGY ─────────────────────────────── -->
 <section>
@@ -932,6 +985,7 @@ document.addEventListener('click', function(e) {
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Philosophy.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Philosophy.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div></div>
     </div>
 
@@ -943,6 +997,7 @@ document.addEventListener('click', function(e) {
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_WellBeing.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_WellBeing.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div></div>
     </div>
 
@@ -956,6 +1011,7 @@ document.addEventListener('click', function(e) {
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Rituals.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Rituals.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div></div>
     </div>
 
@@ -988,6 +1044,7 @@ document.addEventListener('click', function(e) {
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" download style="font-size:.68rem;"><span class="arrow">⬇</span> Download</a>
         <a class="dl-btn" href="https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx" target="_blank" rel="noopener" style="font-size:.68rem;"><span class="arrow">↗</span> View</a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
 
@@ -1231,7 +1288,7 @@ document.addEventListener('click', function(e) {
   <div style="background:#FAFAF8;border:1.5px solid var(--purple-mid);border-radius:10px;padding:16px 20px;margin-bottom:16px;">
     <p style="font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;font-weight:600;">Before You Begin — Health Maintenance</p>
     <p style="font-size:.88rem;color:var(--purple);line-height:1.75;margin-top:6px;">Two hours after your last meal, complete your skincare routine and change into pajamas or yoga clothes.</p>
-    <p style="font-size:.88rem;color:var(--purple);line-height:1.75;margin-top:6px;"><strong>Oral Care:</strong> Brush and floss. Hali Sarah uses a toothbrush with water only, silk dental floss and uses metal dental tools as needed. She also enjoys Jamaican toothbrushes — licorice sticks (twigs from the licorice tree).</p>
+    <p style="font-size:.88rem;color:var(--purple);line-height:1.75;margin-top:6px;"><strong>Oral Care:</strong> Brush and floss. Hali Sarah uses a toothbrush with water only, silk dental floss and uses metal dental tools as needed. She also enjoys Jamaican toothbrushes — licorice sticks (twigs from the licorice tree) — and uses oral probiotics to support a healthy oral microbiome.</p>
     <p style="font-size:.88rem;color:var(--purple);line-height:1.75;margin-top:6px;"><strong>EMF Reduction:</strong> Switch your phone to airplane mode. Unplug WiFi when possible. — See <a href="https://IQProductionz.com/Products/Orgonites" target="_blank" rel="noopener" style="color:var(--purple-mid);">orgone products</a> for additional assistance.</p>
   </div>
   <div class="routine-card" style="background:var(--purple-light);border-color:var(--purple-mid);">
@@ -1305,17 +1362,21 @@ document.addEventListener('click', function(e) {
 
   <div class="vishnu">
     <div class="img-frame">
+      <div style="font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);text-align:center;margin-bottom:8px;font-weight:600;">VISHNU MUDRA</div>
       <img src="https://2.bp.blogspot.com/-XAFm9QCSpQI/W-8fcWAz9nI/AAAAAAAAOFI/UbHCijXlZ0wWicBEVPs3jPZcfMCCl8AlwCLcBGAs/s1600/vishnu%2Bmudra.jpg" alt="Vishnu Mudra — hand position for Nadi Shodhana pranayama"
            onerror="this.parentNode.innerHTML='<div style=\'padding:40px 20px;color:#888;font-style:italic;font-size:.9rem;\'>Vishnu Mudra reference image unavailable. The mudra: right hand, index and middle fingers folded into the palm, thumb on the right nostril, ring and little fingers on the left nostril.</div>'">
-      <div class="caption">Vishnu Mudra · The Preserver's Gesture</div>
+      <div class="caption">THE PRESERVER'S GESTURE</div>
     </div>
     <div>
       <h3>How to Form It</h3>
       <p>Lift your right hand to your face. <strong>Fold the index and middle fingers down into the palm.</strong> Keep the thumb, ring finger, and little finger extended. You will use the thumb to gently close the right nostril, and the ring + little fingers to close the left nostril.</p>
       <p>This is the traditional hand position for <em>Nadi Shodhana</em> (alternate-nostril breath), <em>Surya Bhedana</em> (the morning solar breath), and <em>Chandra Bhedana</em> (the evening lunar breath) — foundational Haligric pranayamas for moving and balancing the channels.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px;">
       <a class="dl-btn purple" href="https://Haligricity.IQProductionz.com/Pranayama/Pranayama_Complete_Guide.pdf" download>
         <span class="arrow">⬇</span> Download Pranayama Guide
       </a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="dl-btn" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;background:transparent;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1347,6 +1408,7 @@ document.addEventListener('click', function(e) {
         <span class="go">Find Your Mudra →</span>
       </a>
       <a href="https://Haligricity.IQProductionz.com/Mudras/Mudras_Deep_Dive.pdf" target="_blank" rel="noopener" style="text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;padding:8px 12px;border:1px dashed var(--gold-border);border-radius:6px;transition:all .2s;" onmouseover="this.style.background='var(--gold-pale)';this.style.color='var(--purple)'" onmouseout="this.style.background='';this.style.color='var(--gold-border)'">⬇ Learn More — Mudra Deep Dive PDF</a>
+      <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
     </div>
   </div>
 </section>
@@ -1371,44 +1433,52 @@ document.addEventListener('click', function(e) {
       <div class="region-card">
       <span class="area">United States · North</span>
       <span class="place">New England</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
       <div class="region-card">
       <span class="area">United States · PNW</span>
       <span class="place">Pacific Northwest</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     </div>
     <div class="food-bot">
     <div class="region-card">
       <span class="area">United States · West</span>
       <span class="place">Pacific Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     <div class="region-card">
       <span class="area">United States · Rockies</span>
       <span class="place">The Rockies</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     <div class="region-card">
       <span class="area">United States · South</span>
       <span class="place">The South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Tropical North</span>
       <span class="place">Tropical North</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Subtropical East Coast</span>
       <span class="place">Subtropical East Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Temperate South</span>
       <span class="place">Temperate South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ Read Online</a></div>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      </div>
     </div>
     </div>
   </div>
@@ -1445,6 +1515,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Akan_Tradition_Ghana_Ivory_Coast.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Akan_Tradition_Ghana_Ivory_Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1454,6 +1526,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alabama_Coushatta_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alabama_Coushatta_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1463,6 +1537,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1472,6 +1548,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1481,6 +1559,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1490,6 +1570,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1499,6 +1581,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Blackfoot_Confederacy_Siksika_Kainai_Piikani.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Blackfoot_Confederacy_Siksika_Kainai_Piikani.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1508,6 +1592,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1517,6 +1603,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Candomble_and_Umbanda_Brazil.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Candomble_and_Umbanda_Brazil.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1526,6 +1614,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cherokee_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cherokee_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1535,6 +1625,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1544,6 +1636,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1553,6 +1647,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ethiopian_Orthodox_Geez_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ethiopian_Orthodox_Geez_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1562,6 +1658,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1571,6 +1669,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Freemasonry_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Freemasonry_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1580,6 +1680,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Gnosticism_and_Kabbalah_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Gnosticism_and_Kabbalah_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1589,6 +1691,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1598,6 +1702,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1607,6 +1713,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hopi_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hopi_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1616,6 +1724,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Irish_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Irish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1625,6 +1735,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1634,6 +1746,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jainism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jainism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1643,6 +1757,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1652,6 +1768,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Korean_Muism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Korean_Muism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1661,6 +1779,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1670,6 +1790,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Muwila_Beliefs_and_Living_Tradition.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Muwila_Beliefs_and_Living_Tradition.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1679,6 +1801,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Navajo_Dine_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Navajo_Dine_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1688,6 +1812,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1697,6 +1823,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1706,6 +1834,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1715,6 +1845,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Santeria_Lucumi_La_Regla_de_Ocha.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Santeria_Lucumi_La_Regla_de_Ocha.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1724,15 +1856,19 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
-      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scientology.png" loading="lazy" alt="Scientology — Complete Deep Dive" onerror="this.src='https://Haligricity.IQProductionz.com/HistoryCollection/Images/scientology.png'" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Scientology.png" loading="lazy" alt="Scientology — Complete Deep Dive" onerror="this.onerror=null;this.src='https://Haligricity.IQProductionz.com/HistoryCollection/Images/scientology.png'" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Global</span>
       <span class="place">Scientology — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Comprehensive_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Comprehensive_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1742,6 +1878,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scottish_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scottish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1751,6 +1889,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1760,6 +1900,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shamanism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shamanism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1769,6 +1911,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shinto_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shinto_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1778,6 +1922,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shipibo_Curanderismo_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shipibo_Curanderismo_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1787,6 +1933,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sikhism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sikhism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1796,6 +1944,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sufism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sufism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1805,6 +1955,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1814,6 +1966,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1823,6 +1977,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1832,6 +1988,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1841,6 +1999,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1850,6 +2010,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tonkawa_Wichita_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tonkawa_Wichita_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1859,6 +2021,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1868,6 +2032,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Welsh_Sacred_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Welsh_Sacred_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1877,6 +2043,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1886,6 +2054,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1895,6 +2065,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1904,6 +2076,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zimbabwe_Shona_Ndebele_Sacred_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zimbabwe_Shona_Ndebele_Sacred_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1913,6 +2087,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zoroastrianism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zoroastrianism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -1922,6 +2098,8 @@ document.addEventListener('click', function(e) {
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zulu_Bantu_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zulu_Bantu_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
   </div>
@@ -1931,6 +2109,10 @@ document.addEventListener('click', function(e) {
   </div>
 </section>
 
+  <p class="section-sub" style="margin-top:14px;">After your research, you may want to visit temples —<br>
+  <a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);text-decoration:none;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.06em;">We have compiled Temple Guides to help with this journey →</a></p>
+
+
 <!-- ─── SPIRITUAL TOOLS ─────────────────────────────── -->
 <section id="s-tools">
   <div class="section-eyebrow">Resources</div>
@@ -1938,6 +2120,7 @@ document.addEventListener('click', function(e) {
   <p class="section-sub">Physical instruments that support<br>the Haligric practices — sound, energy, and earth medicine.</p>
   <div class="gold-divider"></div>
 
+  <p style="font-size:.78rem;color:var(--gray,#6B6B6B);font-style:italic;margin-bottom:10px;">All YouTube links will go to the channel they are being coordinated with until the library is complete.</p>
   <div class="history-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
 
     <div class="region-card">
@@ -1967,7 +2150,6 @@ document.addEventListener('click', function(e) {
 
 
 
-    <p class="section-sub" style="margin-top:10px;">After your research, you may want to visit temples to get a first-hand experience.<br><a href="https://Haligricity.IQProductionz.com/TempleGuides/" style="color:var(--purple-mid);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.08em;">We have compiled Temple Guides to help with this journey →</a></p>
 
 <!-- ─── REQUEST FORM ─────────────────────────────── -->
 <section id="request-form">
@@ -2013,8 +2195,14 @@ document.addEventListener('click', function(e) {
   </div>
 </div>
 <footer class="ftr">
-  <div class="blessing"><strong>Grand Rising.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong></div>
-  Haligricity · Hali Sarah Parsons · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  <div class="blessing">
+    <strong>Grand Rising.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong>
+  </div>
+  <div style="margin-top:6px;">
+    <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    · <a href="https://iqproductionz.com/About" style="font-family:'Cinzel',serif;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;">Hali Sarah Parsons</a>
+    · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  </div>
 </footer>
 
 <script>

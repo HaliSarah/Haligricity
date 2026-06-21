@@ -470,8 +470,8 @@
     font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.1em; color:var(--gold-border);
   }
   .ftr .blessing { color:var(--purple); margin-bottom:6px; }
-  .ftr a { color:var(--gold-border); text-decoration:none; }
-  .ftr a:hover { color:var(--purple); }
+  .ftr a { color:var(--gold-border) !important; text-decoration:none; }
+  .ftr a:hover { color:var(--purple) !important; }
 
   section[id] { scroll-margin-top: 75px; }
   .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
@@ -657,36 +657,81 @@
   #s-daily .routine-card[style*="purple-light"] .step-acc.open .step-acc-trigger { background:var(--purple-light); border-color:var(--purple); color:var(--purple); }
   #s-daily .routine-card[style*="purple-light"] .step-acc-body { background:var(--purple-light); }
 
+
+  .nav-donate {
+    padding:7px 16px;
+    border:1.5px solid var(--purple);
+    border-radius:6px;
+    background:var(--purple);
+    color:#fff;
+    font-family:'Cinzel',serif;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:all .2s;
+    margin-right:8px;
+  }
+  .nav-donate:hover { background:var(--purple-mid,#6B2090); border-color:var(--purple-mid,#6B2090); }
+
+
+  @media(max-width:640px) {
+    .history-grid,
+    .history-grid[style],
+    .books-grid,
+    .food-bot,
+    .term-grid,
+    .tools-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .food-top {
+      flex-direction: column !important;
+    }
+    .food-top .region-card {
+      max-width: 100% !important;
+      flex: 1 1 100% !important;
+    }
+    .books-featured-row {
+      flex-direction: column !important;
+    }
+    .books-featured-row .book-card {
+      max-width: 100% !important;
+    }
+    .vares-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
 </style>
 <style>.wrap{padding-top:80px !important;}</style>
 </head>
 <body>
 <nav class="top-nav">
   <div class="nav-left">
-    <div class="nav-logo">
-      <img src="HaligricityLogo.png" alt="Haligricity" style="width:100%;height:100%;object-fit:contain;">
-    </div>
-    <div class="crumbs"><strong>Haligricity</strong></div>
+    <div class="nav-logo"><a href="https://Haligricity.IQProductionz.com/" target="_blank" rel="noopener"><img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" style="width:32px;height:32px;object-fit:contain;"></a></div>
+    <div class="crumbs" style="margin-left:10px;"><a href="https://Haligricity.IQProductionz.com/" style="text-decoration:none;color:var(--gold-border);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;"><strong style="color:var(--purple);">Haligricity</strong></a></div>
   </div>
-  <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:12px;">↩ Site Home</a>
-    <div class="nav-links">
-    <a class="nav-link" href="#s-varessence">Varessence</a>
-    <a class="nav-link" href="#s-daily">Daily Practice</a>
-    <a class="nav-link" href="#s-food">Food Guides</a>
-    <a class="nav-link" href="#s-tools">Tools</a>
+  <a class="nav-donate" style="margin-left:14px;" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener" style="margin-right:6px;">♡ Donate</a>
+  <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:6px;">↩ Site Home</a>
+  <div class="nav-links">
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-varessence">Varessence</a>
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-daily">Daily Practice</a>
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-food">Food Guides</a>
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-tools">Tools</a>
     <div class="nav-dropdown">
-      <a class="nav-link" href="#s-history" onclick="toggleHistoryMenu(event)" style="cursor:pointer;">History ▾</a>
+      <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-history" onclick="toggleHistoryMenu(event)" style="cursor:pointer;">History ▾</a>
       <div class="nav-submenu" id="historyMenu" style="display:none;position:absolute;top:100%;right:0;z-index:200;">
-        <div class="nav-submenu-inner">
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/">Native American</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/">African</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/">Asian</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/">Indian</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/">Mesoamerican</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/">Island Peoples</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/">Middle East</a>
-          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/">European Heritage</a>
+                        <div class="nav-submenu-inner">
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/">African Traditions</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/">Asian Traditions</a>
           <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Esoteric/">Western Esoteric</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/">European Heritage</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/">Indian &amp; South Asian</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indigenous/">Indigenous &amp; Cross-Regional</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/">Island Peoples</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/">Mesoamerican</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/">Middle Eastern</a>
+          <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/">Native American</a>
         </div>
       </div>
     </div>
@@ -700,14 +745,17 @@
     <a href="https://Haligricity.IQProductionz.com/#s-history" style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;">← All Collections</a>
   </div>
   <div class="gold-divider"></div>
+  <p style="font-size:.78rem;color:var(--gray,#6B6B6B);font-style:italic;margin-bottom:10px;">All YouTube links will go to the channel they are being coordinated with until the library is complete.</p>
   <div class="history-grid">
-    <div class="region-card">
+  <div class="region-card">
       <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Australian.png" alt="Australian Aboriginal Beliefs, Rituals &amp; Traditions" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
       <span class="area">Australia · Aboriginal</span>
       <span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -717,6 +765,8 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -726,6 +776,8 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -735,6 +787,8 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hawaii.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hawaii.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -744,12 +798,14 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology_DeeperDive.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology_DeeperDive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      
+        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
   </div>
 </div>
 <button class="mob-fab" onclick="toggleDrawer()" aria-label="Menu">☰</button>
-<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-drawer" id="mobDrawer">
   <a href="https://Haligricity.IQProductionz.com/#s-varessence" onclick="toggleDrawer()">Varessence</a>
   <a href="https://Haligricity.IQProductionz.com/#s-daily" onclick="toggleDrawer()">Daily Practice</a>
   <a href="https://Haligricity.IQProductionz.com/#s-food" onclick="toggleDrawer()">Food Guides</a>
@@ -757,27 +813,38 @@
   <a href="https://Haligricity.IQProductionz.com/#s-history" onclick="toggleDrawer()">History</a>
   <div class="drawer-group-label">History by Region</div>
   <div class="drawer-sub">
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/" onclick="toggleDrawer()">Native American</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/" onclick="toggleDrawer()">African</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/" onclick="toggleDrawer()">Asian</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/" onclick="toggleDrawer()">Indian</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/" onclick="toggleDrawer()">Mesoamerican</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/" onclick="toggleDrawer()">Island Peoples</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/" onclick="toggleDrawer()">Middle East</a>
-    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/" onclick="toggleDrawer()">European Heritage</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/African/" onclick="toggleDrawer()">African Traditions</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Asian/" onclick="toggleDrawer()">Asian Traditions</a>
     <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Esoteric/" onclick="toggleDrawer()">Western Esoteric</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/European/" onclick="toggleDrawer()">European Heritage</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indian/" onclick="toggleDrawer()">Indian &amp; South Asian</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Indigenous/" onclick="toggleDrawer()">Indigenous &amp; Cross-Regional</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Islanders/" onclick="toggleDrawer()">Island Peoples</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/Mesoamerican/" onclick="toggleDrawer()">Mesoamerican</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/MiddleEast/" onclick="toggleDrawer()">Middle Eastern</a>
+    <a href="https://Haligricity.IQProductionz.com/HistoryCollection/NativeAmerican/" onclick="toggleDrawer()">Native American</a>
   </div>
 </div>
 <footer class="ftr">
-  <div class="blessing"><strong>Grand Rising.</strong> · Haligricity · I.Q. Productionz</div>
+  <div class="blessing">
+    <strong>Grand Rising.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong>
+  </div>
+  <div style="margin-top:6px;">
+    <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    · <a href="https://iqproductionz.com/About" style="font-family:'Cinzel',serif;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;">Hali Sarah Parsons</a>
+    · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('3vNjQbWmqzzOO6IK-')"></script>
 <script>
 function toggleDrawer(){document.getElementById('mobDrawer').classList.toggle('open');}
 function toggleHistoryMenu(e){e.stopPropagation();var m=document.getElementById('historyMenu');m.style.display=m.style.display==='block'?'none':'block';}
-document.addEventListener('click',function(){var m=document.getElementById('historyMenu');if(m)m.style.display='none';});
-function toggleAcc(btn){var i=btn.closest('.acc-item');if(i)i.classList.toggle('open');}
-function toggleStepAcc(btn){var i=btn.closest('.step-acc');if(i)i.classList.toggle('open');}
+document.addEventListener('click',function(e){
+  var m=document.getElementById('historyMenu');
+  if(m&&!e.target.closest('.nav-dropdown'))m.style.display='none';
+  var d=document.getElementById('mobDrawer');
+  if(d&&!d.contains(e.target)&&!e.target.closest('.mob-fab'))d.classList.remove('open');
+});
 </script>
 </body>
 </html>
