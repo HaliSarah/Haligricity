@@ -505,7 +505,7 @@ document.addEventListener('click', function(e) {
   .mob-drawer.open { display:flex; }
   .mob-drawer a { padding:8px 14px; border-radius:6px; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); text-decoration:none; transition:background .2s; }
   .mob-drawer a:hover { background:var(--purple-light); }
-  .region-card a.read-online, a.read-online { display:inline-block; padding:4px 9px; border:1px solid var(--gold-border); border-radius:4px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
+  .region-card a.read-online, a.read-online { display:inline-block; padding:4px 9px; border:1px solid var(--gold-border); border-radius:4px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:0; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
   .region-card a.read-online:hover, a.read-online:hover { background:var(--gold-border); color:#fff; }
   .region-card .card-btns { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
   @media (max-width:640px) { .vares-grid { grid-template-columns:1fr !important; display:grid !important; } .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
@@ -821,45 +821,51 @@ document.addEventListener('click', function(e) {
 <section>
   <div class="section-eyebrow">Etymology</div>
   <h2 class="section-title">What the Name Holds</h2>
-  <p class="section-sub">Nine layered roots. Each one was chosen deliberately —<br>together they tell you what Haligricity actually <em>is</em>.</p>
+  <p class="section-sub">Eight layered roots. Each one was chosen deliberately —<br>together they tell you what Haligricity actually <em>is</em>.</p>
   <div class="gold-divider"></div>
 
-  <div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Helios <span class="greek">ἥλιος</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p><strong>Helios</strong> is the Greek word for <em>Sun</em> — the visible source of light, life, and warmth. In ancient cosmology, Helios drove the sun-chariot across the sky each day, and the name became shorthand for radiant, life-giving presence. The Heliopolitan philosophy (named for the Egyptian city of Heliopolis, "City of the Sun") wove the Sun into the daily cycle of breath, prayer, and renewal.</p>
+  <div class="routine-card" style="border:1.5px solid var(--gold-border);background:#FFFDF0;">
+    <div class="routine-title" style="color:var(--purple);font-size:.8rem;letter-spacing:.1em;">Hali · gri · city</div>
+    <div class="routine-flow" style="color:var(--gold-border);">Helios · Hologram · Hala · Holy · Hali · Haile · -icity · -gricity</div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">1</div>
+          <div class="step-acc-title">Helios <span class="greek">ἥλιος</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p><strong>Helios</strong> is the Greek word for <em>Sun</em> — the visible source of light, life, and warmth. In ancient cosmology, Helios drove the sun-chariot across the sky each day, and the name became shorthand for radiant, life-giving presence. The Heliopolitan philosophy (named for the Egyptian city of Heliopolis, "City of the Sun") wove the Sun into the daily cycle of breath, prayer, and renewal.</p>
     <p>This is one of the threads in Haligricity — the recognition that <strong>light is not separate from us</strong>. We are warmed by it, fed by it, and we carry a version of it inside our own field.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Hologram <span class="layer">Layer 1 · Root Concept</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>Every part of a hologram contains the information of the whole. Cut a holographic plate in half and you do not get two halves — you get two whole images at lower resolution. This is the <strong>organizing principle of Haligricity</strong>: each practice, each belief, each person reflects the whole.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">2</div>
+          <div class="step-acc-title">Hologram <span class="layer">Layer 1 · Root Concept</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>Every part of a hologram contains the information of the whole. Cut a holographic plate in half and you do not get two halves — you get two whole images at lower resolution. This is the <strong>organizing principle of Haligricity</strong>: each practice, each belief, each person reflects the whole.</p>
     <p>You are not a fragment trying to become complete. <strong>You are a fractal of the infinite</strong> — already carrying the pattern of the whole within you. The work is not to assemble yourself. The work is to tune what is already there.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Hala <span class="layer">Layer 2 · Phonetic Anchor</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>The sound <strong>Hala</strong> reaches in three directions at once:</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">3</div>
+          <div class="step-acc-title">Hala <span class="layer">Layer 2 · Phonetic Anchor</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>The sound <strong>Hala</strong> reaches in three directions at once:</p>
     <ul>
       <li><strong>Halo</strong> — the radiant ring of light that surrounds figures in sacred art across nearly every tradition. Energy in visible harmony.</li>
       <li><strong>Circle / Cycle</strong> — the eternal rotation. The seasons. The breath. The body's rhythms. Hala lives in things that return.</li>
       <li><strong>Halal</strong> — that which is pure, permissible, clean. A Haligric life is a clean life in the deepest sense: clean energy, clean speech, clean intention.</li>
     </ul>
     <p>The phoneme <em>Hala</em> binds these together — the visible light, the cyclical motion, the moral cleanliness — all in one syllable.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Holi · Halig · Holy <span class="layer">Linguistic Root</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>The word <strong>holy</strong> comes from Old English <em>hālig</em>, from Proto-Germanic <em>*hailagaz</em> — itself from <em>*hailaz</em>, meaning <strong>whole, uninjured, of good omen</strong>. That same root gave us the words <em>whole</em> and <em>heal</em>.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">4</div>
+          <div class="step-acc-title">Holi · Halig · Holy <span class="layer">Linguistic Root</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>The word <strong>holy</strong> comes from Old English <em>hālig</em>, from Proto-Germanic <em>*hailagaz</em> — itself from <em>*hailaz</em>, meaning <strong>whole, uninjured, of good omen</strong>. That same root gave us the words <em>whole</em> and <em>heal</em>.</p>
     <div class="root-chain">
       <span class="word">*kailo-</span>
       <span class="arrow">→</span>
@@ -875,21 +881,23 @@ document.addEventListener('click', function(e) {
     </div>
     <p>So at its core: <strong>holy = whole = healed.</strong> Not set apart in a distant, untouchable sense — but <em>intact</em>. Complete. Nothing missing. The Proto-Indo-European root <em>*kailo-</em> also flows into Old Norse <em>heilagr</em>, Old High German <em>heilag</em>, and Gothic <em>hails</em> — all meaning health, wholeness, being sound.</p>
     <p>The idea of "sacred" or "consecrated to God" came later, as the Christian church narrowed the word. The original charge of the word was simply: <strong>that which is whole cannot be broken. That which is whole is already in right relationship with life.</strong></p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Hali <span class="layer">Layer 3 · The Founder's Name</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p><strong>Hali Sarah Parsons</strong> recognized that her own name was already embedded in the word. This is fitting and intentional: the founder's philosophy and the founder's identity cannot be separated. Haligricity is a <strong>lived system</strong>, not an abstracted one — it was developed by a person living it, refined through her body and her years, and offered from that same embodied place.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">5</div>
+          <div class="step-acc-title">Hali <span class="layer">Layer 3 · The Founder's Name</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p><strong>Hali Sarah Parsons</strong> recognized that her own name was already embedded in the word. This is fitting and intentional: the founder's philosophy and the founder's identity cannot be separated. Haligricity is a <strong>lived system</strong>, not an abstracted one — it was developed by a person living it, refined through her body and her years, and offered from that same embodied place.</p>
     <p>When you say "Haligric," you are naming a practice. You are also naming the practitioner who first walked it.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Haile · Halle <span class="greek">ሃይለ</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>In the <strong>Ge'ez and Amharic languages of Ethiopia</strong> — the liturgical tongue of the Ethiopian Orthodox Church and the living language of the Rastafari tradition — <em>Haile</em> (pronounced <strong>Hally</strong>) means <strong>Power</strong>.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">6</div>
+          <div class="step-acc-title">Haile · Halle <span class="greek">ሃይለ</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>In the <strong>Ge'ez and Amharic languages of Ethiopia</strong> — the liturgical tongue of the Ethiopian Orthodox Church and the living language of the Rastafari tradition — <em>Haile</em> (pronounced <strong>Hally</strong>) means <strong>Power</strong>.</p>
     <p>His Imperial Majesty <strong>Haile Selassie I</strong> — born Tafari Makonnen — took his throne name from this word: <em>Haile Selassie</em> means "Power of the Trinity." In Rastafari theology, Haile Selassie is revered as the returned Christ, the Lion of Judah, the living embodiment of divine power on Earth. The name <em>Haile</em> therefore carries not just linguistic but deeply sacred weight across the African diaspora.</p>
     <div class="root-chain">
       <span class="word">Haile</span>
@@ -902,13 +910,14 @@ document.addEventListener('click', function(e) {
     </div>
     <p>Read through this lens, <strong>Haligricity</strong> is literally <em>Power-Gricity</em>: the electricity of power, the current of wholeness made active. The Rastafari thread woven through the name honors the African spiritual lineage that reminds us divine power is not distant or abstract — it walks on Earth, it speaks in language, and it lives in the body.</p>
     <p><em>Jah lives.</em></p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>-icity · Electricity · Current</span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>The suffix <strong>-icity</strong> descends from the Latin <em>-itas</em> (quality, state of being) fused with the Greek <em>-ikos</em> (pertaining to). It appears in words like <em>electricity</em>, <em>authenticity</em>, <em>elasticity</em> — all pointing to a <strong>fundamental quality or living force</strong> inherent in something.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">7</div>
+          <div class="step-acc-title">-icity · Electricity · Current</div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>The suffix <strong>-icity</strong> descends from the Latin <em>-itas</em> (quality, state of being) fused with the Greek <em>-ikos</em> (pertaining to). It appears in words like <em>electricity</em>, <em>authenticity</em>, <em>elasticity</em> — all pointing to a <strong>fundamental quality or living force</strong> inherent in something.</p>
     <p><em>Electricity</em> itself comes from the Greek <em>ēlektron</em> (amber), because rubbing amber produced a visible spark — the first recorded observation of static charge. Early natural philosophers understood electrical current as a <strong>living force moving through matter</strong>: invisible, but undeniably real, felt before it was measured.</p>
     <div class="root-chain">
       <span class="word">ēlektron</span>
@@ -922,26 +931,22 @@ document.addEventListener('click', function(e) {
       <span class="word">Haligr<em>icity</em></span>
     </div>
     <p><strong>Haligricity</strong> borrows this suffix deliberately. The name does not describe a static belief system — it names a <em>current</em>: the living force that moves through a whole, unbroken, healed body. You are not practicing Haligricity. You are <em>conducting</em> it.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>-gricity <span class="layer">Layer 4 · From "City," Not "-ism"</span></span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>An <strong>-ism</strong> is a closed system: a doctrine you follow, a set of rules that keep people in line, a belief structure that asks for loyalty. We deliberately did <em>not</em> use that suffix.</p>
+      </div>
+      <div class="step-acc">
+        <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+          <div class="step-acc-num">8</div>
+          <div class="step-acc-title">-gricity <span class="layer">Layer 4 · From "City," Not "-ism"</span></div>
+          <span class="step-acc-arrow">▾</span>
+        </button>
+        <div class="step-acc-body"><p>An <strong>-ism</strong> is a closed system: a doctrine you follow, a set of rules that keep people in line, a belief structure that asks for loyalty. We deliberately did <em>not</em> use that suffix.</p>
     <p>A <strong>city</strong> is something else entirely: a place where everyone is welcome. The suffix <strong>-gricity</strong> signals radical inclusion. <strong>There is no membership requirement. There is no worthiness test. The city has room for all who choose to live here.</strong></p>
     <p>Our synthesis is as free as all things are in their true nature. The only systems that exist <em>naturally</em> are the structures that mathematically hold everything together — the golden ratio, fractal geometry, the cycles of the body and the sky. There is a foundation everyone needs, but that foundation tunes and changes over time as we tune into ourselves — using our emotional code and the heart's bio-field, which stretches roughly <strong>ten times wider than the brain's</strong>. This is the heart–mind coherence that Joe Dispenza and Gregg Braden both point to.</p>
     <p>We all know creating a routine is healthy. We are wired to work best and most efficiently with one — <strong>especially when it supports our basic needs</strong>: sleep, exercise, healthy meals tied to the seasons. A routine that fits the body's nature is not a cage. It is the trellis the vine grows on.</p></div>
-  </div><div class="ety-card acc-item">
-    <button class="acc-trigger" onclick="toggleAcc(this)">
-      <span>Why This Matters for Haligricity</span>
-      <span class="acc-arrow">▾</span>
-    </button>
-    <div class="acc-body">
-    <p>The Haligric path — in its very name — carries <em>halig</em>, the old form of holy. <strong>Haligricity is not naming itself after religion.</strong> It is naming itself after wholeness, the original meaning.</p>
+      </div>
+
+      <div style="padding:16px;border-top:1px solid rgba(201,162,39,0.15);font-size:.9rem;line-height:1.75;display:flex;flex-direction:column;gap:10px;"><p>The Haligric path — in its very name — carries <em>halig</em>, the old form of holy. <strong>Haligricity is not naming itself after religion.</strong> It is naming itself after wholeness, the original meaning.</p>
     <p>The body–breath–sound–movement–eating–connection practices in the <em>Well-Being</em> book are not "spiritual" in the churchy sense — they are <strong>haligric in the oldest sense</strong>: practices that return a person to their whole, unbroken, healed state.</p>
-    <p>We've also moved away from the word <em>prayer</em> and other terms alike, since each religion has specific names for such things within their branding. Our aim is to create a new term for this new synthesis — even though many old historical concepts are woven in and respected by labeling their origins.</p</div>
-  </div></div>
+    <p>We've also moved away from the word <em>prayer</em> and other terms alike, since each religion has specific names for such things within their branding. Our aim is to create a new term for this new synthesis — even though many old historical concepts are woven in and respected by labeling their origins.</p</div>  </div>
 </section>
 
 
@@ -1158,12 +1163,8 @@ document.addEventListener('click', function(e) {
       <h3 class="vares-title">Sage Goddess Altar Varessence</h3>
       <p class="vares-desc">A sacred blessing from Sage Goddess — for use when adding new tools to your altar or practice space.</p>
       <div class="vares-actions">
-        <a class="dl-btn" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" target="_blank" rel="noopener">
-          <span class="arrow">↗</span> View Sage Blessing
-        </a>
-        <a class="dl-btn" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" download="SageBlessing.jpeg">
-          <span class="arrow">⬇</span> Download
-        </a>
+        <a class="download-mini" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" target="_blank" rel="noopener">↗ View Sage Blessing</a>
+        <a class="download-mini" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" download="SageBlessing.jpeg">⬇ Download</a>
       </div>
     </div>
 
@@ -1474,13 +1475,13 @@ document.addEventListener('click', function(e) {
       <div class="region-card">
       <span class="area">United States · North</span>
       <span class="place">New England</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
       <div class="region-card">
       <span class="area">United States · PNW</span>
       <span class="place">Pacific Northwest</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     </div>
@@ -1488,37 +1489,37 @@ document.addEventListener('click', function(e) {
     <div class="region-card">
       <span class="area">United States · West</span>
       <span class="place">Pacific Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">United States · Rockies</span>
       <span class="place">The Rockies</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">United States · South</span>
       <span class="place">The South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Tropical North</span>
       <span class="place">Tropical North</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Subtropical East Coast</span>
       <span class="place">Subtropical East Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Temperate South</span>
       <span class="place">Temperate South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="read-online" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ View</a>
       </div>
     </div>
     </div>
@@ -1555,7 +1556,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Akan Tradition — Ghana &amp; Ivory Coast</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Akan_Tradition_Ghana_Ivory_Coast.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Akan_Tradition_Ghana_Ivory_Coast.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Akan_Tradition_Ghana_Ivory_Coast.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/fi2wrs5PiQQ" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1565,7 +1566,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Alabama-Coushatta Traditions — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alabama_Coushatta_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alabama_Coushatta_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alabama_Coushatta_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/hGVpIb58AzQ" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1575,7 +1576,7 @@ document.addEventListener('click', function(e) {
       <span class="place">All My Relations — Native American Beliefs</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/All_My_Relations_Native_American_Beliefs.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/lQ9fN8hhH6g" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1585,7 +1586,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Australian Aboriginal Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Australian_Aboriginal_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/fo3SvJcs654" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1595,7 +1596,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Balinese Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Balinese_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/x87y55P-bKU" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1605,7 +1606,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Bhagavad-Gita for Awakening</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/C2eZsXD72gg" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1615,7 +1616,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Blackfoot Confederacy — Siksika, Kainai, Piikani</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Blackfoot_Confederacy_Siksika_Kainai_Piikani.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Blackfoot_Confederacy_Siksika_Kainai_Piikani.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Blackfoot_Confederacy_Siksika_Kainai_Piikani.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/cv8by496huo" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1625,7 +1626,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Bobo &amp; Bwa Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bobo_Bwa_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/DHktfvou54Y" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1635,7 +1636,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Candomblé &amp; Umbanda — Brazil</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Candomble_and_Umbanda_Brazil.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Candomble_and_Umbanda_Brazil.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Candomble_and_Umbanda_Brazil.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/DsmgT1RTVe4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1645,7 +1646,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Cherokee Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cherokee_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cherokee_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cherokee_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/sU7DFS4uFaU" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1655,7 +1656,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Chinese Folk Religion — The Living Synthesis</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Chinese_Folk_Religion_The_Living_Synthesis.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/wIwsUbzz-R8" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1665,7 +1666,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Confucianism — A Complete Philosophy Guide</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Confucianism_Complete_Philosophy_Guide.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/qdqNJNFIiSc" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1675,7 +1676,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Ethiopian Orthodox &amp; Ge'ez — A Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ethiopian_Orthodox_Geez_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ethiopian_Orthodox_Geez_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ethiopian_Orthodox_Geez_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/lvzy91e08zA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1685,7 +1686,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Five Paths of the Living World</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Five_Paths_of_the_Living_World.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/1OBXBD4Csng" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1695,7 +1696,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Freemasonry — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Freemasonry_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Freemasonry_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Freemasonry_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/cbBPoSguWnA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1705,7 +1706,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Gnosticism &amp; Kabbalah — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Gnosticism_and_Kabbalah_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Gnosticism_and_Kabbalah_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Gnosticism_and_Kabbalah_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/ioaL-us1zeA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1715,7 +1716,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Greek Mysteries &amp; Hermeticism</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Greek_Mysteries_and_Hermeticism.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/UwZPfMr4LGc" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1725,7 +1726,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Hinduism — Deep Dive: Rituals, Deities &amp; Texts</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hinduism_DeepDive_Rituals_Deities_Texts.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/C2eZsXD72gg" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1735,7 +1736,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Hopi Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hopi_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hopi_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hopi_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/-DB1qclWIdA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1745,7 +1746,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Irish Heritage — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Irish_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Irish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Irish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/7qRd4AVX43A" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1755,7 +1756,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Islam &amp; Samaritanism — Complete Guide</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Islam_and_Samaritanism_Complete_Guide.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/eaXQbtcP8dA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1765,7 +1766,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Jainism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jainism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jainism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jainism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/eY8ZhaYjIEc" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1775,7 +1776,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Jewish &amp; Hebrew Heritage — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/eaXQbtcP8dA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1785,7 +1786,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Korean Muism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Korean_Muism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Korean_Muism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Korean_Muism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/HUoN0zp-wY0" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1795,7 +1796,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Mohism — Universal Love &amp; the Forgotten Philosophy</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mohism_Universal_Love_and_the_Forgotten_Philosophy.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/en0dhN7XxNc" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1805,7 +1806,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Muwila Beliefs and Living Tradition</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Muwila_Beliefs_and_Living_Tradition.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Muwila_Beliefs_and_Living_Tradition.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Muwila_Beliefs_and_Living_Tradition.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/lQ9fN8hhH6g" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1815,7 +1816,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Navajo (Diné) Beliefs, Traditions &amp; Rituals</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Navajo_Dine_Beliefs_Traditions_and_Rituals.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Navajo_Dine_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Navajo_Dine_Beliefs_Traditions_and_Rituals.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/X0yRz7x_QK0" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1825,7 +1826,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Norse Runes &amp; Pagan/Wiccan Gods</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Norse_Runes_and_Pagan_Wiccan_Gods.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/xgAOCANvjPA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1835,7 +1836,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Polynesian Mythology</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Polynesian_Mythology.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/VeOhPcbQ718" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1845,7 +1846,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Rastafari — A Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rastafari_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/Cl6DzKeQ3Mc" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1855,7 +1856,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Santería &amp; Lucumí — La Regla de Ocha</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Santeria_Lucumi_La_Regla_de_Ocha.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Santeria_Lucumi_La_Regla_de_Ocha.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Santeria_Lucumi_La_Regla_de_Ocha.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/fr0qgOZNfMM" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1865,7 +1866,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Scientology — Complete Factual Guide</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Complete_Factual_Guide.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/9Ip7vGV5Oi4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1875,7 +1876,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Scientology — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Comprehensive_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Comprehensive_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scientology_Comprehensive_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/_cw15KPbghA" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1885,7 +1886,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Scottish Heritage — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scottish_Heritage_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scottish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Scottish_Heritage_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/YIDhuAgSg70" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1895,7 +1896,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Serpent &amp; Star — Aztec &amp; Mayan Beliefs</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Serpent_and_Star_Aztec_Mayan_Beliefs.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/adTg4FImyUs" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1905,7 +1906,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Shamanism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shamanism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shamanism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shamanism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/lQ9fN8hhH6g" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1915,7 +1916,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Shinto — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shinto_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shinto_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shinto_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/XXsaOrZqWi4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1925,7 +1926,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Shipibo Curanderismo — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shipibo_Curanderismo_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shipibo_Curanderismo_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shipibo_Curanderismo_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/Wg_W55UaQaE" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1935,7 +1936,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Sikhism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sikhism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sikhism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sikhism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/ptHVOASKq2o" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1945,7 +1946,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Sufism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sufism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sufism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sufism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/DsmgT1RTVe4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1955,7 +1956,7 @@ document.addEventListener('click', function(e) {
       <span class="place">The Byzantine Empire — Faith &amp; Ritual</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Byzantine_Empire_Faith_and_Ritual.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/zcjRtEEYmr8" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1965,7 +1966,7 @@ document.addEventListener('click', function(e) {
       <span class="place">The Druids — A Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Druids_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/mXRiJg_eHvs" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1975,7 +1976,7 @@ document.addEventListener('click', function(e) {
       <span class="place">The Heliopolitan Philosophy — A Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Heliopolitan_Philosophy_A_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/-vGn1nW1jqs" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1985,7 +1986,7 @@ document.addEventListener('click', function(e) {
       <span class="place">The Indwelling Divine — Seven Paths</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/buwZeRKaIJ0" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -1995,7 +1996,7 @@ document.addEventListener('click', function(e) {
       <span class="place">The Wisdom of Kemet — Egyptian Beliefs</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Wisdom_of_Kemet_Egyptian_Beliefs.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/GPa2j8WF7XM" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2005,7 +2006,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Tonkawa &amp; Wichita Traditions — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tonkawa_Wichita_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tonkawa_Wichita_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tonkawa_Wichita_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/raNtOEfux4U" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2015,7 +2016,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Vodou — Haiti &amp; West African Roots</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Vodou_Haiti_West_African_Roots.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/W6_fUNSpbq4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2025,7 +2026,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Welsh Sacred Traditions — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Welsh_Sacred_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Welsh_Sacred_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Welsh_Sacred_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/kCjjJvfmuN0" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2035,7 +2036,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Wu — Chinese Shamanism Between Heaven &amp; Earth</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Wu_Chinese_Shamanism_Between_Heaven_and_Earth.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/0_PUUYtPl1E" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2045,7 +2046,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Yoruba — Tradition, Orisha &amp; Living Practice</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yoruba.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/9LFNii5UNXQ" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2055,7 +2056,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Zapotec Beliefs, Rituals &amp; Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zapotec_Beliefs_Rituals_and_Traditions.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/YU3vu5g9fvI" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2065,7 +2066,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Zimbabwe Shona &amp; Ndebele Sacred Traditions</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zimbabwe_Shona_Ndebele_Sacred_Traditions.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zimbabwe_Shona_Ndebele_Sacred_Traditions.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zimbabwe_Shona_Ndebele_Sacred_Traditions.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/qcjDfCzvKhE" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2075,7 +2076,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Zoroastrianism — Complete Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zoroastrianism_Complete_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zoroastrianism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zoroastrianism_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/X03LrWicTB4" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
@@ -2085,7 +2086,7 @@ document.addEventListener('click', function(e) {
       <span class="place">Zulu &amp; Bantu Traditions — Deep Dive</span>
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zulu_Bantu_Traditions_Deep_Dive.pdf" download>⬇ Download</a>
-        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zulu_Bantu_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zulu_Bantu_Traditions_Deep_Dive.pdf" target="_blank" rel="noopener">↗ View</a>
         <a href="https://youtu.be/mG7C9qoLSNk" target="_blank" rel="noopener" class="download-mini"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
