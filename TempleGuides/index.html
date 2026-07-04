@@ -471,8 +471,8 @@
     font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.1em; color:var(--gold-border);
   }
   .ftr .blessing { color:var(--purple); margin-bottom:6px; }
-  .ftr a { color:var(--gold-border) !important; text-decoration:none; }
-  .ftr a:hover { color:var(--purple) !important; }
+  .ftr a { color:var(--gold-border); text-decoration:none; }
+  .ftr a:hover { color:var(--purple); }
 
   section[id] { scroll-margin-top: 75px; }
   .top-nav { display:flex; justify-content:space-between; align-items:center; padding:10px 22px; background:#fff; border-bottom:1.5px solid var(--gold-border); position:sticky; top:0; z-index:60; }
@@ -679,44 +679,17 @@
   }
   .nav-donate:hover { background:var(--purple-mid,#6B2090); border-color:var(--purple-mid,#6B2090); }
 
-
-  @media(max-width:640px) {
-    .history-grid,
-    .history-grid[style],
-    .books-grid,
-    .food-bot,
-    .term-grid,
-    .tools-grid {
-      grid-template-columns: 1fr !important;
-    }
-    .food-top {
-      flex-direction: column !important;
-    }
-    .food-top .region-card {
-      max-width: 100% !important;
-      flex: 1 1 100% !important;
-    }
-    .books-featured-row {
-      flex-direction: column !important;
-    }
-    .books-featured-row .book-card {
-      max-width: 100% !important;
-    }
-    .vares-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-
 </style>
 <style>.wrap{padding-top:80px !important;}</style>
 </head>
 <body>
 <nav class="top-nav">
   <div class="nav-left">
-    <div class="nav-logo"><a href="https://Haligricity.IQProductionz.com/" target="_blank" rel="noopener"><img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" style="width:32px;height:32px;object-fit:contain;"></a></div>
-    <div class="crumbs" style="margin-left:10px;"><a href="https://Haligricity.IQProductionz.com/" style="text-decoration:none;color:var(--gold-border);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;"><strong style="color:var(--purple);">Haligricity</strong></a></div>
+    <div class="nav-logo"><a href="https://Haligricity.IQProductionz.com/" target="_blank" rel="noopener"><img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" style="width:32px;height:32px;object-fit:contain;" fetchpriority="high" loading="eager"></a></div>
+    <div class="crumbs"><a href="https://Haligricity.IQProductionz.com/" style="text-decoration:none;color:var(--gold-border);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;"><strong style="color:var(--purple);">Haligricity</strong></a></div>
   </div>
-  <a class="nav-donate" style="margin-left:14px;" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener" style="margin-right:6px;">♡ Donate</a>
+  <span style="width:18px;display:inline-block;flex-shrink:0;"></span>
+  <a class="nav-donate" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener" style="margin-right:6px;">♡ Donate</a>
   <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:6px;">↩ Site Home</a>
   <div class="nav-links">
     <a class="nav-link" href="https://Haligricity.IQProductionz.com/#s-varessence">Varessence</a>
@@ -750,7 +723,9 @@
     <a href="https://Haligricity.IQProductionz.com/#s-history" style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;">← History Collection</a>
   </div>
   <div class="gold-divider"></div>
-    <div style="display:flex;flex-direction:column;gap:14px;">
+    
+  <p style="font-size:.78rem;color:var(--gray,#6B6B6B);font-style:italic;margin-bottom:12px;">All YouTube links will go to the channel they are being coordinated with until the library is complete.</p>
+  <div style="display:flex;flex-direction:column;gap:14px;">
     <div style="display:flex;gap:14px;justify-content:center;">
       <div class="region-card tg-top-card">
       <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/Akan.png" alt="Akan West African Sacred Spaces Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
@@ -759,6 +734,7 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Akan_West_African_Sacred_Spaces_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Akan_West_African_Sacred_Spaces_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a href="https://youtu.be/fi2wrs5PiQQ" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="18" height="12" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
       <div class="region-card tg-top-card">
@@ -768,10 +744,10 @@
       <div class="card-btns">
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Balinese_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Balinese_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a href="https://youtu.be/x87y55P-bKU" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="18" height="12" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     </div>
-    <p style="font-size:.78rem;color:var(--gray,#6B6B6B);font-style:italic;margin-bottom:10px;">All YouTube links will go to the channel they are being coordinated with until the library is complete.</p>
   <div class="history-grid">
   <div class="region-card">
       <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/BuddistTemple.png" alt="Buddhist Temple Visitation Guide" loading="lazy" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
@@ -781,7 +757,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Buddhist_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Buddhist_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/XXsaOrZqWi4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -792,7 +768,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Candomble_Umbanda_Terreiro_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Candomble_Umbanda_Terreiro_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/DsmgT1RTVe4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -803,7 +779,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Chinese_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Chinese_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/wIwsUbzz-R8" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -814,7 +790,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Druidic_Sacred_Sites_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Druidic_Sacred_Sites_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/mXRiJg_eHvs" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -825,7 +801,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Egyptian_Kemetic_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Egyptian_Kemetic_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/GPa2j8WF7XM" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -836,7 +812,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Ethiopian_Orthodox_Church_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Ethiopian_Orthodox_Church_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/lvzy91e08zA" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -847,7 +823,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Greek_Roman_Temple_Sites_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Greek_Roman_Temple_Sites_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/UwZPfMr4LGc" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -858,7 +834,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Hindu_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Hindu_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/C2eZsXD72gg" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -869,7 +845,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Jain_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Jain_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/eY8ZhaYjIEc" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -880,7 +856,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Jewish_Synagogue_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Jewish_Synagogue_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/eaXQbtcP8dA" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -891,7 +867,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Native_American_Ceremonial_Spaces_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Native_American_Ceremonial_Spaces_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/lQ9fN8hhH6g" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -902,7 +878,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Polynesian_Marae_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Polynesian_Marae_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/VeOhPcbQ718" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -913,7 +889,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Shinto_Shrine_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Shinto_Shrine_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/XXsaOrZqWi4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -924,7 +900,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Sikh_Gurdwara_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Sikh_Gurdwara_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/ptHVOASKq2o" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -935,7 +911,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Sufi_Tekke_Dargah_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Sufi_Tekke_Dargah_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/DsmgT1RTVe4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -946,7 +922,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Vodou_Peristyle_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Vodou_Peristyle_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/W6_fUNSpbq4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -957,7 +933,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Yoruba_Lucumi_Ceremonial_House_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Yoruba_Lucumi_Ceremonial_House_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/9LFNii5UNXQ" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     <div class="region-card">
@@ -968,7 +944,7 @@
         <a class="download-mini" href="https://Haligricity.IQProductionz.com/TempleGuides/Zoroastrian_Fire_Temple_Visitation_Guide.pdf" download>⬇ Download</a>
         <a class="read-online" href="https://Haligricity.IQProductionz.com/TempleGuides/Zoroastrian_Fire_Temple_Visitation_Guide.pdf" target="_blank" rel="noopener">↗ Read Online</a>
       
-        <a href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:#FF0000;border-color:#FF0000;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
+        <a href="https://youtu.be/X03LrWicTB4" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold-border);border-color:var(--gold-border);"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
     </div>
@@ -986,7 +962,7 @@
   </div>
   <div style="margin-top:6px;">
     <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
-    · <a href="https://iqproductionz.com/About" style="font-family:'Cinzel',serif;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;">Hali Sarah Parsons</a>
+    · <a href="https://iqproductionz.com/About" class="ftr-hsp">Hali Sarah Parsons</a>
     · <a href="https://IQProductionz.com/">IQProductionz.com</a>
   </div>
 </footer>
