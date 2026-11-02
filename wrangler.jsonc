@@ -1,0 +1,14 @@
+// Title: wrangler.jsonc
+// Author: Hali Sarah Parsons
+// Date: 2026-10-18
+// Modified By: Claude
+// Description: Cloudflare Workers static-asset config for iqproductionz.com
+{
+  // Must match the Worker's name in Cloudflare or the deploy won't reach it
+  "name": "iq",
+  "compatibility_date": "2024-01-01",
+  // Serve only dist so Cloudflare's own .git clone never gets uploaded
+  "assets": {
+    "directory": "./dist"
+  }
+}

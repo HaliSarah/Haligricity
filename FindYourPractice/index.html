@@ -32,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* ── Starfield ── */
   #stars {
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background: radial-gradient(ellipse at 20% 30%, #1a1030 0%, transparent 60%),
@@ -68,938 +67,893 @@
   }
   @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
 
-  /* ── Layout ── */
   #app {
     position: relative; z-index: 1;
-    max-width: 760px;
+    max-width: 780px;
     margin: 0 auto;
     padding: 60px 24px 80px;
     min-height: 100vh;
   }
 
-  /* ── Header ── */
-  .site-header {
-    text-align: center;
-    margin-bottom: 56px;
-    animation: fadeDown 1s ease both;
-  }
-  .symbol {
-    width: 72px; height: 72px;
-    margin: 0 auto 24px;
-    position: relative;
-  }
-  .symbol svg { width: 100%; height: 100%; }
-  .symbol-glow {
-    position: absolute; inset: -12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,162,39,0.2) 0%, transparent 70%);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%,100% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.15); opacity: 1; }
-  }
+  .site-header { text-align: center; margin-bottom: 48px; animation: fadeDown 1s ease both; }
+  .symbol { width: 72px; height: 72px; margin: 0 auto 20px; position: relative; }
+  .symbol img { width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 0 12px rgba(201,162,39,0.5)); }
   .site-header h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.4rem, 4vw, 2rem);
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    margin-bottom: 10px;
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 400;
+    letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px;
   }
-  .site-header .subtitle {
-    font-size: 1.05rem;
-    font-style: italic;
-    color: rgba(245,240,232,0.6);
-    letter-spacing: 0.04em;
-  }
+  .site-header .subtitle { font-size: 1.05rem; font-style: italic; color: rgba(245,240,232,0.6); letter-spacing: 0.04em; }
 
-  /* ── Progress ── */
-  .progress-wrap {
-    margin-bottom: 40px;
-    animation: fadeDown 1s 0.2s ease both;
-  }
+  .progress-wrap { margin-bottom: 36px; animation: fadeDown 1s 0.2s ease both; }
   .progress-label {
-    display: flex; justify-content: space-between;
-    font-size: 0.82rem;
-    color: rgba(245,240,232,0.45);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-family: 'Cinzel', serif;
-    margin-bottom: 10px;
+    display: flex; justify-content: space-between; font-size: 0.8rem;
+    color: rgba(245,240,232,0.45); letter-spacing: 0.08em; text-transform: uppercase;
+    font-family: 'Cinzel', serif; margin-bottom: 10px;
   }
-  .progress-track {
-    height: 2px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--rose), var(--gold));
-    border-radius: 2px;
-    transition: width 0.6s cubic-bezier(.4,0,.2,1);
-  }
+  .progress-track { height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--rose), var(--gold)); border-radius: 2px; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
 
-  /* ── Question card ── */
   .question-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px 36px;
-    box-shadow: var(--glow), inset 0 1px 0 rgba(255,255,255,0.04);
-    position: relative;
-    overflow: hidden;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 40px 36px; box-shadow: var(--glow), inset 0 1px 0 rgba(255,255,255,0.04);
+    position: relative; overflow: hidden;
   }
   .question-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.4;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.4;
   }
+  .q-eyebrow {
+    font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.18em; text-transform:uppercase;
+    color: var(--rose); margin-bottom: 10px; opacity:.85;
+  }
+  .q-text { font-size: clamp(1.15rem, 2.5vw, 1.45rem); font-weight: 300; line-height: 1.55; color: var(--cream); margin-bottom: 8px; }
+  .q-sub { font-size: 0.9rem; font-style: italic; color: rgba(245,240,232,0.5); margin-bottom: 28px; line-height: 1.5; }
 
-  .q-number {
-    font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.7;
-  }
-  .q-text {
-    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-    font-weight: 300;
-    line-height: 1.55;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-  .q-sub {
-    font-size: 0.9rem;
-    font-style: italic;
-    color: rgba(245,240,232,0.5);
-    margin-bottom: 32px;
-    line-height: 1.5;
-  }
-
-  /* ── Options ── */
   .options { display: grid; gap: 12px; }
   .option-btn {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 16px 20px;
-    cursor: pointer;
-    text-align: left;
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    line-height: 1.45;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+    padding: 16px 20px; cursor: pointer; text-align: left; color: var(--cream);
+    font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.45;
+    transition: all 0.25s ease; position: relative; overflow: hidden;
   }
   .option-btn::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--gold);
-    transform: scaleY(0);
-    transition: transform 0.25s ease;
-    border-radius: 0 2px 2px 0;
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold);
+    transform: scaleY(0); transition: transform 0.25s ease; border-radius: 0 2px 2px 0;
   }
-  .option-btn:hover {
-    background: rgba(201,162,39,0.08);
-    border-color: rgba(201,162,39,0.3);
-    transform: translateX(4px);
-  }
+  .option-btn:hover { background: rgba(201,162,39,0.08); border-color: rgba(201,162,39,0.3); transform: translateX(4px); }
   .option-btn:hover::before { transform: scaleY(1); }
-  .option-btn.selected {
-    background: rgba(201,162,39,0.12);
-    border-color: var(--gold);
-    transform: translateX(4px);
-  }
-  .option-btn.selected::before { transform: scaleY(1); }
-  .option-letter {
-    display: inline-block;
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    margin-right: 12px;
-    opacity: 0.8;
-  }
+  .option-btn .opt-note { display:block; font-size:.82rem; font-style:italic; color:rgba(245,240,232,0.45); margin-top:4px; }
 
-  /* ── Nav buttons ── */
-  .nav-row {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 32px;
-    gap: 16px;
-  }
+  .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; gap: 16px; }
   .btn-back {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 8px;
-    padding: 12px 24px;
-    color: rgba(245,240,232,0.5);
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: transparent; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 24px;
+    color: rgba(245,240,232,0.5); font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.1em;
+    cursor: pointer; transition: all 0.2s;
   }
-  .btn-back:hover {
-    border-color: rgba(255,255,255,0.3);
-    color: var(--cream);
+  .btn-back:hover { border-color: rgba(255,255,255,0.3); color: var(--cream); }
+  .btn-next, .btn-continue {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%); border: none; border-radius: 8px;
+    padding: 14px 30px; color: #fff; font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.1em;
+    cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 20px rgba(139,58,90,0.3); text-align: center;
   }
-  .btn-next {
-    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
-    border: none;
-    border-radius: 8px;
-    padding: 14px 36px;
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-    transition: all 0.25s;
-    box-shadow: 0 4px 20px rgba(139,58,90,0.3);
-    flex: 1;
-    max-width: 220px;
-    text-align: center;
-  }
-  .btn-next:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(139,58,90,0.4);
-  }
-  .btn-next:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-    transform: none;
-  }
+  .btn-next:hover, .btn-continue:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139,58,90,0.4); }
 
-  /* ── Transitions ── */
   .fade-in  { animation: fadeIn  0.5s ease both; }
   .fade-out { animation: fadeOut 0.35s ease both; }
-
   @keyframes fadeIn  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-12px); } }
   @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
 
-  /* ── Loading ── */
-  #loading {
-    display: none;
-    text-align: center;
-    padding: 60px 0;
-  }
-  .spinner {
-    width: 56px; height: 56px;
-    margin: 0 auto 24px;
-    border: 2px solid rgba(201,162,39,0.2);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
+  #loading { display: none; text-align: center; padding: 60px 0; }
+  .spinner { width: 56px; height: 56px; margin: 0 auto 24px; border: 2px solid rgba(201,162,39,0.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-text {
-    font-style: italic;
-    color: rgba(245,240,232,0.5);
-    font-size: 1rem;
-  }
+  .loading-text { font-style: italic; color: rgba(245,240,232,0.5); font-size: 1rem; }
 
-  /* ── Result ── */
   #result { display: none; }
-  .result-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+  .result-header { text-align: center; margin-bottom: 36px; }
   .result-header .ashe {
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    opacity: 0.7;
+    font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 12px; opacity: 0.7;
   }
-  .result-header h2 {
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-  .result-header .archetype {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--gold);
-  }
+  .result-header h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 8px; }
+  .result-header .archetype { font-size: 1.05rem; font-style: italic; color: var(--gold); }
 
   .result-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 36px;
-    margin-bottom: 20px;
-    box-shadow: var(--glow);
-    position: relative;
-    overflow: hidden;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 32px;
+    margin-bottom: 20px; box-shadow: var(--glow); position: relative; overflow: hidden;
   }
   .result-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.4;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.4;
   }
   .result-card h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    opacity: 0.8;
+    font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 14px; opacity: 0.8;
   }
+  .result-card p.lead { font-size:.98rem; line-height:1.75; color:rgba(245,240,232,0.8); margin-bottom:14px; }
+  .result-card p.lead:last-child { margin-bottom:0; }
 
-  /* Practice row */
-  .practice-list { display: grid; gap: 10px; }
+  .practice-list { display: grid; gap: 8px; }
   .practice-item {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 14px 16px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
+    display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:10px;
+    background:rgba(255,255,255,0.03); border:1px solid rgba(201,162,39,0.12);
+    cursor:pointer; transition:background .2s;
   }
-  .p-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    display: grid; place-items: center;
-    background: var(--mist);
-    border-radius: 8px;
-    font-size: 1.2rem;
-  }
-  .p-info { flex: 1; }
-  .p-name {
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 3px;
-    font-size: 1rem;
-  }
-  .p-detail {
-    font-size: 0.85rem;
-    font-style: italic;
-    color: rgba(245,240,232,0.5);
-    line-height: 1.4;
-  }
-  .p-badge {
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 20px;
-    white-space: nowrap;
-    align-self: flex-start;
-    margin-top: 2px;
-  }
+  .practice-item:hover { background:rgba(201,162,39,0.07); }
+  .practice-item.open  { background:rgba(201,162,39,0.05); border-color:rgba(201,162,39,0.3); }
+  .p-icon { font-size:1.4rem; flex-shrink:0; }
+  .p-info { flex:1; min-width:0; }
+  .p-name { font-family:'Cinzel',serif; font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; color:var(--gold); }
+  .p-detail { font-size:.88rem; color:rgba(245,240,232,0.68); line-height:1.65; margin-top:8px; display:none; white-space:pre-line; }
+  .practice-item.open .p-detail { display:block; }
+  .p-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; flex-shrink:0; }
+  .p-badge { font-size:.6rem; padding:3px 9px; border-radius:20px; font-family:'Cinzel',serif; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
   .badge-rise   { background: rgba(201,162,39,0.15); color: var(--gold); border: 1px solid rgba(201,162,39,0.3); }
   .badge-daily  { background: rgba(42,90,58,0.2);   color: #6abf85;     border: 1px solid rgba(42,90,58,0.4); }
   .badge-weekly { background: rgba(91,45,128,0.2);  color: #a87ad8;     border: 1px solid rgba(91,45,128,0.3); }
   .badge-eve    { background: rgba(139,58,90,0.2);  color: #d87aab;     border: 1px solid rgba(139,58,90,0.3); }
+  .badge-altar  { background: rgba(200,90,40,0.18); color: #e8a468;     border: 1px solid rgba(200,90,40,0.35); }
+  .p-arrow { font-size:.7rem; color:rgba(201,162,39,0.5); transition:transform .2s; }
+  .practice-item.open .p-arrow { transform:rotate(180deg); }
 
-  /* Words to carry */
-  .words-card {
-    background: rgba(201,162,39,0.05);
-    border: 1px solid rgba(201,162,39,0.2);
-    border-radius: 12px;
-    padding: 28px 32px;
-    margin-bottom: 20px;
-    text-align: center;
+  .vares-card {
+    background:rgba(201,162,39,0.05); border:1px solid rgba(201,162,39,0.25); border-radius:14px;
+    padding: 22px; margin-bottom: 16px; text-align:center;
   }
-  .words-card .label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    opacity: 0.7;
-    margin-bottom: 14px;
+  .vares-card img { max-width: 220px; width:100%; border-radius: 10px; border:1px solid rgba(201,162,39,0.3); margin-bottom:14px; }
+  .vares-card .say {
+    font-size: 1.2rem; font-style: italic; color: var(--cream); line-height: 1.6; margin-bottom: 14px;
   }
-  .saying {
-    font-size: 1.35rem;
-    font-style: italic;
-    color: var(--cream);
-    line-height: 1.6;
-    margin-bottom: 8px;
+  .vares-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .vares-actions a {
+    font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+    padding: 10px 18px; border-radius: 8px; text-decoration:none; transition: all .2s;
   }
-  .saying span { color: var(--gold); font-style: normal; }
+  .vares-actions a.solid { background: var(--gold); color: #1a1a10; }
+  .vares-actions a.solid:hover { background: var(--gold2); }
+  .vares-actions a.outline { border: 1px solid var(--gold); color: var(--gold); }
+  .vares-actions a.outline:hover { background: rgba(201,162,39,0.1); }
 
-  /* Retake */
-  .retake-row {
-    display: flex; gap: 12px; flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 36px;
+  .tip-card {
+    background: rgba(255,255,255,0.03); border: 1px dashed rgba(201,162,39,0.3); border-radius: 12px;
+    padding: 16px 20px; margin-top: 14px; font-size: .88rem; line-height: 1.65; color: rgba(245,240,232,0.65); font-style: italic;
   }
+
+  .link-grid { display:grid; gap:8px; margin-top: 6px; }
+  .link-row { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; }
+  .link-row span { font-size:.9rem; color: var(--cream); }
+  .link-row .link-btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .link-row a { font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color: var(--gold); text-decoration:none; border-bottom: 1px dotted rgba(201,162,39,0.5); padding-bottom:1px; }
+  .link-row a:hover { color: var(--gold2); }
+
+  .retake-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
   .btn-retake {
-    background: transparent;
-    border: 1px solid var(--gold);
-    border-radius: 8px;
-    padding: 13px 30px;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.25s;
+    background: transparent; border: 1px solid var(--gold); border-radius: 8px; padding: 13px 28px; color: var(--gold);
+    font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.1em; cursor: pointer; transition: all 0.25s;
   }
-  .btn-retake:hover {
-    background: rgba(201,162,39,0.1);
-    transform: translateY(-2px);
-  }
+  .btn-retake:hover { background: rgba(201,162,39,0.1); transform: translateY(-2px); }
 
-  /* Footer note */
-  .footer-note {
-    text-align: center;
-    margin-top: 48px;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: rgba(245,240,232,0.3);
-    line-height: 1.7;
-  }
+  .footer-note { text-align: center; margin-top: 44px; font-size: 0.85rem; font-style: italic; color: rgba(245,240,232,0.3); line-height: 1.7; }
   .footer-note strong { color: rgba(201,162,39,0.6); font-style: normal; }
 
   @media (max-width: 520px) {
     #app { padding: 40px 16px 60px; }
-    .question-card { padding: 28px 20px; }
-    .result-card { padding: 24px 20px; }
+    .question-card { padding: 26px 20px; }
+    .result-card { padding: 22px 18px; }
     .nav-row { flex-wrap: wrap; }
-    .btn-next { max-width: none; }
   }
 </style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="A living quiz — retake whenever your life, your time, or your season changes">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/FindYourPractice/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="The Haligric Practice Finder">
+  <meta property="og:description" content="A living quiz — retake whenever your life, your time, or your season changes">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/FindYourPractice/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Haligric Practice Finder">
+  <meta name="twitter:description" content="A living quiz — retake whenever your life, your time, or your season changes">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/FindYourPractice/",
+   "url": "https://haligricity.iqproductionz.com/FindYourPractice/",
+   "name": "The Haligric Practice Finder",
+   "description": "A living quiz — retake whenever your life, your time, or your season changes",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "FindYourPractice",
+     "item": "https://haligricity.iqproductionz.com/FindYourPractice/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
 </head>
 <body>
 
 <div id="stars"></div>
 
 <div id="app">
-  <!-- Header -->
   <header class="site-header">
-    <div class="symbol">
-      <div class="symbol-glow"></div>
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="36" stroke="#c9a227" stroke-width="1.2" opacity="0.7"/>
-        <rect x="13.5" y="13.5" width="53" height="53" stroke="#c9a227" stroke-width="1.2" opacity="0.5" transform="rotate(0,40,40)"/>
-        <circle cx="40" cy="40" r="3" fill="#c9a227" opacity="0.9"/>
-        <line x1="40" y1="4" x2="40" y2="16" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
-        <line x1="40" y1="64" x2="40" y2="76" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
-        <line x1="4" y1="40" x2="16" y2="40" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
-        <line x1="64" y1="40" x2="76" y2="40" stroke="#c9a227" stroke-width="0.8" opacity="0.4"/>
-      </svg>
-    </div>
+    <div class="symbol"><a href="https://Haligricity.IQProductionz.com/" target="_blank"><img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity"></a></div>
     <h1>The Haligric Practice Finder</h1>
-    <p class="subtitle">A living quiz — retake whenever your life changes</p>
+    <p class="subtitle">A living quiz — retake whenever your life, your time, or your season changes</p>
   </header>
 
-  <!-- Progress -->
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-label">
-      <span id="stepLabel">Question 1 of 9</span>
+      <span id="stepLabel">Beginning</span>
       <span id="pctLabel">0%</span>
     </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill" style="width:0%"></div>
-    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
   </div>
 
-  <!-- Question area -->
   <div id="quizArea">
     <div class="question-card fade-in" id="questionCard">
-      <div class="q-number" id="qNum">Question 1</div>
+      <div class="q-eyebrow" id="qEyebrow"></div>
       <div class="q-text" id="qText"></div>
       <div class="q-sub" id="qSub"></div>
       <div class="options" id="options"></div>
     </div>
     <div class="nav-row">
       <button class="btn-back" id="btnBack" onclick="goBack()">← Back</button>
-      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>Continue →</button>
+      <span></span>
     </div>
   </div>
 
-  <!-- Loading -->
   <div id="loading">
     <div class="spinner"></div>
     <p class="loading-text">Reading the field of your answers…</p>
   </div>
 
-  <!-- Result -->
   <div id="result"></div>
 
-  <!-- Footer -->
   <div class="footer-note">
     <strong>Grand Rising.</strong> &nbsp;·&nbsp; <strong>Be More You.</strong> &nbsp;·&nbsp; <strong>Ashe.</strong><br>
-    Haligricity · Hali Sarah Parsons · realmagicintro.wixsite.com/mymagicworkbook
+    Haligricity · Hali Sarah Parsons · <a href="https://Haligricity.IQProductionz.com/" style="color:var(--gold);text-decoration:none;">Haligricity.IQProductionz.com</a>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════════
-// QUESTIONS
-// ══════════════════════════════════════════════════════════════
-const questions = [
-  {
+/* ══════════════════════════════════════════════════════════════
+   ASSETS — pulled from the main Haligricity site
+   ══════════════════════════════════════════════════════════════ */
+const A = {
+  rising:  "https://haligricity.iqproductionz.com/Varessence/Rising.png",
+  zenith:  "https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png",
+  astral:  "https://haligricity.iqproductionz.com/Varessence/Astral.png",
+  dining:  "https://haligricity.iqproductionz.com/Varessence/Dining.png",
+  sageBlessing: "https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg",
+  ritualsBook: "https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Rituals.docx",
+  wellBeingBook: "https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_WellBeing.docx",
+  philosophyBook: "https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Philosophy.docx",
+  realMagicBook2: "https://Haligricity.IQProductionz.com/HaligricFoundation/RealMagic_Book2_AdvancedPractice.docx",
+  realMagicIntro: "https://Haligricity.IQProductionz.com/RealMagic/",
+  mudraFinder: "https://Haligricity.IQProductionz.com/Mudras/Quiz/",
+  pranayamaFinder: "https://Haligricity.IQProductionz.com/Pranayama/Quiz/",
+  siteHome: "https://Haligricity.IQProductionz.com/"
+};
+
+/* ══════════════════════════════════════════════════════════════
+   VARESSENCES — the three single-print declarations + dining + soul retrieval
+   ══════════════════════════════════════════════════════════════ */
+const VARESSENCE = {
+  rising: {
+    label: "Rising Varessence",
+    when: "Before you get out of bed",
+    img: A.rising,
+    text: "“I honor myself, on this day, and shine my light, along the way.”",
+    how: "Hands together at heart center. Speak it aloud, repeating until you feel it land in the body."
+  },
+  zenith: {
+    label: "Zenith Varessence",
+    when: "Midday — after lunch, before you go back into the rest of your day",
+    img: A.zenith,
+    text: "“This celestial body holds me. Wrapped in its natural rhythms closely, I allow the exchange of ions. Peace radiates from all my cells, anchoring me in Zion.”",
+    how: "Feet or hands on the earth (or a grounding mat, or just the visualization if neither is available). Speak it while grounded."
+  },
+  astral: {
+    label: "Astral Varessence",
+    when: "Before bed",
+    img: A.astral,
+    text: "“Gratitude fills my heart, I've done my part. I send love from the end to the start.”",
+    how: "Hands together at heart center. Speak it aloud to seal the day before sleep."
+  },
+  dining: {
+    label: "Dining Varessence",
+    when: "Breakfast, lunch, and dinner",
+    img: A.dining,
+    text: "“I plant the seeds of greatness, merging nutrient-dense sensations. I invite my seat of power woven in what I devour.” Sealed with: “Ashe'. Gratitude circulates in me,” spoken while snapping the fingers in alternating bursts, three snaps per hand.",
+    how: "Rub palms together until warm. Open palms to the sky to draw down energy. Twist the wrists to “scoop” earth energy, then direct both hands toward the food before speaking the words."
+  },
+  soul_retrieval: {
+    label: "Soul Retrieval Varessence",
+    when: "At the rise, at the spark of consciousness, or on closing any altar visit, healing session, or difficult emotional experience",
+    img: null,
+    text: "“I call myself back. I receive my soul. The pieces of me. All I own.”",
+    how: "Spoken quietly, hand on heart or on the altar surface, to close the visit and return fully to the room."
+  }
+};
+
+/* ══════════════════════════════════════════════════════════════
+   PRACTICE LIBRARY (reused/expanded from the daily practice pages)
+   ══════════════════════════════════════════════════════════════ */
+const practices = {
+  earthing:        { icon:"🌍", name:"Zenith Ritual — Earthing", badge:"badge-daily", label:"Zenith", detail:"Bare feet, hands, or both on earth — grass, soil, sand, stone. Unbroken circuit to the actual earth. Minimum 5 minutes. Speak the Zenith Varessence while grounded." },
+  singing_bowl_rise:{ icon:"🔔", name:"Singing Bowl — Clear the Dreamworld", badge:"badge-rise", label:"Rising", detail:"Strike or rim three times, highest note to lowest. Let each tone fully fade. Signals the body a new day has begun." },
+  surya_bhedana:   { icon:"💨", name:"Surya Bhedana — Rising Breath", badge:"badge-rise", label:"Rising", detail:"Vishnu Mudra, right hand. Inhale right nostril (solar), exhale left. 5–10 rounds. Activates heat and clarity. Before 12 PM." },
+  mudra:           { icon:"🤲", name:"Daily Mudra", badge:"badge-rise", label:"Rising", detail:"Pull a mudra card and hold the gesture. Use the Mudra Finder quiz for a personalized pull: " + A.mudraFinder },
+  inner_smile:     { icon:"😊", name:"Mantak Chia Inner Smile", badge:"badge-rise", label:"Rising", detail:"9 stretches touching toes. Tap teeth 9 times. Massage gums with tongue, collecting saliva. Feel a genuine smile. Swallow down through each organ with love." },
+  qigong_rise:     { icon:"🌀", name:"Qigong — Rising", badge:"badge-rise", label:"Rising", detail:"Move stagnant overnight energy before stretching or strengthening. Always before yoga, never after. Best before 12 PM." },
+  yoga_rise:       { icon:"🌅", name:"Yoga — Sun Salutation", badge:"badge-rise", label:"Rising", detail:"After Qigong. Build heat, open joints, anchor in the body." },
+  lymph:           { icon:"🌊", name:"Lymphatic Drainage — Neck, Armpits, Tummy", badge:"badge-rise", label:"Rising", detail:"Always open the neck first. Featherlight pressure only (distinct from gua sha, which is firm). Neck 30–40 sweeps, armpits 30–40, tummy 36 counter-clockwise then 24 off the skin." },
+  dream_journal:   { icon:"🌙", name:"Dream Journal", badge:"badge-rise", label:"Rising", detail:"Before you move or check your phone, follow any dream fragment back as far as it will go. Record it with a title and date. Repeated symbols are the unconscious mind speaking." },
+  yoga_eve:        { icon:"🧘", name:"Yoga — Evening Wind Down", badge:"badge-eve", label:"Astral", detail:"Forward fold, spinal twists, Child's Pose. Savasana minimum 5 minutes — conscious release, not sleep." },
+  qigong_astral:   { icon:"🌙", name:"Qigong — Astral", badge:"badge-eve", label:"Astral", detail:"Dissolve remaining tension. Prepare the subtle body for unconscious renewal." },
+  chandra_bhedana: { icon:"🌬️", name:"Chandra Bhedana — Wind-Down Breath", badge:"badge-eve", label:"Astral", detail:"Vishnu Mudra. Inhale left nostril (lunar), exhale right. 5–10 rounds. Transition to Bhramari for final rounds." },
+  singing_bowl_eve:{ icon:"🎵", name:"Singing Bowl — Cleanse the Day", badge:"badge-eve", label:"Astral", detail:"Begin lowest note, climb to highest — reverse of the Rising sequence. Let the last tone fully fade before sleep." },
+  day_reflection:  { icon:"📝", name:"Day Reflection Documentation", badge:"badge-eve", label:"Astral", detail:"Write what happened, what you felt, what lingered. Not a to-do list — a release. If something was difficult, note one small thing that could shift it tomorrow." },
+  gratitude_list:  { icon:"✍️", name:"Evening Gratitude List", badge:"badge-eve", label:"Evening", detail:"Three specific things you are genuinely grateful for from that day. Specificity is the practice." },
+  bhramari:        { icon:"🎶", name:"Bhramari — Humming Bee", badge:"badge-daily", label:"Daily", detail:"Close the ears gently (Shanmukhi Mudra) or simply plug them. Inhale, then hum steadily on the exhale. 5–10 rounds. Fast anxiety relief — activates the vagus nerve." },
+  three_chamber:   { icon:"🫁", name:"Three-Chamber Breath", badge:"badge-daily", label:"Daily", detail:"Belly, chest, shoulders as one elliptical wave. 5–15 minutes, anytime." },
+  gua_sha:         { icon:"💎", name:"Gua Sha + Skincare", badge:"badge-rise", label:"Rising", detail:"Firm pressure — activates muscle tissue, lifts and tightens. Distinct from lymphatic drainage, which is featherlight." },
+  shower_ritual:   { icon:"🚿", name:"Sacred Shower Ritual", badge:"badge-rise", label:"Rising", detail:"Anoint the crown with cold water before washing. End a warm shower with cold water on the crown — seals pores, activates nervous system regeneration." },
+  circadian:       { icon:"☀️", name:"Circadian Rhythm Alignment", badge:"badge-rise", label:"Rising", detail:"Sunlight in the eyes within 30 minutes of waking. Dim lights and screens 2 hours before bed. The Haligric daily practice is itself a circadian structure: Rising at cortisol peak, Zenith at solar noon, Astral at melatonin onset." },
+  emf_protection:  { icon:"🛡️", name:"EMF Reduction — Evening", badge:"badge-eve", label:"Astral", detail:"Airplane mode before the Astral Ritual. Unplug WiFi when possible — protects deep sleep and melatonin production." },
+  space_clear:     { icon:"✨", name:"Space Clearing", badge:"badge-weekly", label:"Weekly", detail:"Bell, drum, sage, or pure intention. Every corner. After conflict, illness, or stagnation." },
+  ritual_bath:     { icon:"🛁", name:"Weekly Ritual Bath", badge:"badge-weekly", label:"Weekly", detail:"Crystals, sea salt, intention. Crown-first. Release as the water drains." },
+  new_moon:        { icon:"🌑", name:"New Moon Ritual", badge:"badge-weekly", label:"Monthly", detail:"Write intentions present tense. Place in moonlight. Speak aloud. Seal with Ashe'." },
+  full_moon:       { icon:"🌕", name:"Full Moon Release", badge:"badge-weekly", label:"Monthly", detail:"Write what you release. Burn it. Bury new moon intentions as seeds. Charge crystals." },
+  creative:        { icon:"🎨", name:"Creative Practice", badge:"badge-weekly", label:"Weekly", detail:"Any making done with full presence — free draw, pottery, song, journaling. Presence is the practice." },
+  tuning_fork:     { icon:"🔊", name:"Tuning Fork / Sound Bath", badge:"badge-weekly", label:"Weekly", detail:"Body-based sound work for the nervous system — used solo or at an altar as a tool for tending relationships that live at a distance." },
+
+  altar_of_selves: {
+    icon:"🪞", name:"Altar of the Selves", badge:"badge-altar", label:"Original Haligric Practice",
+    detail:"An original Haligric contribution — a place to actively tend every phase of your own life as a living presence, not a memory.\n\n1. Locate a photograph from each era or phase of your life. This can be yearly, or it can follow the phases that actually mattered — infant, child, teen, young adult, and so on. There is no single correct division; it is yours to define.\n\n2. Choose the altar's platform color based on what is calling you right now — self-love, grief, purpose, transition — either the color of the material the platform is made from, or a scarf or piece of fabric draped over it. A shelf is enough. Small homes and apartments do beautifully with a single dedicated shelf.\n\n3. Add a mirror. Mirrors are portals — the place to send and receive. It represents the present self bringing light and connection to every self gathered there.\n\n4. Each day, dedicate about 10 minutes sitting or standing at the altar. A candle, a bell, and incense can be used to announce your presence and open the space.\n\n5. Each day, focus on a different self. Draw a picture and give it to your younger self. Write a poem for your teen self. Sing a song to your baby self. Whatever feels true is correct here — this practice looks different for everyone.\n\n6. Close with the Soul Retrieval Varessence: “I call myself back. I receive my soul. The pieces of me. All I own.”" },
+
+  ancestor_altar: {
+    icon:"🕯️", name:"Ancestor Altar", badge:"badge-altar", label:"Adopted — Confucian Origin",
+    detail:"Adopted from Confucian tradition, not original to Haligricity — but fully supported here as a way to keep a specific deceased relative “in the loop” on your life.\n\n1. Set aside a small, permanent shelf, corner, or box shrine — no special expertise required.\n2. Place 1–3 photos or objects representing specific people you actually knew, not generic “ancestors.”\n3. Light a candle. Share your news — speak an update on your life out loud, or a worry you're carrying.\n4. Once a week, sit in silence at the space for 3–5 minutes with no agenda.\n5. On birthdays or death anniversaries, offer that person's favorite food or drink and share a specific memory aloud.\n\nThis practice is allowed to be slow. It is common for it to take months before an ancestor altar feels possible to set up at all — there is no timeline that is too long. Close a visit with the Soul Retrieval Varessence when the visit brings up grief that needs settling." },
+
+  pet_altar: {
+    icon:"🐾", name:"Pet Altar", badge:"badge-altar", label:"Haligric Extension",
+    detail:"A pet's spirit is understood to persist the same as a human's. Tending this altar supports processing the grief a pet's passing leaves in the body.\n\n1. Place a photo or a small object connected to the animal — a collar, a favorite toy.\n2. Light a candle. Speak to them the way you would have — their name, a memory, what you miss.\n3. Visit as often as it helps, with no set schedule. Some weeks that will be daily; some weeks not at all.\n4. Close with the Soul Retrieval Varessence if the visit stirs strong emotion." },
+
+  acquaintance_altar: {
+    icon:"🤝", name:"Acquaintance / Public Grief Altar", badge:"badge-altar", label:"Haligric Extension",
+    detail:"Grief for someone you didn't know closely — an acquaintance, or a public figure or event — is real and documented by healers to leave lasting effects. It does not need to be justified or minimized.\n\n1. Write the person's name, or a description of the event, on a small card.\n2. Light a candle and speak one true sentence about what they meant to you or to the world, or what the event brought up in you.\n3. This altar does not need to be permanent — it can be visited for as long as the grief is active and released when it settles.\n4. Close with the Soul Retrieval Varessence: “I call myself back. I receive my soul. The pieces of me. All I own.”" },
+
+  altar_of_the_living: {
+    icon:"💫", name:"Altar of the Living", badge:"badge-altar", label:"Original Haligric Practice",
+    detail:"For people you love but don't see or speak with daily, and for losses that aren't a death — a job, a home, a chapter, a version of a relationship. An original Haligric contribution.\n\n1. Place a photo, object, or written word representing the person or the thing that was lost.\n2. Offerings can include water, a candle, incense, a tuning fork, or a few played notes on a flute.\n3. Sit for a few minutes sending positive energy toward what you've named — whether or not it can consciously receive it.\n4. Return whenever it calls to you. There is no wrong frequency." }
+};
+
+/* ══════════════════════════════════════════════════════════════
+   RELIGION BRIDGE NOTES — synthesis-perspective, not personal application
+   ══════════════════════════════════════════════════════════════ */
+const RELIGION_NOTE = {
+  christianity: "Many Christian traditions already open and close the day in prayer and keep a devotional “quiet time.” The Rising and Astral Varessence sit inside that same daily rhythm — offered here as a declaration rather than a petition.",
+  islam: "The five daily prayer times already structure a day around remembrance at fixed points. The Rising, Zenith, and Astral arcs echo that same instinct toward marking the day, in a different vocabulary.",
+  judaism: "Fixed daily prayer at morning, afternoon, and evening is already part of Jewish practice — a structure that closely mirrors the Rising / Zenith / Astral rhythm offered here.",
+  buddhism: "Mindfulness of breath and body, and a steady relationship to impermanence, are close cousins of the grounding and stillness built into these practices.",
+  hinduism: "Ritual prayer at sunrise, midday, and sunset is one of the clearest historical parallels to this three-part daily structure, and the pranayama offered here draws directly from the yogic tradition.",
+  indigenous: "Many indigenous and ancestral traditions hold daily ceremony, ancestor relationship, and earth connection as inseparable from wellbeing — the Ancestor Altar and the earthing practice here both draw on that same lineage.",
+  pagan_wicca: "Moon phases, seasonal observance, and altar work are likely already familiar vocabulary — the New and Full Moon rituals and the altar practices here may feel like coming home to something already known.",
+  new_age_eclectic: "This practice was built for exactly this kind of self-directed, cross-tradition path — take what resonates and leave the rest.",
+  secular_none: "No belief is required here. These practices are offered as embodied technology — breath, sound, structure, and reflection — valuable on physiological and psychological grounds alone.",
+  other: "Whatever tradition or path you already carry, this is offered as a synthesis to sit alongside it, not to replace it. Use what serves; set aside what doesn't."
+};
+
+/* ══════════════════════════════════════════════════════════════
+   STEP GRAPH
+   ══════════════════════════════════════════════════════════════ */
+const answers = {};
+let historyStack = [];
+let current = "time";
+
+const steps = {
+
+  time: {
+    eyebrow: "Let's start with what's real",
+    text: "How much time do you actually have for practice right now?",
+    sub: "Be honest — a small practice you do beats a large one you don't. There's a real path for every answer.",
+    options: [
+      { v:"5",     t:"About 5 minutes", note:"One spoken declaration, tied to a moment in your day." },
+      { v:"15",    t:"About 15 minutes", note:"Built around your meals — breakfast, lunch, and dinner." },
+      { v:"30",    t:"30 minutes or more", note:"A full step-by-step practice, morning and night." },
+      { v:"varies",t:"It changes week to week", note:"Build me something flexible I can expand or contract." },
+    ],
+    next: (v) => v === "5" ? "timeOfDay" : (v === "15" ? "result_meal" : "connect")
+  },
+
+  timeOfDay: {
+    eyebrow: "Just one thing",
+    text: "What part of the day is this 5 minutes for?",
+    sub: "You'll get one card — the single declaration that matches this moment.",
+    options: [
+      { v:"morning", t:"Before I get out of bed" },
+      { v:"midday",  t:"After lunch, before I go back into the rest of my day" },
+      { v:"evening", t:"Before bed" },
+    ],
+    next: () => "result_single"
+  },
+
+  connect: {
+    eyebrow: "Getting to know your rhythm",
+    text: "What do you normally do to connect with all of who you are?",
+    sub: "Movement, stillness, sound, ritual — there's no wrong answer, only what's true right now.",
+    options: [
+      { v:"movement", t:"Movement — walking, yoga, dance, exercise" },
+      { v:"nature",   t:"Being outside, in nature" },
+      { v:"creative", t:"Making something — art, music, writing" },
+      { v:"prayer_ritual", t:"Prayer, ritual, or spoken practice" },
+      { v:"journaling", t:"Journaling or private reflection" },
+      { v:"stillness", t:"Quiet stillness or meditation" },
+      { v:"sound_music", t:"Sound or music" },
+      { v:"nothing_yet", t:"Honestly, nothing right now — I want to start" },
+    ],
+    next: () => "religion"
+  },
+
+  religion: {
+    eyebrow: "Context, not a test",
+    text: "What religion have you practiced, or do you currently practice?",
+    sub: "This just helps us point out where these practices already echo something familiar to you.",
+    options: [
+      { v:"christianity", t:"Christianity" },
+      { v:"islam", t:"Islam" },
+      { v:"judaism", t:"Judaism" },
+      { v:"buddhism", t:"Buddhism" },
+      { v:"hinduism", t:"Hinduism" },
+      { v:"indigenous", t:"An indigenous or ancestral tradition" },
+      { v:"pagan_wicca", t:"Paganism, Wicca, or witchcraft" },
+      { v:"new_age_eclectic", t:"New Age or an eclectic mix of practices" },
+      { v:"secular_none", t:"Secular / not religious" },
+      { v:"other", t:"Something else, or several of the above" },
+    ],
+    next: () => "energy"
+  },
+
+  energy: {
+    eyebrow: "The body knows",
     text: "How does your energy feel right now, honestly?",
     sub: "Not how you think it should feel. How it actually is.",
     options: [
-      { letter:"A", text:"Depleted — I am running on empty and something needs to restore me." },
-      { letter:"B", text:"Scattered — lots of energy but it isn't landing anywhere useful." },
-      { letter:"C", text:"Flat — I'm functional but not really alive inside." },
-      { letter:"D", text:"Anxious or wired — too much happening and I can't settle." },
-      { letter:"E", text:"Actually pretty good — I want to go deeper, not just stabilize." },
-    ]
+      { v:"A", t:"Depleted — running on empty" },
+      { v:"B", t:"Scattered — energy that isn't landing anywhere" },
+      { v:"C", t:"Flat — functional but not fully alive inside" },
+      { v:"D", t:"Anxious or wired — too much happening" },
+      { v:"E", t:"Actually pretty good — I want to go deeper" },
+    ],
+    next: () => "tension"
   },
-  {
+
+  tension: {
+    eyebrow: "Where it lives",
     text: "Where does most of your tension live in the body?",
     sub: "Pay attention for a moment before answering.",
     options: [
-      { letter:"A", text:"Head and neck — mental overload, tight jaw, pressure behind the eyes." },
-      { letter:"B", text:"Chest and heart — heaviness, tightness, emotion stuck there." },
-      { letter:"C", text:"Belly and gut — anxiety in the stomach, digestive sensitivity." },
-      { letter:"D", text:"Hips and lower back — holding, clenching, unprocessed feeling below the waist." },
-      { letter:"E", text:"Full body — I am disconnected from sensation almost entirely." },
-    ]
+      { v:"A", t:"Head and neck" },
+      { v:"B", t:"Chest and heart" },
+      { v:"C", t:"Belly and gut" },
+      { v:"D", t:"Hips and lower back" },
+      { v:"E", t:"Full body — disconnected from sensation" },
+    ],
+    next: () => "calling"
   },
-  {
-    text: "What is your primary intention right now?",
-    sub: "Choose the one that is most true, even if others also apply.",
-    options: [
-      { letter:"A", text:"Healing — something in my body or field needs repair and release." },
-      { letter:"B", text:"Clarity — I need to think straight again and get out of my own way." },
-      { letter:"C", text:"Grounding — I need to feel safe, present, and rooted in this moment." },
-      { letter:"D", text:"Expansion — I am ready to go deeper and access more of my capacity." },
-      { letter:"E", text:"Balance — I want to feel like myself again, whole and flowing." },
-    ]
-  },
-  {
-    text: "How much time can you realistically give your daily practice right now?",
-    sub: "Be honest. A small practice you do beats a large one you don't.",
-    options: [
-      { letter:"A", text:"10 to 15 minutes — I have a full life and I need something that fits inside it." },
-      { letter:"B", text:"20 to 30 minutes — I can make that space on most mornings." },
-      { letter:"C", text:"30 to 45 minutes — I'm committed and my schedule can hold this." },
-      { letter:"D", text:"An hour or more — this is a genuine priority and I will protect the time." },
-      { letter:"E", text:"It changes week to week — I need something flexible I can expand or contract." },
-    ]
-  },
-  {
-    text: "Which element do you feel most out of balance with right now?",
-    sub: "Feel your way into this one rather than thinking it through.",
-    options: [
-      { letter:"A", text:"Earth — I am ungrounded, unrooted, not fully in my body or the physical world." },
-      { letter:"B", text:"Water — emotions are overwhelming or completely cut off; flow is gone." },
-      { letter:"C", text:"Fire — creative energy is low, motivation has left, the inner flame is dim." },
-      { letter:"D", text:"Air — I am overthinking, overwhelmed by ideas, unable to arrive in the present." },
-      { letter:"E", text:"All of them — I need a reset from the beginning." },
-    ]
-  },
-  {
-    text: "How is your relationship to your own body right now?",
-    sub: "No judgment in either direction. Just what is true.",
-    options: [
-      { letter:"A", text:"Disconnected — I live mostly in my head and my body feels like a stranger." },
-      { letter:"B", text:"Critical — I notice what is wrong more than what is working." },
-      { letter:"C", text:"Tender — I am aware of sensitivity and need to approach gently." },
-      { letter:"D", text:"Curious — I want to understand and work with it more consciously." },
-      { letter:"E", text:"Pretty good — I want to go further and access what it is capable of." },
-    ]
-  },
-  {
-    text: "What has sound felt like for you lately?",
-    sub: "Notice whether you've been seeking silence or seeking sound.",
-    options: [
-      { letter:"A", text:"I crave silence — the world is too loud and I need relief from it." },
-      { letter:"B", text:"I find myself humming, singing, or wanting music constantly." },
-      { letter:"C", text:"I am numb to sound — music doesn't move me the way it used to." },
-      { letter:"D", text:"Certain sounds pierce me — I'm more sensitive than usual." },
-      { letter:"E", text:"I haven't thought about it — sound isn't on my radar." },
-    ]
-  },
-  {
-    text: "How do you most naturally connect with the earth and the seasons?",
-    sub: "This tells us which earth-based practices to emphasize.",
-    options: [
-      { letter:"A", text:"Physically — I want to put my feet in the dirt, garden, be outdoors." },
-      { letter:"B", text:"Cyclically — I feel the moon phases, the turning seasons, the rhythm of time." },
-      { letter:"C", text:"Creatively — nature moves through me in art, music, and making things." },
-      { letter:"D", text:"Ancestrally — I feel my connection to those who came before me." },
-      { letter:"E", text:"I'm not connected yet — I want to build this relationship from the beginning." },
-    ]
-  },
-  {
-    text: "What does your ideal day feel like at the end of it?",
-    sub: "Let yourself imagine before the mind offers objections.",
-    options: [
-      { letter:"A", text:"I feel rested, clear, and at peace — the day served life rather than consuming it." },
-      { letter:"B", text:"I feel alive and expressed — something was created, moved, or shared." },
-      { letter:"C", text:"I feel connected — to myself, to others, and to something larger." },
-      { letter:"D", text:"I feel strong — in body, in field, in the sense of my own sovereignty." },
-      { letter:"E", text:"I feel grateful — simply that. A quiet, full gratitude for the whole thing." },
-    ]
-  }
-];
 
-// ══════════════════════════════════════════════════════════════
-// PRACTICE LIBRARY
-// ══════════════════════════════════════════════════════════════
-const practices = {
-  inner_smile:  { icon:"☀️", name:"Inner Smile Meditation", badge:"badge-rise",  label:"Rise",   detail:"Stretch-tap sequence, gum massage, smile cultivation, swallow with love." },
-  earthing:     { icon:"🌱", name:"Barefoot Earthing",      badge:"badge-rise",  label:"Rise",   detail:"5 to 10 minutes bare feet on soil at the rise and before sleep." },
-  bath:         { icon:"🚿", name:"Crown-First Sacred Bath", badge:"badge-rise",  label:"Rise",   detail:"Cool water at the crown before the body. Intention set as you bathe." },
-  heaven_earth: { icon:"⚡", name:"Heaven-Earth Current",   badge:"badge-daily", label:"Daily",  detail:"Celestial light descending through the chakras into Earth. Earth energy rising to crown." },
-  light_bubble: { icon:"🔮", name:"Light Bubble Renewal",   badge:"badge-rise",  label:"Rise",   detail:"Double-helix gold spiral. Receives love. Returns all else with love." },
-  qigong:       { icon:"🌀", name:"Rising Qigong + Meridian Percussion", badge:"badge-rise", label:"Rise", detail:"Shaking, self-patting, arm and leg meridian striking, arm swinging, dantian close." },
-  sun_sal:      { icon:"🌅", name:"Sun Salutations",        badge:"badge-rise",  label:"Rise",   detail:"3 to 12 rounds after qigong. Builds heat. Moves the qi that qigong circulated." },
-  pranayama:    { icon:"💨", name:"Kapalabhati + Nadi Shodhana", badge:"badge-rise", label:"Rise", detail:"Skull-shining breath and alternate nostril. Separate sitting practice after movement." },
-  three_chamber:{ icon:"🫁", name:"Three-Chamber Breath",   badge:"badge-daily", label:"Daily",  detail:"Belly, chest, shoulders as one elliptical wave. 15 minutes daily." },
-  bhramari:     { icon:"🎶", name:"Bhramari — Humming Bee", badge:"badge-daily", label:"Daily",  detail:"Fastest available anxiety relief. Vagus nerve activation. Use anytime." },
-  lymph:        { icon:"🌊", name:"Lymphatic Self-Drainage", badge:"badge-eve",   label:"Evening",detail:"Neck, rubbish bins, abdomen 400-count, arms and legs. 10 minutes lying down." },
-  gua_sha:      { icon:"💎", name:"Gua Sha + Body Care",    badge:"badge-eve",   label:"Evening",detail:"Oil, stroke upward. Finish at the neck. Combined with lymphatic sequence." },
-  chakra_clear: { icon:"🌈", name:"Evening Chakra Clearing", badge:"badge-eve",   label:"Evening",detail:"Counter-clockwise drain through hands and feet into Earth. Clockwise refill with nature color." },
-  mudra:        { icon:"🤲", name:"Daily Mudra",             badge:"badge-daily", label:"Daily",  detail:"Draw one card at the rise. Work with that gesture throughout the day." },
-  sound_bowl:   { icon:"🔔", name:"Tibetan Bowl or Bell",    badge:"badge-eve",   label:"Evening",detail:"Clear the space. Clear the field. Mark the threshold between day and evening." },
-  gratitude:    { icon:"📖", name:"Tetralty Journal + Gratitude", badge:"badge-eve", label:"Evening", detail:"How did I feel, think, speak, and do today? Three specific things truly felt." },
-  ancestor:     { icon:"🕯️", name:"Ancestor Altar Visit",   badge:"badge-weekly",label:"Weekly", detail:"Light the candle. Share your news. Speak the names." },
-  ritual_bath:  { icon:"🛁", name:"Weekly Ritual Bath",      badge:"badge-weekly",label:"Weekly", detail:"Crystals, sea salt, intention. Crown-first entry. Release as the water drains." },
-  space_clear:  { icon:"✨", name:"Space Clearing",          badge:"badge-weekly",label:"Weekly", detail:"Bell, drum, sage, or intention. Every corner. Especially after conflict or illness." },
-  new_moon:     { icon:"🌑", name:"New Moon Ritual",         badge:"badge-weekly",label:"Monthly",detail:"Write intentions in present tense. Place in glass bowl in moonlight. Speak them aloud." },
-  full_moon:    { icon:"🌕", name:"Full Moon Release",       badge:"badge-weekly",label:"Monthly",detail:"Write what you release. Burn it. Bury your new moon intentions as seeds. Charge crystals." },
-  reflexology:  { icon:"👣", name:"Foot Reflexology",        badge:"badge-weekly",label:"Weekly", detail:"Heel, arch, ball, toes. Hold tender spots 30 to 60 seconds. Drink water after." },
-  food_blessing:{ icon:"🙏", name:"Meal Blessing",           badge:"badge-daily", label:"Daily",  detail:"Open palms to receive. Rub to activate. Hold over food. Snap: Ashe, thank you universe." },
-  creative:     { icon:"🎨", name:"Creative Practice",       badge:"badge-weekly",label:"Weekly", detail:"Free draw, pottery, song, journaling, any making done with full presence." },
+  calling: {
+    eyebrow: "The real reason you're here",
+    text: "What is calling you to practice right now?",
+    sub: "This is the question that shapes the rest of your results.",
+    options: [
+      { v:"self_love", t:"Self-love — reconnecting with my own worth" },
+      { v:"grief", t:"Healing grief after a loss" },
+      { v:"life_purpose", t:"Feeling foggy or disconnected from my life purpose" },
+      { v:"grounding_balance", t:"General grounding and daily balance" },
+      { v:"transition", t:"Marking a season or a transition" },
+      { v:"other", t:"Something else" },
+    ],
+    next: (v) => v === "grief" ? "grief_what" : "result_full"
+  },
+
+  grief_what: {
+    eyebrow: "This can be tender — take your time",
+    text: "What was lost?",
+    sub: "There's a specific practice for each kind of loss.",
+    options: [
+      { v:"person", t:"A person" },
+      { v:"animal", t:"An animal or pet" },
+      { v:"thing", t:"A thing, a chapter, or a circumstance" },
+    ],
+    next: (v) => v === "person" ? "grief_who" : "result_full"
+  },
+
+  grief_who: {
+    eyebrow: "Almost there",
+    text: "Who was this person to you?",
+    sub: "",
+    options: [
+      { v:"relative", t:"A relative" },
+      { v:"friend", t:"A close friend" },
+      { v:"public", t:"An acquaintance, a public figure, or a public event" },
+    ],
+    next: () => "result_full"
+  }
 };
 
-// ══════════════════════════════════════════════════════════════
-// RESULT ENGINE — maps answer pattern to a practice set
-// ══════════════════════════════════════════════════════════════
-function buildResult(answers) {
-  // Score each practice dimension
-  let scores = {
-    grounding:0, emotional:0, creative:0, expansion:0, sound_focus:0,
-    earth_body:0, moon_cycle:0, morning_depth:0, evening_depth:0
-  };
-
-  // Q0 — energy state
-  if(answers[0]==="A") { scores.grounding+=2; scores.evening_depth+=1; }
-  if(answers[0]==="B") { scores.grounding+=1; scores.emotional+=1; }
-  if(answers[0]==="C") { scores.creative+=2; scores.sound_focus+=1; }
-  if(answers[0]==="D") { scores.sound_focus+=2; scores.grounding+=1; }
-  if(answers[0]==="E") { scores.expansion+=2; scores.morning_depth+=1; }
-
-  // Q1 — body tension
-  if(answers[1]==="A") { scores.sound_focus+=2; scores.grounding+=1; }
-  if(answers[1]==="B") { scores.emotional+=2; scores.sound_focus+=1; }
-  if(answers[1]==="C") { scores.emotional+=1; scores.grounding+=1; }
-  if(answers[1]==="D") { scores.grounding+=2; scores.earth_body+=1; }
-  if(answers[1]==="E") { scores.earth_body+=2; scores.grounding+=1; }
-
-  // Q2 — intention
-  if(answers[2]==="A") { scores.emotional+=2; scores.evening_depth+=1; }
-  if(answers[2]==="B") { scores.sound_focus+=2; scores.morning_depth+=1; }
-  if(answers[2]==="C") { scores.grounding+=2; scores.earth_body+=1; }
-  if(answers[2]==="D") { scores.expansion+=3; scores.morning_depth+=1; }
-  if(answers[2]==="E") { scores.emotional+=1; scores.grounding+=1; scores.sound_focus+=1; }
-
-  // Q3 — time
-  const timeCode = answers[3];
-  if(timeCode==="A") { scores.morning_depth-=1; }       // short: trim mornings
-  if(timeCode==="C"||timeCode==="D") { scores.morning_depth+=2; scores.evening_depth+=1; }
-
-  // Q4 — element
-  if(answers[4]==="A") { scores.earth_body+=3; scores.grounding+=2; }
-  if(answers[4]==="B") { scores.emotional+=3; scores.moon_cycle+=1; }
-  if(answers[4]==="C") { scores.creative+=2; scores.sound_focus+=1; }
-  if(answers[4]==="D") { scores.sound_focus+=2; scores.grounding+=1; }
-  if(answers[4]==="E") { scores.grounding+=2; scores.earth_body+=1; scores.emotional+=1; }
-
-  // Q5 — body relationship
-  if(answers[5]==="A") { scores.earth_body+=3; scores.grounding+=1; }
-  if(answers[5]==="B") { scores.emotional+=2; scores.creative+=1; }
-  if(answers[5]==="C") { scores.emotional+=2; scores.evening_depth+=1; }
-  if(answers[5]==="D") { scores.expansion+=2; scores.creative+=1; }
-  if(answers[5]==="E") { scores.expansion+=3; scores.morning_depth+=1; }
-
-  // Q6 — sound
-  if(answers[6]==="A") { scores.grounding+=2; }
-  if(answers[6]==="B") { scores.sound_focus+=3; scores.creative+=1; }
-  if(answers[6]==="C") { scores.sound_focus+=2; scores.emotional+=1; }
-  if(answers[6]==="D") { scores.emotional+=2; scores.sound_focus+=1; }
-  if(answers[6]==="E") { scores.grounding+=1; }
-
-  // Q7 — earth connection
-  if(answers[7]==="A") { scores.earth_body+=3; scores.grounding+=2; }
-  if(answers[7]==="B") { scores.moon_cycle+=3; scores.emotional+=1; }
-  if(answers[7]==="C") { scores.creative+=3; scores.sound_focus+=1; }
-  if(answers[7]==="D") { scores.moon_cycle+=2; scores.emotional+=2; }
-  if(answers[7]==="E") { scores.grounding+=3; scores.earth_body+=1; }
-
-  // Q8 — ideal day
-  if(answers[8]==="A") { scores.grounding+=2; scores.evening_depth+=1; }
-  if(answers[8]==="B") { scores.creative+=3; scores.sound_focus+=1; }
-  if(answers[8]==="C") { scores.emotional+=2; scores.moon_cycle+=1; }
-  if(answers[8]==="D") { scores.expansion+=2; scores.morning_depth+=1; }
-  if(answers[8]==="E") { scores.moon_cycle+=2; scores.grounding+=1; }
-
-  // ── Time factor adjustments ──
-  const shortTime = (answers[3]==="A");
-  const longTime  = (answers[3]==="C"||answers[3]==="D");
-
-  // ── Archetype ──
-  const maxScore = Math.max(...Object.values(scores));
-  const topDims  = Object.entries(scores).filter(([k,v])=>v===maxScore).map(([k])=>k);
-  const primary  = topDims[0];
-
-  const archetypes = {
-    grounding:      { name:"The Rooter",       desc:"One who returns to earth before all else" },
-    emotional:      { name:"The Feeler",        desc:"One who honors what moves through them" },
-    creative:       { name:"The Maker",         desc:"One whose healing comes through making" },
-    expansion:      { name:"The Deepener",      desc:"One who is ready for more" },
-    sound_focus:    { name:"The Listener",      desc:"One whose medicine arrives through sound" },
-    earth_body:     { name:"The Earth Walker",  desc:"One who heals through the body and the land" },
-    moon_cycle:     { name:"The Lunar",         desc:"One who moves with the rhythms of the moon" },
-    morning_depth:  { name:"The Riser",         desc:"One whose power builds at the rise" },
-    evening_depth:  { name:"The Settler",       desc:"One whose practice lives in the evening hours" },
-  };
-  const arch = archetypes[primary] || archetypes.grounding;
-
-  // ── Build practice list ──
-  const riseSet    = [];
-  const dailySet   = [];
-  const eveningSet = [];
-  const weeklySet  = [];
-
-  // Universal foundation — everyone
-  riseSet.push("bath", "earthing");
-  dailySet.push("food_blessing");
-  eveningSet.push("gratitude");
-  weeklySet.push("ancestor");
-
-  // By energy state
-  if(answers[0]==="A"||answers[0]==="C") { eveningSet.push("chakra_clear"); }
-  if(answers[0]==="D") { dailySet.push("bhramari"); }
-  if(answers[0]==="E") { riseSet.push("inner_smile"); }
-
-  // By element / dimension
-  if(scores.grounding>=3) { riseSet.push("earthing"); eveningSet.push("chakra_clear"); }
-  if(scores.emotional>=3) { eveningSet.push("lymph"); weeklySet.push("ritual_bath"); }
-  if(scores.creative>=3)  { weeklySet.push("creative"); dailySet.push("mudra"); }
-  if(scores.sound_focus>=3) { eveningSet.push("sound_bowl"); dailySet.push("bhramari"); }
-  if(scores.earth_body>=3) { riseSet.push("qigong"); eveningSet.push("gua_sha"); weeklySet.push("reflexology"); }
-  if(scores.moon_cycle>=3) { weeklySet.push("new_moon","full_moon"); }
-  if(scores.expansion>=3)  { riseSet.push("heaven_earth","light_bubble"); riseSet.push("pranayama"); }
-
-  // Time modifiers
-  if(shortTime) {
-    // Slim morning to the essentials only
-    const keep = ["bath","earthing","bhramari","three_chamber","food_blessing"];
-    riseSet.splice(0, riseSet.length, ...riseSet.filter(p=>keep.includes(p)));
-    if(!riseSet.includes("three_chamber")) riseSet.push("three_chamber");
-  } else {
-    if(longTime) riseSet.push("inner_smile","qigong","sun_sal");
-    riseSet.push("three_chamber");
-  }
-
-  // Body relationship
-  if(answers[5]==="A"||answers[5]==="B") {
-    if(!eveningSet.includes("gua_sha")) eveningSet.push("gua_sha");
-  }
-  if(answers[5]==="E") {
-    riseSet.push("light_bubble","heaven_earth");
-  }
-
-  // Deduplicate and cap each section
-  const dedup = arr => [...new Set(arr)].slice(0,6);
-  const rFinal = dedup(riseSet);
-  const dFinal = dedup(dailySet);
-  const eFinal = dedup(eveningSet);
-  const wFinal = dedup(weeklySet);
-
-  // ── Words to carry ──
-  const sayings = [
-    { text:"Grand Rising. Every breath is a new beginning.", highlight:"Grand Rising." },
-    { text:"Ashe. What you speak into the day, the day becomes.", highlight:"Ashe." },
-    { text:"Be More You. The release is the healing.", highlight:"Be More You." },
-    { text:"Accuse me — and own every inch of your presence.", highlight:"Accuse me" },
-    { text:"The universe hears what you feel, not only what you say.", highlight:null },
-    { text:"Your energy is currency. Spend it consciously.", highlight:null },
-    { text:"The earth is always available. Your feet are always an offering.", highlight:null },
-    { text:"What the body holds, sound can release.", highlight:null },
-  ];
-  const saying = sayings[Math.floor(Math.random()*sayings.length)];
-
-  return {
-    arch, primary, scores,
-    rFinal, dFinal, eFinal, wFinal,
-    saying, shortTime,
-  };
+/* ══════════════════════════════════════════════════════════════
+   RENDER — question steps
+   ══════════════════════════════════════════════════════════════ */
+function totalStepsEstimate() {
+  // rough progress denominator depending on path
+  if (answers.time === "5") return 2;
+  if (answers.time === "15") return 1;
+  let n = 6; // connect, religion, energy, tension, calling, result
+  if (answers.calling === "grief") n += 1;
+  if (answers.grief_what === "person") n += 1;
+  return n;
 }
 
-// ══════════════════════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════════════════════
-let current = 0;
-const answers = new Array(questions.length).fill(null);
-let selectedIdx = null;
+function stepIndexEstimate() {
+  return historyStack.length + 1;
+}
 
-// ══════════════════════════════════════════════════════════════
-// RENDER QUESTION
-// ══════════════════════════════════════════════════════════════
-function renderQuestion(idx, direction="forward") {
-  const q = questions[idx];
+function renderQuestion(stepId) {
+  const step = steps[stepId];
   const card = document.getElementById("questionCard");
+  document.getElementById("quizArea").style.display = "block";
+  document.getElementById("progressWrap").style.display = "block";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("loading").style.display = "none";
 
-  // Animate out
   card.classList.remove("fade-in");
   card.classList.add("fade-out");
 
-  setTimeout(()=>{
-    // Update content
-    document.getElementById("qNum").textContent = `Question ${idx+1}`;
-    document.getElementById("qText").textContent = q.text;
-    document.getElementById("qSub").textContent  = q.sub || "";
+  setTimeout(() => {
+    document.getElementById("qEyebrow").textContent = step.eyebrow || "";
+    document.getElementById("qText").textContent = step.text;
+    document.getElementById("qSub").textContent = step.sub || "";
 
     const optArea = document.getElementById("options");
     optArea.innerHTML = "";
-    q.options.forEach((opt, oi)=>{
+    step.options.forEach(opt => {
       const btn = document.createElement("button");
       btn.className = "option-btn";
-      if(answers[idx] === opt.letter) btn.classList.add("selected");
-      btn.innerHTML = `<span class="option-letter">${opt.letter}</span>${opt.text}`;
-      btn.onclick = ()=>selectOption(opt.letter, btn);
+      btn.innerHTML = opt.t + (opt.note ? `<span class="opt-note">${opt.note}</span>` : "");
+      btn.onclick = () => choose(stepId, opt.v);
       optArea.appendChild(btn);
     });
 
-    selectedIdx = answers[idx] ? answers[idx] : null;
-    document.getElementById("btnNext").disabled = !selectedIdx;
-    document.getElementById("btnBack").style.visibility = idx===0 ? "hidden":"visible";
+    document.getElementById("btnBack").style.visibility = historyStack.length === 0 ? "hidden" : "visible";
 
-    // Progress
-    const pct = Math.round((idx / questions.length)*100);
-    document.getElementById("progressFill").style.width = pct+"%";
-    document.getElementById("stepLabel").textContent = `Question ${idx+1} of ${questions.length}`;
-    document.getElementById("pctLabel").textContent  = pct+"%";
+    const idx = stepIndexEstimate();
+    const total = Math.max(totalStepsEstimate(), idx);
+    const pct = Math.min(95, Math.round((idx / (total + 1)) * 100));
+    document.getElementById("progressFill").style.width = pct + "%";
+    document.getElementById("stepLabel").textContent = step.eyebrow || "Question";
+    document.getElementById("pctLabel").textContent = pct + "%";
 
     card.classList.remove("fade-out");
     card.classList.add("fade-in");
-  }, 320);
+  }, 280);
 }
 
-function selectOption(letter, btn) {
-  document.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected"));
-  btn.classList.add("selected");
-  selectedIdx = letter;
-  document.getElementById("btnNext").disabled = false;
-}
-
-function goNext() {
-  if(!selectedIdx) return;
-  answers[current] = selectedIdx;
-  selectedIdx = null;
-  if(current < questions.length-1) {
-    current++;
-    renderQuestion(current,"forward");
+function choose(stepId, value) {
+  answers[stepId] = value;
+  historyStack.push(stepId);
+  const next = steps[stepId].next(value, answers);
+  current = next;
+  if (next.startsWith("result_")) {
+    showResultScreen(next);
   } else {
-    showResult();
+    renderQuestion(next);
   }
 }
 
 function goBack() {
-  if(current===0) return;
-  current--;
-  renderQuestion(current,"back");
+  if (historyStack.length === 0) return;
+  const prev = historyStack.pop();
+  delete answers[prev];
+  current = prev;
+  renderQuestion(prev);
 }
 
-// ══════════════════════════════════════════════════════════════
-// SHOW RESULT
-// ══════════════════════════════════════════════════════════════
-function showResult() {
-  document.getElementById("quizArea").style.display="none";
-  document.getElementById("progressWrap").style.display="none";
-  document.getElementById("loading").style.display="block";
-
-  setTimeout(()=>{
-    document.getElementById("loading").style.display="none";
-    const res = buildResult(answers);
-    renderResult(res);
-    document.getElementById("result").style.display="block";
-    document.getElementById("result").classList.add("fade-in");
-  }, 2200);
+function restartQuiz() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  historyStack = [];
+  current = "time";
+  document.getElementById("result").style.display = "none";
+  renderQuestion("time");
 }
 
-function renderResult(res) {
-  const el = document.getElementById("result");
-  const { arch, rFinal, dFinal, eFinal, wFinal, saying, shortTime } = res;
+function continueToFullQuiz() {
+  // used from the quick 5-min / 15-min result screens
+  historyStack.push(current);
+  current = "connect";
+  renderQuestion("connect");
+}
 
-  function practiceItems(keys) {
-    return keys.map(k=>{
-      const p = practices[k];
-      if(!p) return "";
-      return `
-        <div class="practice-item">
-          <div class="p-icon">${p.icon}</div>
-          <div class="p-info">
-            <div class="p-name">${p.name}</div>
-            <div class="p-detail">${p.detail}</div>
-          </div>
+/* ══════════════════════════════════════════════════════════════
+   RESULT SCREENS
+   ══════════════════════════════════════════════════════════════ */
+function showResultScreen(kind) {
+  document.getElementById("quizArea").style.display = "none";
+  document.getElementById("progressWrap").style.display = "none";
+  document.getElementById("loading").style.display = "block";
+
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+    const el = document.getElementById("result");
+    if (kind === "result_single") el.innerHTML = renderSingleResult();
+    else if (kind === "result_meal") el.innerHTML = renderMealResult();
+    else el.innerHTML = renderFullResult();
+    el.style.display = "block";
+    el.classList.add("fade-in");
+    window.scrollTo({top:0, behavior:"smooth"});
+  }, 1400);
+}
+
+function varesCard(v, extra) {
+  return `
+    <div class="vares-card">
+      ${v.img ? `<img src="${v.img}" alt="${v.label}" onerror="this.style.display='none'">` : ""}
+      <div style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">${v.label} — ${v.when}</div>
+      <div class="say">${v.text}</div>
+      <p style="font-size:.86rem;color:rgba(245,240,232,0.55);font-style:italic;margin-bottom:14px;">${v.how}</p>
+      ${v.img ? `<div class="vares-actions">
+        <a class="solid" href="${v.img}" download>⬇ Download</a>
+        <a class="outline" href="${v.img}" target="_blank" rel="noopener">↗ View Full Size</a>
+      </div>` : ""}
+      ${extra || ""}
+    </div>`;
+}
+
+function renderSingleResult() {
+  const key = answers.timeOfDay || "morning";
+  const v = key === "morning" ? VARESSENCE.rising : (key === "midday" ? VARESSENCE.zenith : VARESSENCE.astral);
+  return `
+    <div class="result-header">
+      <div class="ashe">Your Five Minutes</div>
+      <h2>One Varessence</h2>
+      <div class="archetype">Simple on purpose.</div>
+    </div>
+    ${varesCard(v)}
+    <div class="tip-card">
+      Screenshot this card or save the download to your phone. Keep it in your Favorites, or start a new album called "Haligric Practice" for quick access — no app, no login, no friction.
+    </div>
+    <div class="retake-row">
+      <button class="btn-continue" onclick="continueToFullQuiz()">I have more time than I thought — build me the full path →</button>
+      <button class="btn-retake" onclick="restartQuiz()">Retake the Quiz</button>
+    </div>`;
+}
+
+function renderMealResult() {
+  return `
+    <div class="result-header">
+      <div class="ashe">Your Fifteen Minutes</div>
+      <h2>The Meal Varessence</h2>
+      <div class="archetype">Three small moments, not one big one.</div>
+    </div>
+    ${varesCard(VARESSENCE.dining)}
+    <div class="tip-card">
+      Use this same card at breakfast, lunch, and dinner. Screenshot it or download it and keep it in your Favorites or a dedicated "Haligric Practice" photo album so it's one tap away at the table.
+    </div>
+    <div class="retake-row">
+      <button class="btn-continue" onclick="continueToFullQuiz()">Build me the full personalized path →</button>
+      <button class="btn-retake" onclick="restartQuiz()">Retake the Quiz</button>
+    </div>`;
+}
+
+function practiceItems(keys) {
+  return keys.map((k, i) => {
+    const p = practices[k];
+    if (!p) return "";
+    const uid = k + "_" + i;
+    return `
+      <div class="practice-item" id="pi_${uid}" onclick="togglePractice('${uid}')">
+        <div class="p-icon">${p.icon}</div>
+        <div class="p-info">
+          <div class="p-name">${p.name}</div>
+          <div class="p-detail">${p.detail}</div>
+        </div>
+        <div class="p-right">
           <span class="p-badge ${p.badge}">${p.label}</span>
-        </div>`;
-    }).join("");
+          <span class="p-arrow">▾</span>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function togglePractice(uid) {
+  const el = document.getElementById("pi_" + uid);
+  if (el) el.classList.toggle("open");
+}
+
+function renderFullResult() {
+  const time = answers.time; // "30" or "varies"
+  const connect = answers.connect;
+  const religion = answers.religion;
+  const calling = answers.calling;
+
+  // ---- Rising / Astral practice sets, scaled to time ----
+  let riseSet = ["earthing", "dream_journal"];
+  let eveSet = ["emf_protection"];
+  let dailySet = [];
+  let weeklySet = ["space_clear"];
+
+  if (time === "30") {
+    riseSet = ["dream_journal","earthing","singing_bowl_rise","surya_bhedana","mudra","qigong_rise","yoga_rise","lymph"];
+    eveSet = ["yoga_eve","qigong_astral","chandra_bhedana","singing_bowl_eve","day_reflection","gratitude_list","emf_protection"];
+    dailySet = ["three_chamber","bhramari"];
+    weeklySet = ["ritual_bath","space_clear","new_moon","full_moon"];
+  } else {
+    riseSet = ["earthing","dream_journal","mudra"];
+    eveSet = ["gratitude_list","emf_protection"];
+    dailySet = ["bhramari"];
+    weeklySet = ["space_clear"];
   }
 
-  let sayingHTML = saying.highlight
-    ? saying.text.replace(saying.highlight, `<span>${saying.highlight}</span>`)
-    : saying.text;
+  // ---- lead practice by "connect" answer ----
+  const connectLead = {
+    movement: ["qigong_rise","yoga_rise","yoga_eve"],
+    nature: ["earthing"],
+    creative: ["creative"],
+    prayer_ritual: [],
+    journaling: ["dream_journal","gratitude_list","day_reflection"],
+    stillness: ["bhramari","three_chamber"],
+    sound_music: ["singing_bowl_rise","singing_bowl_eve","tuning_fork"],
+    nothing_yet: []
+  };
+  (connectLead[connect] || []).forEach(k => { if (!riseSet.includes(k) && !eveSet.includes(k) && !dailySet.includes(k)) dailySet.unshift(k); });
 
-  el.innerHTML = `
+  // dedup
+  const dedup = arr => [...new Set(arr)];
+  riseSet = dedup(riseSet); eveSet = dedup(eveSet); dailySet = dedup(dailySet); weeklySet = dedup(weeklySet);
+
+  // ---- calling-based special section ----
+  let callingHTML = "";
+  let callingTitle = "";
+  if (calling === "self_love") {
+    callingTitle = "What's Calling You — Self-Love";
+    callingHTML = `<p class="lead">Self-love isn't a mood — it's a relationship you tend on purpose. The practice built specifically for this is the <strong>Altar of the Selves</strong>: a way of actively loving every version of yourself that got you here.</p>
+    <div class="practice-list">${practiceItems(["altar_of_selves"])}</div>`;
+  } else if (calling === "life_purpose") {
+    callingTitle = "What's Calling You — A Foggy Sense of Purpose";
+    callingHTML = `<p class="lead">Feeling foggy about life purpose is very often self-love wearing a different name — it's hard to see a clear path forward when the relationship with your own past selves is unresolved. The recommendation here is the same: the <strong>Altar of the Selves</strong>.</p>
+    <div class="practice-list">${practiceItems(["altar_of_selves"])}</div>`;
+  } else if (calling === "grief") {
+    const what = answers.grief_what;
+    const who = answers.grief_who;
+    callingTitle = "What's Calling You — Grief";
+    let altarKeys = [];
+    let note = "";
+    if (what === "animal") {
+      altarKeys = ["pet_altar"];
+      note = "Grief for an animal companion is a full grief, not a lesser one.";
+    } else if (what === "thing") {
+      altarKeys = ["altar_of_the_living"];
+      note = "Loss doesn't have to mean death to deserve a tended space — a job, a home, a chapter, or a version of a relationship all qualify.";
+    } else if (who === "relative") {
+      altarKeys = ["ancestor_altar"];
+      note = "This can take time to feel ready for — sometimes months. There is no timeline that is too long.";
+    } else if (who === "friend") {
+      altarKeys = ["ancestor_altar"];
+      note = "This practice is not reserved for blood relatives. A close friend belongs here just as fully.";
+    } else if (who === "public") {
+      altarKeys = ["acquaintance_altar"];
+      note = "Grief for someone you didn't know personally, or for a public tragedy, is documented to leave real effects — it doesn't need to be justified.";
+    } else {
+      altarKeys = ["altar_of_the_living"];
+    }
+    callingHTML = `<p class="lead">Every tear brings you closer to healing, even when it doesn't feel like it in the moment. ${note}</p>
+    <div class="practice-list">${practiceItems(altarKeys)}</div>
+    <p class="lead" style="margin-top:14px;">Bring the <strong>Soul Retrieval Varessence</strong> into these visits — spoken at the rise, or at the close of any altar visit or emotional experience:</p>
+    ${varesCard(VARESSENCE.soul_retrieval)}`;
+  } else if (calling === "transition") {
+    callingTitle = "What's Calling You — A Season in Transition";
+    callingHTML = `<p class="lead">Transitions are held well by the moon cycle and by the Altar of the Selves — a place to actively honor who you're becoming as you leave a version of yourself behind.</p>
+    <div class="practice-list">${practiceItems(["new_moon","full_moon","altar_of_selves"])}</div>`;
+  } else {
+    callingTitle = "What's Calling You — Grounding and Balance";
+    callingHTML = `<p class="lead">A steady daily rhythm is its own form of medicine. Lean on the Zenith earthing practice and a simple evening reflection to keep the nervous system on an even keel.</p>
+    <div class="practice-list">${practiceItems(["earthing","gratitude_list"])}</div>`;
+  }
+
+  const religionNote = RELIGION_NOTE[religion] || "";
+
+  return `
     <div class="result-header">
       <div class="ashe">Your Haligric Path</div>
-      <h2>${arch.name}</h2>
-      <div class="archetype">${arch.desc}</div>
+      <h2>${time === "30" ? "The Full Daily Arc" : "A Flexible Daily Arc"}</h2>
+      <div class="archetype">Built from where you actually are, not where you think you should be.</div>
     </div>
 
-    <div class="words-card">
-      <div class="label">Words to Carry into the Day</div>
-      <div class="saying">${sayingHTML}</div>
-    </div>
-
-    ${rFinal.length ? `
-    <div class="result-card">
-      <h3>The Sacred Rise${shortTime ? " — Your Essential Core" : ""}</h3>
-      <div class="practice-list">${practiceItems(rFinal)}</div>
+    ${callingTitle ? `<div class="result-card">
+      <h3>${callingTitle}</h3>
+      ${callingHTML}
     </div>` : ""}
 
-    ${dFinal.length ? `
+    ${religionNote ? `<div class="result-card" style="background:rgba(201,162,39,0.04); border-color:rgba(201,162,39,0.2);">
+      <h3>A Point of Connection</h3>
+      <p class="lead">${religionNote}</p>
+    </div>` : ""}
+
     <div class="result-card">
+      <h3>Rising — ${time === "30" ? "Full Sequence" : "Essential Core"}</h3>
+      <div class="practice-list">${practiceItems(riseSet)}</div>
+      ${varesCard(VARESSENCE.rising)}
+    </div>
+
+    ${dailySet.length ? `<div class="result-card">
       <h3>Throughout the Day</h3>
-      <div class="practice-list">${practiceItems(dFinal)}</div>
+      <div class="practice-list">${practiceItems(dailySet)}</div>
     </div>` : ""}
 
-    ${eFinal.length ? `
     <div class="result-card">
-      <h3>The Evening Wind-Down</h3>
-      <div class="practice-list">${practiceItems(eFinal)}</div>
-    </div>` : ""}
+      <h3>Zenith — Midday</h3>
+      <div class="practice-list">${practiceItems(["earthing"])}</div>
+      ${varesCard(VARESSENCE.zenith)}
+    </div>
 
-    ${wFinal.length ? `
     <div class="result-card">
+      <h3>Astral — ${time === "30" ? "Full Wind-Down" : "Essential Core"}</h3>
+      <div class="practice-list">${practiceItems(eveSet)}</div>
+      ${varesCard(VARESSENCE.astral)}
+    </div>
+
+    ${weeklySet.length ? `<div class="result-card">
       <h3>Weekly and Monthly Ceremonies</h3>
-      <div class="practice-list">${practiceItems(wFinal)}</div>
+      <div class="practice-list">${practiceItems(weeklySet)}</div>
     </div>` : ""}
+
+    <div class="result-card">
+      <h3>Meals</h3>
+      <p class="lead">If you only have a few minutes around food, the Dining Varessence stands on its own — usable at breakfast, lunch, or dinner.</p>
+      ${varesCard(VARESSENCE.dining)}
+    </div>
+
+    <div class="result-card">
+      <h3>Go Deeper</h3>
+      <div class="link-grid">
+        <div class="link-row"><span>Haligric Rituals (full book)</span><div class="link-btns"><a href="${A.ritualsBook}" download>Download</a><a href="${A.ritualsBook}" target="_blank" rel="noopener">View</a></div></div>
+        <div class="link-row"><span>Haligric Well-Being (full book)</span><div class="link-btns"><a href="${A.wellBeingBook}" download>Download</a><a href="${A.wellBeingBook}" target="_blank" rel="noopener">View</a></div></div>
+        <div class="link-row"><span>Haligricity — A Philosophy</span><div class="link-btns"><a href="${A.philosophyBook}" download>Download</a><a href="${A.philosophyBook}" target="_blank" rel="noopener">View</a></div></div>
+        <div class="link-row"><span>Mudra Finder Quiz</span><div class="link-btns"><a href="${A.mudraFinder}" target="_blank" rel="noopener">Open</a></div></div>
+        <div class="link-row"><span>Pranayama Finder Quiz</span><div class="link-btns"><a href="${A.pranayamaFinder}" target="_blank" rel="noopener">Open</a></div></div>
+        <div class="link-row"><span>Sage Goddess Altar Blessing</span><div class="link-btns"><a href="${A.sageBlessing}" target="_blank" rel="noopener">View</a><a href="${A.sageBlessing}" download>Download</a></div></div>
+      </div>
+    </div>
 
     <div class="result-card" style="background:rgba(201,162,39,0.04); border-color:rgba(201,162,39,0.2);">
       <h3>A Note from Haligricity</h3>
-      <p style="font-style:italic; color:rgba(245,240,232,0.7); line-height:1.7; font-size:0.98rem;">
-        This is your starting point, not your ceiling. Begin with one or two practices from the Rise and let them become automatic before adding the next. The goal is a life on autopilot that lets you be fully awake for what matters most.<br><br>
-        When your season changes — a move, a loss, a new relationship, a new creative direction — come back and retake this quiz. The path is meant to be rebuilt as you rebuild. It is a living practice, not a fixed prescription.<br><br>
-        Grand Rising. Be More You. Ashe.
-      </p>
+      <p class="lead">This is your starting point, not your ceiling. Begin with one or two practices and let them become automatic before adding the next.</p>
+      <p class="lead">When your season changes — a move, a loss, a new relationship, a new creative direction — come back and retake this quiz. It is a living practice, not a fixed prescription.</p>
+      <p class="lead">Grand Rising. Be More You. Ashe.</p>
     </div>
 
     <div class="retake-row">
@@ -1008,21 +962,10 @@ function renderResult(res) {
     </div>`;
 }
 
-function restartQuiz() {
-  current = 0;
-  answers.fill(null);
-  selectedIdx = null;
-
-  document.getElementById("result").style.display="none";
-  document.getElementById("progressWrap").style.display="block";
-  document.getElementById("quizArea").style.display="block";
-  renderQuestion(0);
-}
-
-// ══════════════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════════════
-renderQuestion(0);
+/* ══════════════════════════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════════════════════════ */
+renderQuestion("time");
 </script>
 </body>
 </html>

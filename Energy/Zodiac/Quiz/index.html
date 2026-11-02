@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="keywords" content="zodiac calculator, astrology quiz, Western zodiac, Chinese zodiac, Vedic astrology, Maya calendar, Tzolkin, Celtic Ogham tree calendar, Native American zodiac, Egyptian zodiac, numerology life path, blood type personality, Ketsueki-gata, multi-tradition astrology, world zodiac systems, birth chart, astrology profile, Haligricity">
+<meta name="author" content="Hali Sarah Parsons — Haligricity">
+<meta name="robots" content="index, follow">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Eight Systems — World Zodiac Calculator",
+  "description": "Enter your birth date to receive readings from eight ancient wisdom traditions simultaneously: Western Zodiac, Chinese Zodiac, Vedic Astrology, Maya Tzolk'in, Celtic Ogham, Native American Zodiac, Egyptian Zodiac, Numerology, and Blood Type personality.",
+  "url": "https://Haligricity.IQProductionz.com/EightSystems/",
+  "applicationCategory": "LifestyleApplication",
+  "creator": {
+    "@type": "Person",
+    "name": "Hali Sarah Parsons",
+    "url": "https://IQProductionz.com/About"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "I.Q. Productionz",
+    "url": "https://IQProductionz.com"
+  },
+  "keywords": "zodiac, astrology, numerology, Maya calendar, Celtic Ogham, Egyptian zodiac, Chinese zodiac, Vedic astrology, blood type personality, world traditions"
+}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eight Systems — Haligricity Personal Reading Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0e0e1a; --mid:#16162a; --panel:#1a1a30; --border:#3a3060;
+    --gold:#c9a227; --gold2:#e8c455; --rose:#8b3a5a; --violet:#5b2d80;
+    --cream:#f5f0e8; --mist:rgba(201,162,39,0.08); --glow:0 0 40px rgba(201,162,39,0.15);
+    --west:#c9a227; --chin:#d1554a; --ved:#7c8cf8; --maya:#3f9b7a;
+    --ogham:#6a8f4f; --naz:#c98a4b; --egypt:#4bb0c9; --num:#a87ad4; --bt:#e05c8a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--deep);
+    color:var(--cream);
+    font-family:'Cormorant Garamond',serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:48px 16px 80px;
+  }
+
+  /* Starfield */
+  body::before{
+    content:'';
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse at 20% 30%,#1a1030 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 70%,#0a0a20 0%,transparent 60%),
+      radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 45% 8%,rgba(255,255,255,.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 72% 35%,rgba(255,255,255,.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 90% 15%,rgba(255,255,255,.3) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 82%,rgba(201,162,39,.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 50%,rgba(201,162,39,.3) 0%,transparent 100%),
+      radial-gradient(1px 1px at 55% 48%,rgba(255,255,255,.4) 0%,transparent 100%),
+      var(--deep);
+  }
+
+  .wrap{max-width:1020px;margin:0 auto;position:relative;z-index:1;}
+
+  header{text-align:center;margin-bottom:40px;}
+  header .pretitle{
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:12px;
+  }
+  header h1{
+    font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,2.2rem);
+    font-weight:400;letter-spacing:.1em;color:var(--gold);margin-bottom:10px;
+  }
+  header p{color:rgba(245,240,232,.6);font-size:1rem;font-style:italic;letter-spacing:.03em;}
+
+  .gold-rule{
+    width:80px;height:1px;margin:18px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  form{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    padding:28px 28px 24px;margin-bottom:36px;display:grid;gap:18px;
+    box-shadow:var(--glow),inset 0 1px 0 rgba(255,255,255,.04);
+    position:relative;overflow:hidden;
+  }
+  form::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;
+  }
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:600px){.row{grid-template-columns:1fr;}}
+  label{
+    display:block;font-family:'Cinzel',serif;font-size:.72rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+    opacity:.8;margin-bottom:8px;
+  }
+  input,select{
+    width:100%;padding:11px 14px;border-radius:10px;
+    border:1px solid var(--border);background:var(--mid);
+    color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:1rem;
+    transition:border-color .2s;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--gold);}
+  .hint{font-size:.78rem;color:rgba(245,240,232,.45);margin-top:5px;font-style:italic;}
+  button{
+    background:linear-gradient(135deg,var(--rose),var(--violet));
+    color:var(--cream);border:none;padding:14px 20px;border-radius:10px;
+    font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;transition:filter .2s;
+    box-shadow:0 4px 20px rgba(139,58,90,.3);
+  }
+  button:hover{filter:brightness(1.12);}
+
+  #results{display:none;gap:18px;grid-template-columns:1fr 1fr 1fr;}
+  #results.show{display:grid;}
+  @media(max-width:760px){#results{grid-template-columns:1fr;}}
+  @media(max-width:1020px) and (min-width:761px){#results{grid-template-columns:1fr 1fr;}}
+
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    padding:22px;position:relative;overflow:hidden;
+    box-shadow:var(--glow);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .card[onclick]{cursor:pointer;}
+  .card[onclick]:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(201,162,39,.25);}
+  .card[onclick]::after{content:'Explore →';display:block;margin-top:12px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.55;text-align:right;}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+  .card.west::before{background:var(--west);}
+  .card.chin::before{background:var(--chin);}
+  .card.ved::before{background:var(--ved);}
+  .card.maya::before{background:var(--maya);}
+  .card.ogham::before{background:var(--ogham);}
+  .card.naz::before{background:var(--naz);}
+  .card.egypt::before{background:var(--egypt);}
+  .card[id="num-card"]::before{background:var(--num);}
+  .card[id="bt-card"]::before{background:var(--bt);}
+
+  .card h2{
+    font-family:'Cinzel',serif;font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.12em;color:rgba(245,240,232,.45);margin:0 0 4px;
+  }
+  .card .headline{
+    font-family:'Cinzel',serif;font-size:1.2rem;font-weight:400;
+    letter-spacing:.04em;margin:2px 0 12px;
+  }
+  .card.west .headline{color:var(--west);}
+  .card.chin .headline{color:var(--chin);}
+  .card.ved .headline{color:var(--ved);}
+  .card.maya .headline{color:var(--maya);}
+  .card.ogham .headline{color:var(--ogham);}
+  .card.naz .headline{color:var(--naz);}
+  .card.egypt .headline{color:var(--egypt);}
+
+  .card dl{margin:0;font-size:.88rem;}
+  .card dt{
+    color:rgba(245,240,232,.45);margin-top:9px;
+    font-family:'Cinzel',serif;font-size:.65rem;
+    text-transform:uppercase;letter-spacing:.08em;
+  }
+  .card dd{margin:3px 0 0;line-height:1.45;color:var(--cream);}
+  .card .desc{
+    font-size:.87rem;line-height:1.55;margin-top:12px;
+    color:rgba(245,240,232,.8);font-style:italic;
+    border-top:1px solid var(--border);padding-top:10px;
+  }
+
+  .section-label{
+    grid-column:1 / -1;font-family:'Cinzel',serif;font-size:.68rem;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--gold);opacity:.6;
+    margin-top:10px;padding-top:16px;border-top:1px solid var(--border);
+  }
+  .section-label:first-child{border-top:none;margin-top:0;padding-top:0;}
+
+  .note{
+    grid-column:1 / -1;font-size:.8rem;color:rgba(245,240,232,.45);
+    font-style:italic;border-top:1px solid var(--border);
+    margin-top:8px;padding-top:14px;line-height:1.6;
+  }
+
+  footer{
+    text-align:center;color:rgba(245,240,232,.35);font-size:.75rem;
+    margin-top:40px;font-style:italic;font-family:'Cinzel',serif;
+    letter-spacing:.08em;
+  }
+
+  /* ── DETAIL PAGE ─────────────────────────────────── */
+  .detail-page{display:none;position:fixed;inset:0;z-index:100;overflow-y:auto;
+    background:var(--deep);padding:40px 16px 80px;}
+  .detail-page.show{display:block;}
+  .detail-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold);cursor:pointer;
+    border:1px solid rgba(201,162,39,.3);border-radius:8px;
+    padding:10px 18px;background:transparent;margin-bottom:32px;
+    transition:all .2s;
+  }
+  .back-btn:hover{background:rgba(201,162,39,.1);border-color:var(--gold);}
+  .detail-header{text-align:center;margin-bottom:36px;}
+  .detail-system{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;
+    text-transform:uppercase;opacity:.6;margin-bottom:10px;}
+  .detail-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);
+    font-weight:400;letter-spacing:.06em;margin-bottom:16px;}
+  .detail-subtitle{font-size:1.1rem;font-style:italic;opacity:.7;line-height:1.5;}
+  .detail-section{margin-bottom:32px;}
+  .detail-section h3{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:12px;
+    padding-bottom:8px;border-bottom:1px solid rgba(201,162,39,.2);}
+  .detail-section p{font-size:1.05rem;line-height:1.8;opacity:.85;margin-bottom:12px;}
+  .detail-section ul{padding-left:20px;margin-bottom:12px;}
+  .detail-section ul li{font-size:1rem;line-height:1.75;opacity:.82;margin-bottom:4px;}
+  .detail-traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+  .trait-pill{padding:5px 14px;border-radius:20px;font-family:'Cinzel',serif;
+    font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+    border:1px solid currentColor;opacity:.8;}
+  .card.clickable{cursor:pointer;transition:transform .2s,box-shadow .2s;}
+  .card.clickable:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(201,162,39,.2);}
+  .card.clickable::after{content:'Explore →';display:block;margin-top:12px;
+    font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold);opacity:.6;text-align:right;}
+
+</style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="Discover your sign across eight ancient wisdom systems in one reading — Western Zodiac, Chinese Zodiac, Vedic Astrology, Maya Tzolk&#x27;in, Celtic Ogham, Native…">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/Energy/Zodiac/Quiz/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="Eight Systems — Haligricity Personal Reading Tool">
+  <meta property="og:description" content="Discover your sign across eight ancient wisdom systems in one reading — Western Zodiac, Chinese Zodiac, Vedic Astrology, Maya Tzolk&#x27;in, Celtic Ogham, Native…">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/Energy/Zodiac/Quiz/">
+  <meta property="og:image" content="https://Haligricity.IQProductionz.com/HaligricityLogo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eight Systems — Haligricity Personal Reading Tool">
+  <meta name="twitter:description" content="Discover your sign across eight ancient wisdom systems in one reading — Western Zodiac, Chinese Zodiac, Vedic Astrology, Maya Tzolk&#x27;in, Celtic Ogham, Native…">
+  <meta name="twitter:image" content="https://Haligricity.IQProductionz.com/HaligricityLogo.png">
+  <!-- SEO:end -->
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="pretitle">Your Cosmic Blueprint</div>
+    <h1>Eight Systems</h1>
+    <div class="gold-rule"></div>
+    <p>Enter your birth details to see how eight different traditions read the same moment — from the stars to the blood.</p>
+  </header>
+
+  <form id="form">
+    <div class="row">
+      <div>
+        <label for="bdate">Birth date</label>
+        <input type="date" id="bdate" required min="1900-01-01" max="2035-12-31">
+      </div>
+      <div>
+        <label for="btime">Birth time <span class="hint" style="display:inline">(optional — sharpens Chinese hour-animal &amp; Vedic notes)</span></label>
+        <input type="time" id="btime">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="bname">Full birth name <span class="hint" style="display:inline">(as on birth certificate — unlocks numerology)</span></label>
+        <input type="text" id="bname" placeholder="e.g. Hali Sarah Parsons" autocomplete="off">
+      </div>
+      <div>
+        <label for="bloodtype">Blood type <span class="hint" style="display:inline">(unlocks Ketsueki-gata reading)</span></label>
+        <select id="bloodtype" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-family:inherit;font-size:1rem;">
+          <option value="">— select —</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="AB">AB</option>
+          <option value="O">O</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit">Reveal all systems</button>
+  </form>
+
+  <div id="results">
+    <div class="note" style="grid-column:1/-1;font-size:.85rem;color:rgba(245,240,232,.6);font-style:italic;line-height:1.75;padding:16px 20px;border:1px solid rgba(201,162,39,0.2);border-radius:10px;background:rgba(201,162,39,0.05);margin-bottom:8px;">
+      <strong style="color:var(--gold);font-style:normal;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;">Read These Together</strong><br>
+      Each system below is a separate lens on the same moment. A weakness in one reading is often a strength in another — the tensions between them are part of the picture. No single tradition tells the whole story. Take what resonates across multiple systems as your strongest signal.
+    </div>
+    <div class="section-label">Astronomically / calendrically derived — computed directly from your birthdate</div>
+
+    <div class="card west" clickable onclick="showDetail('west')" style="cursor:pointer;">
+      <h2>Western — Tropical</h2>
+      <div class="headline" id="w-sign">—</div>
+      <dl>
+        <dt>Element / Modality</dt><dd id="w-elem">—</dd>
+        <dt>Ruling planet</dt><dd id="w-ruler">—</dd>
+        <dt>Date range</dt><dd id="w-range">—</dd>
+      </dl>
+    </div>
+
+    <div class="card chin" clickable onclick="showDetail('chin')" style="cursor:pointer;">
+      <h2>Chinese — Sexagenary</h2>
+      <div class="headline" id="c-sign">—</div>
+      <dl>
+        <dt>Element / Polarity</dt><dd id="c-elem">—</dd>
+        <dt>Stem-Branch year</dt><dd id="c-stembranch">—</dd>
+        <dt>Hour animal</dt><dd id="c-hour">—</dd>
+      </dl>
+    </div>
+
+    <div class="card ved" clickable onclick="showDetail('ved')" style="cursor:pointer;">
+      <h2>Vedic — Sidereal (Jyotish)</h2>
+      <div class="headline" id="v-sign">—</div>
+      <dl>
+        <dt>Ruling planet</dt><dd id="v-ruler">—</dd>
+        <dt>Ayanamsa offset used</dt><dd id="v-offset">—</dd>
+        <dt>Western sign, for comparison</dt><dd id="v-compare">—</dd>
+      </dl>
+    </div>
+
+    <div class="card maya" clickable onclick="showDetail('maya')" style="cursor:pointer;">
+      <h2>Maya — Tzolk'in</h2>
+      <div class="headline" id="m-sign">—</div>
+      <dl>
+        <dt>Day sign meaning</dt><dd id="m-meaning">—</dd>
+        <dt>Haab (solar month)</dt><dd id="m-haab">—</dd>
+        <dt>Long Count</dt><dd id="m-longcount">—</dd>
+      </dl>
+    </div>
+
+    <div class="card ogham" clickable onclick="showDetail('ogham')" style="cursor:pointer;">
+      <h2>Celtic Tree (Ogham)</h2>
+      <div class="headline" id="o-sign">—</div>
+      <dl>
+        <dt>Core meaning</dt><dd id="o-meaning">—</dd>
+        <dt>Date range</dt><dd id="o-range">—</dd>
+      </dl>
+    </div>
+
+    <div class="card naz" clickable onclick="showDetail('naz')" style="cursor:pointer;">
+      <h2>"Native American" Zodiac</h2>
+      <div class="headline" id="n-sign">—</div>
+      <dl>
+        <dt>Assigned meaning</dt><dd id="n-meaning">—</dd>
+        <dt>Date range</dt><dd id="n-range">—</dd>
+      </dl>
+    </div>
+
+    <div class="card egypt" clickable onclick="showDetail('egypt')" style="cursor:pointer;">
+      <h2>Egyptian Zodiac</h2>
+      <div class="headline" id="e-sign">—</div>
+      <dl>
+        <dt>Assigned meaning</dt><dd id="e-meaning">—</dd>
+        <dt>Approx. date window</dt><dd id="e-range">—</dd>
+      </dl>
+    </div>
+
+    <div class="section-label">Not derivable from a birthdate — these need information this tool doesn't collect</div>
+
+    <div class="card" style="--c:#a87ad4;" id="num-card" clickable onclick="showDetail('num')" style="cursor:pointer;">
+      <h2 style="color:var(--muted);">Numerology — Pythagorean</h2>
+      <div class="headline" id="num-lifepath" style="color:#a87ad4;">—</div>
+      <dl>
+        <dt>Life Path</dt><dd id="num-lp-name">—</dd>
+        <dt>Expression number</dt><dd id="num-expr">—</dd>
+        <dt>Soul Urge (vowels)</dt><dd id="num-soul">—</dd>
+        <dt>Personality (consonants)</dt><dd id="num-pers">—</dd>
+      </dl>
+      <div class="desc" id="num-desc" style="font-style:italic;margin-top:10px;"></div>
+    </div>
+
+    <div class="card" style="--c:#e05c8a;" id="bt-card" clickable onclick="showDetail('bt')" style="cursor:pointer;">
+      <h2 style="color:var(--muted);">Blood Type — Ketsueki-gata</h2>
+      <div class="headline" id="bt-headline" style="color:#e05c8a;">—</div>
+      <dl>
+        <dt>Core traits</dt><dd id="bt-traits">—</dd>
+        <dt>Strengths</dt><dd id="bt-strengths">—</dd>
+        <dt>Challenges</dt><dd id="bt-challenges">—</dd>
+        <dt>Compatibility</dt><dd id="bt-compat">—</dd>
+      </dl>
+      <div class="desc" id="bt-desc" style="font-style:italic;margin-top:10px;"></div>
+    </div>
+
+    <div class="note">
+      Western sign is exact from the calendar date (tropical zodiac). Chinese zodiac year is corrected for
+      Lunar New Year. Vedic rashi shown here is an <strong>approximation</strong> (Lahiri ayanamsa applied to
+      the Sun's tropical position) — a real Jyotish chart needs exact birth time and location run through
+      ephemeris software. Maya Tzolk'in uses the standard GMT (Goodman–Martínez–Thompson) correlation constant
+      and is exact for the calendar date given. Celtic Tree, "Native American," and Egyptian zodiac date ranges
+      are presented exactly as this tool's own research documents found them circulating — including the
+      Egyptian zodiac's documented cross-source inconsistency, so those specific date windows are the least
+      certain of the six.
+    </div>
+  </div>
+
+  <footer><a href="https://Haligricity.IQProductionz.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">Haligricity</a> / <a href="https://IQProductionz.com" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">I.Q. Productionz</a> — companion reference, not a substitute for a full chart reading.&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border:1px solid rgba(201,162,39,0.4);padding:4px 12px;border-radius:20px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.background='rgba(201,162,39,0.15)'" onmouseout="this.style.background='transparent'">&#9825; Donate</a></footer>
+</div>
+
+<script>
+// ================= WESTERN =================
+const westernSigns = [
+  {name:"Capricorn", start:[12,22], end:[1,19], element:"Earth · Cardinal", ruler:"Saturn"},
+  {name:"Aquarius",  start:[1,20],  end:[2,18], element:"Air · Fixed", ruler:"Saturn (Uranus)"},
+  {name:"Pisces",    start:[2,19],  end:[3,20], element:"Water · Mutable", ruler:"Jupiter (Neptune)"},
+  {name:"Aries",     start:[3,21],  end:[4,19], element:"Fire · Cardinal", ruler:"Mars"},
+  {name:"Taurus",    start:[4,20],  end:[5,20], element:"Earth · Fixed", ruler:"Venus"},
+  {name:"Gemini",    start:[5,21],  end:[6,20], element:"Air · Mutable", ruler:"Mercury"},
+  {name:"Cancer",    start:[6,21],  end:[7,22], element:"Water · Cardinal", ruler:"Moon"},
+  {name:"Leo",       start:[7,23],  end:[8,22], element:"Fire · Fixed", ruler:"Sun"},
+  {name:"Virgo",     start:[8,23],  end:[9,22], element:"Earth · Mutable", ruler:"Mercury"},
+  {name:"Libra",     start:[9,23],  end:[10,22], element:"Air · Cardinal", ruler:"Venus"},
+  {name:"Scorpio",   start:[10,23], end:[11,21], element:"Water · Fixed", ruler:"Mars (Pluto)"},
+  {name:"Sagittarius", start:[11,22], end:[12,21], element:"Fire · Mutable", ruler:"Jupiter"}
+];
+function getWesternSign(month, day){
+  for(const s of westernSigns){
+    const [sm, sd] = s.start, [em, ed] = s.end;
+    if(sm <= em){
+      if((month===sm && day>=sd) || (month===em && day<=ed) || (month>sm && month<em)) return s;
+    } else {
+      if((month===sm && day>=sd) || (month===em && day<=ed)) return s;
+    }
+  }
+  return westernSigns[0];
+}
+function fmtRange(sm,sd,em,ed){
+  const mn = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${mn[sm]} ${sd} – ${mn[em]} ${ed}`;
+}
+
+// ================= CHINESE =================
+const stems = [
+  {name:"Jia 甲", element:"Wood", polarity:"Yang"},{name:"Yi 乙", element:"Wood", polarity:"Yin"},
+  {name:"Bing 丙", element:"Fire", polarity:"Yang"},{name:"Ding 丁", element:"Fire", polarity:"Yin"},
+  {name:"Wu 戊", element:"Earth", polarity:"Yang"},{name:"Ji 己", element:"Earth", polarity:"Yin"},
+  {name:"Geng 庚", element:"Metal", polarity:"Yang"},{name:"Xin 辛", element:"Metal", polarity:"Yin"},
+  {name:"Ren 壬", element:"Water", polarity:"Yang"},{name:"Gui 癸", element:"Water", polarity:"Yin"}
+];
+const branchAnimals = ["Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig"];
+const lunarNewYear = {
+  1930:[1,30],1931:[2,17],1932:[2,6],1933:[1,26],1934:[2,14],1935:[2,4],1936:[1,24],1937:[2,11],1938:[1,31],1939:[2,19],
+  1940:[2,8],1941:[1,27],1942:[2,15],1943:[2,5],1944:[1,25],1945:[2,13],1946:[2,2],1947:[1,22],1948:[2,10],1949:[1,29],
+  1950:[2,17],1951:[2,6],1952:[1,27],1953:[2,14],1954:[2,3],1955:[1,24],1956:[2,12],1957:[1,31],1958:[2,18],1959:[2,8],
+  1960:[1,28],1961:[2,15],1962:[2,5],1963:[1,25],1964:[2,13],1965:[2,2],1966:[1,21],1967:[2,9],1968:[1,30],1969:[2,17],
+  1970:[2,6],1971:[1,27],1972:[2,15],1973:[2,3],1974:[1,23],1975:[2,11],1976:[1,31],1977:[2,18],1978:[2,7],1979:[1,28],
+  1980:[2,16],1981:[2,5],1982:[1,25],1983:[2,13],1984:[2,2],1985:[2,20],1986:[2,9],1987:[1,29],1988:[2,17],1989:[2,6],
+  1990:[1,27],1991:[2,15],1992:[2,4],1993:[1,23],1994:[2,10],1995:[1,31],1996:[2,19],1997:[2,7],1998:[1,28],1999:[2,16],
+  2000:[2,5],2001:[1,24],2002:[2,12],2003:[2,1],2004:[1,22],2005:[2,9],2006:[1,29],2007:[2,18],2008:[2,7],2009:[1,26],
+  2010:[2,14],2011:[2,3],2012:[1,23],2013:[2,10],2014:[1,31],2015:[2,19],2016:[2,8],2017:[1,28],2018:[2,16],2019:[2,5],
+  2020:[1,25],2021:[2,12],2022:[2,1],2023:[1,22],2024:[2,10],2025:[1,29],2026:[2,17],2027:[2,6],2028:[1,26],2029:[2,13],
+  2030:[2,3],2031:[1,23],2032:[2,11],2033:[1,31],2034:[2,19],2035:[2,8]
+};
+function getChineseYear(year, month, day){
+  const cny = lunarNewYear[year];
+  if(cny && (month < cny[0] || (month===cny[0] && day < cny[1]))) return year - 1;
+  return year;
+}
+function getChinese(year, month, day){
+  const effYear = getChineseYear(year, month, day);
+  const stemIdx = ((effYear - 4) % 10 + 10) % 10;
+  const branchIdx = ((effYear - 4) % 12 + 12) % 12;
+  return { animal: branchAnimals[branchIdx], stem: stems[stemIdx], effYear };
+}
+function getHourAnimal(hh, mm){
+  const totalMin = hh*60+mm;
+  const shifted = (totalMin + 60) % (24*60);
+  const idx = Math.floor(shifted / 120);
+  return branchAnimals[idx];
+}
+
+// ================= VEDIC (approximate) =================
+const vedicSigns = [
+  {name:"Mesha (Aries)", ruler:"Mars"},{name:"Vrishabha (Taurus)", ruler:"Venus"},
+  {name:"Mithuna (Gemini)", ruler:"Mercury"},{name:"Karka (Cancer)", ruler:"Moon"},
+  {name:"Simha (Leo)", ruler:"Sun"},{name:"Kanya (Virgo)", ruler:"Mercury"},
+  {name:"Tula (Libra)", ruler:"Venus"},{name:"Vrishchika (Scorpio)", ruler:"Mars"},
+  {name:"Dhanu (Sagittarius)", ruler:"Jupiter"},{name:"Makara (Capricorn)", ruler:"Saturn"},
+  {name:"Kumbha (Aquarius)", ruler:"Saturn"},{name:"Meena (Pisces)", ruler:"Jupiter"}
+];
+function tropicalSunLongitude(date){
+  const year = date.getFullYear();
+  const start = new Date(Date.UTC(year,2,21));
+  let diffDays = (date - start) / (1000*60*60*24);
+  if(diffDays < 0) diffDays += 365.25;
+  return (diffDays/365.25)*360 % 360;
+}
+function lahiriAyanamsa(year){ return 23.85 + (year-2000)*0.01397; }
+function getVedicSign(date){
+  const trop = tropicalSunLongitude(date);
+  const ayan = lahiriAyanamsa(date.getFullYear());
+  let sidereal = ((trop - ayan) % 360 + 360) % 360;
+  return {sign: vedicSigns[Math.floor(sidereal/30)], ayanamsa: ayan};
+}
+
+// ================= MAYA (Tzolk'in) — GMT correlation, reused from Sarah's tool =================
+const DAY_SIGNS = [
+  {name:"Imix", title:"Crocodile", meaning:"Origin, nurture, the fertile unconscious."},
+  {name:"Ik", title:"Wind / Breath", meaning:"Life-force, communication, inspiration."},
+  {name:"Akbal", title:"Night / House", meaning:"Introspection, the subconscious, hidden foundations."},
+  {name:"Kan", title:"Seed / Lizard", meaning:"Germination, desire, ripening potential."},
+  {name:"Chicchan", title:"Serpent", meaning:"Raw vital force, instinct, bodily wisdom."},
+  {name:"Cimi", title:"Death", meaning:"Threshold, transformation, release."},
+  {name:"Manik", title:"Deer / Hand", meaning:"Skillful accomplishment, healing touch."},
+  {name:"Lamat", title:"Star / Venus", meaning:"Harmony, art, abundance."},
+  {name:"Muluc", title:"Water / Jade", meaning:"Feeling, purification, sacred offering."},
+  {name:"Oc", title:"Dog", meaning:"Loyalty, guidance, faithful companionship."},
+  {name:"Chuen", title:"Monkey", meaning:"Creativity, craft, play."},
+  {name:"Eb", title:"Grass / Road", meaning:"Humility, the ordinary path, community."},
+  {name:"Ben", title:"Reed / Cane", meaning:"Authority, the pillar of the home."},
+  {name:"Ix", title:"Jaguar", meaning:"Intuition, hidden knowledge, quiet strength."},
+  {name:"Men", title:"Eagle", meaning:"Vision, ambition, elevated perspective."},
+  {name:"Cib", title:"Wisdom / Owl", meaning:"Ancestral memory, honest reckoning."},
+  {name:"Caban", title:"Earth / Earthquake", meaning:"Synchronicity, intelligence, movement."},
+  {name:"Etznab", title:"Flint / Mirror", meaning:"Truth-telling, clarity through confrontation."},
+  {name:"Cauac", title:"Storm", meaning:"Transformation through crisis, renewal."},
+  {name:"Ahau", title:"Lord / Sun", meaning:"Fulfillment, culmination, realized consciousness."}
+];
+const HAAB_MONTHS = ["Pop","Wo","Sip","Sotz","Sek","Xul","Yaxkin","Mol","Chen","Yax","Sak","Keh","Mak","Kankin","Muwan","Pax","Kayab","Kumku","Wayeb"];
+function gregorianToJDN(year, month, day){
+  const a = Math.floor((14 - month) / 12);
+  const y = year + 4800 - a;
+  const m = month + 12 * a - 3;
+  return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+}
+const GMT_CORRELATION = 584283;
+function computeMayaDate(year, month, day){
+  const jdn = gregorianToJDN(year, month, day);
+  const d = jdn - GMT_CORRELATION;
+  let rem = d;
+  const baktun = Math.floor(rem / 144000); rem = ((rem % 144000) + 144000) % 144000;
+  const katun = Math.floor(rem / 7200); rem = rem % 7200;
+  const tun = Math.floor(rem / 360); rem = rem % 360;
+  const uinal = Math.floor(rem / 20);
+  const kin = rem % 20;
+  let tzIndex = ((d + 19) % 20); if (tzIndex < 0) tzIndex += 20;
+  let haabDay = ((d + 348) % 365); if (haabDay < 0) haabDay += 365;
+  let haabMonthIndex, haabDayInMonth;
+  if (haabDay < 360){ haabMonthIndex = Math.floor(haabDay / 20); haabDayInMonth = haabDay % 20; }
+  else { haabMonthIndex = 18; haabDayInMonth = haabDay - 360; }
+  return {
+    longCount: {baktun, katun, tun, uinal, kin},
+    tzolkin: {sign: DAY_SIGNS[tzIndex]},
+    haab: {day: haabDayInMonth, month: HAAB_MONTHS[haabMonthIndex]}
+  };
+}
+
+// ================= CELTIC TREE (OGHAM) =================
+const treeSigns = [
+  {name:"Birch (Beith)", start:[12,24], end:[1,20], meaning:"New beginnings, purification, the pioneer."},
+  {name:"Rowan (Luis)", start:[1,21], end:[2,17], meaning:"Protection and vision."},
+  {name:"Ash (Nion)", start:[2,18], end:[3,17], meaning:"Connection between worlds, inner and outer vision."},
+  {name:"Alder (Fearn)", start:[3,18], end:[4,14], meaning:"Guidance, resilience, the bridge."},
+  {name:"Willow (Saille)", start:[4,15], end:[5,12], meaning:"Intuition, the moon, flexibility."},
+  {name:"Hawthorn (Uath)", start:[5,13], end:[6,9], meaning:"Duality, protection of the threshold."},
+  {name:"Oak (Duir)", start:[6,10], end:[7,7], meaning:"Strength, sovereignty, endurance."},
+  {name:"Holly (Tinne)", start:[7,8], end:[8,4], meaning:"Challenge, mastery, the warrior's discipline."},
+  {name:"Hazel (Coll)", start:[8,5], end:[9,1], meaning:"Wisdom, intuition, the salmon of knowledge."},
+  {name:"Vine (Muin)", start:[9,2], end:[9,29], meaning:"Prophecy, introspection, harvest of inner truth."},
+  {name:"Ivy (Gort)", start:[9,30], end:[10,27], meaning:"Tenacity, growth through connection."},
+  {name:"Reed (Ngetal)", start:[10,28], end:[11,24], meaning:"Direct action, family, harvest's end."},
+  {name:"Elder (Ruis)", start:[11,25], end:[12,23], meaning:"Endings, transformation, the threshold."}
+];
+function getTreeSign(month, day){
+  for(const t of treeSigns){
+    const [sm,sd] = t.start, [em,ed] = t.end;
+    if(sm <= em){
+      if((month===sm && day>=sd) || (month===em && day<=ed) || (month>sm && month<em)) return t;
+    } else {
+      if((month===sm && day>=sd) || (month===em && day<=ed)) return t;
+    }
+  }
+  return treeSigns[0];
+}
+
+// ================= "NATIVE AMERICAN" ZODIAC =================
+const nazSigns = [
+  {name:"Otter", start:[1,20], end:[2,18], meaning:"Playfulness, independence, humanitarian instinct."},
+  {name:"Wolf", start:[2,19], end:[3,20], meaning:"Intuition, emotional depth, loyalty."},
+  {name:"Falcon", start:[3,21], end:[4,19], meaning:"Leadership, initiative, directness."},
+  {name:"Beaver", start:[4,20], end:[5,20], meaning:"Steady building, practicality, persistence."},
+  {name:"Deer", start:[5,21], end:[6,20], meaning:"Gentleness, adaptability, sociability."},
+  {name:"Woodpecker", start:[6,21], end:[7,21], meaning:"Sensitivity, protectiveness, attunement."},
+  {name:"Salmon", start:[7,22], end:[8,21], meaning:"Determination, persistence against the current."},
+  {name:"Bear", start:[8,22], end:[9,21], meaning:"Introspection, practicality, groundedness."},
+  {name:"Raven", start:[9,22], end:[10,22], meaning:"Balance, communication, mediation."},
+  {name:"Snake", start:[10,23], end:[11,22], meaning:"Transformation, intensity, hidden depth."},
+  {name:"Owl", start:[11,23], end:[12,21], meaning:"Wisdom, wide perspective, restlessness."},
+  {name:"Goose", start:[12,22], end:[1,19], meaning:"Ambition, tradition, long-term discipline."}
+];
+function getNazSign(month, day){
+  for(const s of nazSigns){
+    const [sm,sd] = s.start, [em,ed] = s.end;
+    if(sm <= em){
+      if((month===sm && day>=sd) || (month===em && day<=ed) || (month>sm && month<em)) return s;
+    } else {
+      if((month===sm && day>=sd) || (month===em && day<=ed)) return s;
+    }
+  }
+  return nazSigns[0];
+}
+
+// ================= EGYPTIAN ZODIAC (approximate, cross-source inconsistent) =================
+const egyptSigns = [
+  {name:"Amun-Ra", start:[12,22], end:[1,19], meaning:"Vitality, authority, the solar life-force."},
+  {name:"Horus", start:[1,20], end:[2,18], meaning:"Leadership, vision, kingship."},
+  {name:"Anubis", start:[2,19], end:[3,17], meaning:"Guardianship, thresholds, transformation."},
+  {name:"Set (Seth)", start:[3,18], end:[4,17], meaning:"Disruption, strength, necessary chaos."},
+  {name:"Geb", start:[4,18], end:[5,17], meaning:"Groundedness, patience, material stability."},
+  {name:"Nephthys", start:[5,18], end:[6,17], meaning:"Mourning, hidden truth, compassionate presence."},
+  {name:"Sekhmet", start:[6,18], end:[7,17], meaning:"Ferocity, healing power, righteous strength."},
+  {name:"Isis", start:[7,18], end:[8,17], meaning:"Magic, devotion, protection."},
+  {name:"Mut", start:[8,18], end:[9,17], meaning:"Nurturing, maternal strength."},
+  {name:"Bastet", start:[9,18], end:[10,17], meaning:"Protection, sensuality, independence."},
+  {name:"Osiris", start:[10,18], end:[11,17], meaning:"Resurrection, transformation, authority."},
+  {name:"Thoth", start:[11,18], end:[12,21], meaning:"Wisdom, writing, intellect."}
+];
+function getEgyptSign(month, day){
+  for(const s of egyptSigns){
+    const [sm,sd] = s.start, [em,ed] = s.end;
+    if(sm <= em){
+      if((month===sm && day>=sd) || (month===em && day<=ed) || (month>sm && month<em)) return s;
+    } else {
+      if((month===sm && day>=sd) || (month===em && day<=ed)) return s;
+    }
+  }
+  return egyptSigns[0];
+}
+
+// ================= NUMEROLOGY (Pythagorean) =================
+const pyth = {
+  A:1,B:2,C:3,D:4,E:5,F:8,G:3,H:5,I:1,J:1,K:2,L:3,M:4,
+  N:5,O:7,P:8,Q:1,R:2,S:3,T:4,U:6,V:6,W:6,X:5,Y:1,Z:7
+};
+const lpMeanings = {
+  1:"The Leader — independence, originality, initiative. Called to forge new paths.",
+  2:"The Mediator — cooperation, sensitivity, diplomacy. Called to bring balance.",
+  3:"The Creator — self-expression, communication, joy. Called to inspire.",
+  4:"The Builder — discipline, order, practicality. Called to create lasting foundations.",
+  5:"The Freedom-Seeker — change, adaptability, adventure. Called to expand.",
+  6:"The Nurturer — responsibility, love, community. Called to serve and protect.",
+  7:"The Seeker — introspection, analysis, spiritual depth. Called to understand.",
+  8:"The Achiever — ambition, authority, material mastery. Called to lead and build power.",
+  9:"The Humanitarian — compassion, completion, global awareness. Called to give.",
+  11:"The Illuminator (Master 11) — intuition, spiritual insight, inspiration. A high-voltage path.",
+  22:"The Master Builder (Master 22) — vision at scale, practical idealism. The rarest path.",
+  33:"The Master Teacher (Master 33) — selfless devotion, healing through love."
+};
+function reduceNum(n){ while(n>9 && n!==11 && n!==22 && n!==33){ let s=0; String(n).split('').forEach(d=>s+=+d); n=s; } return n; }
+function letterValue(ch){ return pyth[ch.toUpperCase()] || 0; }
+function isVowel(ch){ return 'AEIOU'.includes(ch.toUpperCase()); }
+function calcNumerology(name, dob){
+  // Life Path from DOB
+  const [y,m,d] = dob.split('-').map(Number);
+  const lpRaw = (String(y).split('').reduce((a,c)=>a+ +c,0))
+              + (String(m).split('').reduce((a,c)=>a+ +c,0))
+              + (String(d).split('').reduce((a,c)=>a+ +c,0));
+  const lp = reduceNum(lpRaw);
+
+  // Letters only
+  const letters = name.toUpperCase().replace(/[^A-Z]/g,'').split('');
+  const expr = reduceNum(letters.reduce((a,c)=>a+letterValue(c),0));
+  const soul  = reduceNum(letters.filter(c=>isVowel(c)).reduce((a,c)=>a+letterValue(c),0));
+  const pers  = reduceNum(letters.filter(c=>!isVowel(c)).reduce((a,c)=>a+letterValue(c),0));
+  return {lp, expr, soul, pers};
+}
+
+// ================= BLOOD TYPE (Ketsueki-gata) =================
+const bloodTypes = {
+  A:{
+    headline:"Type A — The Perfectionist",
+    traits:"Organized, responsible, detail-oriented, loyal, reserved",
+    strengths:"Reliable, hardworking, sensitive to others, strong sense of duty",
+    challenges:"Prone to anxiety, overly self-critical, difficulty relaxing or delegating",
+    compat:"Best with A and AB",
+    desc:"Type A people bring order and conscientiousness. They care deeply about doing things right and tend to internalize stress. In Japanese culture, they are seen as the planners and peacekeepers."
+  },
+  B:{
+    headline:"Type B — The Individualist",
+    traits:"Creative, passionate, selfish streak, curious, unconventional",
+    strengths:"Independent thinker, enthusiastic, deeply focused when engaged",
+    challenges:"Seen as selfish or inconsiderate; can be impatient and unpredictable",
+    compat:"Best with B and AB",
+    desc:"Type B people follow their own path with intensity. They resist conformity and bring creative energy wherever they go. Their challenge is balancing their inner world with the needs of others."
+  },
+  AB:{
+    headline:"Type AB — The Rational",
+    traits:"Cool, controlled, empathetic, multi-faceted, indecisive",
+    strengths:"Can see multiple perspectives, diplomatic, thoughtful, good mediators",
+    challenges:"Can seem aloof or two-faced; may struggle to commit or please everyone",
+    compat:"Compatible with all types",
+    desc:"The rarest type — AB people carry a dual nature. They can shift between introversion and social ease fluidly, making them hard to categorize and often misunderstood. They feel deeply even when they don't show it."
+  },
+  O:{
+    headline:"Type O — The Warrior",
+    traits:"Confident, natural leader, self-determined, insensitive at times",
+    strengths:"Resilient, visionary, energetic, decisive, generous",
+    challenges:"Can be arrogant or inflexible; dislikes being controlled",
+    compat:"Best with O and AB",
+    desc:"Type O is the original — the type associated with leadership, vitality, and the instinct to survive and thrive. They bring fire and direction, and at their best they lift everyone around them."
+  }
+};
+
+// ================= WIRE UP =================
+
+document.getElementById('form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const dateVal = document.getElementById('bdate').value;
+  const timeVal = document.getElementById('btime').value;
+  if(!dateVal) return;
+  const [y,m,d] = dateVal.split('-').map(Number);
+  const dateObj = new Date(Date.UTC(y, m-1, d, 12));
+
+  // Western
+  const w = getWesternSign(m,d);
+  document.getElementById('w-sign').textContent = w.name;
+  document.getElementById('w-elem').textContent = w.element;
+  document.getElementById('w-ruler').textContent = w.ruler;
+  document.getElementById('w-range').textContent = fmtRange(w.start[0],w.start[1],w.end[0],w.end[1]);
+
+  // Chinese
+  const c = getChinese(y,m,d);
+  document.getElementById('c-sign').textContent = `${c.stem.name.split(' ')[0]} ${c.animal}`;
+  document.getElementById('c-elem').textContent = `${c.stem.element} · ${c.stem.polarity}`;
+  document.getElementById('c-stembranch').textContent = `Year of the ${c.animal} (${c.effYear})`;
+  if(timeVal){
+    const [hh,mm] = timeVal.split(':').map(Number);
+    document.getElementById('c-hour').textContent = `${getHourAnimal(hh,mm)} hour (${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')})`;
+  } else {
+    document.getElementById('c-hour').textContent = "add a birth time to see this";
+  }
+
+  // Vedic
+  const v = getVedicSign(dateObj);
+  document.getElementById('v-sign').textContent = v.sign.name;
+  document.getElementById('v-ruler').textContent = v.sign.ruler;
+  document.getElementById('v-offset').textContent = `≈ ${v.ayanamsa.toFixed(2)}° (Lahiri, approximate)`;
+  document.getElementById('v-compare').textContent = w.name;
+
+  // Maya
+  const md = computeMayaDate(y,m,d);
+  document.getElementById('m-sign').textContent = `${md.tzolkin.sign.name} — ${md.tzolkin.sign.title}`;
+  document.getElementById('m-meaning').textContent = md.tzolkin.sign.meaning;
+  document.getElementById('m-haab').textContent = `${md.haab.day} ${md.haab.month}`;
+  document.getElementById('m-longcount').textContent = `${md.longCount.baktun}.${md.longCount.katun}.${md.longCount.tun}.${md.longCount.uinal}.${md.longCount.kin}`;
+
+  // Ogham
+  const o = getTreeSign(m,d);
+  document.getElementById('o-sign').textContent = o.name;
+  document.getElementById('o-meaning').textContent = o.meaning;
+  document.getElementById('o-range').textContent = fmtRange(o.start[0],o.start[1],o.end[0],o.end[1]);
+
+  // Native American zodiac
+  const n = getNazSign(m,d);
+  document.getElementById('n-sign').textContent = n.name;
+  document.getElementById('n-meaning').textContent = n.meaning;
+  document.getElementById('n-range').textContent = fmtRange(n.start[0],n.start[1],n.end[0],n.end[1]);
+
+  // Egyptian zodiac
+  const eg = getEgyptSign(m,d);
+  document.getElementById('e-sign').textContent = eg.name;
+  document.getElementById('e-meaning').textContent = eg.meaning;
+  document.getElementById('e-range').textContent = fmtRange(eg.start[0],eg.start[1],eg.end[0],eg.end[1]) + " (approx., varies by source)";
+
+  // Numerology
+  const nameVal = document.getElementById('bname').value.trim();
+  if(nameVal){
+    const num = calcNumerology(nameVal, dateVal);
+    document.getElementById('num-lifepath').textContent = `Life Path ${num.lp}`;
+    document.getElementById('num-lp-name').textContent = lpMeanings[num.lp] || `Number ${num.lp}`;
+    document.getElementById('num-expr').textContent = num.expr;
+    document.getElementById('num-soul').textContent = num.soul;
+    document.getElementById('num-pers').textContent = num.pers;
+    document.getElementById('num-desc').textContent = '';
+  } else {
+    document.getElementById('num-lifepath').textContent = 'Enter your full birth name above';
+    document.getElementById('num-lp-name').textContent = 'Life Path + Expression + Soul Urge + Personality require a name.';
+    document.getElementById('num-expr').textContent = '—';
+    document.getElementById('num-soul').textContent = '—';
+    document.getElementById('num-pers').textContent = '—';
+  }
+
+  // Blood Type
+  const bt = document.getElementById('bloodtype').value;
+  if(bt && bloodTypes[bt]){
+    const bd = bloodTypes[bt];
+    document.getElementById('bt-headline').textContent = bd.headline;
+    document.getElementById('bt-traits').textContent = bd.traits;
+    document.getElementById('bt-strengths').textContent = bd.strengths;
+    document.getElementById('bt-challenges').textContent = bd.challenges;
+    document.getElementById('bt-compat').textContent = bd.compat;
+    document.getElementById('bt-desc').textContent = bd.desc;
+  } else {
+    document.getElementById('bt-headline').textContent = 'Select your blood type above';
+    document.getElementById('bt-traits').textContent = '—';
+    document.getElementById('bt-strengths').textContent = '—';
+    document.getElementById('bt-challenges').textContent = '—';
+    document.getElementById('bt-compat').textContent = '—';
+    document.getElementById('bt-desc').textContent = '';
+  }
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+// ── DETAIL ENGINE ────────────────────────────────────────────────────────────
+function buildDetailBody(data){
+  if(!data||!data.sections) return "<p style='opacity:.5;font-style:italic;'>Sign: [" + (data && data._key ? data._key : "unknown") + "] — write-up loading.</p>";
+  var html="";
+  data.sections.forEach(function(s){
+    html+="<div class='detail-section'><h3>"+s.title+"</h3>";
+    if(s.text) s.text.forEach(function(t){html+="<p>"+t+"</p>";});
+    if(s.bullets){html+="<ul>";s.bullets.forEach(function(b){html+="<li>"+b+"</li>";});html+="</ul>";}
+    if(s.pills){html+="<div class='detail-traits'>";s.pills.forEach(function(p){html+="<span class='trait-pill' style='color:var(--gold);'>"+p+"</span>";});html+="</div>";}
+    html+="</div>";
+  });
+  return html;
+}
+
+var WESTERN_DETAIL={
+"Aries ♈":{sections:[
+  {title:"The Sign",text:["Aries is the first sign of the tropical zodiac, beginning at the spring equinox. It is the sign of initiation, the impulse that starts the wheel turning. Every cycle begins here."]},
+  {title:"Core Nature",pills:["Cardinal Fire","Mars-ruled","Independent","Pioneering","Courageous","Impulsive"]},
+  {title:"Strengths",bullets:["Natural leader who acts while others deliberate","Fearless in new beginnings","Brings raw energy and enthusiasm","Honest to the point of bluntness"]},
+  {title:"Challenges",bullets:["Moves so fast that follow-through suffers","Impatience with slower processes","Anger flares quickly, though it passes quickly","Can mistake action for progress"]},
+  {title:"In the Haligric Frame",text:["Aries carries the spark of the Tetralty into form. The impulse to Do arises here before Thinking or Speaking have caught up. The work is learning to let the other three dimensions follow."]}
+]},
+"Taurus ♉":{sections:[
+  {title:"The Sign",text:["Taurus is the earth that receives the Aries spark and gives it form. Where Aries initiates, Taurus consolidates. This is the sign of the body, of beauty, of what endures."]},
+  {title:"Core Nature",pills:["Fixed Earth","Venus-ruled","Sensual","Steadfast","Patient","Stubborn"]},
+  {title:"Strengths",bullets:["Extraordinary patience and endurance","Deep loyalty once committed","Talent for beauty and material creation","Grounding presence for those around them"]},
+  {title:"Challenges",bullets:["Resistance to change can calcify into rigidity","Possessiveness of people or ideas","Slow to anger but formidable when pushed","Comfort can become complacency"]},
+  {title:"In the Haligric Frame",text:["Taurus is where intention becomes substance. The body as sacred ground, the senses as instruments of perception."]}
+]},
+"Gemini ♊":{sections:[
+  {title:"The Sign",text:["Gemini is the sign of the mind in motion. Curious, adaptable, always reaching for the next connection. It is mutable air: ideas moving through space, linking what seemed unrelated."]},
+  {title:"Core Nature",pills:["Mutable Air","Mercury-ruled","Curious","Witty","Versatile","Scattered"]},
+  {title:"Strengths",bullets:["Exceptional communicator","Learns quickly and retains widely","Sees connections others miss","Brings lightness and humor to heavy situations"]},
+  {title:"Challenges",bullets:["Difficulty committing to one path","Can be superficial when depth is needed","Nervous energy that becomes anxiety","May say what is expected rather than what is true"]},
+  {title:"In the Haligric Frame",text:["Gemini occupies the Say dimension of the Tetralty. The dual nature is not a flaw but a reminder that all truth has more than one face."]}
+]},
+"Cancer ♋":{sections:[
+  {title:"The Sign",text:["Cancer is the sign of memory, home, and the emotional body. Ruled by the Moon, it absorbs the emotional atmosphere of any room it enters."]},
+  {title:"Core Nature",pills:["Cardinal Water","Moon-ruled","Nurturing","Intuitive","Protective","Moody"]},
+  {title:"Strengths",bullets:["Extraordinary empathy and emotional intelligence","Creates genuine safety for others","Powerful intuition","Deep loyalty to those they love"]},
+  {title:"Challenges",bullets:["Mood follows the lunar cycle and can be unpredictable","Tendency to withdraw when hurt","Holds emotional memories long after they have passed","May become enmeshed in others emotions"]},
+  {title:"In the Haligric Frame",text:["Cancer holds the ancestral memory. Working with Cancer energy means honoring emotion without being governed by it."]}
+]},
+"Leo ♌":{sections:[
+  {title:"The Sign",text:["Leo is the fixed fire sign. Where Aries ignites, Leo sustains. This is the sign of creative power, of the self expressed boldly and unapologetically."]},
+  {title:"Core Nature",pills:["Fixed Fire","Sun-ruled","Generous","Magnetic","Proud","Theatrical"]},
+  {title:"Strengths",bullets:["Natural warmth that draws others in","Creative power and genuine artistic vision","Loyal and generous to those in their circle","Leads through inspiration rather than force"]},
+  {title:"Challenges",bullets:["Ego can overshadow genuine connection","Needs recognition and struggles when unacknowledged","Drama as a default mode","Can conflate self with creation"]},
+  {title:"In the Haligric Frame",text:["Leo is where the soul remembers its own light. The practice is learning that true radiance illuminates rather than outshines."]}
+]},
+"Virgo ♍":{sections:[
+  {title:"The Sign",text:["Virgo is the mutable earth sign. The mind applied to matter, analysis in service of improvement. This is the sign of craft, of discernment, of the sacred in the detail."]},
+  {title:"Core Nature",pills:["Mutable Earth","Mercury-ruled","Analytical","Precise","Helpful","Critical"]},
+  {title:"Strengths",bullets:["Extraordinary precision and craft","Genuinely in service without needing recognition","Sees what is not working and knows how to fix it","Reliable in ways that go unnoticed until they are gone"]},
+  {title:"Challenges",bullets:["Perfectionism that prevents completion","Self-criticism as a default internal voice","The helper who forgets their own needs","Analysis can become paralysis"]},
+  {title:"In the Haligric Frame",text:["Virgo lives in the space between intention and manifestation. The careful hand that translates vision into form."]}
+]},
+"Libra ♎":{sections:[
+  {title:"The Sign",text:["Libra is the sign of relationship, beauty, and justice. It is the first sign that defines itself in relation to another. Where do I end and you begin?"]},
+  {title:"Core Nature",pills:["Cardinal Air","Venus-ruled","Diplomatic","Aesthetic","Just","Indecisive"]},
+  {title:"Strengths",bullets:["Natural mediator who holds multiple perspectives","Deep appreciation for beauty in all forms","Genuine commitment to fairness","Creates harmony in groups"]},
+  {title:"Challenges",bullets:["Indecision because every choice has a visible cost","People-pleasing at the expense of authenticity","Avoidance of conflict even when necessary","Can lose self in relationship"]},
+  {title:"In the Haligric Frame",text:["Libra points to the interconnectedness at the heart of Haligricity. The practice is maintaining the Varessence of self while in genuine relation."]}
+]},
+"Scorpio ♏":{sections:[
+  {title:"The Sign",text:["Scorpio is the fixed water sign. Water that does not move on the surface but runs very deep. This is the sign of transformation, of what lies beneath, of death and regeneration."]},
+  {title:"Core Nature",pills:["Fixed Water","Mars/Pluto-ruled","Intense","Perceptive","Magnetic","Guarded"]},
+  {title:"Strengths",bullets:["Sees what is hidden in others and situations","Extraordinary resilience","Depth of feeling and commitment that is rare","Transformative presence"]},
+  {title:"Challenges",bullets:["Suspicion and guardedness that isolates","Can hold a wound indefinitely","Power struggles when trust breaks","All or nothing thinking"]},
+  {title:"In the Haligric Frame",text:["Scorpio holds the death that precedes regeneration. Working with Scorpio energy is learning to release without losing what was real."]}
+]},
+"Sagittarius ♐":{sections:[
+  {title:"The Sign",text:["Sagittarius is the mutable fire sign. The archer aiming at the horizon. Philosophy, travel, truth-seeking, and the expansion of understanding."]},
+  {title:"Core Nature",pills:["Mutable Fire","Jupiter-ruled","Philosophical","Adventurous","Honest","Restless"]},
+  {title:"Strengths",bullets:["Genuine love of truth wherever it leads","Expansive vision and optimism","Brings enthusiasm that opens doors","Cross-cultural curiosity and understanding"]},
+  {title:"Challenges",bullets:["Freedom seeking can prevent actual commitment","Bluntness without tact","Can mistake restlessness for wisdom","Too many arrows, not enough follow-through"]},
+  {title:"In the Haligric Frame",text:["Sagittarius carries the seeker archetype. The synthesis at the heart of Haligricity is deeply Sagittarian."]}
+]},
+"Capricorn ♑":{sections:[
+  {title:"The Sign",text:["Capricorn is the cardinal earth sign. Ambition, structure, mastery, the long view. What is worth building that will last beyond my lifetime?"]},
+  {title:"Core Nature",pills:["Cardinal Earth","Saturn-ruled","Disciplined","Ambitious","Responsible","Reserved"]},
+  {title:"Strengths",bullets:["Extraordinary discipline and follow-through","Takes responsibility that others avoid","Long-term strategic vision","Builds things that endure"]},
+  {title:"Challenges",bullets:["Can mistake achievement for worth","Emotional suppression in the name of strength","Work becomes identity, rest becomes guilt","Difficulty asking for help"]},
+  {title:"In the Haligric Frame",text:["Capricorn holds the mastery dimension. The Haligric practice is bringing the same discipline to the inner life as Capricorn brings to the outer."]}
+]},
+"Aquarius ♒":{sections:[
+  {title:"The Sign",text:["Aquarius is the fixed air sign. The humanitarian, the innovator, the one who sees the future and cannot understand why everyone else cannot see it yet."]},
+  {title:"Core Nature",pills:["Fixed Air","Saturn/Uranus-ruled","Visionary","Independent","Humanitarian","Detached"]},
+  {title:"Strengths",bullets:["Genuine visionary capacity","Commitment to collective wellbeing","Independence of thought that resists groupthink","Brings the future into the present"]},
+  {title:"Challenges",bullets:["Emotional detachment that reads as coldness","Individualism that paradoxically isolates","Can love humanity and struggle with individual humans","Rigidity of vision"]},
+  {title:"In the Haligric Frame",text:["Aquarius carries the frequency of the morphic field. The work is staying connected while holding the vision."]}
+]},
+"Pisces ♓":{sections:[
+  {title:"The Sign",text:["Pisces is the final sign. The place where everything dissolves back into the ocean before the next Aries spark begins the cycle again."]},
+  {title:"Core Nature",pills:["Mutable Water","Jupiter/Neptune-ruled","Mystical","Compassionate","Fluid","Escapist"]},
+  {title:"Strengths",bullets:["Direct access to the imaginal realm","Compassion without limit","Artistic gifts that come from beyond the rational","Ability to dissolve ego boundaries and feel the whole"]},
+  {title:"Challenges",bullets:["Difficulty with the material world","Escapism when reality is painful","Boundary dissolution that leads to absorbing others pain","Can be self-deceiving"]},
+  {title:"In the Haligric Frame",text:["Pisces holds the truth at the center of Haligricity: all is self. The practice is holding form while touching the formless."]}
+]}
+};
+
+var CHINESE_DETAIL={
+"Rat":{sections:[{title:"The Animal",text:["The Rat is the first of the twelve, having won the legendary race through cleverness. It is the sign of resourcefulness, of making much from little."]},{title:"Core Nature",pills:["Yang Water","Quick-witted","Charming","Resourceful","Thrifty"]},{title:"Strengths",bullets:["Exceptional problem-solving","Magnetic charm","Adaptable in change","Sharp financial instinct"]},{title:"Challenges",bullets:["Overly calculating","Restless when stable","May hoard from scarcity mindset"]},{title:"In the Haligric Frame",text:["The Rat embodies the first movement. The lesson is generosity: what you hold diminishes, what you share multiplies."]}]},
+"Ox":{sections:[{title:"The Animal",text:["The Ox is the steady ground beneath every great project. Patient, reliable, and built for the long work."]},{title:"Core Nature",pills:["Yin Earth","Dependable","Methodical","Strong","Traditional"]},{title:"Strengths",bullets:["Exceptional endurance","Trustworthiness others build on","Capacity for sustained work","Quiet authority"]},{title:"Challenges",bullets:["Resistance to change","Difficulty expressing emotion","Carries burdens alone","Judges those who seem less disciplined"]},{title:"In the Haligric Frame",text:["The Ox holds the body dimension of the Tetralty. The work is learning that rest is not weakness."]}]},
+"Tiger":{sections:[{title:"The Animal",text:["The Tiger is the sign of power expressed. Magnetic, courageous, and impossible to ignore."]},{title:"Core Nature",pills:["Yang Wood","Courageous","Magnetic","Unpredictable","Protective"]},{title:"Strengths",bullets:["Natural courage in danger","Protective of those they love","Magnetic presence","Bold enough to try what others only imagine"]},{title:"Challenges",bullets:["Impulsiveness that creates conflict","Difficulty with unchosen authority","Emotional volatility","Can exhaust those around them"]},{title:"In the Haligric Frame",text:["The Tiger holds the fire of creative will. The practice is bringing that fire under conscious direction."]}]},
+"Rabbit":{sections:[{title:"The Animal",text:["The Rabbit is the most refined of the twelve. Elegant, perceptive, and diplomatically aware."]},{title:"Core Nature",pills:["Yin Wood","Gentle","Diplomatic","Artistic","Cautious"]},{title:"Strengths",bullets:["Exceptional diplomatic skill","Deep aesthetic sensibility","De-escalates conflict","Intuitive reading of others"]},{title:"Challenges",bullets:["Avoids necessary conflict","Oversensitivity that becomes reactivity","Can retreat into comfort","Difficulty trusting fully"]},{title:"In the Haligric Frame",text:["The Rabbit embodies the art of the gentle path. The work is knowing when gentleness serves and when it avoids."]}]},
+"Dragon":{sections:[{title:"The Animal",text:["The Dragon is the only mythological creature in the twelve and the most prized. It is the sign of divine charisma and the extraordinary."]},{title:"Core Nature",pills:["Yang Earth","Visionary","Charismatic","Powerful","Perfectionistic"]},{title:"Strengths",bullets:["Natural magnetism and authority","Vision beyond what others see","Energy that seems inexhaustible","Inspires at scale"]},{title:"Challenges",bullets:["Perfectionism turns into tyranny","Difficulty accepting help","Arrogance when unchecked","Can burn out those around them"]},{title:"In the Haligric Frame",text:["The Dragon holds the memory of divine origin. The practice is walking in full power without losing touch with humility."]}]},
+"Snake":{sections:[{title:"The Animal",text:["The Snake is the philosopher of the twelve. Wise, intuitive, secretive, and carrying the energy of transformation."]},{title:"Core Nature",pills:["Yin Fire","Intuitive","Wise","Mysterious","Possessive"]},{title:"Strengths",bullets:["Deep intuitive wisdom","Long-term strategic thinking","Magnetic and fascinating","Regenerative power"]},{title:"Challenges",bullets:["Secrecy that isolates","Possessiveness in relationship","Suspicious nature","Slow to forgive"]},{title:"In the Haligric Frame",text:["The Snake holds the initiatory path. The wisdom that comes only through experience and shedding what no longer serves."]}]},
+"Horse":{sections:[{title:"The Animal",text:["The Horse is the sign of freedom and movement. Horses are born running and spend their lives in motion."]},{title:"Core Nature",pills:["Yang Fire","Free-spirited","Energetic","Independent","Adventurous"]},{title:"Strengths",bullets:["Infectious enthusiasm and vitality","Quick thinking and adaptability","Natural performer","Generosity of spirit"]},{title:"Challenges",bullets:["Commitment is genuinely difficult","Abandons projects when excitement fades","Restlessness reads as unreliability","Resists structure even when helpful"]},{title:"In the Haligric Frame",text:["The Horse holds the pranic life force. The practice is channeling that energy into sustained creation."]}]},
+"Goat":{sections:[{title:"The Animal",text:["The Goat is the most artistic and emotionally sensitive of the twelve. Gentle, aesthetic, and in need of genuine security to flourish."]},{title:"Core Nature",pills:["Yin Earth","Creative","Gentle","Compassionate","Indecisive"]},{title:"Strengths",bullets:["Genuine artistic gifts","Deep empathy and kindness","Finds beauty in ordinary moments","Devoted in relationship"]},{title:"Challenges",bullets:["Difficulty with decisions under pressure","Can become dependent","Anxiety when security is uncertain","Can be manipulated through desire to please"]},{title:"In the Haligric Frame",text:["The Goat holds the creative heart. The practice is learning that sensitivity is a gift, not a liability."]}]},
+"Monkey":{sections:[{title:"The Animal",text:["The Monkey is the most inventive of the twelve. Brilliant, playful, adaptable, and capable of learning anything."]},{title:"Core Nature",pills:["Yang Metal","Clever","Inventive","Witty","Mischievous"]},{title:"Strengths",bullets:["Extraordinary versatility","Creative problem-solving from unexpected angles","Humor that disarms","Adaptable in any environment"]},{title:"Challenges",bullets:["Unreliable when something more interesting appears","May manipulate rather than ask directly","Restless once mastery is achieved","Difficulty with sustained emotional depth"]},{title:"In the Haligric Frame",text:["The Monkey holds the trickster energy. The practice is bringing inventiveness into service of genuine creation."]}]},
+"Rooster":{sections:[{title:"The Animal",text:["The Rooster is the sign of the dawn call. Precise, observant, and committed to the correct order of things."]},{title:"Core Nature",pills:["Yin Metal","Observant","Confident","Organized","Critical"]},{title:"Strengths",bullets:["Extraordinary attention to detail","Confidence that needs no external validation","Reliable and organized","Honest in uncomfortable but valuable ways"]},{title:"Challenges",bullets:["Perfectionism applied to others as criticism","Difficulty listening when certain","Can mistake noise for authority","Vanity"]},{title:"In the Haligric Frame",text:["The Rooster holds the practice of discernment. The work is learning that truth delivered with compassion lands differently."]}]},
+"Dog":{sections:[{title:"The Animal",text:["The Dog is the most loyal of the twelve. Faithful, honest, protective, and deeply concerned with justice."]},{title:"Core Nature",pills:["Yang Earth","Loyal","Honest","Protective","Anxious"]},{title:"Strengths",bullets:["Unwavering loyalty and reliability","Deep sense of justice","Protective of those they love","Honesty as a non-negotiable value"]},{title:"Challenges",bullets:["Anxiety becomes hypervigilance","Harsh judgment of those who fail their ethics","Difficulty trusting after betrayal","Pessimism as protection against disappointment"]},{title:"In the Haligric Frame",text:["The Dog holds the Haligric value of PHHC. The practice is extending that compassion to themselves."]}]},
+"Pig":{sections:[{title:"The Animal",text:["The Pig closes the twelve with abundance, generosity, and genuine goodwill. Carries a natural optimism that is sustaining."]},{title:"Core Nature",pills:["Yin Water","Generous","Sincere","Indulgent","Trusting"]},{title:"Strengths",bullets:["Genuine warmth without agenda","Deep capacity for enjoyment","Sincerity in relationship","Optimism that sustains others"]},{title:"Challenges",bullets:["Naivety that opens them to exploitation","Overindulgence in comfort","Difficulty setting limits with loved ones","May avoid unpleasant truths"]},{title:"In the Haligric Frame",text:["The Pig holds the abundance principle. The practice is maintaining discernment alongside that open heart."]}]}
+};
+
+var VEDIC_DETAIL={
+"Aries (Mesha)":{sections:[{title:"Vedic Reading",text:["In Jyotish, Mesha is ruled by Mars and represents the pure impulse of beginnings. It carries rajas in its most active expression."]},{title:"Core Qualities",pills:["Pitta dominant","Mars-ruled","Cardinal Fire","Courageous","Pioneering"]},{title:"Dharmic Path",text:["The soul in Mesha is working on the courage to initiate. To move before certainty arrives, to lead before the path is visible."]}]},
+"Taurus (Vrishabha)":{sections:[{title:"Vedic Reading",text:["Vrishabha is ruled by Venus and carries the quality of sustained pleasure. In Jyotish this is the rashi of accumulation and the senses refined through practice."]},{title:"Core Qualities",pills:["Kapha dominant","Venus-ruled","Fixed Earth","Sensual","Grounded"]},{title:"Dharmic Path",text:["The soul in Vrishabha is learning to hold without grasping. To appreciate beauty without attachment to its permanence."]}]},
+"Gemini (Mithuna)":{sections:[{title:"Vedic Reading",text:["Mithuna is ruled by Mercury and carries the dual nature of the twins. In Jyotish this is the rashi of communication and the bridge between worlds."]},{title:"Core Qualities",pills:["Vata dominant","Mercury-ruled","Mutable Air","Communicative","Dual-natured"]},{title:"Dharmic Path",text:["The soul in Mithuna is learning to synthesize. To hold multiplicity without losing coherence."]}]},
+"Cancer (Karka)":{sections:[{title:"Vedic Reading",text:["Karka is ruled by the Moon and is deeply connected to the ancestral field. In Jyotish this is the rashi of nurturing and emotional intelligence."]},{title:"Core Qualities",pills:["Kapha/Vata","Moon-ruled","Cardinal Water","Nurturing","Intuitive"]},{title:"Dharmic Path",text:["The soul in Karka is learning to care for others without losing itself."]}]},
+"Leo (Simha)":{sections:[{title:"Vedic Reading",text:["Simha is ruled by the Sun and carries the quality of sovereign self-expression. In Jyotish this is the atman recognizing its own light."]},{title:"Core Qualities",pills:["Pitta dominant","Sun-ruled","Fixed Fire","Regal","Creative"]},{title:"Dharmic Path",text:["The soul in Simha is learning the difference between the ego hunger for recognition and the soul natural radiance."]}]},
+"Virgo (Kanya)":{sections:[{title:"Vedic Reading",text:["Kanya is ruled by Mercury in its earth expression. In Jyotish this is the rashi of seva: sacred service."]},{title:"Core Qualities",pills:["Vata dominant","Mercury-ruled","Mutable Earth","Analytical","Service-oriented"]},{title:"Dharmic Path",text:["The soul in Kanya is learning that perfection is not the goal. Devotion is."]}]},
+"Libra (Tula)":{sections:[{title:"Vedic Reading",text:["Tula is ruled by Venus and carries the dharma of relationship. In Jyotish this is the rashi of dharmic partnership and aesthetic wisdom."]},{title:"Core Qualities",pills:["Vata dominant","Venus-ruled","Cardinal Air","Balanced","Relational"]},{title:"Dharmic Path",text:["The soul in Tula is learning that true balance comes from inner alignment, not external arrangement."]}]},
+"Scorpio (Vrishchika)":{sections:[{title:"Vedic Reading",text:["Vrishchika is co-ruled by Mars and Ketu, the planet of past karma. This is the rashi of the deepest transformation."]},{title:"Core Qualities",pills:["Kapha/Pitta","Mars/Ketu-ruled","Fixed Water","Transformative","Occult"]},{title:"Dharmic Path",text:["The soul in Vrishchika is working with the deepest layers of karma. The work is releasing what is not the self."]}]},
+"Sagittarius (Dhanu)":{sections:[{title:"Vedic Reading",text:["Dhanu is ruled by Jupiter and carries the expansive dharma of the teacher and philosopher. In Jyotish this is the rashi of guru energy."]},{title:"Core Qualities",pills:["Pitta dominant","Jupiter-ruled","Mutable Fire","Philosophical","Expansive"]},{title:"Dharmic Path",text:["The soul in Dhanu is learning to translate the vision and make higher truth accessible."]}]},
+"Capricorn (Makara)":{sections:[{title:"Vedic Reading",text:["Makara is ruled by Saturn and carries the dharma of mastery through sustained effort. Saturn here is in one of its strongest positions."]},{title:"Core Qualities",pills:["Vata dominant","Saturn-ruled","Cardinal Earth","Disciplined","Masterful"]},{title:"Dharmic Path",text:["The soul in Makara is learning that the structure built externally must eventually be matched by internal freedom."]}]},
+"Aquarius (Kumbha)":{sections:[{title:"Vedic Reading",text:["Kumbha is ruled by Saturn in its air expression. In Jyotish this is the rashi of the reformer and distributor of wisdom."]},{title:"Core Qualities",pills:["Vata dominant","Saturn-ruled","Fixed Air","Humanitarian","Visionary"]},{title:"Dharmic Path",text:["The soul in Kumbha is learning that the gift belongs to the collective. Insight received in solitude is completed only when shared."]}]},
+"Pisces (Meena)":{sections:[{title:"Vedic Reading",text:["Meena is ruled by Jupiter and is the rashi of moksha, liberation. It holds the last station before dissolution."]},{title:"Core Qualities",pills:["Kapha dominant","Jupiter-ruled","Mutable Water","Mystical","Compassionate"]},{title:"Dharmic Path",text:["The soul in Meena is learning to be in the world without being of it. To maintain form while touching the formless."]}]}
+};
+
+var MAYA_DETAIL={
+"Imix":{sections:[{title:"The Day Sign — Imix (Crocodile/Waterlily)",text:["Imix is the first of the twenty day signs, the primordial waters from which all creation emerges. It carries the energy of the deep unconscious — the source before form, the dream before waking."]},{title:"Core Energy",pills:["Primal force","Creative genesis","Nurturing","Protective","Unpredictable"]},{title:"Strengths",bullets:["Access to deep creative and psychic energy","Fiercely protective of those in their care","Visionary capacity that comes from beyond the rational","Ability to hold the entire field — they sense everything"]},{title:"Challenges",bullets:["Can be overwhelmed by what they sense","Difficulty translating inner vision into practical form","Protective energy can become controlling","Needs grounding in the physical world"]},{title:"In the Haligric Frame",text:["Imix holds the primordial waters of the Varessence — the feeling dimension before thought has organized it. The practice is learning to draw from that deep well without drowning in it."]}]},
+"Ik":{sections:[{title:"The Day Sign — Ik (Wind/Breath)",text:["Ik is the breath of life, the invisible force that animates. Wind cannot be held — it can only move through. Ik people carry this quality: present, communicative, and impossible to pin down."]},{title:"Core Energy",pills:["Communication","Spirit","Inspiration","Change","Freedom"]},{title:"Strengths",bullets:["Inspired communication — words that carry life force","Ability to bring fresh energy into stagnant situations","Spiritual sensitivity and connection to the invisible","Adaptability and range"]},{title:"Challenges",bullets:["Inconsistency that others experience as unreliability","Scattered energy across too many directions","Difficulty with sustained physical commitments","Can be swayed by the last wind that moved through"]},{title:"In the Haligric Frame",text:["Ik holds the Say dimension — the breath that becomes word, the invisible that becomes form. The practice is learning to direct that breath with conscious intent."]}]},
+"Akbal":{sections:[{title:"The Day Sign — Akbal (Night/Darkness)",text:["Akbal is the house of the night, the darkness before dawn, the underworld that holds the seeds of new day. This is not the darkness of fear but of gestation — where the unseen becomes ready to emerge."]},{title:"Core Energy",pills:["Mystery","Dreams","Inner knowing","Depth","Incubation"]},{title:"Strengths",bullets:["Deep access to the dream state and the unconscious","Ability to hold space in the dark without panic","Wisdom that comes from genuine interior dwelling","Strong intuition and psychic sensitivity"]},{title:"Challenges",bullets:["Can remain in the inner world past the time to emerge","Difficulty being understood by more surface-oriented people","May struggle with the demands of ordinary daylight life","Depression when disconnected from the inner world"]},{title:"In the Haligric Frame",text:["Akbal holds the restorative darkness — the Astral dimension of the daily cycle. The practice is honoring the dark as a necessary partner to the light."]}]},
+"Kan":{sections:[{title:"The Day Sign — Kan (Seed/Lizard)",text:["Kan is the seed in the earth — full of potential, waiting for the right conditions to burst into life. It carries the energy of abundance held in potential, of intelligence coiled and ready."]},{title:"Core Energy",pills:["Potential","Abundance","Intelligence","Sexuality","Ripening"]},{title:"Strengths",bullets:["Exceptional creative and generative capacity","Intelligence that is both practical and intuitive","Natural abundance consciousness — things grow around them","Sexual and creative vitality"]},{title:"Challenges",bullets:["Potential can remain potential if conditions feel wrong","May hoard or hold back when generosity would unlock more","Difficulty knowing when to plant versus when to wait","Can be seduced by comfort into staying dormant"]},{title:"In the Haligric Frame",text:["Kan holds the abundance principle — the understanding that what is seeded with intention and care multiplies. The practice is trusting the conditions enough to plant."]}]},
+"Chicchan":{sections:[{title:"The Day Sign — Chicchan (Serpent)",text:["Chicchan is the feathered serpent energy — the lightning in the blood, the kundalini force that rises through the body and connects earth to sky. This is one of the most powerful day signs."]},{title:"Core Energy",pills:["Life force","Power","Instinct","Transformation","Magnetism"]},{title:"Strengths",bullets:["Extraordinary vital force and personal magnetism","Instinctive knowing that bypasses the rational mind","Capacity for deep transformation — shed and be reborn","Natural command — others feel their power"]},{title:"Challenges",bullets:["Power without wisdom can become domination","Instinct can override discernment","The same force that heals can overwhelm","Fear of their own power"]},{title:"In the Haligric Frame",text:["Chicchan holds the Kundalini — the life force at the base of all practice. The Haligric work is learning to move that energy consciously through all four dimensions of the Tetralty."]}]},
+"Cimi":{sections:[{title:"The Day Sign — Cimi (Death/Transformation)",text:["Cimi does not mean physical death but the death of what must end for what must begin to have room. It is the most transformative of the signs — the great equalizer, the cleanser of what has served its purpose."]},{title:"Core Energy",pills:["Transformation","Release","Ancestral connection","Forgiveness","Completion"]},{title:"Strengths",bullets:["Capacity to let go when others cling","Connection to the ancestral field and those who have passed","Ability to help others through endings and transitions","Profound forgiveness — they understand impermanence"]},{title:"Challenges",bullets:["Can become preoccupied with endings and loss","Others may find their energy heavy","May resist new beginnings because endings feel safer","The gift of letting go can become avoidance of attachment"]},{title:"In the Haligric Frame",text:["Cimi holds the ancestor altar energy — the practice of honoring those who came before and releasing what they carried that no longer serves. The completion is the beginning."]}]},
+"Manik":{sections:[{title:"The Day Sign — Manik (Deer/Hand)",text:["Manik is the deer — the graceful one, the healer, the carrier of tools. The hand that reaches out to offer help. Manik people are natural healers and peace-weavers."]},{title:"Core Energy",pills:["Healing","Cooperation","Grace","Sacrifice","Tools"]},{title:"Strengths",bullets:["Natural healing gifts — physical, emotional, and spiritual","Ability to cooperate and bring groups into harmony","Grace under pressure — they move through difficulty elegantly","Mastery of tools and technique in service of others"]},{title:"Challenges",bullets:["Can sacrifice self in service of others","Difficulty receiving the help they give so readily","May suppress their own needs to maintain peace","Overextension in service"]},{title:"In the Haligric Frame",text:["Manik holds the healer archetype — the hand extended in genuine service. The PHHC values of Peace, Humility, Honesty, and Compassion live most naturally here."]}]},
+"Lamat":{sections:[{title:"The Day Sign — Lamat (Star/Rabbit)",text:["Lamat is the star seed — the point of light that contains everything. It is the sign of abundance, of harmony, of the game played with full commitment to joy. Lamat people bring light into whatever they touch."]},{title:"Core Energy",pills:["Abundance","Harmony","Playfulness","Artistic genius","Star energy"]},{title:"Strengths",bullets:["Extraordinary artistic and creative gifts","Natural abundance — prosperity follows genuine effort","Harmony in relationships and environments they inhabit","Playful wisdom — they teach through joy"]},{title:"Challenges",bullets:["Can scatter the star light in too many directions","Abundance consciousness can tip into excess","Difficulty with sustained focus on a single path","May avoid the depths that genuine mastery requires"]},{title:"In the Haligric Frame",text:["Lamat holds the frequency of the star — the point that radiates without depletion. The practice is learning that abundance flows through you rather than from you."]}]},
+"Muluc":{sections:[{title:"The Day Sign — Muluc (Water/Moon)",text:["Muluc is the offering to the rain gods — the drop that becomes the ocean. It carries the emotional body of the calendar, the lunar sensitivity, the deep feeling that cannot be reasoned away."]},{title:"Core Energy",pills:["Emotion","Intuition","Memory","Offering","Moon"]},{title:"Strengths",bullets:["Profound emotional intelligence and sensitivity","Memory that holds the long story — personal and collective","Ability to feel what is needed and offer it","Connection to the lunar and cyclical rhythms"]},{title:"Challenges",bullets:["Emotions can overwhelm the container","Memory can become attachment to pain","The offering can become sacrifice if not tended","Sensitivity to others can lead to absorption of their states"]},{title:"In the Haligric Frame",text:["Muluc holds the feeling dimension of the Tetralty. The practice is learning to feel fully without being swept away — to be the cup that holds the water rather than the water itself."]}]},
+"Oc":{sections:[{title:"The Day Sign — Oc (Dog)",text:["Oc is the loyal companion, the guide through the underworld, the one who never abandons. It carries the energy of unconditional love expressed through faithfulness and devoted service."]},{title:"Core Energy",pills:["Loyalty","Guidance","New beginnings","Love","Justice"]},{title:"Strengths",bullets:["Unconditional loyalty and devotion in relationship","Natural guide — they know the way through difficult terrain","Strong ethical compass and sense of justice","New beginnings follow them — endings become thresholds"]},{title:"Challenges",bullets:["Loyalty that goes beyond what is healthy or reciprocal","Difficulty setting boundaries with those they love","Can be guided by others when they should be guiding","The guide can lose their own way while finding others"]},{title:"In the Haligric Frame",text:["Oc holds the guide archetype. The Haligric practice is learning that the truest guidance comes from within — the inner guide that knows the territory of the self."]}]},
+"Chuen":{sections:[{title:"The Day Sign — Chuen (Monkey/Artisan)",text:["Chuen is the divine artisan — the creator god at play. Trickster, weaver, storyteller. Chuen people are the most creative of the twenty signs, the ones through whom art moves most freely."]},{title:"Core Energy",pills:["Creativity","Play","Craft","Storytelling","Trickster"]},{title:"Strengths",bullets:["Extraordinary creative gifts across multiple mediums","Play as a genuine spiritual practice","Ability to weave disparate threads into coherent story","Divine humor that reveals truth"]},{title:"Challenges",bullets:["The trickster energy can mislead as well as illuminate","Creativity scattered rather than channeled","May use humor to avoid genuine depth","The artisan can be too clever for their own wisdom"]},{title:"In the Haligric Frame",text:["Chuen holds the creative play that underlies all genuine practice. Haligricity understands that the cosmos is the Creator at play — Chuen knows this in their bones."]}]},
+"Eb":{sections:[{title:"The Day Sign — Eb (Road/Human)",text:["Eb is the road — the path of the human journey, step by step. It carries the energy of pilgrimage, of gathering what is needed along the way, of the accumulated wisdom of ordinary walking."]},{title:"Core Energy",pills:["Journey","Community","Gathering","Patience","Service"]},{title:"Strengths",bullets:["Patient, steady progress that arrives","Genuine service to community and clan","Ability to gather resources and wisdom as they travel","Reliability that others can walk beside"]},{title:"Challenges",bullets:["Can lose themselves in service to the journey of others","Accumulation can become hoarding","The patient one may wait too long to begin","Ordinary walking may avoid the leap that is needed"]},{title:"In the Haligric Frame",text:["Eb holds the pilgrimage dimension — the understanding that the path itself is the teaching. Each step taken with presence is a practice."]}]},
+"Ben":{sections:[{title:"The Day Sign — Ben (Reed/Corn)",text:["Ben is the skywalker — the one who walks between worlds, who carries the teachings from one realm to another. Reed and corn are the staff and the sustenance, the teacher and the teaching."]},{title:"Core Energy",pills:["Teaching","Sky-walking","Family","Authority","Between worlds"]},{title:"Strengths",bullets:["Natural teacher and transmitter of wisdom","Ability to walk between worlds without losing their footing","Authority that comes from genuine knowledge","Deep commitment to family and lineage"]},{title:"Challenges",bullets:["The skywalker can become ungrounded","Authority can become rigidity","Teaching can become preaching when the humility is lost","Walking between worlds can mean belonging to neither"]},{title:"In the Haligric Frame",text:["Ben holds the teaching function of Haligricity — the transmission from one who has walked the territory to one who is beginning. The practice is remaining a student while teaching."]}]},
+"Ix":{sections:[{title:"The Day Sign — Ix (Jaguar)",text:["Ix is the jaguar shaman — the night seer, the one who moves through darkness without fear, the priest of the earth temples. Ix carries the most ancient magic of the Maya tradition."]},{title:"Core Energy",pills:["Shamanic power","Earth magic","Integrity","Feminine force","Night sight"]},{title:"Strengths",bullets:["Access to shamanic and earth-based power","Night sight — sees what others cannot in the dark","Integrity as an absolute — the jaguar does not compromise","Fierce protection of the sacred"]},{title:"Challenges",bullets:["Power can become secretive or manipulative","The shaman who hides their gifts","Intensity that isolates","Earth magic can become earth-bound — difficulty with the sky"]},{title:"In the Haligric Frame",text:["Ix holds the earth temple energy — the practices that draw power from the living Earth. The Haligric Earthing practice and the understanding of the Earth as conscious belong to Ix."]}]},
+"Men":{sections:[{title:"The Day Sign — Men (Eagle)",text:["Men is the eagle — the highest vision, the one who sees the entire territory from above. It carries the energy of global perspective, of technical mastery, and of the mind that will not be limited by the near horizon."]},{title:"Core Energy",pills:["Vision","Mastery","Freedom","Global perspective","Technical genius"]},{title:"Strengths",bullets:["Extraordinary capacity to see the whole picture","Technical and scientific mastery","Freedom as a non-negotiable requirement","Vision that extends beyond personal and cultural limits"]},{title:"Challenges",bullets:["The eagle sees the whole but may miss the detail underfoot","Freedom that resists necessary relationship","Technical mastery can displace emotional intelligence","The high view can become spiritual bypass"]},{title:"In the Haligric Frame",text:["Men holds the quantum perspective — the view from above that sees the field rather than just the particles. The Observer Effect lives here. The practice is bringing that vision down to earth."]}]},
+"Cib":{sections:[{title:"The Day Sign — Cib (Owl/Vulture)",text:["Cib is the sacred bird of the elders — the one who carries the accumulated wisdom of the ancestors, the council keeper, the one who knows because they have witnessed enough. Cib clears what is no longer needed."]},{title:"Core Energy",pills:["Ancestral wisdom","Forgiveness","Absolution","Elderhood","Clearing"]},{title:"Strengths",bullets:["Access to ancestral and earned wisdom","Capacity for genuine forgiveness and absolution","Ability to clear karmic debris — individual and collective","Natural elder who others bring their burdens to"]},{title:"Challenges",bullets:["The weight of what has been witnessed","Can become the keeper of others burdens without releasing their own","Elderhood claimed before it is earned","Cynicism as the shadow of wisdom"]},{title:"In the Haligric Frame",text:["Cib holds the forgiveness practice — the understanding that what is released with genuine absolution is truly gone. The ancestor altar work and the clearing of family patterns belongs here."]}]},
+"Caban":{sections:[{title:"The Day Sign — Caban (Earth/Earthquake)",text:["Caban is the living Earth — the intelligence of the ground beneath our feet, the thought of the Earth itself. It carries the energy of synchronicity, of being in right timing, of the mind aligned with the greater mind."]},{title:"Core Energy",pills:["Earth intelligence","Synchronicity","Timing","Thought","Navigation"]},{title:"Strengths",bullets:["Extraordinary alignment with synchronicity and right timing","Intelligence that mirrors the complexity of living systems","Navigation — they find the way in uncertain territory","Grounded in the intelligence of the Earth herself"]},{title:"Challenges",bullets:["Overthinking that disrupts the natural synchronicity","Difficulty when out of alignment with natural rhythms","Can be shaken by their own internal earthquakes","The mind that thinks the Earth must also rest"]},{title:"In the Haligric Frame",text:["Caban holds the DNA Phantom Effect — the understanding that consciousness and matter are not separate. The Earth is thinking, and Caban people are attuned to that thought."]}]},
+"Etznab":{sections:[{title:"The Day Sign — Etznab (Flint/Mirror)",text:["Etznab is the obsidian mirror and the flint knife — the truth that cuts clean, the reflection that shows what is actually there rather than what we wish to see. It is the sign of spiritual warfare and psychic protection."]},{title:"Core Energy",pills:["Truth","Reflection","Purification","Spiritual protection","Discernment"]},{title:"Strengths",bullets:["Capacity to see and speak absolute truth","Psychic protection and spiritual discernment","Cuts through illusion with precision","Mirror quality — reflects back what others bring"]},{title:"Challenges",bullets:["Truth without compassion becomes cruelty","The mirror reflects everything — including the holder","Spiritual warfare can become conflict addiction","The cutting edge needs care or it cuts the holder"]},{title:"In the Haligric Frame",text:["Etznab holds the discernment practice — the Haligric commitment to seeing clearly and speaking honestly. The obsidian mirror is the oldest divination tool and lives here."]}]},
+"Cauac":{sections:[{title:"The Day Sign — Cauac (Storm/Thunder)",text:["Cauac is the thunderstorm — the cleansing, the lightning that illuminates in the dark, the rain that follows the heat. It carries the energy of regeneration through intensity, of the healer who works with the storm."]},{title:"Core Energy",pills:["Transformation","Healing storm","Lightning clarity","Reunion","Completion"]},{title:"Strengths",bullets:["Healing that works through intensity rather than around it","Lightning clarity — sudden illumination of what was hidden","Regenerative capacity — they restore what seemed lost","The storm that clears the air for everyone"]},{title:"Challenges",bullets:["Storm energy can be too intense for those around them","The healer can create crisis to do their best work","Lightning can destroy as well as illuminate","After the storm, the rebuilding must follow"]},{title:"In the Haligric Frame",text:["Cauac holds the transformative fire of the Wheel of the Year ceremonies — the energy that must reach intensity before it can complete and rest. The Words of Ignition belong to Cauac."]}]},
+"Ahau":{sections:[{title:"The Day Sign — Ahau (Sun/Lord)",text:["Ahau is the sun — the final day sign, the completion of the cycle, the lord of time. It carries the energy of enlightenment, of bliss, of the return to the source after the full journey through all twenty signs."]},{title:"Core Energy",pills:["Enlightenment","Completion","Solar consciousness","Bliss","Mastery"]},{title:"Strengths",bullets:["Access to genuine spiritual enlightenment","Completion — they see cycles through to their natural end","Solar consciousness that radiates without depletion","Mastery in whatever they commit to"]},{title:"Challenges",bullets:["The sun that does not set can exhaust the land","Bliss that avoids necessary shadow","Completion consciousness that moves to the next cycle before the integration is done","The lord of time can lose track of ordinary time"]},{title:"In the Haligric Frame",text:["Ahau holds the Haligric understanding of divinity — not as something outside but as the natural state of the fully realized self. Atman is Brahman. The Sun is you."]}]}
+};
+
+var OGHAM_DETAIL={
+"Birch (Beith)":{sections:[{title:"The Tree — Birch (Beith)",text:["Birch is the pioneer of the forest — the first tree to colonize cleared land, to grow where nothing else yet will. It carries the energy of pure beginning, of the blank page, of the soul newly arrived and ready to write its story."]},{title:"Core Energy",pills:["New beginnings","Purification","Inception","Courage","The pioneer"]},{title:"Strengths",bullets:["Natural capacity for fresh starts without carrying old weight","Purifying presence — they clear and renew whatever they touch","Courage to begin in territory others have not yet mapped","The original vision before compromise has entered"]},{title:"Challenges",bullets:["Can begin things more easily than completing them","The blank page can become an avoidance of depth","Purification taken too far becomes denial of what was real","The pioneer moves on before the foundation is laid"]},{title:"In the Haligric Frame",text:["Birch holds the Rising Ritual energy — the practice of beginning each day as a genuine new beginning, carrying the learning without carrying the weight."]}]},
+"Rowan (Luis)":{sections:[{title:"The Tree — Rowan (Luis)",text:["Rowan is the tree of protection and second sight — its red berries a symbol of life force against the dark, its branches a shield against enchantment. It carries the quickening sight that sees through illusion."]},{title:"Core Energy",pills:["Protection","Vision","Quickening","Discernment","The seer"]},{title:"Strengths",bullets:["Psychic protection and sensitivity to the unseen","Ability to see through illusion and enchantment","Quickening energy — accelerates what is ready to emerge","Protection offered freely to those who need it"]},{title:"Challenges",bullets:["Hyper-vigilance that sees threat where there is none","The protected can become the isolated","Second sight without grounding becomes anxiety","Protection of others at the expense of self"]},{title:"In the Haligric Frame",text:["Rowan holds the protective practices — the GPAC alignment and the double-helix protection. The seer who can see must also be able to shield."]}]},
+"Ash (Nion)":{sections:[{title:"The Tree — Ash (Nion)",text:["Ash is Yggdrasil — the world tree whose roots reach the underworld and whose branches touch the sky. It connects all realms and holds the vision that moves between them. The ash person is a natural bridge."]},{title:"Core Energy",pills:["Connection between worlds","Inner vision","The bridge","Healing","Expansion"]},{title:"Strengths",bullets:["Natural bridge between different worlds, people, and ideas","Inner vision that perceives the larger pattern","Healing gifts that work at multiple levels simultaneously","Expansion of consciousness as a natural state"]},{title:"Challenges",bullets:["The bridge can be walked across without being seen","Connecting all worlds can mean belonging to none fully","Inner vision without outer expression remains private","Expansion without roots becomes dissociation"]},{title:"In the Haligric Frame",text:["Ash holds the holographic principle — the Haligric understanding that each part contains the whole. The world tree whose roots and branches are the same tree."]}]},
+"Alder (Fearn)":{sections:[{title:"The Tree — Alder (Fearn)",text:["Alder grows at the water's edge, its roots in both land and water. It resists rot when submerged — its wood was used for foundations beneath water. Alder people are the resilient guides who hold the foundation under pressure."]},{title:"Core Energy",pills:["Guidance","Resilience","The bridge builder","Oracular gifts","Foundation"]},{title:"Strengths",bullets:["Resilient under pressure — strengthens in difficulty","Natural guide who knows both the land and the water","Foundation-holding for others going through dissolution","Oracular gifts — the alder hears what the water says"]},{title:"Challenges",bullets:["Can become the one everyone leans on without being seen","Resilience can mask genuine pain","The guide who holds others up may have no one holding them","Foundation holding can delay necessary dissolution"]},{title:"In the Haligric Frame",text:["Alder holds the grounding practice — the earthing that keeps the visionary from floating away. The foundation beneath the water that makes all other building possible."]}]},
+"Willow (Saille)":{sections:[{title:"The Tree — Willow (Saille)",text:["Willow bends without breaking — its roots deep in the moon-fed water, its branches moving with every wind. It carries the lunar mysteries, the emotional intelligence that flows and shapes rather than resisting."]},{title:"Core Energy",pills:["Intuition","The moon","Flexibility","Rhythm","Emotional depth"]},{title:"Strengths",bullets:["Extraordinary intuitive and psychic sensitivity","Emotional intelligence that flows around rather than fighting through","Attunement to lunar and natural cycles","Flexibility that preserves rather than compromising"]},{title:"Challenges",bullets:["Flexibility can become lack of conviction","Lunar sensitivity means mood follows the moon","Deep roots in water can become rootedness in emotion","The bending one may not know what they themselves believe"]},{title:"In the Haligric Frame",text:["Willow holds the Chandra Bhedana — the cooling moon breath of the Astral Ritual. The lunar practice that allows the day to release and the night to restore."]}]},
+"Hawthorn (Uath)":{sections:[{title:"The Tree — Hawthorn (Uath)",text:["Hawthorn is the fairy tree — the guardian of the threshold between the seen and unseen worlds. Its thorns protect what is sacred. To cut a hawthorn alone is considered deeply inadvisable in Irish and British folk tradition."]},{title:"Core Energy",pills:["Threshold guardian","Duality","Protection of the sacred","Fairy connection","Cleansing"]},{title:"Strengths",bullets:["Natural guardian of what is sacred and vulnerable","Ability to hold the threshold between worlds","Sees the duality in all things without being disturbed by it","Cleansing presence — the hawthorn has always been used in purification"]},{title:"Challenges",bullets:["The thorns can protect so well that no one enters","Threshold guardians can become those who only ever guard","Fairy entanglement — pulled between worlds","The duality that is a gift can become irresolution"]},{title:"In the Haligric Frame",text:["Hawthorn holds the space-opening practice — the ability to stand at the threshold and hold it open for what is sacred to come through. The ritual container."]}]},
+"Oak (Duir)":{sections:[{title:"The Tree — Oak (Duir)",text:["Oak is the king of the forest — the axis mundi of the Celtic world, the tree of sovereignty, of endurance measured in centuries. The Druids gathered in the oak groves because the oak held the accumulated wisdom of long time."]},{title:"Core Energy",pills:["Sovereignty","Strength","Endurance","Protection","The king"]},{title:"Strengths",bullets:["Extraordinary strength and endurance — they outlast","Natural sovereignty — authority that is genuine and earned","Protection on a large scale — the oak shelters many","Wisdom accumulated slowly and held firmly"]},{title:"Challenges",bullets:["Sovereignty can become stubbornness or dominance","The oak that does not bend can fall in the storm","Long time perspective can make urgency invisible","The king who cannot be wrong"]},{title:"In the Haligric Frame",text:["Oak holds the Wheel of the Year — the great turning that the Druids marked from their oak groves. The Litha midsummer ceremony especially belongs to Oak."]}]},
+"Holly (Tinne)":{sections:[{title:"The Tree — Holly (Tinne)",text:["Holly carries the energy of the warrior — not the aggressor but the one who knows how to face challenge with discipline and clear intent. It is the tree of the second half of the year, the counterpoint to the Oak king."]},{title:"Core Energy",pills:["Challenge","Mastery","The warrior","Balance","Protection"]},{title:"Strengths",bullets:["Extraordinary ability to meet challenge with skill","Discipline that produces genuine mastery","Balance as an active practice — holding opposites in tension","Protection through capability rather than fear"]},{title:"Challenges",bullets:["Warrior energy looking for battles that are not there","Mastery that becomes perfectionism","The challenger who cannot receive a challenge themselves","Discipline that loses sight of the deeper why"]},{title:"In the Haligric Frame",text:["Holly holds the discipline of the Haligric practice — the understanding that spiritual development requires both the opening (Oak) and the tempering (Holly). The two kings of the year."]}]},
+"Hazel (Coll)":{sections:[{title:"The Tree — Hazel (Coll)",text:["Hazel holds the salmon of wisdom — in Celtic myth, the hazelnuts fall into the sacred pool and are eaten by the salmon who then carries all knowledge. Hazel is the direct transmission of wisdom through nature."]},{title:"Core Energy",pills:["Wisdom","Intuition","Creativity","Poetry","The salmon of knowledge"]},{title:"Strengths",bullets:["Access to deep intuitive wisdom that arrives whole","Poetic and creative gifts that carry genuine insight","Ability to transmit complex truth in simple form","Divination and psychic gifts — the hazel rod finds water"]},{title:"Challenges",bullets:["Wisdom can be hoarded rather than shared","The poetic truth may not be the practical truth","Intuitive confidence can become certainty that closes","The hazel finds water — but can mistake surface for depth"]},{title:"In the Haligric Frame",text:["Hazel holds the esoteric wisdom of Haligricity — the deep dive tradition, the sacred texts, the knowing that comes from genuine study combined with genuine practice."]}]},
+"Vine (Muin)":{sections:[{title:"The Tree — Vine (Muin)",text:["Vine is the harvest of inner truth — the fermentation that transforms the grape into something that opens the mind and loosens the veil. It carries the energy of prophecy, of ecstatic truth, of the inner harvest gathered at the turning of autumn."]},{title:"Core Energy",pills:["Prophecy","Inner harvest","Ecstasy","Truth-telling","The turning"]},{title:"Strengths",bullets:["Access to prophetic and ecstatic states","Inner harvest — gathers truth from experience","Truth-telling that breaks open what is sealed","Transformation of ordinary experience into spiritual insight"]},{title:"Challenges",bullets:["Ecstasy without grounding can become escapism","Prophecy without discernment can mislead","The inner harvest must be shared to be complete","Truth-telling without timing can wound rather than open"]},{title:"In the Haligric Frame",text:["Vine holds the Mabon/Autumn Equinox energy — the harvest ritual of the Wheel of the Year, the gathering of what has grown, and the honest accounting of what came to fruit."]}]},
+"Ivy (Gort)":{sections:[{title:"The Tree — Ivy (Gort)",text:["Ivy grows in spirals — it climbs whatever it finds, it covers what has fallen, it finds its way through apparent obstacles. It carries the energy of tenacious growth through connection, of the labyrinth that leads to center."]},{title:"Core Energy",pills:["Tenacity","The labyrinth","Connection","Overcoming","The spiral"]},{title:"Strengths",bullets:["Extraordinary tenacity — finds a way through any obstacle","Spiral thinking that reaches the center by going around","Growth through connection with others and structures","Ability to cover what has fallen and make it fruitful again"]},{title:"Challenges",bullets:["Can cling when releasing would serve better","The labyrinth can become getting lost rather than finding center","Growth through connection can become dependence","Tenacity without direction is only persistence"]},{title:"In the Haligric Frame",text:["Ivy holds the spiral path of Haligricity — the understanding that we return to the same questions at different levels of the spiral, each time with more capacity to meet them."]}]},
+"Reed (Ngetal)":{sections:[{title:"The Tree — Reed (Ngetal)",text:["Reed grows in communities — it does not stand alone. It carries the energy of direct action in service of the group, of the harvest that ends, of family and community protection. The reed is the musical instrument and the writing tool."]},{title:"Core Energy",pills:["Direct action","Family","Community","Harvest end","The musical"]},{title:"Strengths",bullets:["Direct and effective in action when the time comes","Deep commitment to family and community","Musical gifts — the reed is literally the instrument","Ability to act in concert with others — the reed bed moves together"]},{title:"Challenges",bullets:["Direct action without reflection can be blunt","Community orientation can sacrifice individual truth","The harvest-end energy can prematurely close","Musical sensitivity that is wounded by disharmony"]},{title:"In the Haligric Frame",text:["Reed holds the singing bowl practice — sound as a tool of clearing, healing, and alignment. The hollow reed that becomes music when breath moves through it."]}]},
+"Elder (Ruis)":{sections:[{title:"The Tree — Elder (Ruis)",text:["Elder is the threshold tree — the one that stands between the worlds at the year's end. Its flowers heal and its berries can harm; it is the most dual of trees, the one that demands respect and genuine relationship. You do not cut an elder without asking."]},{title:"Core Energy",pills:["Threshold","Endings","Transformation","The Crone","Death and rebirth"]},{title:"Strengths",bullets:["Standing at the threshold without fear","Mastery of endings — they know how to complete","Access to the Crone wisdom — what is gained through genuine loss","Healing through the understanding of duality"]},{title:"Challenges",bullets:["The elder that is not respected can harm","Threshold energy can become caught between","The Crone wisdom without compassion becomes severity","Endings mastered can avoid necessary beginnings"]},{title:"In the Haligric Frame",text:["Elder holds the Samhain ceremony — the thinning of the veil, the honoring of the ancestors, the completion that makes the next beginning possible. The final ceremony before the new year begins."]}]}
+};
+
+var NAZ_DETAIL={
+"Otter":{sections:[{title:"The Animal — Otter",text:["The Otter carries the medicine of playful wisdom — the joy that does not diminish the depth, the curiosity that explores without the need to control. Otter people bring lightness into heavy situations and genuine community spirit."]},{title:"Core Energy",pills:["Playfulness","Independence","Humanitarian","Feminine power","Creativity"]},{title:"Strengths",bullets:["Genuine joy that is not naivety","Independence of thought combined with community heart","Creative and innovative approach to any situation","Humanitarian instinct — they care about the whole"]},{title:"Challenges",bullets:["Independence that resists necessary interdependence","Playfulness that avoids serious engagement when needed","The humanitarian who forgets the individual in front of them","Difficulty with sustained routine"]},{title:"In the Haligric Frame",text:["Otter holds the creative play dimension of Haligricity. The understanding that genuine spiritual practice has lightness in it — that joy is not the absence of depth but its natural expression."]}]},
+"Wolf":{sections:[{title:"The Animal — Wolf",text:["The Wolf carries the medicine of the teacher and the pathfinder — the one who finds the way through unknown territory and then teaches the path to others. Wolf people are deeply loyal to their pack and profoundly intuitive."]},{title:"Core Energy",pills:["Intuition","Teaching","Loyalty","Emotional depth","Pathfinding"]},{title:"Strengths",bullets:["Extraordinary intuition and psychic sensitivity","Natural teacher who transmits from genuine experience","Loyalty to community and chosen family that does not waver","Pathfinding — they find the way others cannot see"]},{title:"Challenges",bullets:["The lone wolf who needs the pack more than they admit","Intuition that becomes anxiety when the howl has no answer","Loyalty that continues past what is healthy","Teaching from wound rather than from healed wisdom"]},{title:"In the Haligric Frame",text:["Wolf holds the ancestral lineage healing dimension — the understanding that what the pack carries can be examined and what no longer serves can be released for all who come after."]}]},
+"Falcon":{sections:[{title:"The Animal — Falcon",text:["The Falcon is the first light of spring — the swift one, the decisive one, the leader who does not deliberate when action is needed. Falcon people are natural initiators who see the whole field and move before others have decided."]},{title:"Core Energy",pills:["Leadership","Speed","Initiative","Vision","Spring energy"]},{title:"Strengths",bullets:["Decisive action from clear vision","Natural leadership that moves rather than manages","Speed that gets there while others are still planning","Vision that sees the whole territory at once"]},{title:"Challenges",bullets:["Speed that outpaces the wisdom to guide it","Decision before consultation — moves alone when the move needs community","Spring energy that burns hot and needs the other seasons","Leadership that cannot follow"]},{title:"In the Haligric Frame",text:["Falcon holds the initiation energy — the Aries impulse of the Tetralty, the Do that arises before the others have completed. The practice is learning to bring the speed into service of the whole cycle."]}]},
+"Beaver":{sections:[{title:"The Animal — Beaver",text:["The Beaver carries the medicine of the builder — the one who transforms the landscape through patient, skillful work. Beaver people are the ones who make things that last, who understand that the dam shapes the whole watershed."]},{title:"Core Energy",pills:["Building","Persistence","Practicality","Dreaming into form","The shaper"]},{title:"Strengths",bullets:["Patient, skilled building that creates lasting change","Persistence that does not require applause to continue","Practical intelligence that turns vision into structure","The ability to shape the environment rather than just inhabiting it"]},{title:"Challenges",bullets:["The dam can flood as well as irrigate","Building as avoidance of genuine relationship","Practicality that loses the original dream in execution","Persistence past the point of wisdom"]},{title:"In the Haligric Frame",text:["Beaver holds the Earth dimension of the Tetralty — the patient Do that builds something real. The Haligric understanding that intention must be matched by skillful sustained action."]}]},
+"Deer":{sections:[{title:"The Animal — Deer",text:["The Deer carries the medicine of gentleness that is not weakness — the one who moves through the world with grace, who senses danger before it arrives, and who embodies the sacred feminine capacity to nurture without losing the wild."]},{title:"Core Energy",pills:["Gentleness","Sensitivity","Adaptability","Grace","The nurturer"]},{title:"Strengths",bullets:["Gentleness as a genuine power rather than a lack of power","Extraordinary sensitivity to the environment and others","Adaptability that allows movement through rapidly changing terrain","Grace under pressure — they maintain elegance in difficulty"]},{title:"Challenges",bullets:["Sensitivity that becomes hypervigilance","Gentleness misread as an invitation to take advantage","Flight response that leaves before the situation resolves","The nurturer who runs from their own needs"]},{title:"In the Haligric Frame",text:["Deer holds the lymphatic dimension of the Well-Being practice — the gentle, featherlight touch that opens without force, the understanding that the most profound movement is often the most subtle."]}]},
+"Woodpecker":{sections:[{title:"The Animal — Woodpecker",text:["The Woodpecker is the most sensitive of the totems — deeply attuned to the family field, the emotional environment, and the needs of those in their care. They find what is hidden and bring it to the surface."]},{title:"Core Energy",pills:["Sensitivity","Family attunement","Protection","Finding what is hidden","Rhythm"]},{title:"Strengths",bullets:["Extraordinary attunement to family and emotional fields","Ability to find what is hidden in the structure — the hollow space, the imbalance","Protective devotion that is both fierce and tender","Natural rhythm — they bring music and timing to whatever they do"]},{title:"Challenges",bullets:["The hollow they find is sometimes their own","Sensitivity to family pain can mean carrying it rather than healing it","Protection that controls rather than shelters","The rhythm that others cannot match can isolate"]},{title:"In the Haligric Frame",text:["Woodpecker holds the family healing dimension — the understanding that the emotional patterns of the lineage are coded in the family field and that healing oneself heals the pattern for all."]}]},
+"Salmon":{sections:[{title:"The Animal — Salmon",text:["The Salmon returns to the source against all odds — swimming upstream, leaping barriers, following an inner compass that does not depend on outer visibility. Salmon people carry the medicine of return and the determination that cannot be reasoned with."]},{title:"Core Energy",pills:["Determination","Return to source","Wisdom","Inner compass","Perseverance"]},{title:"Strengths",bullets:["Determination that does not require encouragement to continue","Inner compass that remains accurate under pressure","Wisdom carried in the body — they know the way home","The leap — they go over what they cannot go through"]},{title:"Challenges",bullets:["Determination past the point of discernment","The inner compass that points home even when home has changed","Upstream movement as the only mode — difficulty going with the current","Perseverance that avoids the wisdom to stop"]},{title:"In the Haligric Frame",text:["Salmon holds the Haligric understanding of the return — that genuine spiritual development is not a linear progression but a spiral return to the source, each time with more capacity to meet it."]}]},
+"Bear":{sections:[{title:"The Animal — Bear",text:["The Bear carries the medicine of the healer and the introspect — the one who goes within, who knows when to be active and when to rest, who holds the healing power of the earth in their body."]},{title:"Core Energy",pills:["Introspection","Healing","Groundedness","Practicality","The dreamer"]},{title:"Strengths",bullets:["Access to genuine healing power — particularly physical and emotional","Capacity for deep introspection that produces wisdom rather than rumination","Groundedness that provides stability for those around them","Practical wisdom — they know what actually works"]},{title:"Challenges",bullets:["The cave can become avoidance rather than restoration","Practicality that dismisses the visionary","Groundedness that resists necessary movement","Hibernation past the time to emerge"]},{title:"In the Haligric Frame",text:["Bear holds the Haligric rest practice — the understanding that the regenerative withdrawal is as sacred as the active engagement. The bear who does not rest does not heal."]}]},
+"Raven":{sections:[{title:"The Animal — Raven",text:["The Raven is the communicator between worlds — the trickster messenger, the shapeshifter, the one who carries the news between realms. Raven people bring balance through their capacity to see all sides and speak the truth of the threshold."]},{title:"Core Energy",pills:["Communication","Balance","Shapeshifting","The messenger","Magic"]},{title:"Strengths",bullets:["Natural mediator who can genuinely hold multiple truths","Magic — the capacity to shift what seems fixed","Communication that carries genuine weight and intelligence","Balance as an active ongoing practice rather than a static state"]},{title:"Challenges",bullets:["The shapeshifter who shifts so much they lose their own form","Mediation that avoids taking necessary positions","Trickster energy that serves the self rather than the truth","Communication as performance rather than transmission"]},{title:"In the Haligric Frame",text:["Raven holds the synthesis dimension of Haligricity — the capacity to carry wisdom from many traditions and weave them into coherent teaching without losing any of their distinct power."]}]},
+"Snake":{sections:[{title:"The Animal — Snake",text:["The Snake carries the medicine of transformation through shedding — the understanding that you cannot grow into the new skin without releasing the old. Snake people carry deep transmutational wisdom and are natural shamans of the death-rebirth cycle."]},{title:"Core Energy",pills:["Transformation","Shedding","Hidden knowledge","Transmutation","Healing through fire"]},{title:"Strengths",bullets:["Master of transformation — they shed and are genuinely renewed","Access to hidden knowledge that others cannot reach","Healing that works through intensity and genuine release","Transmutation of what seems fixed into something entirely new"]},{title:"Challenges",bullets:["The shedding that reveals what was not ready","Hidden knowledge kept hidden past the time to share it","Intensity that others cannot match or follow","The healer who takes on what they are healing"]},{title:"In the Haligric Frame",text:["Snake holds the Kundalini practice — the energy that rises through the body in genuine awakening. The Controversial Manual's deeper practices belong to Snake's medicine."]}]},
+"Owl":{sections:[{title:"The Animal — Owl",text:["The Owl carries the medicine of wisdom in the dark — the night sight that sees clearly when others are blind, the silent flight that arrives without warning. Owl people know things without knowing how they know, and are often called to assist at life's thresholds."]},{title:"Core Energy",pills:["Wisdom","Night sight","Silence","Thresholds","The knower"]},{title:"Strengths",bullets:["Knowledge that arrives whole rather than being assembled","Night sight — sees the truth in situations others misread","Silence as a spiritual practice and a power","Presence at thresholds — births, deaths, transitions"]},{title:"Challenges",bullets:["Wisdom that cannot explain itself — difficult to transmit","Night sight that makes ordinary daylight blinding","Silence that becomes isolation","The knower who knows but does not act on what is known"]},{title:"In the Haligric Frame",text:["Owl holds the Haligric understanding of gnosis — direct knowing that bypasses sequential learning. The deep dive research tradition is the Owl's attempt to transmit what is ultimately a direct experience."]}]},
+"Goose":{sections:[{title:"The Animal — Goose",text:["The Goose carries the medicine of the long journey undertaken with community — the V formation that makes the whole flock faster than any individual goose could fly. Goose people are driven by inner calling and disciplined tradition in equal measure."]},{title:"Core Energy",pills:["Ambition","Tradition","Community in journey","Long-distance vision","Discipline"]},{title:"Strengths",bullets:["Extraordinary discipline in service of a long-held ambition","Community formation — they lead in ways that lift the whole group","Tradition honored without rigidity","Long-distance vision — they see where they are going even when the destination is not yet visible"]},{title:"Challenges",bullets:["Ambition that becomes the identity rather than the vehicle","Tradition that resists necessary evolution","The formation that does not allow deviation even when deviation would serve","The long journey that forgets to arrive"]},{title:"In the Haligric Frame",text:["Goose holds the Capricorn energy of the Haligric calendar — the disciplined, long-view dedication that builds something real across time. The Wheel of the Year as a practice rather than a single ceremony."]}]}
+};
+
+var EGYPT_DETAIL={
+"Amun-Ra":{sections:[{title:"The Deity — Amun-Ra",text:["Amun-Ra is the hidden sun made visible — the combination of Amun the invisible source and Ra the solar disk. It carries the supreme creative authority, the vitality that sustains all life, the kingship that is genuinely divine rather than merely political."]},{title:"Core Energy",pills:["Solar sovereignty","Creative authority","Hidden power made manifest","Vitality","The king of kings"]},{title:"Strengths",bullets:["Natural authority that others recognize without being told","Creative vitality that sustains rather than depletes","Access to both the visible and invisible dimensions of power","Generosity of the sun — shines on all without discrimination"]},{title:"Challenges",bullets:["Authority that becomes centrality — everything must orbit them","The hidden power that refuses to be known","Solar burn when the fire is not modulated","Kingship that cannot share the throne"]},{title:"In the Haligric Frame",text:["Amun-Ra holds the Haligric understanding of divine sovereignty — the Tetralty's recognition that the creator creates from within, not from outside. The sun that rises within is the same sun that rises without."]}]},
+"Horus":{sections:[{title:"The Deity — Horus",text:["Horus is the sky god, the falcon who holds the sun and moon as his eyes, the avenger who reclaims what was taken and restores what was broken. Horus people carry the medicine of righteous action and the long view of justice."]},{title:"Core Energy",pills:["Leadership","Vision","Justice","Restoration","The sky king"]},{title:"Strengths",bullets:["Leadership from genuine vision rather than inherited position","The long view — Horus waited and was precise rather than impulsive","Restoration of what was broken — they put things right","Vision that holds both the sun and the moon — the whole of experience"]},{title:"Challenges",bullets:["The avenger who never reaches the peace after the victory","Leadership that is all sky and no earth","Justice that becomes judgment","The falcon eye that misses what is close because it sees so far"]},{title:"In the Haligric Frame",text:["Horus holds the Ma'at alignment — the Egyptian principle of cosmic order and right action. The Haligric commitment to integrity in all four dimensions is the Horus practice."]}]},
+"Anubis":{sections:[{title:"The Deity — Anubis",text:["Anubis is the guardian of the threshold between life and death — the weigher of hearts, the guide of souls through the Duat. Anubis people carry the capacity to accompany others through their deepest transitions without fear."]},{title:"Core Energy",pills:["Guardianship","The threshold","Weighing of truth","Soul guidance","Transformation"]},{title:"Strengths",bullets:["Ability to stand at the threshold without retreating","Guidance through darkness that is clear and unwavering","The feather of truth — discernment of what is genuine from what is performed","Accompaniment at life's most profound transitions"]},{title:"Challenges",bullets:["The guardian who is always at the threshold can forget the journey itself","Weighing hearts can become judgment of the living","Threshold dwelling that never crosses into the new life","The guide through darkness who is themselves afraid of the light"]},{title:"In the Haligric Frame",text:["Anubis holds the ancestor altar practice — the Haligric understanding that the dead are not gone but present in a different way, and that conscious relationship with them is healing for both the living and the departed."]}]},
+"Set (Seth)":{sections:[{title:"The Deity — Set (Seth)",text:["Set is the desert wind, the storm in the night, the necessary disruption that prevents stagnation. Set is not evil — Set is chaos as a necessary force, the power that breaks open what has calcified so that new life can enter."]},{title:"Core Energy",pills:["Disruption","Raw power","The desert","Chaos as creative force","The outsider"]},{title:"Strengths",bullets:["Capacity to break open what others cannot budge","Power that does not apologize for itself","The outsider perspective that sees what insiders cannot","Desert endurance — survives what would defeat the conventional"]},{title:"Challenges",bullets:["Disruption for its own sake rather than in service of renewal","Raw power without direction becomes destruction","The outsider who cannot return when the time comes","Chaos that loses the thread back to cosmos"]},{title:"In the Haligric Frame",text:["Set holds the necessary shadow of the Haligric path — the understanding that the comfortable cannot be awakened without some disruption, and that the dark night of the soul is not an obstacle to the practice but part of it."]}]},
+"Geb":{sections:[{title:"The Deity — Geb",text:["Geb is the Earth himself — the reclining god whose body is the land, whose laughter causes earthquakes, whose green skin holds all growing things. Geb people carry deep material wisdom and the patience of the ground itself."]},{title:"Core Energy",pills:["Earth embodiment","Patience","Material wisdom","Fertility","Groundedness"]},{title:"Strengths",bullets:["Deep wisdom of the material world and the body","Patience that is genuinely geological — things take the time they take","Fertility in whatever they touch — growth follows their attention","Groundedness that provides the foundation others build upon"]},{title:"Challenges",bullets:["Earth patience can become inertia","Material wisdom that dismisses the sky","Groundedness that roots so deep it cannot move","The fertile ground that needs someone else to plant it"]},{title:"In the Haligric Frame",text:["Geb holds the Earthing practice — the Haligric understanding that the body is not the vehicle for spiritual experience but is itself spiritual. The Earth is not the context for life; it is alive."]}]},
+"Nephthys":{sections:[{title:"The Deity — Nephthys",text:["Nephthys is the hidden sister — the mourner, the one who searches for what is lost, who refuses to give up on what has been broken apart. Nephthys carries the compassionate truth that accompanies without fixing, and finds what is hidden even in the darkest places."]},{title:"Core Energy",pills:["Compassionate presence","Finding what is lost","Hidden truth","Mourning","The seeker"]},{title:"Strengths",bullets:["Capacity to be fully present with grief without trying to resolve it","Finds what is hidden — in people, in situations, in themselves","Compassionate truth-telling that comes from genuine care","Refusal to abandon what others have given up on"]},{title:"Challenges",bullets:["Can become the eternal mourner","Finding what is hidden in others while hiding themselves","Compassion that enables rather than supports genuine change","The search that becomes more important than the finding"]},{title:"In the Haligric Frame",text:["Nephthys holds the shadow integration practice — the Haligric understanding that what is hidden must be found and honored, not suppressed further. The other half of every wholeness."]}]},
+"Sekhmet":{sections:[{title:"The Deity — Sekhmet",text:["Sekhmet is the lioness — the healer and the destroyer, the one who burns with Ra's own fire and whose power is so great that she almost ended humanity before being stopped. Sekhmet carries the understanding that healing and destruction are the same force, differently directed."]},{title:"Core Energy",pills:["Healing through fire","Righteous power","The lioness","Purification","Warrior medicine"]},{title:"Strengths",bullets:["Healing that goes to the root rather than the symptom","Power that cannot be ignored or bypassed","Righteous anger as a genuine healing force","The ability to do what others are too gentle to do"]},{title:"Challenges",bullets:["The fire that heals can also consume","Righteous power without discernment becomes destruction","Warrior medicine that fights when the patient needs rest","The healer who takes on the full force of what they are healing"]},{title:"In the Haligric Frame",text:["Sekhmet holds the fierce compassion dimension of Haligricity — the understanding that genuine love sometimes requires the refusal to enable, the willingness to say what cannot be unsaid for the sake of genuine healing."]}]},
+"Isis":{sections:[{title:"The Deity — Isis",text:["Isis is the great magician — the one who gathered the scattered pieces of Osiris and breathed life back into what was broken. She is the mother, the healer, the throne itself. Isis people carry extraordinary magic and the devotion that will not accept impossibility."]},{title:"Core Energy",pills:["Magic","Devotion","Gathering what is scattered","Protection","The great mother"]},{title:"Strengths",bullets:["Access to genuine magical and healing power","Devotion that does not abandon when things become impossible","The ability to gather what has been scattered and make it whole","Protection of extraordinary power — particularly of children and the vulnerable"]},{title:"Challenges",bullets:["Devotion that loses the self in service of the other","Magic used to control what should be released","The great mother who cannot allow her child to be their own person","Protection that suffocates what it loves"]},{title:"In the Haligric Frame",text:["Isis holds the Varessence at its most potent — the intention charged with such devotion and magical skill that it crosses from the possible into the miraculous. The prayer that does not accept no as a final answer."]}]},
+"Mut":{sections:[{title:"The Deity — Mut",text:["Mut is the vulture mother — the great mother whose wings shelter the sky and whose name means both mother and death. She is the primordial feminine that precedes even the gods, the one in whom all things begin and to whom all things return."]},{title:"Core Energy",pills:["Primordial mother","All-encompassing love","The sky shelter","Completion","Return to source"]},{title:"Strengths",bullets:["Love that is genuinely unconditional and all-encompassing","The shelter of the great wings — safety that is felt rather than argued","Strength that does not need to prove itself","The completeness that holds both the beginning and the end"]},{title:"Challenges",bullets:["The all-encompassing can become the all-consuming","Primordial strength that others cannot reach or thank","The mother who holds everyone can become held by no one","Completion consciousness that resists necessary new beginnings"]},{title:"In the Haligric Frame",text:["Mut holds the origin consciousness of Haligricity — the Advaita Vedanta understanding that Atman is Brahman, that the great mother is not outside us but is the very substance of what we are."]}]},
+"Bastet":{sections:[{title:"The Deity — Bastet",text:["Bastet is the cat goddess — the protector of the home, the guardian of women and children, the dancer who balances ferocity with grace. Bastet people carry the most fully embodied energy of the Egyptian zodiac — the sensory intelligence of the cat, alert and present in every moment."]},{title:"Core Energy",pills:["Protection","Sensuality","Independence","Grace","The guardian of joy"]},{title:"Strengths",bullets:["Sensory intelligence — they inhabit the body with full presence","Protection of the home and the vulnerable without losing the joy","Independence that is not isolation — the cat chooses rather than being abandoned","Grace in movement, relationship, and self-expression"]},{title:"Challenges",bullets:["Independence that becomes unavailability","Sensuality that becomes the only language","The protector who cannot be protected","Ferocity that emerges without warning"]},{title:"In the Haligric Frame",text:["Bastet holds the Inner Smile practice — the full-body consciousness that the Haligric Well-Being tradition cultivates. The cat that is always fully present in its body is the teaching."]}]},
+"Osiris":{sections:[{title:"The Deity — Osiris",text:["Osiris is the green god — the king who died and was resurrected, whose body became the fertile earth, whose story is the eternal promise of renewal. Osiris people carry the understanding that loss is not final, that what is buried grows, that the king in the earth is the king of the harvest."]},{title:"Core Energy",pills:["Resurrection","Transformation","Abundance","Judgment","The green king"]},{title:"Strengths",bullets:["Capacity for genuine resurrection — they come back from what would defeat others","Abundance consciousness rooted in genuine earth wisdom","Authority in the realm of transformation — others trust them with their deepest change","The green king — they make things grow"]},{title:"Challenges",bullets:["Can become identified with the death rather than the resurrection","The judged who becomes the judge","Abundance that requires sacrifice to maintain","The transformation that never quite completes"]},{title:"In the Haligric Frame",text:["Osiris holds the Wheel of the Year in its fullness — the understanding that the king who dies at Samhain is reborn at Yule, that every ending is the ground of every beginning, and that the calendar itself is a practice of resurrection."]}]},
+"Thoth":{sections:[{title:"The Deity — Thoth",text:["Thoth is the scribe of the gods — the keeper of the akashic record, the measurer of time, the inventor of writing and mathematics, the one who weighs and records. Thoth people carry the gift of making the invisible visible through the precision of language and number."]},{title:"Core Energy",pills:["Wisdom","Writing","Intellect","Divine record-keeping","The measurer"]},{title:"Strengths",bullets:["Extraordinary intellectual gifts — the mind that holds complexity with elegance","Writing as a spiritual practice — words that carry genuine weight","Record-keeping as sacred service — they hold the history that others forget","The measurer who makes the invisible quantifiable"]},{title:"Challenges",bullets:["Intellect that exceeds the emotional development to hold it","Writing as a substitute for living","Record-keeping that holds the past too tightly","The measurer who forgets that not everything can be measured"]},{title:"In the Haligric Frame",text:["Thoth holds the deep dive tradition of Haligricity — the commitment to genuine research, to understanding traditions on their own terms before synthesizing them. The Sacred Traditions Library is a Thoth practice."]}]}
+};
+
+var NUM_DETAIL={
+"1":{sections:[{title:"Life Path 1 — The Leader",text:["You are here to forge something new. The 1 is the number of initiation. You are not following a path, you are making one."]},{title:"Core Energy",pills:["Independence","Originality","Initiative","Courage","Self-reliance"]},{title:"Strengths",bullets:["Natural capacity to lead without requiring followers","Creative vision that stands alone","Determination that needs no permission","Courage to begin when others are still preparing"]},{title:"Growth Edge",text:["The 1 can become isolation. The mastery is learning that interdependence is not weakness. The greatest leaders build others, not monuments to themselves."]}]},
+"2":{sections:[{title:"Life Path 2 — The Mediator",text:["You are here to create harmony. The 2 is the number of relationship. You sense what others need before they can name it."]},{title:"Core Energy",pills:["Sensitivity","Diplomacy","Cooperation","Intuition","Balance"]},{title:"Strengths",bullets:["Holds multiple perspectives without collapsing","Intuitive reading of the emotional field","Gift for creating peace in conflict","Deep loyalty in relationship"]},{title:"Growth Edge",text:["The 2 can give itself away entirely. The mastery is learning that your perspective is not a disruption of harmony but a necessary part of it."]}]},
+"3":{sections:[{title:"Life Path 3 — The Creator",text:["You are here to express. The 3 is the number of creativity. Your life becomes your art."]},{title:"Core Energy",pills:["Creativity","Communication","Joy","Self-expression","Inspiration"]},{title:"Strengths",bullets:["Natural gift with words and ideas","Makes others feel seen","Infectious enthusiasm","Creative output from genuine place"]},{title:"Growth Edge",text:["The 3 can scatter. The mastery is learning to commit to the work long enough to let it become something real."]}]},
+"4":{sections:[{title:"Life Path 4 — The Builder",text:["You are here to build what lasts. The 4 is the number of foundation. The world needs what is solid."]},{title:"Core Energy",pills:["Discipline","Structure","Reliability","Integrity","Practicality"]},{title:"Strengths",bullets:["Follow-through others rely on","Takes vision and makes it real","Integrity as non-negotiable","Mastery through sustained effort"]},{title:"Growth Edge",text:["The 4 can become rigidity. The mastery is learning that stability is not immobility, and the best foundations have room for the unexpected."]}]},
+"5":{sections:[{title:"Life Path 5 — The Freedom Seeker",text:["You are here to expand. The 5 is the number of experience. Your life asks for range."]},{title:"Core Energy",pills:["Freedom","Adventure","Adaptability","Sensory experience","Change"]},{title:"Strengths",bullets:["Extraordinary adaptability","Connects across different worlds","Enthusiasm that opens doors","Courage to change when needed"]},{title:"Growth Edge",text:["The 5 can always be moving toward the next thing, never deepening. The mastery is learning that the deepest freedom lives within commitment."]}]},
+"6":{sections:[{title:"Life Path 6 — The Nurturer",text:["You are here to care. The 6 is the number of responsibility. Love expressed through showing up with full presence."]},{title:"Core Energy",pills:["Nurturing","Responsibility","Community","Beauty","Harmony"]},{title:"Strengths",bullets:["Capacity for genuine sustained care","Creates sanctuary for others","Strong sense of justice","Beauty in the spaces you inhabit"]},{title:"Growth Edge",text:["The 6 can give until empty. The mastery is learning that care begins with the self. A depleted caregiver serves no one well."]}]},
+"7":{sections:[{title:"Life Path 7 — The Seeker",text:["You are here to understand. The 7 is the number of the interior life. You are the analyst, the mystic, the one who needs to know why."]},{title:"Core Energy",pills:["Analysis","Introspection","Spiritual depth","Wisdom","Solitude"]},{title:"Strengths",bullets:["Exceptional capacity for deep analysis","Access to genuine spiritual insight","Finds the pattern beneath the surface","Wisdom from genuine interior work"]},{title:"Growth Edge",text:["The 7 can withdraw so far inward that connection becomes theoretical. The mastery is letting understanding become a bridge rather than a wall."]}]},
+"8":{sections:[{title:"Life Path 8 — The Achiever",text:["You are here to master the material world. The 8 is the number of power and the responsible use of abundance."]},{title:"Core Energy",pills:["Ambition","Authority","Abundance","Leadership","Justice"]},{title:"Strengths",bullets:["Natural capacity for leadership at scale","Understands systems and power","Resilience in the face of setback","Creates abundance and shares it"]},{title:"Growth Edge",text:["The 8 can confuse power with worth. The mastery is learning that the 8 turned on its side is infinity: abundance is a current that moves through you."]}]},
+"9":{sections:[{title:"Life Path 9 — The Humanitarian",text:["You are here to complete. The 9 is the final single digit, the number that contains all the others. You came to give, to serve, to release."]},{title:"Core Energy",pills:["Compassion","Completion","Global awareness","Wisdom","Selflessness"]},{title:"Strengths",bullets:["Compassion that extends beyond personal circles","Wisdom from experience of loss and renewal","Holds the long view","Releases what others cannot let go of"]},{title:"Growth Edge",text:["The 9 can martyr itself. The mastery is learning that true giving comes from fullness, not depletion. Receiving is as sacred as giving."]}]},
+"11":{sections:[{title:"Life Path 11 — The Illuminator",text:["You carry a master number. High voltage, high sensitivity, high purpose. The 11 is the intuitive channel. You are here to illuminate by example."]},{title:"Core Energy",pills:["Intuition","Inspiration","Spiritual vision","Sensitivity","Illumination"]},{title:"Strengths",bullets:["Direct access to the intuitive field","Capacity to inspire without force","Sensitivity that reads the room","Vision that comes from beyond the personal"]},{title:"Growth Edge",text:["The 11 can collapse under its own voltage. The mastery is grounding: learning to earth the current so it can be transmitted without burning through the wire."]}]},
+"22":{sections:[{title:"Life Path 22 — The Master Builder",text:["You carry the rarest master number. You see the vision and have the capacity to make it real at scale."]},{title:"Core Energy",pills:["Mastery","Vision at scale","Practical idealism","Architecture","Legacy"]},{title:"Strengths",bullets:["Holds a large vision with practical specificity","Impact at a scale few can imagine","Integrates spiritual and material","Builds what outlasts the builder"]},{title:"Growth Edge",text:["The 22 can be paralyzed by the scale of what it sees. The mastery is beginning: the master builder still lays one brick at a time."]}]},
+"33":{sections:[{title:"Life Path 33 — The Master Teacher",text:["You carry the master number of devotion. Love expressed as teaching, as healing, as the holding of others through their transformation."]},{title:"Core Energy",pills:["Devotion","Healing","Teaching","Selfless love","Transformation"]},{title:"Strengths",bullets:["Capacity to love without condition","Teaching that transforms","Healing presence","Holds space for others becoming"]},{title:"Growth Edge",text:["The 33 can give everything and lose itself entirely. The mastery is the same as the 6 and 9 before it: the fullest love expands the lover rather than depletes them."]}]}
+};
+
+var BT_DETAIL={
+"A":{sections:[
+  {title:"Blood Type A — The Perfectionist",text:["Type A is the planner, the conscientious one, the person who shows up on time and leaves the space better than they found it. In Japanese culture, Type A carries the weight of social expectation — perhaps why Type A people are both the most reliable and the most internally pressured."]},
+  {title:"Core Traits",pills:["Organized","Responsible","Detail-oriented","Loyal","Reserved","Anxious"]},
+  {title:"At Your Best",bullets:["The person others depend on quietly and consistently","Sensitivity that makes you attuned to what others need","A sense of duty that extends beyond personal interest","Aesthetic sensibility refined through attention"]},
+  {title:"Your Challenge",text:["Type A can internalize everything. The body registers what the mind tries to manage. The practice is learning to release, to allow imperfection, to recognize that good enough is often precisely right."]},
+  {title:"In the Haligric Frame",text:["Type A holds the quality of Ma'at. The careful ordering of what is, the commitment to doing things correctly. The invitation is to bring that same care to the inner life."]}
+]},
+"B":{sections:[
+  {title:"Blood Type B — The Individualist",text:["Type B is the sign of the person who cannot be contained by social expectations. The creative, the passionate, the one who follows genuine interest regardless of convenience."]},
+  {title:"Core Traits",pills:["Creative","Passionate","Curious","Independent","Unconventional"]},
+  {title:"At Your Best",bullets:["Deep focus when genuinely interested","Creative output from an authentic place","Freedom of thought that resists groupthink","Enthusiasm that makes things feel possible"]},
+  {title:"Your Challenge",text:["The Type B challenge is balance between their inner world and the people around them. The practice is developing genuine attentiveness to others without losing the authentic interiority that makes them who they are."]},
+  {title:"In the Haligric Frame",text:["Type B holds the creative impulse in its most unfiltered form. The Haligric invitation is to add the container: not to suppress the energy but to give it direction."]}
+]},
+"AB":{sections:[
+  {title:"Blood Type AB — The Rational",text:["Type AB is the rarest. The integration of A and B, carrying seemingly contradictory qualities simultaneously. AB can be both introverted and socially gifted, both sensitive and analytical."]},
+  {title:"Core Traits",pills:["Dual-natured","Empathetic","Rational","Cool","Diplomatic","Rare"]},
+  {title:"At Your Best",bullets:["The natural mediator who understands both sides","Intellectual depth combined with emotional intelligence","Diplomatic skill without requiring false agreement","The ability to surprise people who thought they had you figured out"]},
+  {title:"Your Challenge",text:["AB can seem inconsistent to others. The practice is communicating the inner shift rather than leaving others to interpret it. You contain multitudes, and that requires translation."]},
+  {title:"In the Haligric Frame",text:["Type AB holds the synthesis at the heart of Haligricity. Multiple traditions, multiple truths, held simultaneously without contradiction."]}
+]},
+"O":{sections:[
+  {title:"Blood Type O — The Warrior",text:["Type O is the original human blood type. The universal donor. In Japanese tradition, O carries the qualities of the natural leader: confident, energetic, decisive."]},
+  {title:"Core Traits",pills:["Confident","Decisive","Resilient","Generous","Strong-willed","Blunt"]},
+  {title:"At Your Best",bullets:["The natural leader who moves through fear rather than around it","Generosity that gives without keeping score","Resilience that reassembles after difficulty","Vision and decisiveness that inspires others"]},
+  {title:"Your Challenge",text:["Type O can become inflexible. The strength that makes them leaders can become the stubbornness that isolates them. The practice is knowing when to hold and when to yield."]},
+  {title:"In the Haligric Frame",text:["Type O holds the primordial life force. The Haligric invitation is to bring that force under the direction of the higher self: to give the warrior something worthy to fight for."]}
+]}
+};
+
+var DETAIL_DATA={
+  west:{system:"Western Zodiac — Tropical",
+    getTitle:function(){return document.getElementById("w-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("w-elem").textContent+" · Ruled by "+document.getElementById("w-ruler").textContent;},
+    getBody:function(){var rawSign=document.getElementById("w-sign").textContent.trim();var sign=Object.keys(WESTERN_DETAIL).find(function(k){return k.startsWith(rawSign);})||rawSign;return buildDetailBody(WESTERN_DETAIL[sign]||{});}},
+  chin:{system:"Chinese Zodiac — Sexagenary Cycle",
+    getTitle:function(){return document.getElementById("c-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("c-elem").textContent;},
+    getBody:function(){var parts=document.getElementById("c-sign").textContent.trim().split(" ");var sign=parts[parts.length-1];return buildDetailBody(CHINESE_DETAIL[sign]||{});}},
+  ved:{system:"Vedic Astrology — Jyotish (Sidereal)",
+    getTitle:function(){return document.getElementById("v-sign").textContent;},
+    getSubtitle:function(){return "Ruled by "+document.getElementById("v-ruler").textContent;},
+    getBody:function(){var raw=document.getElementById("v-sign").textContent.trim();var vm=raw.match(/^(\S+)\s*\(([^)]+)\)$/);var sign=vm?vm[2]+" ("+vm[1]+")":raw;return buildDetailBody(VEDIC_DETAIL[sign]||{});}},
+  maya:{system:"Maya — Tzolkin Calendar",
+    getTitle:function(){return document.getElementById("m-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("m-meaning").textContent;},
+    getBody:function(){var sign=document.getElementById("m-sign").textContent.split(" — ")[0].split(" – ")[0].trim();return buildDetailBody(MAYA_DETAIL[sign]||{});}},
+  ogham:{system:"Celtic Tree Calendar — Ogham",
+    getTitle:function(){return document.getElementById("o-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("o-meaning").textContent;},
+    getBody:function(){var sign=document.getElementById("o-sign").textContent.trim();console.log("ogham sign lookup:",sign,"found:",!!OGHAM_DETAIL[sign]);return buildDetailBody(OGHAM_DETAIL[sign]||{});}},
+  naz:{system:"Native American Zodiac",
+    getTitle:function(){return document.getElementById("n-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("n-meaning").textContent;},
+    getBody:function(){var sign=document.getElementById("n-sign").textContent.trim();console.log("naz sign lookup:",sign,"found:",!!NAZ_DETAIL[sign]);return buildDetailBody(NAZ_DETAIL[sign]||{});}},
+  egypt:{system:"Egyptian Zodiac",
+    getTitle:function(){return document.getElementById("e-sign").textContent;},
+    getSubtitle:function(){return document.getElementById("e-meaning").textContent;},
+    getBody:function(){var sign=document.getElementById("e-sign").textContent.trim();console.log("egypt sign lookup:",sign,"found:",!!EGYPT_DETAIL[sign]);return buildDetailBody(EGYPT_DETAIL[sign]||{});}},
+  num:{system:"Numerology — Pythagorean",
+    getTitle:function(){return document.getElementById("num-lifepath").textContent;},
+    getSubtitle:function(){return "Your numerology profile";},
+    getBody:function(){var lp=document.getElementById("num-lifepath").textContent.replace("Life Path ","");return buildDetailBody(NUM_DETAIL[lp]||{});}},
+  bt:{system:"Blood Type Personality — Ketsueki-gata",
+    getTitle:function(){return document.getElementById("bt-headline").textContent;},
+    getSubtitle:function(){return document.getElementById("bt-traits").textContent;},
+    getBody:function(){var bt=document.getElementById("bloodtype").value;return buildDetailBody(BT_DETAIL[bt]||{});}}
+};
+
+function showDetail(key){
+  var d=DETAIL_DATA[key];
+  if(!d) return;
+  var title=d.getTitle();
+  if(!title||title==="—"||title.indexOf("Enter")===0||title.indexOf("Select")===0) return;
+  document.getElementById("d-system").textContent=d.system;
+  document.getElementById("d-title").textContent=title;
+  document.getElementById("d-subtitle").textContent=d.getSubtitle();
+  document.getElementById("d-body").innerHTML=d.getBody();
+  var page=document.getElementById("detail-page");
+  page.classList.add("show");
+  page.scrollTop=0;
+  document.body.style.overflow="hidden";
+}
+
+function hideDetail(){
+  document.getElementById("detail-page").classList.remove("show");
+  document.body.style.overflow="";
+}
+</script>
+
+<!-- ── DETAIL PAGE ───────────────────────────────────── -->
+<div class="detail-page" id="detail-page">
+  <div class="detail-inner">
+    <!-- starfield same as body -->
+    <div style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 20% 30%,#1a1030 0%,transparent 60%),radial-gradient(ellipse at 80% 70%,#0a0a20 0%,transparent 60%),var(--deep);"></div>
+    <div style="position:relative;z-index:1;">
+      <button class="back-btn" onclick="hideDetail()">← Return to Your Results</button>
+      <div class="detail-header">
+        <div class="detail-system" id="d-system"></div>
+        <div class="detail-title" id="d-title"></div>
+        <div class="gold-rule"></div>
+        <div class="detail-subtitle" id="d-subtitle"></div>
+      </div>
+      <div id="d-body"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  Title:       Your Cart | Haligricity
+  Author:      Hali Sarah Parsons
+  Date:        2026-10-30
+  Modified By: Claude
+  Description: Review your Haligricity and Real Magic books and check out securely. Cart, currency and checkout come from the shared
+               assets/shop.js — edit prices/books there and in the worker.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | Haligricity</title>
+<meta name="description" content="Review your Haligricity and Real Magic books and check out securely.">
+<link rel="canonical" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/Cart/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Haligricity">
+<meta property="og:title" content="Your Cart | Haligricity">
+<meta property="og:description" content="Review your Haligricity and Real Magic books and check out securely.">
+<meta property="og:url" content="https://haligricity.iqproductionz.com/HaligricFoundation/Order/Cart/">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/assets/shop.css">
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://haligricity.iqproductionz.com/HaligricFoundation/Order/assets/shop.js" defer></script>
+</head>
+<body>
+
+<nav class="rm-nav">
+  <div class="rm-nav-left">
+    <a class="rm-hali-link" href="https://haligricity.iqproductionz.com/">Haligricity</a>
+  </div>
+  <div class="rm-links">
+    <a class="rm-link" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/">All Books</a>
+    <a class="rm-link" href="https://haligricity.iqproductionz.com/RealMagic/OrderNow/">Real Magic</a>
+    <a class="rm-cart" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/Cart/" data-hb-cartlink>Cart</a>
+  </div>
+</nav>
+
+<header class="rm-hero">
+  <p class="rm-kicker">Haligricity &amp; Real Magic</p>
+  <h1 class="rm-title">Your Cart</h1>
+  <div class="gold-rule"></div>
+  <p class="rm-sub">Review your books, then enter your delivery details once to check out.</p>
+</header>
+<main class="rm-wrap">
+  <div class="notice"><strong>Note:</strong> In compliance with international sanctions, orders cannot be shipped to Ukraine or Russia.</div>
+  <section data-hb-checkout id="checkout"></section>
+</main>
+
+<footer class="rm-footer">
+  <p class="tag-line">You Are The Current &nbsp;&middot;&nbsp; Be More You &nbsp;&middot;&nbsp; Ashe.</p>
+  <p>&copy; 2026 Hali Sarah Parsons &nbsp;&middot;&nbsp;
+    <a href="https://haligricity.iqproductionz.com/">Haligricity</a> &nbsp;&middot;&nbsp;
+    <a href="https://IQProductionz.com/">I.Q. Productionz</a></p>
+</footer>
+</body>
+</html>

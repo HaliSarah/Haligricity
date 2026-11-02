@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Sacred Calendar — Today's Day Sign</title>
+<style>
+  :root{
+    --bg1:#0e1a1f; --bg2:#182b2f; --gold:#c9a24b; --gold-soft:#e2c589;
+    --jade:#3f9b7a; --jade-soft:#7fc9ab; --ink:#f2e9d8; --ink-dim:#b9ac93;
+    --card:#12252a; --border:#2a4046; --red:#b5533c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(63,155,122,0.15), transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(201,162,75,0.12), transparent 45%),
+      linear-gradient(160deg, var(--bg1), var(--bg2));
+    color:var(--ink);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    padding:28px 16px 60px;
+  }
+  .wrap{max-width:880px; margin:0 auto;}
+  header{text-align:center; margin-bottom:28px;}
+  header .kicker{
+    letter-spacing:0.28em; text-transform:uppercase; font-size:11px;
+    color:var(--jade-soft); font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom:10px;
+  }
+  h1{
+    font-size:clamp(26px,4vw,38px); margin:0 0 6px; color:var(--gold-soft);
+    font-weight:400; letter-spacing:0.02em;
+  }
+  .sub{color:var(--ink-dim); font-size:14px; font-family:'Helvetica Neue',Arial,sans-serif;}
+
+  .datebar{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin:26px 0 8px; flex-wrap:wrap;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .datebar button{
+    background:var(--card); border:1px solid var(--border); color:var(--gold-soft);
+    padding:9px 16px; border-radius:30px; cursor:pointer; font-size:13px;
+    letter-spacing:0.04em; transition:all .15s;
+  }
+  .datebar button:hover{background:var(--jade); color:#08161a; border-color:var(--jade);}
+  .datebar input[type=date]{
+    background:var(--card); border:1px solid var(--border); color:var(--ink);
+    padding:9px 12px; border-radius:30px; font-size:13px; font-family:inherit;
+  }
+  .todaytag{
+    text-align:center; font-family:'Helvetica Neue',Arial,sans-serif; font-size:12px;
+    color:var(--jade-soft); margin-bottom:4px; min-height:16px; letter-spacing:.05em;
+  }
+
+  .glyph-card{
+    background:linear-gradient(180deg, var(--card), #0f1f23);
+    border:1px solid var(--border); border-radius:18px; padding:36px 24px;
+    text-align:center; margin:22px 0; position:relative; overflow:hidden;
+  }
+  .glyph-card::before{
+    content:""; position:absolute; inset:0; opacity:0.06; pointer-events:none;
+    background-image: repeating-linear-gradient(45deg, var(--gold) 0 1px, transparent 1px 26px);
+  }
+  .glyph-disc{
+    width:118px; height:118px; border-radius:50%; margin:0 auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(circle at 35% 30%, var(--jade-soft), var(--jade) 55%, #1f5744 100%);
+    border:3px solid var(--gold);
+    font-size:46px; box-shadow:0 0 0 6px rgba(201,162,75,0.12), 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .tzolkin-name{
+    font-size:clamp(28px,5vw,42px); color:var(--gold-soft); margin:0 0 4px;
+    letter-spacing:0.02em;
+  }
+  .tzolkin-sub{
+    color:var(--ink-dim); font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:18px;
+  }
+  .stat-row{
+    display:flex; justify-content:center; gap:28px; flex-wrap:wrap;
+    font-family:'Helvetica Neue',Arial,sans-serif; margin-top:8px;
+  }
+  .stat{text-align:center;}
+  .stat .label{font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-dim);}
+  .stat .value{font-size:16px; color:var(--jade-soft); margin-top:3px;}
+
+  .grid{display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px;}
+  @media(min-width:700px){ .grid{grid-template-columns:1fr 1fr;} }
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px 24px;
+  }
+  .panel h2{
+    margin:0 0 12px; font-size:17px; color:var(--gold-soft); font-weight:400;
+    border-bottom:1px solid var(--border); padding-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .panel h2 .n{
+    background:var(--jade); color:#07161a; width:24px; height:24px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; font-size:12px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .panel p{line-height:1.65; font-size:14.5px; color:var(--ink); margin:0 0 10px;}
+  .panel p:last-child{margin-bottom:0;}
+  .panel .full{grid-column:1/-1;}
+
+  .haab-line{
+    display:flex; align-items:baseline; gap:10px; margin-bottom:14px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .haab-num{font-size:30px; color:var(--gold-soft);}
+  .haab-month{font-size:18px; color:var(--jade-soft);}
+
+  .longcount{
+    text-align:center; font-family:'Courier New', monospace; font-size:15px;
+    letter-spacing:0.12em; color:var(--gold-soft); margin:6px 0 2px;
+  }
+  .longcount-label{
+    text-align:center; font-family:'Helvetica Neue',Arial,sans-serif; font-size:10px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:4px;
+  }
+
+  .lens{
+    margin-top:20px; background:rgba(63,155,122,0.08); border:1px solid rgba(127,201,171,0.3);
+    border-radius:14px; padding:20px 24px;
+  }
+  .lens h2{color:var(--jade-soft); font-size:15px; margin:0 0 10px; font-weight:400;
+    text-transform:uppercase; letter-spacing:.08em; font-family:'Helvetica Neue',Arial,sans-serif;}
+  .lens p{font-size:13.5px; line-height:1.7; color:var(--ink-dim); margin:0;}
+
+  footer{
+    text-align:center; margin-top:34px; font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px; color:var(--ink-dim); opacity:0.7; line-height:1.6;
+  }
+  .calround-note{
+    text-align:center; margin-top:10px; font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px; color:var(--red); opacity:0.85;
+  }
+</style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="The Tzolk&#x27;in is one of many day-quality systems humanity has built to read the texture of time — alongside the planetary rulers of the Western week, Vedic…">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/MayanCalendar/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="Maya Sacred Calendar — Today&#x27;s Day Sign">
+  <meta property="og:description" content="The Tzolk&#x27;in is one of many day-quality systems humanity has built to read the texture of time — alongside the planetary rulers of the Western week, Vedic…">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/MayanCalendar/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Maya Sacred Calendar — Today&#x27;s Day Sign">
+  <meta name="twitter:description" content="The Tzolk&#x27;in is one of many day-quality systems humanity has built to read the texture of time — alongside the planetary rulers of the Western week, Vedic…">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/MayanCalendar/",
+   "url": "https://haligricity.iqproductionz.com/MayanCalendar/",
+   "name": "Maya Sacred Calendar — Today's Day Sign",
+   "description": "The Tzolk'in is one of many day-quality systems humanity has built to read the texture of time — alongside the planetary rulers of the Western week, Vedic…",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "MayanCalendar",
+     "item": "https://haligricity.iqproductionz.com/MayanCalendar/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Haligricity · Living Calendars</div>
+    <h1>The Maya Sacred Calendar</h1>
+    <div class="sub">Tzolk'in day-sign · Haab solar date · Long Count — recalculated for any day you choose</div>
+  </header>
+
+  <div class="datebar">
+    <button id="prevDay">← Previous Day</button>
+    <input type="date" id="datePicker">
+    <button id="nextDay">Next Day →</button>
+    <button id="todayBtn">Today</button>
+  </div>
+  <div class="todaytag" id="todayTag"></div>
+
+  <div class="glyph-card">
+    <div class="glyph-disc" id="glyphDisc">🐊</div>
+    <div class="tzolkin-name" id="tzolkinName">4 Ahau</div>
+    <div class="tzolkin-sub" id="tzolkinSub">Tzolk'in — the 260-day sacred count</div>
+    <div class="stat-row">
+      <div class="stat"><div class="label">Gregorian Date</div><div class="value" id="gregDate">—</div></div>
+      <div class="stat"><div class="label">Haab Date</div><div class="value" id="haabDate">—</div></div>
+      <div class="stat"><div class="label">Day of Tzolk'in Cycle</div><div class="value" id="cyclePos">—</div></div>
+    </div>
+    <div class="longcount-label" style="margin-top:20px;">Long Count</div>
+    <div class="longcount" id="longCount">—.—.—.—.—</div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2><span class="n" id="numGlyph">4</span> The Number's Energy</h2>
+      <p id="numberMeaning">—</p>
+    </div>
+    <div class="panel">
+      <h2><span class="n">☉</span> The Day Sign</h2>
+      <p id="daySignMeaning">—</p>
+    </div>
+    <div class="panel full">
+      <h2><span class="n">◆</span> Today's Combined Reading</h2>
+      <p id="combinedMeaning">—</p>
+    </div>
+    <div class="panel">
+      <div class="haab-line">
+        <span class="haab-num" id="haabNum">8</span>
+        <span class="haab-month" id="haabMonthName">Cumku</span>
+      </div>
+      <h2 style="border:none; padding:0; margin-bottom:10px;">Haab — The Solar Month</h2>
+      <p id="haabMeaning">—</p>
+    </div>
+    <div class="panel">
+      <h2><span class="n">△</span> Long Count Position</h2>
+      <p id="longCountMeaning">—</p>
+    </div>
+  </div>
+
+  <div class="lens">
+    <h2>Haligricity Lens — A Synthesis Note</h2>
+    <p>The Tzolk'in is one of many day-quality systems humanity has built to read the texture of time — alongside the
+    planetary rulers of the Western week, Vedic nakshatras, and the Chinese sexagenary cycle. Haligricity holds this
+    as a lens for reflection, not a replacement for how the day is practically kept. The parallel worth sitting with:
+    20 day-signs echo roughly the number of days the sun spends passing through each zodiac constellation, and 13
+    numbers match the 13 constellations the sun actually crosses (the 12 Babylonian signs plus Ophiuchus, the
+    thirteenth sign Western tradition set aside). 20 × 13 = 260 — whether by intention or convergence, the Maya
+    preserved a whole-sky accounting that the West simplified away.</p>
+  </div>
+
+  <div class="calround-note" id="calroundNote"></div>
+
+  <footer>
+    Correlation constant: GMT 584283 (Goodman–Martínez–Thompson), the standard scholarly correlation between the
+    Long Count and the Gregorian calendar. Day-sign and number meanings reflect widely published traditional
+    interpretations; living Maya day-keepers (ajq'ijab') across Guatemala and the Yucatán continue this count today
+    as an unbroken practice. Framed here as a reflective lens, offered with respect for a living tradition.
+  </footer>
+</div>
+
+<script>
+// ---------- Data ----------
+const DAY_SIGNS = [
+  {name:"Imix", glyph:"🐊", title:"Crocodile / Waterlily Monster",
+   meaning:"The primordial waters and the back of the great crocodile that the earth rests upon. Imix opens the count: the energy of origin, nurture, and the fertile unconscious. A day for beginnings, for trusting what has not yet taken visible form, and for the nourishing, sometimes overwhelming, pull of the maternal and the instinctual."},
+  {name:"Ik", glyph:"🌬️", title:"Wind / Breath",
+   meaning:"The breath that animates. Ik carries the life-force, speech, and the changeable nature of spirit — communication, inspiration, and the winds of change moving through a life. A day favorable for speaking truth, for creative ideas to arrive on the air, and for noticing which way the wind of a situation is turning."},
+  {name:"Akbal", glyph:"🌑", title:"Night / House",
+   meaning:"The dark interior of the house before dawn — the underworld, dreams, and the hidden foundations of things. Akbal governs introspection, the subconscious, and the sacred dark from which light is born. A day for turning inward, for dreamwork, and for building quietly before anything is shown."},
+  {name:"Kan", glyph:"🌽", title:"Seed / Lizard",
+   meaning:"The ripening seed and the net that gathers abundance. Kan holds germination, desire, and the potential coiled inside anything not yet grown. A day of planting — literally or figuratively — and of recognizing what is ready to be nourished into fullness."},
+  {name:"Chicchan", glyph:"🐍", title:"Serpent",
+   meaning:"The celestial and bodily serpent — raw vital force, instinct, sexuality, and the healing power that moves through the spine of a living thing. Chicchan is wisdom carried in the body rather than the mind. A day for honoring instinct, sensuality, and the electric current of aliveness."},
+  {name:"Cimi", glyph:"💀", title:"Death",
+   meaning:"Not an ending but a threshold — Cimi governs transformation, release, and communion with ancestors. It teaches that every completion clears space for what comes next. A day to let go of what has finished its purpose, and to feel gratitude toward what came before."},
+  {name:"Manik", glyph:"🦌", title:"Deer / Hand",
+   meaning:"The steady hand and the deer's sure step — Manik is skillful accomplishment, healing touch, and resourcefulness under pressure. A day for using one's hands and one's discipline well: to heal, to make, to finish what was started with quiet competence."},
+  {name:"Lamat", glyph:"⭐", title:"Star / Rabbit / Venus",
+   meaning:"Venus as morning and evening star, and the rabbit's association with abundance and fertility. Lamat is harmony, art, beauty, and the multiplication of good fortune. A day for creative work, celebration, and enjoying the pleasures the world offers."},
+  {name:"Muluc", glyph:"💧", title:"Water / Jade / Moon",
+   meaning:"Water as both emotion and offering — jade as the precious gift given back to the sacred. Muluc governs feeling, purification, and the moon's tidal pull on the heart. A day for emotional honesty, ritual cleansing, and giving what is truly valuable rather than what is merely convenient."},
+  {name:"Oc", glyph:"🐕", title:"Dog",
+   meaning:"Loyalty, guidance, and law. In Maya cosmology the dog leads the soul through the underworld — Oc is the faithful guide, the keeper of order, and the bond of true companionship. A day to honor commitments and to trust those who have proven trustworthy."},
+  {name:"Chuen", glyph:"🐒", title:"Monkey",
+   meaning:"The divine artisan and trickster — Chuen governs creativity, craft, play, and the weaving together of time itself (the Hero Twins' half-brothers, transformed into monkeys, are patrons of art and writing). A day for making things, for humor, and for approaching serious work with a light hand."},
+  {name:"Eb", glyph:"🌾", title:"Grass / Road",
+   meaning:"The human path underfoot — Eb is humility, destiny walked one step at a time, and belonging to community. It governs the ordinary road of a life rather than dramatic leaps. A day for gratitude toward the path already walked and steady progress on the one ahead."},
+  {name:"Ben", glyph:"🎋", title:"Reed / Cane",
+   meaning:"The reed that grows straight and tall — Ben is authority, the pillar of the home, and vertical growth toward the sky while staying rooted. A day associated with leadership, the strengthening of one's household, and standing upright in one's convictions."},
+  {name:"Ix", glyph:"🐆", title:"Jaguar",
+   meaning:"The night sun and the shaman's power — Ix carries feminine magic, intuition, and the jaguar's fierce, quiet authority over hidden knowledge. A day for trusting inner knowing, for shadow-work, and for the kind of strength that does not need to announce itself."},
+  {name:"Men", glyph:"🦅", title:"Eagle",
+   meaning:"The far-seeing eye — Men governs vision, ambition, and wisdom gained from an elevated perspective. Associated with the moon goddess and clear sight across long distances of time. A day for planning ahead and for rising above a situation to see it whole."},
+  {name:"Cib", glyph:"🦉", title:"Vulture / Owl / Wisdom",
+   meaning:"The wisdom of the elders and the flame of confession — Cib is associated with the sacred fire, ancestral memory, and the cleansing that comes from honest reckoning. A day for seeking counsel from those who carry experience, and for releasing guilt through honest acknowledgment."},
+  {name:"Caban", glyph:"🌍", title:"Earth / Earthquake",
+   meaning:"The moving earth and the force of thought itself — Caban governs synchronicity, intelligence, and the world's capacity to shift beneath our feet. A day when ideas move quickly and coincidences carry meaning; a good day to notice what the world is trying to tell you."},
+  {name:"Etznab", glyph:"🗡️", title:"Flint / Mirror",
+   meaning:"The obsidian blade and the mirror's unflinching reflection — Etznab cuts through illusion and shows things exactly as they are, sometimes through conflict. A day for truth-telling, for facing what has been avoided, and for the clarity that follows a difficult confrontation."},
+  {name:"Cauac", glyph:"⛈️", title:"Storm",
+   meaning:"The purifying storm and the ancestral hearth-fire — Cauac governs transformation through crisis, renewal, and the energy that clears the field for new growth. A day when upheaval, if met with steadiness, becomes the doorway to a needed change."},
+  {name:"Ahau", glyph:"☀️", title:"Lord / Sun",
+   meaning:"The solar lord and the completion of the count — Ahau is enlightenment, fulfillment, and cosmic consciousness fully realized. It closes the 20-day cycle where Imix began it. A day of culmination, celebration, and recognizing the light already present in one's own life."}
+];
+
+const NUMBERS = [
+  {n:1, meaning:"Unity and initiation. The seed of an intention is planted — singular, undivided, and full of unrealized potential. A day to begin rather than to finish."},
+  {n:2, meaning:"Polarity and choice. Two forces stand in relationship — cooperation or friction, complement or conflict. A day to weigh a decision honestly rather than rushing past it."},
+  {n:3, meaning:"Activation and movement. What was seeded now stirs — the number of expression, of putting a plan into motion. A day for action rather than more deliberation."},
+  {n:4, meaning:"Stability and the four directions. Foundation, structure, and the solidity needed to support what comes next. A day for building on firm ground."},
+  {n:5, meaning:"Empowerment and center. The midpoint of the first half of the trecena, radiating outward like a hand's five fingers. A day for claiming personal power without excess."},
+  {n:6, meaning:"Flow and organic balance. Rhythm restored after the push of five — a day of give-and-take, of things settling into a workable pattern."},
+  {n:7, meaning:"Mystery and reflection. The mirror-point of the thirteen-day count, where inner and outer meet. A day well suited to meditation, divination, and honest self-inquiry."},
+  {n:8, meaning:"Harmony and integrity. The pattern comes into right relationship with itself — the number associated with justice and correct alignment. A day for keeping one's word."},
+  {n:9, meaning:"Patience through completion. Associated with the nine layers of the underworld — the number that asks for endurance as a threshold is crossed. A day to trust a process nearing its end."},
+  {n:10, meaning:"Manifestation. The culmination of the foundation laid at four — something becomes visible and countable in the world. A day when effort shows results."},
+  {n:11, meaning:"Release and resolution. What no longer serves is loosened — a number of clearing and letting go so the final push can begin unencumbered."},
+  {n:12, meaning:"Understanding and cooperation. A wider, more universal view opens — the number of stepping back to see how individual pieces serve the whole."},
+  {n:13, meaning:"Transcendence. The trecena's final number — full presence, culmination, and the readiness to complete one cycle so a new one can begin. A day of arrival."}
+];
+
+const HAAB_MONTHS = [
+  {name:"Pop", meaning:"The mat — symbol of the community and the seat of authority. Traditionally the Maya New Year's month: a time for communal renewal and the setting of intentions for the year ahead."},
+  {name:"Wo", meaning:"Associated with a black or dark conjunction; a month of deepening and going within after the openness of Pop."},
+  {name:"Sip", meaning:"Named for the deer-god patron of hunting; a month tied to the hunt, to skillful pursuit, and to the deer as a sacred animal of provision."},
+  {name:"Sotz", meaning:"The bat — a creature of the threshold between day and night, upperworld and underworld. A month of transitions and liminal awareness."},
+  {name:"Sek", meaning:"Associated with the bee and offerings of sweetness; a month for gratitude and small, deliberate acts of giving."},
+  {name:"Xul", meaning:"'The end' — associated with the dog as guide, marking a closing point and the completion of a phase before the dry season's peak."},
+  {name:"Yaxkin", meaning:"'New sun' or 'strong sun' — the height of dry-season warmth. A month of vitality, clarity, and the sun's fullest strength."},
+  {name:"Mol", meaning:"'Gathering' or 'to collect' — a month of accumulation, tied to water gathering and the coming together of resources."},
+  {name:"Chen", meaning:"'Well' or 'black storm' — associated with hidden water sources and the unseen reserves that sustain a community."},
+  {name:"Yax", meaning:"'Green' or 'new' — the color of new maize; a month of fresh growth and the blue-green of renewal."},
+  {name:"Sak", meaning:"'White' — associated historically with war banners and readiness; a month of clarity, purity of purpose, and preparedness."},
+  {name:"Keh", meaning:"'Red' — associated with the deer and offerings of red; a month of vitality, blood-memory, and sacrifice in its offering sense."},
+  {name:"Mak", meaning:"'Enclosed' or 'covered' — a month of closing rites, particularly fire ceremonies that seal a completed phase of work."},
+  {name:"Kankin", meaning:"'Yellow sun' — a month associated with the ripened harvest and the golden abundance of accumulated labor."},
+  {name:"Muwan", meaning:"Named for an owl associated with rain; a month tied to the rain god and the ripening of cacao, a sacred crop."},
+  {name:"Pax", meaning:"'Planting' and also 'the drum' — a month combining agricultural planting with music and ceremony, work paired with celebration."},
+  {name:"Kayab", meaning:"Associated with the turtle and with singing; a month of patient, steady progress and the turtle's ancient endurance."},
+  {name:"Kumku", meaning:"'Granary' — the final counted month, associated with storage and the abundance gathered across the year, prepared for what comes next."},
+  {name:"Wayeb", meaning:"The five 'nameless' or 'dangerous' days outside the eighteen counted months — a liminal, uncounted stretch traditionally treated with caution, fasting, and quiet, as the year's structure momentarily dissolves before beginning again."}
+];
+
+// ---------- Astronomical / calendrical math ----------
+function gregorianToJDN(year, month, day){
+  const a = Math.floor((14 - month) / 12);
+  const y = year + 4800 - a;
+  const m = month + 12 * a - 3;
+  return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+}
+
+const GMT_CORRELATION = 584283; // Goodman-Martinez-Thompson correlation constant
+
+function computeMayaDate(dateObj){
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+  const jdn = gregorianToJDN(year, month, day);
+  const d = jdn - GMT_CORRELATION; // days since 0.0.0.0.0 4 Ahau 8 Cumku
+
+  // Long Count
+  let rem = d;
+  const baktun = Math.floor(rem / 144000); rem = ((rem % 144000) + 144000) % 144000;
+  const katun = Math.floor(rem / 7200); rem = rem % 7200;
+  const tun = Math.floor(rem / 360); rem = rem % 360;
+  const uinal = Math.floor(rem / 20);
+  const kin = rem % 20;
+
+  // Tzolk'in
+  let tzNumber = ((d + 4) % 13);
+  if (tzNumber <= 0) tzNumber += 13;
+  let tzIndex = ((d + 19) % 20);
+  if (tzIndex < 0) tzIndex += 20;
+
+  // Haab
+  let haabDay = ((d + 348) % 365);
+  if (haabDay < 0) haabDay += 365;
+  let haabMonthIndex, haabDayInMonth;
+  if (haabDay < 360){
+    haabMonthIndex = Math.floor(haabDay / 20);
+    haabDayInMonth = haabDay % 20;
+  } else {
+    haabMonthIndex = 18; // Wayeb
+    haabDayInMonth = haabDay - 360;
+  }
+
+  return {
+    jdn, daysSinceCreation: d,
+    longCount: {baktun, katun, tun, uinal, kin},
+    tzolkin: {number: tzNumber, signIndex: tzIndex, sign: DAY_SIGNS[tzIndex]},
+    haab: {day: haabDayInMonth, monthIndex: haabMonthIndex, month: HAAB_MONTHS[haabMonthIndex]}
+  };
+}
+
+// ---------- Rendering ----------
+function ordinalDate(dateObj){
+  return dateObj.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+}
+
+function render(dateObj){
+  const md = computeMayaDate(dateObj);
+  const sign = md.tzolkin.sign;
+  const num = md.tzolkin.number;
+  const numData = NUMBERS[num - 1];
+
+  document.getElementById('glyphDisc').textContent = sign.glyph;
+  document.getElementById('tzolkinName').textContent = `${num} ${sign.name}`;
+  document.getElementById('tzolkinSub').textContent = `${sign.title} — Tzolk'in, the 260-day sacred count`;
+  document.getElementById('gregDate').textContent = dateObj.toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'});
+  document.getElementById('haabDate').textContent = `${md.haab.day} ${md.haab.month.name}`;
+
+  // position within 260-day cycle (1-260)
+  let cyclePos = ((md.daysSinceCreation % 260) + 260) % 260 + 1;
+  document.getElementById('cyclePos').textContent = `${cyclePos} of 260`;
+
+  document.getElementById('longCount').textContent =
+    `${md.longCount.baktun}.${md.longCount.katun}.${md.longCount.tun}.${md.longCount.uinal}.${md.longCount.kin}`;
+
+  document.getElementById('numGlyph').textContent = num;
+  document.getElementById('numberMeaning').textContent = numData.meaning;
+  document.getElementById('daySignMeaning').textContent = `${sign.title}. ${sign.meaning}`;
+
+  document.getElementById('combinedMeaning').textContent =
+    `${num} ${sign.name} blends the energy of the number ${num} (${numData.meaning.split('.')[0].toLowerCase()}) with ${sign.name}, the ${sign.title.toLowerCase()} (${sign.meaning.split('.')[0].toLowerCase()}). ` +
+    `Traditionally, a day-keeper would read this combination as the specific quality of awareness available today — neither purely the number's drive nor purely the sign's nature, but the two moving together.`;
+
+  document.getElementById('haabNum').textContent = md.haab.day;
+  document.getElementById('haabMonthName').textContent = md.haab.month.name;
+  document.getElementById('haabMeaning').textContent = md.haab.month.meaning;
+
+  document.getElementById('longCountMeaning').textContent =
+    `${md.longCount.baktun} baktuns, ${md.longCount.katun} katuns, ${md.longCount.tun} tuns, ${md.longCount.uinal} uinals, and ${md.longCount.kin} kins have elapsed since the Maya creation date of 4 Ahau 8 Cumku ` +
+    `(August 11, 3114 BCE, proleptic Gregorian). The current cycle is the 14th baktun since that creation date — the 13th baktun closed on December 21, 2012, which popular media misread as an apocalypse; ` +
+    `in the Maya calendar's own cyclical logic, it was simply the turning of a very large odometer.`;
+
+  const today = new Date();
+  const isToday = dateObj.toDateString() === today.toDateString();
+  document.getElementById('todayTag').textContent = isToday
+    ? `Today — ${ordinalDate(dateObj)}`
+    : `Viewing — ${ordinalDate(dateObj)} (not today)`;
+
+  document.getElementById('datePicker').value = toISODate(dateObj);
+
+  // Calendar Round note — only relevant near Sept 27, 2026 per project notes, otherwise blank
+  document.getElementById('calroundNote').textContent = '';
+}
+
+function toISODate(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
+let currentDate = new Date();
+currentDate.setHours(12,0,0,0); // noon to avoid DST/timezone edge issues
+
+function goToDate(d){
+  currentDate = new Date(d);
+  currentDate.setHours(12,0,0,0);
+  render(currentDate);
+}
+
+document.getElementById('prevDay').addEventListener('click', () => {
+  const d = new Date(currentDate); d.setDate(d.getDate()-1); goToDate(d);
+});
+document.getElementById('nextDay').addEventListener('click', () => {
+  const d = new Date(currentDate); d.setDate(d.getDate()+1); goToDate(d);
+});
+document.getElementById('todayBtn').addEventListener('click', () => {
+  goToDate(new Date());
+});
+document.getElementById('datePicker').addEventListener('change', (e) => {
+  if (e.target.value){
+    const [y,m,dd] = e.target.value.split('-').map(Number);
+    goToDate(new Date(y, m-1, dd));
+  }
+});
+
+render(currentDate);
+
+// Auto-advance to the new day at local midnight, only while viewing "today"
+setInterval(() => {
+  const now = new Date();
+  const wasToday = currentDate.toDateString() === new Date(currentDate).toDateString();
+  const nowIsSameCalendarDayAsCurrent = currentDate.toDateString() === now.toDateString();
+  if (!nowIsSameCalendarDayAsCurrent){
+    // only auto-jump if the user was on "today" before midnight passed
+    const diffMs = now - currentDate;
+    if (diffMs > 0 && diffMs < 26*60*60*1000){
+      goToDate(now);
+    }
+  }
+}, 60*1000);
+</script>
+</body>
+</html>

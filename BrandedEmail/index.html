@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+  Title:       Haligricity — Branded Email Reply
+  Author:      Hali Sarah Parsons
+  Date:        2026-10-16
+  Modified By: Claude (Anthropic)
+  Description: Compose and send a branded Haligricity email via EmailJS.
+               Auto-fills from Contact Us links (?to=&reply=&name=).
+               Toolbar: Bold, Italic, Underline, Bulleted List, Numbered List,
+               Create Button, Insert Hyperlink. Greeting picker (default "Grand Rising").
+               Sends a fully branded HTML email so formatting arrives intact.
+               Lives at: haligricity.iqproductionz.com/BrandedEmail/ (the only copy)
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Branded Email Reply | Haligricity</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // WHY init right away (not on page load): the key must exist even if Send is clicked early.
+  var EJS_PUBLIC_KEY='3vNjQbWmqzzOO6IK-';
+  if(window.emailjs) emailjs.init({publicKey:EJS_PUBLIC_KEY});
+</script>
+<style>
+:root{
+  --bg:#FFFDF0;--bg-soft:#FFFAEC;
+  --purple:#4A1060;--purple-mid:#6B2D8E;--purple-light:#EDE0F5;
+  --gold:#C9A227;--gold-border:#C9A227;--gold-pale:#FFF8E8;
+  --ink:#1A1A1A;--gray:#555;--line:#EEE8D0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,'Cormorant Garamond',serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:60px;}
+a{color:var(--purple);}
+
+.top-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:#fff;border-bottom:1.5px solid var(--gold-border);position:sticky;top:0;z-index:60;flex-wrap:wrap;gap:8px;}
+.top-nav .crumbs{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--gold-border);text-transform:uppercase;}
+.top-nav .crumbs strong{color:var(--purple);}
+.nav-home{padding:7px 16px;border:1.5px solid var(--gold-border);border-radius:6px;background:transparent;color:var(--gold-border);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-home:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+.hero{text-align:center;padding:52px 24px 36px;border-bottom:1.5px solid var(--gold-border);background:linear-gradient(180deg,#FFFAEC 0%,#FFFDF0 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,162,39,.10) 0%,transparent 60%);pointer-events:none;}
+.hero .eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.4em;color:var(--gold-border);text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--purple);letter-spacing:.06em;margin-bottom:14px;}
+.gold-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto;}
+
+.wrap{max-width:800px;margin:0 auto;padding:36px 22px 0;}
+
+.card{background:#fff;border:1.5px solid var(--gold-border);border-radius:14px;padding:32px 28px;box-shadow:0 2px 14px rgba(180,140,0,.07);position:relative;margin-bottom:20px;}
+.card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.card h2{font-family:'Cinzel',serif;color:var(--purple);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:22px;}
+
+.field{margin-bottom:18px;}
+.field label{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-border);margin-bottom:7px;}
+.field input{width:100%;padding:11px 14px;border:1.5px solid var(--gold-border);border-radius:8px;background:var(--gold-pale);font-family:Georgia,serif;font-size:.95rem;color:var(--ink);transition:border-color .2s,background .2s;outline:none;}
+.field input:focus{border-color:var(--purple);background:#fff;}
+
+/* RICH TEXT TOOLBAR */
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;padding:10px 12px;background:var(--gold-pale);border:1.5px solid var(--gold-border);border-radius:8px 8px 0 0;border-bottom:none;}
+.tb-btn{padding:5px 12px;background:#fff;border:1px solid var(--gold-border);border-radius:5px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.tb-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.tb-btn b{font-weight:900;}
+.tb-sep{width:1px;background:var(--gold-border);opacity:.4;margin:0 2px;}
+
+/* contenteditable body */
+#body-editor{
+  width:100%;min-height:200px;padding:14px;
+  border:1.5px solid var(--gold-border);border-radius:0 0 8px 8px;
+  background:#fff;font-family:Georgia,serif;font-size:.95rem;
+  color:var(--ink);line-height:1.7;outline:none;
+  transition:border-color .2s;
+}
+#body-editor:focus{border-color:var(--purple);}
+#body-editor:empty::before{content:attr(data-placeholder);color:#aaa;}
+
+/* BUTTON CREATOR MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:#fff;border:1.5px solid var(--gold-border);border-radius:12px;padding:28px;max-width:400px;width:90%;position:relative;}
+.modal h3{font-family:'Cinzel',serif;color:var(--purple);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;}
+.modal label{display:block;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-border);margin-bottom:5px;}
+.modal input{width:100%;padding:9px 12px;border:1.5px solid var(--gold-border);border-radius:6px;background:var(--gold-pale);font-family:Georgia,serif;font-size:.9rem;color:var(--ink);outline:none;margin-bottom:14px;}
+.modal input:focus{border-color:var(--purple);}
+.modal-btns{display:flex;gap:10px;margin-top:4px;}
+.modal-btn{flex:1;padding:10px;border:none;border-radius:7px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.modal-btn.primary{background:var(--purple);color:#fff;}
+.modal-btn.primary:hover{background:var(--purple-mid);}
+.modal-btn.cancel{background:transparent;border:1px solid var(--gold-border);color:var(--gray);}
+.modal-btn.cancel:hover{border-color:var(--purple);color:var(--purple);}
+
+
+/* GREETING + NAME */
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field select{width:100%;padding:11px 14px;border:1.5px solid var(--gold-border);border-radius:8px;background:var(--gold-pale);font-family:Georgia,serif;font-size:.95rem;color:var(--ink);}
+.greet-row{display:flex;gap:10px;flex-wrap:wrap;}
+.greet-row select,.greet-row input{flex:1;min-width:160px;}
+.greet-preview{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;color:var(--purple);margin-top:8px;}
+.greet-preview span{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:var(--gold-border);text-transform:uppercase;margin-right:8px;}
+.tb-tip{font-family:Georgia,serif;font-size:.78rem;font-style:italic;color:var(--gray);align-self:center;margin-left:4px;}
+.btn-pair{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-pair .send-btn{flex:1;min-width:180px;}
+.send-btn.test{background:transparent;color:var(--purple);border:1.5px solid var(--purple);}
+.send-btn.test:hover{background:var(--purple-light);}
+@media(max-width:540px){.row-2{grid-template-columns:1fr;}}
+
+
+.fmt-note{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px;font-family:Georgia,serif;font-size:.85rem;line-height:1.7;color:var(--ink);margin-bottom:8px;}
+.fmt-note strong{color:var(--purple);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;}
+.fmt-flash{font-family:Georgia,serif;font-size:.82rem;font-style:italic;color:var(--purple-mid);min-height:20px;margin-top:6px;}
+#body-editor ul,#body-editor ol{margin:0 0 10px 24px;}
+
+/* PREVIEW */
+.preview-wrap{background:var(--gold-pale);border:1.5px solid var(--gold-border);border-radius:10px;padding:20px;margin-bottom:20px;}
+.preview-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-border);margin-bottom:10px;}
+#preview{font-family:Georgia,serif;font-size:.95rem;color:var(--ink);line-height:1.75;word-break:break-word;}
+.sig{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;color:var(--purple);opacity:.7;}
+
+.send-btn{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;border-radius:8px;font-family:'Cinzel',serif;font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.send-btn:hover{background:var(--purple-mid);}
+.send-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+#status{display:none;margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.92rem;line-height:1.6;font-style:italic;}
+#status.ok{background:var(--purple-light);color:var(--purple);}
+#status.err{background:#fdecea;color:#c0392b;}
+
+.ftr{text-align:center;margin-top:64px;padding:28px 16px 0;border-top:1.5px solid var(--gold-border);font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--gold-border);}
+.ftr .blessing{color:var(--purple);margin-bottom:6px;}
+.ftr a{color:var(--gold-border)!important;text-decoration:none;}
+.ftr a:hover{color:var(--purple)!important;}
+</style>
+</head>
+<body>
+
+<!-- BUTTON CREATOR MODAL -->
+<div class="modal-bg" id="btn-modal">
+  <div class="modal">
+    <h3>Create a Button</h3>
+    <label>Button Label</label>
+    <input type="text" id="btn-label" placeholder="Click Here">
+    <label>Link URL</label>
+    <input type="url" id="btn-url" placeholder="https://…">
+    <label>Button Color</label>
+    <input type="color" id="btn-color" value="#4A1060" style="height:38px;cursor:pointer;">
+    <div class="modal-btns" style="margin-top:14px;">
+      <button class="modal-btn cancel" onclick="closeModal('btn-modal')">Cancel</button>
+      <button class="modal-btn primary" onclick="insertButton()">Insert Button</button>
+    </div>
+  </div>
+</div>
+
+<!-- HYPERLINK MODAL -->
+<div class="modal-bg" id="link-modal">
+  <div class="modal">
+    <h3>Insert Hyperlink</h3>
+    <label>Display Text</label>
+    <input type="text" id="link-text" placeholder="Click here">
+    <label>URL</label>
+    <input type="url" id="link-url" placeholder="https://…">
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="closeModal('link-modal')">Cancel</button>
+      <button class="modal-btn primary" onclick="insertLink()">Insert Link</button>
+    </div>
+  </div>
+</div>
+
+<nav class="top-nav">
+  <div class="crumbs">Haligricity · <strong>Branded Email</strong></div>
+  <a class="nav-home" href="https://Haligricity.IQProductionz.com/Contact/">← Contact</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Haligricity</div>
+  <h1>Branded Email Reply</h1>
+  <div class="gold-divider"></div>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>Compose</h2>
+
+    <div class="row-2">
+      <div class="field">
+        <label for="b-to">To (Recipient)</label>
+        <input type="email" id="b-to" placeholder="recipient@email.com">
+      </div>
+      <div class="field">
+        <label for="b-name">Recipient First Name</label>
+        <input type="text" id="b-name" placeholder="e.g. Amara" oninput="updatePreview()">
+      </div>
+    </div>
+    <div class="field">
+      <label for="b-reply">Reply-To (your email · tests go here too)</label>
+      <input type="email" id="b-reply" value="HaliSarahParsons@gmail.com" placeholder="HaliSarahParsons@gmail.com">
+    </div>
+    <div class="field">
+      <label for="b-greeting">Greeting</label>
+      <div class="greet-row">
+        <select id="b-greeting" onchange="onGreetingChange()">
+          <option value="Grand Rising" selected>Grand Rising (default)</option>
+          <option value="Peace &amp; Blessings">Peace &amp; Blessings</option>
+          <option value="Dear">Dear</option>
+          <option value="Hi">Hi</option>
+          <option value="Hello">Hello</option>
+          <option value="Greetings">Greetings</option>
+          <option value="Good evening">Good evening</option>
+          <option value="__custom">Custom…</option>
+          <option value="__none">No greeting</option>
+        </select>
+        <input type="text" id="b-greeting-custom" placeholder="Type your greeting" oninput="updatePreview()" hidden>
+      </div>
+      <div class="greet-preview" id="greet-preview"><span>Opens with</span>Grand Rising,</div>
+    </div>
+    <div class="field">
+      <label>Subject</label>
+      <input type="text" id="b-subject" placeholder="Re: Your message to Haligricity">
+    </div>
+
+    <div class="field">
+      <label>Message</label>
+      <div class="fmt-note"><strong>How to format</strong><br>Highlight the text you want to change, then click B, I, U, • List or 1. List. For a list, highlight every line that belongs in it. To link or add a button, click where it should go first.</div>
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="fmt('bold')" title="Bold"><b>B</b></button>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="fmt('italic')" title="Italic"><i>I</i></button>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="fmt('underline')" title="Underline"><u>U</u></button>
+        <div class="tb-sep"></div>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="fmt('insertUnorderedList')" title="Bulleted list">• List</button>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="fmt('insertOrderedList')" title="Numbered list">1. List</button>
+        <div class="tb-sep"></div>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="openModal('btn-modal')" title="Create a Button">✦ Create a Button</button>
+        <button class="tb-btn" onmousedown="event.preventDefault()" onclick="openModal('link-modal')" title="Insert Hyperlink">🔗 Insert Hyperlink</button>
+      </div>
+      <!-- contenteditable editor — WHY: allows rich HTML formatting while
+           keeping the send payload as clean HTML-capable text -->
+      <div id="body-editor" contenteditable="true" data-placeholder="Write your message…" oninput="updatePreview()"></div>
+      <div class="fmt-flash" id="fmt-flash" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- LIVE PREVIEW -->
+  <div class="preview-wrap">
+    <div class="preview-label">Live Preview</div>
+    <div id="preview"><em style="color:#aaa;">Fill in the message above to see a preview.</em></div>
+    <div class="sig">— Hali Sarah Parsons · Haligricity · I.Q. Productionz</div>
+  </div>
+
+  <div class="btn-pair">
+    <button class="send-btn test" id="test-btn" onclick="sendReply('test')">Send Test to Me</button>
+    <button class="send-btn" id="send-btn" onclick="sendReply('send')">Send Branded Reply</button>
+  </div>
+  <div id="status"></div>
+</div>
+
+<footer class="ftr">
+  <div class="blessing"><strong>You Are The Current.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong></div>
+  <div style="margin-top:6px;">
+    <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  </div>
+</footer>
+
+<script>
+// WHY: auto-fill from Contact Us links (?to=&reply=&name=), so replies take one click.
+(function(){
+  var p=new URLSearchParams(window.location.search);
+  if(p.get('to'))    document.getElementById('b-to').value=p.get('to');
+  if(p.get('reply')) document.getElementById('b-reply').value=p.get('reply');
+  if(p.get('name')){
+    document.getElementById('b-subject').value='Re: Your message to Haligricity — '+p.get('name');
+    document.getElementById('b-name').value=p.get('name').split(' ')[0];
+  }
+  updatePreview();
+})();
+
+// Applies formatting to the highlighted text (bold, italic, underline, lists).
+// WHY execCommand: it edits the selection inside the editor without rebuilding its contents.
+var FMT_NAMES={bold:'Bold',italic:'Italic',underline:'Underline',insertUnorderedList:'Bulleted list',insertOrderedList:'Numbered list'};
+function fmt(cmd){
+  var ed=document.getElementById('body-editor');
+  var sel=window.getSelection();
+  // WHY check: with nothing highlighted inside the message, the click silently did nothing.
+  var inEditor=sel&&sel.rangeCount&&ed.contains(sel.anchorNode);
+  if(!inEditor||(sel.isCollapsed&&cmd.indexOf('List')===-1)){
+    flashFmt('Highlight the text in your message first, then click '+FMT_NAMES[cmd]+'.');return;
+  }
+  ed.focus();
+  document.execCommand(cmd,false,null);
+  // WHY: lines you already numbered ("1." or "-") would show twice inside a real list.
+  if(cmd.indexOf('List')!==-1){
+    ed.querySelectorAll('li').forEach(function(li){
+      var first=li.firstChild;
+      if(first&&first.nodeType===3) first.nodeValue=first.nodeValue.replace(/^\s*([•✦\-*]|\d+[.)])\s*/,'');
+    });
+  }
+  flashFmt(FMT_NAMES[cmd]+' applied.');
+  updatePreview();
+}
+var fmtTimer;
+// Short confirmation under the editor, so each click visibly does something.
+function flashFmt(msg){
+  var el=document.getElementById('fmt-flash');
+  el.textContent=msg;
+  clearTimeout(fmtTimer);
+  fmtTimer=setTimeout(function(){el.textContent='';},4000);
+}
+
+var savedRange=null;
+// WHY: remember the cursor before a pop-up opens, so links and buttons land in the right spot.
+function saveRange(){
+  var sel=window.getSelection();
+  if(sel&&sel.rangeCount>0) savedRange=sel.getRangeAt(0).cloneRange();
+}
+function restoreRange(){
+  if(!savedRange) return;
+  var sel=window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(savedRange);
+}
+function openModal(id){ saveRange(); document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+function insertButton(){
+  var label=document.getElementById('btn-label').value.trim()||'Click Here';
+  var url=document.getElementById('btn-url').value.trim()||'#';
+  var color=document.getElementById('btn-color').value||'#4A1060';
+  var html='<a href="'+url+'" target="_blank" style="display:inline-block;padding:10px 22px;background:'+color+';color:#fff;font-family:Georgia,serif;font-size:.9rem;text-decoration:none;border-radius:6px;margin:4px 0;">'+label+'</a>&nbsp;';
+  closeModal('btn-modal'); restoreRange();
+  document.getElementById('body-editor').focus();
+  document.execCommand('insertHTML',false,html);
+  updatePreview();
+  document.getElementById('btn-label').value=''; document.getElementById('btn-url').value='';
+}
+
+function insertLink(){
+  var text=document.getElementById('link-text').value.trim()||'Click here';
+  var url=document.getElementById('link-url').value.trim()||'#';
+  var html='<a href="'+url+'" target="_blank" style="color:#4A1060;">'+text+'</a>';
+  closeModal('link-modal'); restoreRange();
+  document.getElementById('body-editor').focus();
+  document.execCommand('insertHTML',false,html);
+  updatePreview();
+  document.getElementById('link-text').value=''; document.getElementById('link-url').value='';
+}
+
+// ── GREETING ──
+var DEFAULT_GREETING='Grand Rising';
+function onGreetingChange(){
+  var c=document.getElementById('b-greeting-custom');
+  c.hidden=document.getElementById('b-greeting').value!=='__custom';
+  if(!c.hidden) c.focus();
+  updatePreview();
+}
+// Returns the opening line, e.g. "Grand Rising Amara,". WHY one function: preview and send match.
+function greetingLine(){
+  var sel=document.getElementById('b-greeting').value;
+  if(sel==='__none') return '';
+  var g=sel==='__custom' ? (document.getElementById('b-greeting-custom').value.trim()||DEFAULT_GREETING) : sel;
+  var name=document.getElementById('b-name').value.trim();
+  return name ? g+' '+name+',' : g+',';
+}
+// WHY escape: names and greetings are typed text and must not break the HTML.
+function esc(v){ return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+function updatePreview(){
+  var line=greetingLine();
+  document.getElementById('greet-preview').innerHTML='<span>Opens with</span>'+(line?esc(line):'<em style="color:#999;font-size:.9rem;">(no greeting)</em>');
+  var body=document.getElementById('body-editor').innerHTML;
+  document.getElementById('preview').innerHTML=
+    (line?'<p style="font-family:\'Cormorant Garamond\',Georgia,serif;font-size:1.35rem;color:#4A1060;margin:0 0 10px;">'+esc(line)+'</p>':'')+
+    (body||'<em style="color:#aaa;">Fill in the message above to see a preview.</em>');
+}
+
+// ── BRANDED EMAIL ──
+// Wraps the message in the Haligricity look. WHY inline styles: most email apps strip <style>
+// blocks. WHY style lists here: the editor adds bare <ul>/<ol>, and emails need explicit spacing.
+function buildEmailHtml(){
+  var body=document.getElementById('body-editor').innerHTML
+    .replace(/<ul>/g,'<ul style="margin:0 0 14px 22px;padding:0;">')
+    .replace(/<ol>/g,'<ol style="margin:0 0 14px 22px;padding:0;">')
+    .replace(/<li>/g,'<li style="margin:0 0 6px;">');
+  var line=greetingLine();
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'+
+  '<body style="margin:0;padding:0;background:#FFFDF0;">'+
+  '<div style="padding:24px 14px;background:#FFFDF0;">'+
+  '<div style="max-width:600px;margin:0 auto;background:#ffffff;border:1.5px solid #C9A227;border-radius:14px;overflow:hidden;">'+
+    '<div style="background:#FFFAEC;padding:30px 36px 22px;text-align:center;border-bottom:1.5px solid #C9A227;">'+
+      '<div style="font-family:Cinzel,Georgia,serif;font-size:11px;letter-spacing:4px;color:#C9A227;text-transform:uppercase;">I.Q. Productionz</div>'+
+      '<div style="font-family:Cinzel,Georgia,serif;font-size:26px;letter-spacing:3px;color:#4A1060;font-weight:600;margin-top:6px;">HALIGRICITY</div>'+
+      '<div style="width:60px;height:2px;background:#C9A227;margin:14px auto 0;"></div>'+
+    '</div>'+
+    '<div style="padding:32px 36px;font-family:Georgia,serif;font-size:15px;line-height:1.75;color:#1A1A1A;">'+
+      (line?'<p style="font-family:\'Cormorant Garamond\',Georgia,serif;font-size:24px;color:#4A1060;margin:0 0 8px;">'+esc(line)+'</p>'+
+            '<div style="width:40px;height:1px;background:#C9A227;margin:0 0 20px;"></div>':'')+
+      '<div>'+body+'</div>'+
+      '<div style="border-top:1px solid #EEE8D0;margin-top:30px;padding-top:20px;">'+
+        '<div style="font-family:Cinzel,Georgia,serif;font-size:16px;color:#4A1060;font-weight:600;">Hali Sarah Parsons</div>'+
+        '<div style="font-size:12px;color:#555;letter-spacing:1px;margin-top:2px;">Haligricity · I.Q. Productionz</div>'+
+        '<a href="https://Haligricity.IQProductionz.com/" style="font-size:12px;color:#6B2D8E;text-decoration:none;">Haligricity.IQProductionz.com</a>'+
+      '</div>'+
+    '</div>'+
+    '<div style="background:#FFFAEC;border-top:1.5px solid #C9A227;padding:16px 36px;text-align:center;font-family:Cinzel,Georgia,serif;font-size:11px;letter-spacing:1.5px;color:#4A1060;">'+
+      'You Are The Current. · Be More You. · Ashe.'+
+    '</div>'+
+  '</div></div></body></html>';
+}
+
+// Sends a test to your Reply-To address, or the real email to the recipient.
+async function sendReply(mode){
+  var btn=document.getElementById(mode==='test'?'test-btn':'send-btn');
+  var status=document.getElementById('status');
+  var to=document.getElementById('b-to').value.trim();
+  var reply=document.getElementById('b-reply').value.trim()||'HaliSarahParsons@gmail.com';
+  var subject=document.getElementById('b-subject').value.trim()||'Re: Your message to Haligricity';
+  var bodyText=document.getElementById('body-editor').innerText;
+
+  if((mode!=='test'&&!to)||!bodyText.trim()){
+    status.className='err';status.style.display='block';
+    status.textContent=mode==='test'?'Write a message first.':'Recipient and message are required.';return;
+  }
+  var label=btn.textContent;
+  btn.textContent='Sending…';btn.disabled=true;status.style.display='none';
+
+  // WHY try/catch: EmailJS rejects on network or quota errors; show why and re-enable the button.
+  try{
+    await emailjs.send('service_wz8y62e','template_nnmxioq',{
+      to_email: mode==='test'?reply:to,
+      subject:  mode==='test'?'[TEST] '+subject:subject,
+      message:  buildEmailHtml(),
+      reply_to: reply
+    },{publicKey:EJS_PUBLIC_KEY}); // WHY: passing the key on each send means it can never be missing
+    status.className='ok';status.style.display='block';
+    status.textContent=mode==='test'?'Test sent to '+reply+'.':'Reply sent to '+to+'. Ashe.';
+    btn.textContent=mode==='test'?label:'Sent ✓';
+    if(mode==='test') btn.disabled=false;
+  }catch(e){
+    status.className='err';status.style.display='block';
+    status.textContent='Send failed: '+(e.text||e.message||'Unknown error');
+    btn.textContent=label;btn.disabled=false;
+  }
+}
+</script>
+</body>
+</html>

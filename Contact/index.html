@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--
+  Title:       Haligricity — Contact Us
+  Author:      Hali Sarah Parsons
+  Date:        2026-09-25
+  Modified By: Claude
+  Description: Contact form. Sends to HaliSarahParsons@gmail.com with subject
+               "Haligricity - Contact Us - [Name]". After send, Branded Email
+               Reply button appears pre-filled with sender email and Hali's address.
+               Deploy to: Haligricity/Contact/index.html
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Haligricity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>window.addEventListener('load',function(){emailjs.init('3vNjQbWmqzzOO6IK-');});</script>
+<style>
+:root{
+  --bg:#FFFDF0;--bg-soft:#FFFAEC;
+  --purple:#4A1060;--purple-mid:#6B2D8E;--purple-light:#EDE0F5;--purple-soft:#C9A8E0;
+  --gold:#C9A227;--gold-border:#C9A227;--gold-pale:#FFF8E8;
+  --ink:#1A1A1A;--gray:#555;--gray-light:#888;--line:#EEE8D0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,'Cormorant Garamond',serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:60px;}
+a{color:var(--purple);}
+
+.top-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:#fff;border-bottom:1.5px solid var(--gold-border);position:sticky;top:0;z-index:60;flex-wrap:wrap;gap:8px;}
+.top-nav .crumbs{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--gold-border);text-transform:uppercase;}
+.top-nav .crumbs strong{color:var(--purple);}
+.nav-home{padding:7px 16px;border:1.5px solid var(--gold-border);border-radius:6px;background:transparent;color:var(--gold-border);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-home:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.nav-link{padding:6px 12px;border:1px solid var(--gold-border);border-radius:6px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-border);text-decoration:none;transition:all .2s;white-space:nowrap;}
+.nav-link:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.nav-donate{padding:6px 14px;border-radius:6px;background:var(--purple);color:#fff;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-donate:hover{background:var(--purple-mid);}
+
+.hero{text-align:center;padding:56px 24px 40px;border-bottom:1.5px solid var(--gold-border);background:linear-gradient(180deg,#FFFAEC 0%,#FFFDF0 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,162,39,.10) 0%,transparent 60%);pointer-events:none;}
+.hero .eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.4em;color:var(--gold-border);text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.9rem,4.8vw,2.8rem);color:var(--purple);letter-spacing:.06em;margin-bottom:14px;}
+.hero .sub1{font-style:italic;color:var(--gray);font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.6;}
+.hero .sub2{font-style:italic;color:var(--gray);font-size:1.05rem;max-width:560px;margin:10px auto 0;line-height:1.6;}
+.gold-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto;}
+
+.wrap{max-width:760px;margin:0 auto;padding:40px 22px 0;}
+
+/* FORM CARD */
+.form-card{background:#fff;border:1.5px solid var(--gold-border);border-radius:14px;padding:32px 28px;box-shadow:0 2px 14px rgba(180,140,0,.07);position:relative;}
+.form-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.form-card h2{font-family:'Cinzel',serif;color:var(--purple);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:22px;}
+
+.field{margin-bottom:18px;}
+.field label{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-border);margin-bottom:7px;}
+.field label span{color:var(--purple-mid);}
+.field input,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--gold-border);border-radius:8px;background:var(--gold-pale);font-family:Georgia,serif;font-size:.95rem;color:var(--ink);transition:border-color .2s,background .2s;outline:none;}
+.field input:focus,.field textarea:focus{border-color:var(--purple);background:#fff;}
+.field textarea{min-height:150px;resize:vertical;line-height:1.6;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+
+/* TOPIC CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.chip{padding:6px 16px;border-radius:20px;border:1px solid var(--gold-border);background:transparent;color:var(--gray);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.chip:hover{border-color:var(--purple);color:var(--purple);}
+.chip.sel{background:var(--purple-light);border-color:var(--purple);color:var(--purple);}
+
+.submit-btn{background:var(--purple);color:#fff;border:none;border-radius:8px;padding:13px 28px;font-family:'Cinzel',serif;font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;width:100%;}
+.submit-btn:hover{background:var(--purple-mid);}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+#status{display:none;margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.92rem;line-height:1.6;font-style:italic;}
+#status.ok{background:var(--purple-light);color:var(--purple);}
+#status.err{background:#fdecea;color:#c0392b;}
+
+.branded-btn{display:none;margin-top:18px;width:100%;padding:13px;background:transparent;border:1.5px solid var(--gold-border);border-radius:8px;color:var(--gold-border);font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;}
+.branded-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+.ftr{text-align:center;margin-top:64px;padding:28px 16px 0;border-top:1.5px solid var(--gold-border);font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--gold-border);}
+.ftr .blessing{color:var(--purple);margin-bottom:6px;}
+.ftr a{color:var(--gold-border)!important;text-decoration:none;}
+.ftr a:hover{color:var(--purple)!important;}
+
+/* SENT POP-UP — WHY: a clear, branded confirmation instead of a small line people can miss */
+.sent-bg{position:fixed;inset:0;background:rgba(26,10,32,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:300;opacity:0;transition:opacity .35s ease;}
+.sent-bg[hidden]{display:none!important;}
+.sent-bg.show{opacity:1;}
+.sent-card{position:relative;background:#FFFDF0;border:1.5px solid var(--gold-border);border-radius:16px;max-width:420px;width:100%;padding:40px 30px 26px;text-align:center;box-shadow:0 12px 40px rgba(74,16,96,.25);transform:translateY(10px);transition:transform .35s ease;}
+.sent-bg.show .sent-card{transform:none;}
+.sent-card h2{font-family:'Cinzel',serif;font-weight:600;font-size:1.35rem;letter-spacing:.06em;color:var(--purple);margin:0;}
+.sent-card .gold-line{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto 26px;}
+.sent-home{display:inline-block;padding:12px 28px;background:var(--purple);color:#fff!important;border-radius:8px;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.sent-home:hover{background:var(--purple-mid);}
+.sent-blessing{margin-top:26px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:var(--gold-border);}
+.sent-x{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.1rem;color:var(--gold-border);cursor:pointer;line-height:1;padding:6px;}
+.sent-x:hover{color:var(--purple);}
+.sent-home:focus-visible,.sent-x:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){.sent-bg,.sent-card{transition:none;}}
+</style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="Reach out to Haligricity — Hali Sarah Parsons.">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/Contact/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="Contact Us | Haligricity">
+  <meta property="og:description" content="Reach out to Haligricity — Hali Sarah Parsons.">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/Contact/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contact Us | Haligricity">
+  <meta name="twitter:description" content="Reach out to Haligricity — Hali Sarah Parsons.">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/Contact/",
+   "url": "https://haligricity.iqproductionz.com/Contact/",
+   "name": "Contact Us | Haligricity",
+   "description": "Reach out to Haligricity — Hali Sarah Parsons.",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Contact",
+     "item": "https://haligricity.iqproductionz.com/Contact/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-left" style="display:flex;align-items:center;gap:10px;">
+    <div class="crumbs">Haligricity · <strong>Contact</strong></div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/">Home</a>
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/Promo/">Promo</a>
+    <a class="nav-donate" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener">♡ Donate</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Haligricity</div>
+  <h1>Contact Us</h1>
+  <div class="gold-divider"></div>
+  <p class="sub1">Questions, reflections, collaborations — all welcome.</p>
+  <p class="sub2">We will respond as soon as we are able.</p>
+</header>
+
+<div class="wrap">
+  <div class="form-card">
+    <h2>Send a Message</h2>
+
+    <div class="field-row">
+      <div class="field">
+        <label>First Name <span>*</span></label>
+        <input type="text" id="c-first" placeholder="First">
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" id="c-last" placeholder="Last">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Email <span>*</span></label>
+      <input type="email" id="c-email" placeholder="your@email.com">
+    </div>
+
+    <div class="field">
+      <label>Topic</label>
+      <div class="chips">
+        <button type="button" class="chip" onclick="toggleChip(this)">General Inquiry</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Haligricity Philosophy</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Real Magic Book</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Collaboration</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Sacred Traditions</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Well-Being Practices</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Regional Food Guides</button>
+        <button type="button" class="chip" onclick="toggleChip(this)">Other</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Message <span>*</span></label>
+      <textarea id="c-msg" placeholder="Share what's on your mind…"></textarea>
+    </div>
+
+    <button class="submit-btn" id="send-btn" onclick="sendMessage()">Send Message</button>
+    <div id="status"></div>
+
+  </div>
+</div>
+
+<footer class="ftr">
+  <div class="blessing"><strong>You Are The Current.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong></div>
+  <div style="margin-top:6px;">
+    <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    · <a href="https://iqproductionz.com/About">Hali Sarah Parsons</a>
+    · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  </div>
+</footer>
+
+
+<!-- SENT POP-UP -->
+<div class="sent-bg" id="sent-pop" hidden role="dialog" aria-modal="true" aria-labelledby="sent-title">
+  <div class="sent-card">
+    <button class="sent-x" type="button" onclick="closeSent()" aria-label="Close">✕</button>
+    <h2 id="sent-title">Your Message Has Been Sent</h2>
+    <div class="gold-line"></div>
+    <a class="sent-home" href="https://Haligricity.IQProductionz.com/">Return Home</a>
+    <div class="sent-blessing">You Are The Current. · Be More You. · Ashe.</div>
+  </div>
+</div>
+
+<script>
+function toggleChip(el){el.classList.toggle('sel');}
+function getTopics(){return Array.from(document.querySelectorAll('.chip.sel')).map(c=>c.textContent).join(', ')||'Not specified';}
+
+async function sendMessage(){
+  var btn=document.getElementById('send-btn');
+  var status=document.getElementById('status');
+  var first=document.getElementById('c-first').value.trim();
+  var last=document.getElementById('c-last').value.trim();
+  var email=document.getElementById('c-email').value.trim();
+  var msg=document.getElementById('c-msg').value.trim();
+  var name=first+(last?' '+last:'');
+
+  if(!first||!email||!msg){
+    status.className='err';status.style.display='block';
+    status.textContent='Please fill in your name, email, and message.';return;
+  }
+
+  btn.textContent='Sending…';btn.disabled=true;status.style.display='none';
+
+  try{
+    await emailjs.send('service_wz8y62e','template_nnmxioq',{
+      to_email:'HaliSarahParsons@gmail.com',
+      subject:'Haligricity - Contact Us - '+name,
+      // WHY the reply link lives here: only you receive this email, so visitors never see the tool.
+      message:'From: '+name+'\nEmail: '+email+'\nTopic: '+getTopics()+'\n\n'+msg
+        +'\n\nReply with your branded email: https://Haligricity.IQProductionz.com/BrandedEmail/?'
+        +'to='+encodeURIComponent(email)
+        +'&reply='+encodeURIComponent('HaliSarahParsons@gmail.com')
+        +'&name='+encodeURIComponent(name)
+    });
+    btn.textContent='Sent ✓';
+    showSent();
+
+  }catch(e){
+    status.className='err';status.style.display='block';
+    status.textContent='Something went wrong. Please email HaliSarahParsons@gmail.com directly.';
+    btn.textContent='Send Message';btn.disabled=false;
+  }
+}
+</script>
+
+<script>
+// Opens the branded "sent" pop-up. WHY the extra frame: lets the fade-in animation run.
+function showSent(){
+  var m=document.getElementById('sent-pop');
+  m.hidden=false;
+  requestAnimationFrame(function(){ m.classList.add('show'); });
+  m.querySelector('.sent-home').focus();
+}
+// Closes it; WHY wait: matches the fade-out before hiding.
+function closeSent(){
+  var m=document.getElementById('sent-pop');
+  m.classList.remove('show');
+  setTimeout(function(){ m.hidden=true; },350);
+}
+// WHY: Esc and clicking the dark background should close it, as people expect.
+document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !document.getElementById('sent-pop').hidden) closeSent(); });
+document.getElementById('sent-pop').addEventListener('click',function(e){ if(e.target===this) closeSent(); });
+</script>
+</body>
+</html>

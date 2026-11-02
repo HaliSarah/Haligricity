@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--
+  Title:       Haligricity — Promo Materials
+  Author:      Hali Sarah Parsons
+  Date:        2026-09-25
+  Modified By: Claude
+  Description: Downloadable Haligricity promotional materials.
+               Sticker: /Promo/HaligricityQRSticker.png
+               Brochure: /Promo/HaligricityTriFold.pdf
+               Deploy to: Haligricity/Promo/index.html
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo Materials | Haligricity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0e0e1a;--mid:#16162a;--panel:#1a1a30;--border:#3a3060;
+  --gold:#c9a227;--gold2:#e8c455;--rose:#8b3a5a;--violet:#5b2d80;
+  --cream:#f5f0e8;--mist:rgba(201,162,39,0.08);--glow:0 0 40px rgba(201,162,39,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--deep);color:var(--cream);
+  min-height:100vh;padding-bottom:80px;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 40%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 80%,rgba(201,162,39,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 5%,rgba(255,255,255,.3) 0%,transparent 100%);
+}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:rgba(14,14,26,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);position:sticky;top:0;z-index:60;flex-wrap:wrap;gap:8px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:32px;width:32px;object-fit:contain;}
+.nav-brand{font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--gold);}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+.nav-link{padding:6px 12px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;border:1px solid transparent;border-radius:6px;transition:all .2s;}
+.nav-link:hover,.nav-link.active{border-color:var(--gold);color:var(--gold);}
+
+.hdr{text-align:center;padding:56px 24px 36px;position:relative;}
+.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,162,39,.1) 0%,transparent 65%);pointer-events:none;}
+.pretitle{position:relative;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-bottom:14px;}
+.hdr h1{position:relative;font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:400;letter-spacing:.1em;color:var(--gold);margin-bottom:12px;}
+.gold-rule{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto;}
+.hdr p{position:relative;font-size:1rem;color:rgba(245,240,232,.6);font-style:italic;max-width:460px;margin:0 auto;line-height:1.8;}
+
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 0;}
+
+/* PROMO GRID */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:620px){.promo-grid{grid-template-columns:1fr;}}
+
+/* WHY: cards are bottom-heavy — preview image is large, metadata and
+   download button stack below for visual weight toward the bottom */
+.promo-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  box-shadow:var(--glow);transition:transform .2s,box-shadow .2s;
+  display:flex;flex-direction:column;
+}
+.promo-card:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(201,162,39,.22);}
+.promo-card::before{display:none;}
+
+/* Image preview area */
+.preview-area{
+  width:100%;aspect-ratio:3/4;background:var(--mid);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+.preview-area img{
+  width:100%;height:100%;object-fit:contain;
+  transition:transform .3s;
+}
+.preview-area:hover img{transform:scale(1.03);}
+.preview-placeholder{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:rgba(245,240,232,.3);font-family:'Cinzel',serif;
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.preview-placeholder span{font-size:2.5rem;opacity:.4;}
+.preview-label{
+  position:absolute;top:12px;right:12px;
+  background:rgba(14,14,26,.8);border:1px solid var(--border);
+  border-radius:20px;padding:4px 12px;
+  font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);
+}
+
+/* Card body */
+.promo-body{padding:24px 24px 28px;display:flex;flex-direction:column;gap:14px;flex:1;}
+.promo-type{
+  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold);opacity:.7;
+}
+.promo-title{
+  font-family:'Cinzel',serif;font-size:1.15rem;font-weight:400;
+  letter-spacing:.05em;color:var(--cream);
+}
+.promo-desc{font-size:.95rem;color:rgba(245,240,232,.6);line-height:1.75;font-style:italic;}
+
+/* Download button sits at bottom of card */
+.btn-download{
+  display:block;margin-top:auto;padding:12px 20px;
+  background:linear-gradient(135deg,var(--rose),var(--violet));
+  color:var(--cream);border:none;border-radius:10px;
+  font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;cursor:pointer;transition:filter .2s;
+  box-shadow:0 4px 18px rgba(139,58,90,.3);
+  text-align:center;text-decoration:none;
+}
+.btn-download:hover{filter:brightness(1.12);}
+
+/* Lightbox for full preview */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;align-items:center;justify-content:center;cursor:zoom-out;padding:20px;}
+#lightbox.open{display:flex;}
+#lightbox img{max-width:90vw;max-height:88vh;border:1px solid rgba(201,162,39,.3);border-radius:6px;}
+.lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;opacity:.7;}
+.lb-close:hover{opacity:1;}
+
+footer{text-align:center;margin-top:64px;padding:28px;border-top:1px solid var(--border);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.35);}
+footer a{color:var(--gold);text-decoration:none;}
+</style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="Download Haligricity promotional materials — stickers, brochures, and more.">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/Promo/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="Promo Materials | Haligricity">
+  <meta property="og:description" content="Download Haligricity promotional materials — stickers, brochures, and more.">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/Promo/">
+  <meta property="og:image" content="https://Haligricity.IQProductionz.com/HaligricityLogo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Promo Materials | Haligricity">
+  <meta name="twitter:description" content="Download Haligricity promotional materials — stickers, brochures, and more.">
+  <meta name="twitter:image" content="https://Haligricity.IQProductionz.com/HaligricityLogo.png">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/Promo/",
+   "url": "https://haligricity.iqproductionz.com/Promo/",
+   "name": "Promo Materials | Haligricity",
+   "description": "Download Haligricity promotional materials — stickers, brochures, and more.",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   },
+   "primaryImageOfPage": "https://Haligricity.IQProductionz.com/HaligricityLogo.png"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Promo",
+     "item": "https://haligricity.iqproductionz.com/Promo/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
+</head>
+<body>
+
+<div id="lightbox" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<nav>
+  <a class="nav-logo" href="https://Haligricity.IQProductionz.com/">
+    <img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" fetchpriority="high" loading="eager">
+    <span class="nav-brand">Haligricity</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/">Home</a>
+    <a class="nav-link active" href="https://Haligricity.IQProductionz.com/Promo/">Promo</a>
+    <a class="nav-link" href="https://Haligricity.IQProductionz.com/Contact/">Contact</a>
+    <a class="nav-link" href="https://IQProductionz.com/">I.Q. Productionz</a>
+  </div>
+</nav>
+
+<header class="hdr">
+  <div class="pretitle">Haligricity</div>
+  <h1>Promo Materials</h1>
+  <div class="gold-rule"></div>
+  <p>Share the practice. Download, print, and pass it on.</p>
+</header>
+
+<div class="wrap">
+  <div class="promo-grid">
+
+    <!-- STICKER CARD -->
+    <div class="promo-card">
+      <div class="preview-area" onclick="openLB('https://Haligricity.IQProductionz.com/Promo/HaligricityQRSticker.png')">
+        <img
+          src="https://Haligricity.IQProductionz.com/Promo/HaligricityQRSticker.png"
+          alt="Haligricity QR Sticker"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="preview-placeholder" style="display:none;"><span>🔲</span>QR Sticker Preview</div>
+        <div class="preview-label">PNG</div>
+      </div>
+      <div class="promo-body">
+        <div class="promo-type">Sticker</div>
+        <div class="promo-title">Haligricity QR Sticker</div>
+        <div class="promo-desc">Print-ready QR sticker linking directly to Haligricity. Click the image to preview full size.</div>
+        <a class="btn-download" href="https://Haligricity.IQProductionz.com/Promo/HaligricityQRSticker.png" download="HaligricityQRSticker.png">
+          ⬇ Download Sticker
+        </a>
+      </div>
+    </div>
+
+    <!-- BROCHURE CARD -->
+    <div class="promo-card">
+      <div class="preview-area" onclick="window.open('https://Haligricity.IQProductionz.com/Promo/HaligricityTriFold.pdf','_blank')">
+        <div class="preview-placeholder" style="display:flex;">
+          <span>📄</span>Tri-Fold Brochure
+        </div>
+        <div class="preview-label">PDF</div>
+      </div>
+      <div class="promo-body">
+        <div class="promo-type">Brochure</div>
+        <div class="promo-title">Haligricity Tri-Fold Brochure</div>
+        <div class="promo-desc">Print-ready tri-fold brochure introducing Haligricity. Click the preview to open the PDF in a new tab.</div>
+        <a class="btn-download" href="https://Haligricity.IQProductionz.com/Promo/HaligricityTriFold.pdf" download="HaligricityTriFold.pdf">
+          ⬇ Download Brochure
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>You Are The Current. &nbsp;·&nbsp; Be More You &nbsp;·&nbsp; Ashe</p>
+  <p style="margin-top:8px;">
+    <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    &nbsp;·&nbsp;
+    <a href="https://iqproductionz.com/About">Hali Sarah Parsons</a>
+    &nbsp;·&nbsp;
+    <a href="https://IQProductionz.com/">IQProductionz.com</a>
+  </p>
+</footer>
+
+<script>
+function openLB(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLB(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB({target:document.getElementById('lightbox')}); });
+</script>
+</body>
+</html>

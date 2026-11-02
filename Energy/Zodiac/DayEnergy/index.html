@@ -1,0 +1,468 @@
+<head>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="What the sky&#x27;s carrying today">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/Energy/Zodiac/DayEnergy/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="Sky Energy Today">
+  <meta property="og:description" content="What the sky&#x27;s carrying today">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/Energy/Zodiac/DayEnergy/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sky Energy Today">
+  <meta name="twitter:description" content="What the sky&#x27;s carrying today">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/Energy/Zodiac/DayEnergy/",
+   "url": "https://haligricity.iqproductionz.com/Energy/Zodiac/DayEnergy/",
+   "name": "Sky Energy Today",
+   "description": "What the sky's carrying today",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Zodiac",
+     "item": "https://haligricity.iqproductionz.com/Energy/Zodiac/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "DayEnergy",
+     "item": "https://haligricity.iqproductionz.com/Energy/Zodiac/DayEnergy/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
+</head>
+<!--
+  Title: Sky Energy Today
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-09-16
+  Modified By: Claude (Cowork)
+  Description: A general, non-personal "energy of the day" reading built from
+  the sky itself — moon phase, the moon's current zodiac sign, the sun's
+  current zodiac season, and the classical day-ruling planet. Moon phase and
+  moon-sign longitude use real low-precision astronomical formulas (Meeus);
+  the mood/advice copy is a seeded, deterministic pick from curated lists keyed
+  to today's date, not fictional ephemeris data. Branded to match the
+  Haligricity design system (Cinzel/Cormorant Garamond, purple #4A1060,
+  gold #C9A227, cream #FFFDF0) so it can be embedded on haligricity.iqproductionz.com.
+-->
+<title>Sky Energy Today</title>
+<style>
+  /* WHY: Google Fonts is the only external stylesheet host the artifact CSP
+     allows, so all three faces are pulled from there with real fallback
+     stacks. Cinzel + Cormorant Garamond match the Haligricity site's
+     existing design system. */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap');
+
+  :root{
+    /* WHY: values pulled directly from the Haligricity site's own design
+       system (purple/gold/cream), not a new palette. */
+    --plum-deep:#2c0940;
+    --plum:#4a1060;
+    --plum-light:#6a2b82;
+    --gold:#c9a227;
+    --gold-soft:#e4c766;
+    --pink:#e8b4c8;
+    --pink-soft:#f6dce6;
+    --cream:#fffdf0;
+    --ink:#2c0940;
+    --ink-soft:#6e5580;
+    --surface:#ffffff;
+    --surface-sunk:#f2e9d8;
+    --line:#e6d9b8;
+    --shadow: 0 12px 30px -14px rgba(74,16,96,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#1c0f1a;
+      --ink:#f4e6ee;
+      --ink-soft:#c9adc0;
+      --surface:#2a1826;
+      --surface-sunk:#332030;
+      --line:#4a2c46;
+      --shadow: 0 14px 34px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --cream:#1c0f1a;
+    --ink:#f4e6ee;
+    --ink-soft:#c9adc0;
+    --surface:#2a1826;
+    --surface-sunk:#332030;
+    --line:#4a2c46;
+    --shadow: 0 14px 34px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Quicksand', ui-sans-serif, system-ui, sans-serif;
+    padding-inline:20px;
+    padding-block:28px;
+    display:flex;
+    justify-content:center;
+  }
+  .page{ width:100%; max-width:560px; display:flex; flex-direction:column; gap:16px; }
+
+  h1,h2,h3{ font-family:'Cormorant Garamond', Georgia, 'Times New Roman', serif; margin:0; text-wrap:balance; }
+
+  /* --- compact header, small on purpose so the reading below carries the page --- */
+  header{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; }
+  .wordmark{
+    font-family:'Cinzel', Georgia, serif; font-weight:600; font-size:.95rem;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--plum);
+    text-decoration:none; display:flex; align-items:center; gap:8px;
+  }
+  :root[data-theme="dark"] .wordmark{ color:var(--gold-soft); }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .wordmark{ color:var(--gold-soft); } }
+  .wordmark .rule{ width:22px; height:1px; background:var(--gold); display:inline-block; }
+  .eyebrow{ font-family:'Cinzel', Georgia, serif; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+  header h1{ font-size:1.7rem; font-weight:600; color:var(--plum-deep); }
+  :root[data-theme="dark"] header h1{ color:var(--pink-soft); }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) header h1{ color:var(--pink-soft); } }
+  .today{ font-size:.85rem; color:var(--ink-soft); }
+
+  /* --- sky facts strip: the real, computed inputs, laid out plainly --- */
+  .sky-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  }
+  @media (max-width:420px){ .sky-strip{ grid-template-columns:1fr 1fr; } }
+  .sky-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:12px 10px; display:flex; flex-direction:column; align-items:center; gap:4px; text-align:center;
+  }
+  .sky-card .glyph{ font-size:1.4rem; line-height:1; }
+  .sky-card .label{ font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); font-weight:700; }
+  .sky-card .value{ font-size:.85rem; font-weight:700; }
+  .sky-card .sub{ font-size:.68rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+
+  /* --- the main reading: bottom-heavy centerpiece, no personal sign involved --- */
+  .reading{
+    margin-top:4px;
+    border-radius:26px;
+    padding:26px 24px 28px;
+    background:linear-gradient(165deg, var(--plum-deep), var(--plum) 55%, var(--plum-light));
+    color:var(--pink-soft);
+    box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:18px;
+    position:relative; overflow:hidden;
+  }
+  .reading::before{
+    content:"";
+    position:absolute; inset:-40% -20% auto auto; width:220px; height:220px;
+    background:radial-gradient(circle, rgba(228,199,102,.25), transparent 70%);
+    pointer-events:none;
+  }
+  .reading-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; position:relative; }
+  .reading-top h2{ font-size:1.4rem; color:#fff; }
+  .reading-top .ruler{ font-size:.76rem; color:var(--pink); opacity:.85; }
+
+  .score{ text-align:right; flex-shrink:0; }
+  .score .num{ font-family:'Cormorant Garamond', serif; font-size:2.4rem; font-weight:600; color:var(--gold-soft); line-height:1; font-variant-numeric:tabular-nums; }
+  .score .label{ font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--pink); opacity:.85; }
+
+  .headline{ font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-style:italic; font-weight:500; color:#fff; position:relative; }
+
+  .meter{ position:relative; }
+  .meter-track{ height:8px; border-radius:99px; background:rgba(255,255,255,.14); overflow:hidden; }
+  .meter-fill{ height:100%; border-radius:99px; background:linear-gradient(90deg, var(--gold-soft), var(--gold)); }
+  .meter-caption{ display:flex; justify-content:space-between; font-size:.68rem; color:var(--pink); opacity:.8; margin-top:5px; }
+
+  .grid-two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; position:relative; }
+  @media (max-width:420px){ .grid-two{ grid-template-columns:1fr; } }
+  .panel{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
+    border-radius:16px; padding:14px 15px; display:flex; flex-direction:column; gap:8px;
+  }
+  .panel .ptitle{ font-family:'Cinzel', Georgia, serif; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
+  .panel ul{ margin:0; padding-left:1.1em; display:flex; flex-direction:column; gap:5px; font-size:.86rem; }
+  .panel li::marker{ color:var(--gold-soft); }
+
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:.74rem; color:var(--pink); opacity:.85; position:relative; flex-wrap:wrap; }
+  .lucky span b{ display:block; color:#fff; font-size:.95rem; font-weight:700; }
+
+  .affirmation{
+    text-align:center; font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:1.05rem; color:var(--ink); padding:16px 18px;
+    border:1px dashed var(--line); border-radius:16px; background:var(--surface);
+  }
+  .affirmation .mark{ color:var(--gold); font-style:normal; }
+
+  footer.note{ text-align:center; font-size:.7rem; color:var(--ink-soft); padding-bottom:4px; display:flex; flex-direction:column; gap:4px; }
+  footer.note a{ color:var(--plum); font-weight:600; }
+  :root[data-theme="dark"] footer.note a{ color:var(--gold-soft); }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) footer.note a{ color:var(--gold-soft); } }
+</style>
+
+<div class="page">
+
+  <header>
+    <a class="wordmark" href="https://haligricity.iqproductionz.com" target="_blank" rel="noopener">
+      <span class="rule"></span>Haligricity<span class="rule"></span>
+    </a>
+    <div class="eyebrow">Sky Energy</div>
+    <h1>What the sky's carrying today</h1>
+    <div class="today" id="todayLabel"></div>
+  </header>
+
+  <div class="sky-strip">
+    <div class="sky-card">
+      <div class="glyph" id="moonFace">🌙</div>
+      <div class="label">Moon phase</div>
+      <div class="value" id="moonName">—</div>
+      <div class="sub" id="moonPct">—</div>
+    </div>
+    <div class="sky-card">
+      <div class="glyph" id="moonSignGlyph">☾</div>
+      <div class="label">Moon in</div>
+      <div class="value" id="moonSignName">—</div>
+      <div class="sub" id="moonSignSub">transiting</div>
+    </div>
+    <div class="sky-card">
+      <div class="glyph" id="sunSignGlyph">☉</div>
+      <div class="label">Sun in</div>
+      <div class="value" id="sunSignName">—</div>
+      <div class="sub" id="sunSignSub">season</div>
+    </div>
+  </div>
+
+  <section class="reading" id="reading" aria-live="polite">
+    <div class="reading-top">
+      <div>
+        <h2>Today's energy</h2>
+        <div class="ruler" id="rRuler">Ruled by —</div>
+      </div>
+      <div class="score">
+        <div class="num" id="rScore">—</div>
+        <div class="label">out of 100</div>
+      </div>
+    </div>
+
+    <div class="headline" id="rHeadline">—</div>
+
+    <div class="meter">
+      <div class="meter-track"><div class="meter-fill" id="rMeterFill" style="width:0%"></div></div>
+      <div class="meter-caption"><span>low</span><span id="rMeterWord">—</span><span>high</span></div>
+    </div>
+
+    <div class="grid-two">
+      <div class="panel">
+        <div class="ptitle">Lean into</div>
+        <ul id="rDo"></ul>
+      </div>
+      <div class="panel">
+        <div class="ptitle">Ease off</div>
+        <ul id="rAvoid"></ul>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <div class="lucky"><span>Color of the day <b id="rColor">—</b></span></div>
+      <div><span>Best hour <b id="rHour" style="display:inline;color:#fff;"></b></span></div>
+    </div>
+  </section>
+
+  <div class="affirmation"><span class="mark">“</span><span id="rAffirmation">—</span><span class="mark">”</span></div>
+
+  <footer class="note">
+    <span>A general daily mood cue from the sky — not personal, not a forecast.</span>
+    <span><a href="https://haligricity.iqproductionz.com" target="_blank" rel="noopener">haligricity.iqproductionz.com</a></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var ZODIAC = [
+    {name:'Aries', glyph:'♈'}, {name:'Taurus', glyph:'♉'}, {name:'Gemini', glyph:'♊'},
+    {name:'Cancer', glyph:'♋'}, {name:'Leo', glyph:'♌'}, {name:'Virgo', glyph:'♍'},
+    {name:'Libra', glyph:'♎'}, {name:'Scorpio', glyph:'♏'}, {name:'Sagittarius', glyph:'♐'},
+    {name:'Capricorn', glyph:'♑'}, {name:'Aquarius', glyph:'♒'}, {name:'Pisces', glyph:'♓'}
+  ];
+
+  // WHY: classical planetary day-rulers (Chaldean order), the same scheme
+  // that named the days of the week — Sun/Moon/Mars/Mercury/Jupiter/Venus/Saturn.
+  var DAY_RULERS = [
+    {glyph:'☉', name:'the Sun'},   // Sunday
+    {glyph:'☽', name:'the Moon'},  // Monday
+    {glyph:'♂', name:'Mars'},      // Tuesday
+    {glyph:'☿', name:'Mercury'},   // Wednesday
+    {glyph:'♃', name:'Jupiter'},   // Thursday
+    {glyph:'♀', name:'Venus'},     // Friday
+    {glyph:'♄', name:'Saturn'}     // Saturday
+  ];
+
+  // WHY: content banks keyed by day-ruler, since the ruling planet is the one
+  // real astrological input that applies to everyone equally on a given day.
+  var BANK = {
+    'the Sun':{ headlines:["Visibility is the theme — what you do today gets seen.","Confidence compounds today; small wins add up fast.","Today favors leading, not following."],
+      dos:["Put your name on the work you're proud of","Make the ask you've been sitting on","Spend time somewhere you feel most yourself"],
+      avoids:["Shrinking to keep the peace","Competing with someone instead of yourself","Burning out trying to prove something"] },
+    'the Moon':{ headlines:["Moods are the headline today, not logic.","Home, comfort, and old habits pull harder than usual.","What you feel first is worth trusting."],
+      dos:["Check in with someone who feels like home","Protect quiet time before big decisions","Let a routine comfort you instead of fighting it"],
+      avoids:["Making a big call while emotional","Isolating instead of reaching out","Ignoring a gut feeling for a 'logical' one"] },
+    'Mars':{ headlines:["Energy is high and wants a direction.","Today rewards the direct approach.","Friction shows up fast — so does progress."],
+      dos:["Start the task that needs force, not finesse","Move your body before you sit still","Say the direct thing instead of the polite non-answer"],
+      avoids:["Picking a fight to release tension","Rushing past a step that needed care","Letting impatience make the decision for you"] },
+    'Mercury':{ headlines:["Words move fast today — use them on purpose.","Details matter more than usual; slow down to read the fine print.","Conversations carry more weight than they seem to."],
+      dos:["Send the email, make the call, close the loop","Write things down before they slip","Ask the clarifying question instead of assuming"],
+      avoids:["Multitasking your way into a mistake","Gossip or a message you'll regret sending","Skimming something that needed a real read"] },
+    'Jupiter':{ headlines:["Today is generous with opportunity, if you say yes.","Bigger picture thinking pays off more than the small stuff.","Optimism is warranted — don't talk yourself out of it."],
+      dos:["Say yes to the opportunity that scares you a little","Think in terms of the next year, not just today","Be generous — it comes back around"],
+      avoids:["Overpromising because it feels good in the moment","Overspending on the mood of the day","Skipping the details because the vision feels big enough"] },
+    'Venus':{ headlines:["Relationships and beauty are the day's real currency.","Softness works better than force today.","What feels good is worth paying attention to."],
+      dos:["Reach out to someone you love","Make something look or feel beautiful — yourself included","Choose the collaborative option over the solo one"],
+      avoids:["People-pleasing past your own limit","Spending to soothe instead of to enjoy","Avoiding a needed conversation to keep things nice"] },
+    'Saturn':{ headlines:["Discipline is the theme — structure pays off today.","Today rewards the boring, necessary task.","Long-term thinking beats short-term comfort."],
+      dos:["Do the unglamorous task on your list first","Set a boundary you've been avoiding","Commit to the plan instead of the mood"],
+      avoids:["Being harder on yourself than the day requires","Avoiding responsibility because it feels heavy","Isolating under the weight of 'should'"] }
+  };
+
+  var COLORS = ["Rose Gold","Deep Plum","Champagne","Emerald","Ivory","Garnet","Sky Blue","Bronze","Blush","Amber","Silver","Sea Green"];
+  var WORDS = ["quiet but building","simmering","wide open","a little scattered","unusually clear","tender","fired up","grounded and slow","electric","in flux","soft-focus","sharp and decisive"];
+  var HOURS = ["early morning, before the noise starts","mid-morning, once you're warmed up","just after lunch","late afternoon, second wind","early evening, as things wind down"];
+
+  // WHY: deterministic hash keeps the reading identical for every viewer
+  // checking on the same calendar day — no server, no storage required.
+  function hashStr(s){
+    var h = 2166136261;
+    for (var i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return (h >>> 0);
+  }
+  function pick(arr, seed){ return arr[seed % arr.length]; }
+  function fmtDate(d){ return d.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' }); }
+
+  // WHY: real synodic-month math (29.530588853 days) anchored to a known new
+  // moon (2000-01-06 18:14 UTC).
+  function moonPhase(date){
+    var synodic = 29.530588853;
+    var knownNewMoon = Date.UTC(2000,0,6,18,14,0);
+    var diffDays = (date.getTime() - knownNewMoon) / 86400000;
+    var phase = diffDays % synodic;
+    if (phase < 0) phase += synodic;
+    var pct = phase / synodic;
+    var illum = (1 - Math.cos(2*Math.PI*pct)) / 2;
+    var names = [
+      {max:0.02,name:'New Moon',face:'🌑'},{max:0.24,name:'Waxing Crescent',face:'🌒'},
+      {max:0.26,name:'First Quarter',face:'🌓'},{max:0.49,name:'Waxing Gibbous',face:'🌔'},
+      {max:0.51,name:'Full Moon',face:'🌕'},{max:0.74,name:'Waning Gibbous',face:'🌖'},
+      {max:0.76,name:'Last Quarter',face:'🌗'},{max:0.99,name:'Waning Crescent',face:'🌘'},
+      {max:1.01,name:'New Moon',face:'🌑'}
+    ];
+    var match = names.find(function(n){ return pct <= n.max; }) || names[0];
+    return { name: match.name, face: match.face, pct: Math.round(illum*100), cyclePct: pct };
+  }
+
+  // WHY: low-precision lunar ecliptic longitude (Meeus, Astronomical
+  // Algorithms ch.47 truncated) — accurate to a couple degrees, enough to
+  // place the Moon in the right zodiac sign on nearly every day.
+  function moonEclipticLongitude(date){
+    var T = (date.getTime()/86400000 + 2440587.5 - 2451545.0) / 36525; // Julian centuries from J2000
+    var Lp = 218.3164477 + 481267.88123421*T; // mean longitude
+    var D  = 297.8501921 + 445267.1114034*T;  // mean elongation
+    var M  = 357.5291092 + 35999.0502909*T;   // sun mean anomaly
+    var Mp = 134.9633964 + 477198.8675055*T;  // moon mean anomaly
+    function rad(x){ return (x % 360) * Math.PI/180; }
+    var lon = Lp
+      + 6.288774*Math.sin(rad(Mp))
+      + 1.274027*Math.sin(rad(2*D - Mp))
+      + 0.658314*Math.sin(rad(2*D))
+      + 0.213618*Math.sin(rad(2*Mp))
+      - 0.185116*Math.sin(rad(M))
+      - 0.114332*Math.sin(rad(2*D - 2*Mp) === 0 ? 0 : 2*D - 2*Mp);
+    lon = ((lon % 360) + 360) % 360;
+    return lon;
+  }
+
+  // WHY: the sun's ecliptic longitude gives its zodiac sign directly from the
+  // date (this is just "which season" — real astronomy, applies to everyone).
+  function sunEclipticLongitude(date){
+    var T = (date.getTime()/86400000 + 2440587.5 - 2451545.0) / 36525;
+    var L0 = 280.46646 + 36000.76983*T;
+    var M = (357.52911 + 35999.05029*T) * Math.PI/180;
+    var C = (1.914602 - 0.004817*T)*Math.sin(M) + (0.019993)*Math.sin(2*M);
+    var lon = (L0 + C) % 360;
+    return ((lon % 360) + 360) % 360;
+  }
+
+  function signFromLongitude(lon){
+    var idx = Math.floor(((lon % 360) + 360) % 360 / 30);
+    return ZODIAC[idx];
+  }
+
+  function render(){
+    var today = new Date();
+    var dayKey = today.toISOString().slice(0,10); // stable all calendar day
+    var seed = hashStr(dayKey);
+
+    document.getElementById('todayLabel').textContent = fmtDate(today);
+
+    var moon = moonPhase(today);
+    document.getElementById('moonFace').textContent = moon.face;
+    document.getElementById('moonName').textContent = moon.name;
+    document.getElementById('moonPct').textContent = moon.pct + '% illuminated';
+
+    var moonSign = signFromLongitude(moonEclipticLongitude(today));
+    document.getElementById('moonSignGlyph').textContent = moonSign.glyph;
+    document.getElementById('moonSignName').textContent = moonSign.name;
+
+    var sunSign = signFromLongitude(sunEclipticLongitude(today));
+    document.getElementById('sunSignGlyph').textContent = sunSign.glyph;
+    document.getElementById('sunSignName').textContent = sunSign.name;
+
+    var ruler = DAY_RULERS[today.getDay()]; // 0=Sunday..6=Saturday, matches Chaldean weekday rulers
+    var bank = BANK[ruler.name];
+    document.getElementById('rRuler').textContent = 'Ruled by ' + ruler.glyph + ' ' + ruler.name;
+
+    var score = 45 + (seed % 51); // 45–95
+    document.getElementById('rScore').textContent = score;
+    document.getElementById('rHeadline').textContent = pick(bank.headlines, seed);
+    document.getElementById('rMeterFill').style.width = score + '%';
+    document.getElementById('rMeterWord').textContent = pick(WORDS, Math.floor(seed/7));
+
+    var doList = document.getElementById('rDo');
+    var avoidList = document.getElementById('rAvoid');
+    doList.innerHTML = ''; avoidList.innerHTML = '';
+    [0,1].forEach(function(i){
+      var li = document.createElement('li');
+      li.textContent = bank.dos[(seed + i) % bank.dos.length];
+      doList.appendChild(li);
+    });
+    [0,1].forEach(function(i){
+      var li = document.createElement('li');
+      li.textContent = bank.avoids[(seed + i + 1) % bank.avoids.length];
+      avoidList.appendChild(li);
+    });
+
+    document.getElementById('rColor').textContent = pick(COLORS, seed);
+    document.getElementById('rHour').textContent = pick(HOURS, Math.floor(seed/3));
+    document.getElementById('rAffirmation').textContent = "Today moves at " + ruler.name + "'s pace — " + pick(WORDS, seed+3) + " is allowed.";
+  }
+
+  render();
+})();
+</script>

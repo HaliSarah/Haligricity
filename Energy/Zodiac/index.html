@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Zodiac — Seven Systems | Haligricity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0e0e1a; --mid:#16162a; --panel:#1a1a30; --border:#3a3060;
+    --gold:#c9a227; --gold2:#e8c455; --rose:#8b3a5a; --violet:#5b2d80;
+    --cream:#f5f0e8; --mist:rgba(201,162,39,0.08); --glow:0 0 40px rgba(201,162,39,0.15);
+    --west:#c9a227; --chin:#d1554a; --ved:#7c8cf8; --maya:#3f9b7a;
+    --ogham:#6a8f4f; --naz:#c98a4b; --egypt:#4bb0c9; --num:#a87ad4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--deep);
+    color:var(--cream);
+    font-family:'Cormorant Garamond',serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:48px 16px 80px;
+  }
+  a{color:var(--gold2);}
+
+  body::before{
+    content:'';
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse at 20% 30%,#1a1030 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 70%,#0a0a20 0%,transparent 60%),
+      radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 45% 8%,rgba(255,255,255,.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 72% 35%,rgba(255,255,255,.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 90% 15%,rgba(255,255,255,.3) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 82%,rgba(201,162,39,.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 50%,rgba(201,162,39,.3) 0%,transparent 100%),
+      radial-gradient(1px 1px at 55% 48%,rgba(255,255,255,.4) 0%,transparent 100%),
+      var(--deep);
+  }
+
+  .wrap{max-width:1020px;margin:0 auto;position:relative;z-index:1;}
+
+  .nav-home{
+    display:inline-block;margin-bottom:28px;
+    padding:7px 16px;border:1px solid var(--border);border-radius:6px;
+    color:var(--gold);font-family:'Cinzel',serif;font-size:.68rem;
+    letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+    transition:all .2s;
+  }
+  .nav-home:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
+
+  header{text-align:center;margin-bottom:40px;}
+  header .pretitle{
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:12px;
+  }
+  header h1{
+    font-family:'Cinzel',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);
+    font-weight:400;letter-spacing:.1em;color:var(--gold);margin-bottom:12px;
+  }
+  header p{color:rgba(245,240,232,.65);font-size:1.05rem;font-style:italic;letter-spacing:.02em;max-width:640px;margin:0 auto;line-height:1.6;}
+
+  .gold-rule{
+    width:80px;height:1px;margin:20px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  .quiz-cta{
+    background:linear-gradient(135deg,var(--violet),var(--rose));
+    border:1px solid var(--border);border-radius:16px;
+    padding:26px 28px;margin-bottom:40px;text-align:center;
+    box-shadow:var(--glow);
+  }
+  .quiz-cta .label{
+    font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;
+    text-transform:uppercase;color:rgba(245,240,232,.7);margin-bottom:8px;
+  }
+  .quiz-cta h2{
+    font-family:'Cinzel',serif;font-weight:400;font-size:1.3rem;
+    color:var(--cream);margin-bottom:10px;letter-spacing:.04em;
+  }
+  .quiz-cta p{color:rgba(245,240,232,.8);font-size:.98rem;margin-bottom:16px;line-height:1.6;}
+  .quiz-btn{
+    display:inline-block;background:var(--gold);color:var(--deep);
+    padding:12px 26px;border-radius:10px;text-decoration:none;
+    font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.12em;
+    text-transform:uppercase;transition:filter .2s;
+  }
+  .quiz-btn:hover{filter:brightness(1.1);}
+
+  .section-label{
+    font-family:'Cinzel',serif;font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--gold);opacity:.7;margin:32px 0 16px;
+    padding-top:20px;border-top:1px solid var(--border);
+    text-align:center;
+  }
+  .section-label:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    padding:18px;position:relative;overflow:hidden;
+    box-shadow:var(--glow);
+    display:flex;flex-direction:column;gap:8px;
+    transition:transform .2s;
+  }
+  .card:hover{transform:translateY(-3px);}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+  .card.west::before{background:var(--west);}
+  .card.chin::before{background:var(--chin);}
+  .card.ved::before{background:var(--ved);}
+  .card.maya::before{background:var(--maya);}
+  .card.ogham::before{background:var(--ogham);}
+  .card.naz::before{background:var(--naz);}
+  .card.egypt::before{background:var(--egypt);}
+
+  .card img{
+    width:100%;height:140px;object-fit:cover;border-radius:8px;
+    border:1px solid var(--border);
+  }
+  .card h2{
+    font-family:'Cinzel',serif;font-size:.65rem;text-transform:uppercase;
+    letter-spacing:.12em;color:rgba(245,240,232,.5);margin-top:4px;
+  }
+  .card .headline{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:400;letter-spacing:.03em;}
+  .card.west .headline{color:var(--west);}
+  .card.chin .headline{color:var(--chin);}
+  .card.ved .headline{color:var(--ved);}
+  .card.maya .headline{color:var(--maya);}
+  .card.ogham .headline{color:var(--ogham);}
+  .card.naz .headline{color:var(--naz);}
+  .card.egypt .headline{color:var(--egypt);}
+  .card p.desc{font-size:.85rem;line-height:1.55;color:rgba(245,240,232,.75);}
+
+  .card-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px;}
+  .mini-link{
+    font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.08em;
+    text-transform:uppercase;padding:6px 10px;border:1px solid var(--border);
+    border-radius:6px;color:var(--gold2);text-decoration:none;transition:all .2s;
+    display:inline-flex;align-items:center;gap:4px;white-space:nowrap;
+  }
+  .mini-link:hover{background:var(--gold2);color:var(--deep);border-color:var(--gold2);}
+
+  .note{
+    font-size:.82rem;color:rgba(245,240,232,.45);font-style:italic;
+    border-top:1px solid var(--border);margin-top:36px;padding-top:16px;line-height:1.65;
+    text-align:center;
+  }
+
+  .ftr {
+    text-align:center; margin-top:56px; padding:28px 16px 0;
+    border-top:1.5px solid var(--gold);
+    font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.1em; color:var(--gold);
+  }
+  .ftr .blessing { color:var(--rose); margin-bottom:6px; }
+  .ftr a { color:var(--gold) !important; text-decoration:none; }
+  .ftr a:hover { color:var(--rose) !important; }
+  .ftr-hsp { font-family:'Cinzel',serif; letter-spacing:.06em; text-transform:uppercase; font-size:.72rem; }
+</style>
+  <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
+  <meta name="description" content="Seven traditions for reading the same moment of birth — Western, Vedic, Chinese, Maya, Celtic Tree, Native American, and Egyptian — deep-dive guides from the…">
+  <link rel="canonical" href="https://haligricity.iqproductionz.com/Energy/Zodiac/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Haligricity">
+  <meta property="og:title" content="The Zodiac — Seven Systems | Haligricity">
+  <meta property="og:description" content="Seven traditions for reading the same moment of birth — Western, Vedic, Chinese, Maya, Celtic Tree, Native American, and Egyptian — deep-dive guides from the…">
+  <meta property="og:url" content="https://haligricity.iqproductionz.com/Energy/Zodiac/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Zodiac — Seven Systems | Haligricity">
+  <meta name="twitter:description" content="Seven traditions for reading the same moment of birth — Western, Vedic, Chinese, Maya, Celtic Tree, Native American, and Egyptian — deep-dive guides from the…">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://haligricity.iqproductionz.com/Energy/Zodiac/",
+   "url": "https://haligricity.iqproductionz.com/Energy/Zodiac/",
+   "name": "The Zodiac — Seven Systems | Haligricity",
+   "description": "Seven traditions for reading the same moment of birth — Western, Vedic, Chinese, Maya, Celtic Tree, Native American, and Egyptian — deep-dive guides from the…",
+   "inLanguage": "en-US",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "Haligricity",
+    "url": "https://haligricity.iqproductionz.com/"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Haligricity",
+     "item": "https://haligricity.iqproductionz.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Zodiac",
+     "item": "https://haligricity.iqproductionz.com/Energy/Zodiac/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <!-- SEO:end -->
+</head>
+<body>
+<div class="wrap">
+  <a class="nav-home" href="https://Haligricity.IQProductionz.com/">↩ Site Home</a>
+
+  <header>
+    <div class="pretitle">Your Cosmic Blueprint</div>
+    <h1>The Zodiac — Seven Systems</h1>
+    <div class="gold-rule"></div>
+    <p>Seven traditions, seven ways of reading the same moment of birth —<br>from the stars, the calendar, and the tree.<br>Deep-dive guides on the history and practice of each system, compared against Haligric theology.</p>
+  </header>
+
+  <div class="quiz-cta">
+    <div class="label">Interactive Tool</div>
+    <h2>See Your Personal Reading</h2>
+    <p>Enter your birth details once and see how each system below reads that same moment.</p>
+    <a class="quiz-btn" href="https://Haligricity.IQProductionz.com/Quiz" target="_blank" rel="noopener">Take the Eight Systems Quiz →</a>
+  </div>
+
+  <div class="section-label">Astronomically / Calendrically Derived</div>
+  <div class="grid">
+
+    <div class="card ved">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/Vedic.png" alt="Vedic Astrology" onerror="this.style.opacity='0.25'">
+      <h2>Sidereal · Jyotish</h2>
+      <div class="headline">Vedic Astrology</div>
+      <p class="desc">The sidereal rashis, planetary dignities, yogas, and dasha periods — India's parallel system of reading the sky.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Vedic_Astrology_Jyotish_Complete_Deep_Dive.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Vedic_Astrology_Jyotish_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card west">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/WesternAstro.png" alt="Western Astrology" onerror="this.style.opacity='0.25'">
+      <h2>Tropical Zodiac</h2>
+      <div class="headline">Western Astrology</div>
+      <p class="desc">The twelve tropical signs, their elements and modalities, the planets and houses — origins from Babylon through Ptolemy to the modern chart.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Western_Astrology_Complete_Deep_Dive.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Western_Astrology_Complete_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card chin">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/ChineseZodiac.png" alt="Chinese Zodiac" onerror="this.style.opacity='0.25'">
+      <h2>Sexagenary Cycle</h2>
+      <div class="headline">Chinese Zodiac</div>
+      <p class="desc">The twelve animals, the ten heavenly stems, and the Bazi four-pillar chart built from year, month, day, and hour.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Chinese_Zodiac_Sexagenary_Cycle_Bazi_Deep_Dive.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Chinese_Zodiac_Sexagenary_Cycle_Bazi_Deep_Dive.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card maya">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/Myan.jpg" alt="Maya Zodiac" onerror="this.style.opacity='0.25'">
+      <h2>Tzolk'in · Long Count</h2>
+      <div class="headline">Maya Zodiac</div>
+      <p class="desc">The twenty day-signs of the Tzolk'in, the Haab solar calendar, and how the two interlock in the Long Count.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Maya_Zodiac_master.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Maya_Zodiac_master.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card ogham">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/Celtic.jpg" alt="Celtic Tree Astrology" onerror="this.style.opacity='0.25'">
+      <h2>Ogham Tree Calendar</h2>
+      <div class="headline">Celtic Tree Astrology</div>
+      <p class="desc">Thirteen trees mapped to the year, and the publishing history of how the modern tree calendar came to be.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Celtic_Tree_Astrology_Ogham_master.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Celtic_Tree_Astrology_Ogham_master.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card naz">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/NativeAmerican.jpg" alt="Native American Zodiac" onerror="this.style.opacity='0.25'">
+      <h2>Pop-Astrology System</h2>
+      <div class="headline">"Native American" Zodiac</div>
+      <p class="desc">Where this modern, widely-circulated system actually comes from, and why it's treated differently from a specific nation's own totem tradition.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/NativeAmericanZodiac_master.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/NativeAmericanZodiac_master.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+    <div class="card egypt">
+      <img src="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/Egypt.jpg" alt="Egyptian Zodiac" onerror="this.style.opacity='0.25'">
+      <h2>Modern Composite</h2>
+      <div class="headline">Egyptian Zodiac</div>
+      <p class="desc">Twelve deities mapped to the calendar year — a modern system, with the cross-source inconsistency named plainly.</p>
+      <div class="card-btns">
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/EgyptianZodiac_master.pdf" download>⬇ Download</a>
+        <a class="mini-link" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/EgyptianZodiac_master.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a class="mini-link" href="https://www.youtube.com/@IQENT" target="_blank" rel="noopener">▶ Listen</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="ftr">
+    <div class="blessing">
+      <strong>Grand Rising.</strong> · <strong>Be More You.</strong> · <strong>Ashe.</strong>
+    </div>
+    <div style="margin-top:6px;">
+      <a href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+      · <a href="https://iqproductionz.com/About" class="ftr-hsp">Hali Sarah Parsons</a>
+      · <a href="https://IQProductionz.com/">IQProductionz.com</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
