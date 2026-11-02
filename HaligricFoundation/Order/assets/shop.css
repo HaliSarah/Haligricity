@@ -64,7 +64,8 @@ select.hb-cur:focus,.hb-input:focus,.hb-select:focus{border-color:var(--gold);}
 .hb-card .cover{width:62%;margin:0 auto 16px;box-shadow:0 6px 20px rgba(74,16,96,.18);border-radius:3px;}
 .hb-card.feature .cover{width:58%;}
 .hb-card h3{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;margin-bottom:4px;}
-.hb-card .ed{font-style:italic;color:var(--gray);font-size:.92rem;margin-bottom:10px;}
+.hb-card .ed{font-style:italic;color:var(--gray);font-size:.92rem;margin-bottom:6px;}
+.hb-card .size-note{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.06em;color:var(--purple);opacity:.85;margin-bottom:12px;}
 .hb-card .price{font-family:'Cinzel',serif;font-size:1.3rem;margin:auto 0 12px;}
 .hb-card .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
 .tag{display:inline-block;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;background:var(--purple);color:#fff;padding:3px 9px;border-radius:20px;margin-bottom:10px;}

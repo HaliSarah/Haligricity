@@ -175,6 +175,21 @@
     listeners.push(sync); sync();
   }
 
+  // WHY: buyers need to see at a glance that the Original is one big
+  // hardcover with everything in it, while the pocket editions are small
+  // paperbacks split across three separate books — so pull that straight
+  // from each book's specs instead of hardcoding it per card.
+  function sizeNote(b) {
+    const get = k => (b.specs.find(([key]) => key === k) || [])[1];
+    const format = get('Format') || '';
+    const size = get('Size') || '';
+    const contains = get('Contains');
+    const binding = /hardcover/i.test(format) ? 'Hardcover' : /paperback/i.test(format) ? 'Paperback' : '';
+    let note = [binding, size].filter(Boolean).join(' · ');
+    if (contains) note += ' — everything in one volume';
+    return note;
+  }
+
   function mountRow(el) {
     const ids = el.dataset.hbRow.split(',').map(s => s.trim()).filter(id => BOOKS[id]);
     const feature = el.classList.contains('one');
@@ -185,6 +200,7 @@
         ${b.tag ? `<span class="tag">${esc(b.tag)}</span>` : ''}
         <a href="${b.url}">${coverHTML(id)}</a>
         <h3>${esc(b.title)}</h3><div class="ed">${esc(b.ed)}</div>
+        <div class="size-note">${esc(sizeNote(b))}</div>
         <div class="price" data-p="${id}"></div>
         <div class="acts">
           <button class="btn small" data-add="${id}">Add to Cart</button>
@@ -231,7 +247,7 @@
       el.innerHTML = n
         ? `<h2>Your Cart</h2><p class="lead">${n} book${n > 1 ? 's' : ''} · ${HB.money(sub)} before shipping</p>
            <a class="btn wide" href="${CART}">View Cart &amp; Checkout →</a>`
-        : `<h2>Your Cart</h2><p class="lead">Your cart is empty — add a book above.</p>`;
+        : `<h2>Your Cart</h2><p class="lead">Your cart is empty — As above, So below.</p>`;
     };
     listeners.push(sync); sync();
   }
@@ -321,7 +337,7 @@
           <span class="qty"><button type="button" data-q="${id}" data-d="-1">−</button><output>${cart[id]}</output><button type="button" data-q="${id}" data-d="1">+</button></span>
           <span class="lp">${HB.money(BOOKS[id].price[currency] * cart[id])}</span>
           <button class="rm" type="button" data-rm="${id}" aria-label="Remove">×</button></li>`).join('')
-        : '<li class="cart-empty" style="display:block">Your cart is empty — add a book above.</li>';
+        : '<li class="cart-empty" style="display:block">Your cart is empty — As above, So below.</li>';
       $$('[data-q]', list).forEach(b => b.addEventListener('click', () => HB.setQty(b.dataset.q, cart[b.dataset.q] + +b.dataset.d)));
       $$('[data-rm]', list).forEach(b => b.addEventListener('click', () => HB.setQty(b.dataset.rm, 0)));
       // WHY: hide payment until a fresh server quote exists for this exact cart.
