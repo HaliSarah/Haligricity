@@ -7,6 +7,9 @@
   Description: Downloadable Haligricity promotional materials.
                Sticker: /Promo/HaligricityQRStickerDy6in.jpg
                Brochure: /Promo/HaligricityTriFold.pdf
+               Brochure preview is a pdf.js viewer with a thumbnail glider
+               (#bviewer) so visitors can flip through every page before
+               downloading.
                Deploy to: Haligricity/Promo/index.html
 -->
 <html lang="en">
@@ -125,6 +128,27 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:14px 2
 
 footer{text-align:center;margin-top:64px;padding:28px;border-top:1px solid var(--border);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.35);}
 footer a{color:var(--gold);text-decoration:none;}
+
+/* Brochure page viewer — full PDF with a scrollable thumbnail glider below */
+#bviewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:999;flex-direction:column;align-items:center;padding:24px 16px;}
+#bviewer.open{display:flex;}
+.bv-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;opacity:.7;z-index:1001;}
+.bv-close:hover{opacity:1;}
+.bv-stage{display:flex;align-items:center;gap:14px;flex:1;min-height:0;width:100%;justify-content:center;}
+.bv-arrow{background:var(--panel);border:1px solid var(--border);color:var(--gold);width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;flex-shrink:0;transition:all .2s;}
+.bv-arrow:hover:not(:disabled){border-color:var(--gold);}
+.bv-arrow:disabled{opacity:.3;cursor:default;}
+#bv-canvas{max-width:78vw;max-height:62vh;border:1px solid rgba(201,162,39,.3);border-radius:6px;box-shadow:var(--glow);}
+.bv-pagelabel{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;color:var(--gold);opacity:.85;margin-top:12px;}
+/* WHY: a horizontal "glider" strip — every page as a small rendered thumbnail,
+   scrollable left/right, so you can jump straight to any page at a glance. */
+.bv-thumbs{display:flex;gap:10px;margin-top:16px;padding:10px 6px;max-width:94vw;overflow-x:auto;scroll-behavior:smooth;}
+.bv-thumbs::-webkit-scrollbar{height:6px;}
+.bv-thumbs::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.bv-thumb{flex-shrink:0;cursor:pointer;border:2px solid var(--border);border-radius:4px;overflow:hidden;opacity:.6;transition:all .2s;background:var(--mid);line-height:0;}
+.bv-thumb canvas{display:block;height:84px;width:auto;}
+.bv-thumb:hover{opacity:.9;}
+.bv-thumb.active{border-color:var(--gold);opacity:1;box-shadow:0 0 14px rgba(201,162,39,.35);}
 </style>
   <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
   <meta name="description" content="Download Haligricity promotional materials — stickers, brochures, and more.">
@@ -186,13 +210,25 @@ footer a{color:var(--gold);text-decoration:none;}
   <img id="lb-img" src="" alt="">
 </div>
 
+<!-- Brochure viewer: full page + thumbnail glider to flip through every page -->
+<div id="bviewer">
+  <button class="bv-close" onclick="closeBV()">✕</button>
+  <div class="bv-stage">
+    <button class="bv-arrow" id="bv-prev" onclick="bvPrev()">‹</button>
+    <canvas id="bv-canvas"></canvas>
+    <button class="bv-arrow" id="bv-next" onclick="bvNext()">›</button>
+  </div>
+  <div class="bv-pagelabel" id="bv-pagelabel">Loading…</div>
+  <div class="bv-thumbs" id="bv-thumbs"></div>
+</div>
+
 <nav>
   <a class="nav-logo" href="https://Haligricity.IQProductionz.com/">
-    <img src="https://Haligricity.IQProductionz.com/HaligricityLogo.png" alt="Haligricity" fetchpriority="high" loading="eager">
+    <img src="https://Haligricity.IQProductionz.com/HaligricityLogoLight.png" alt="Haligricity" fetchpriority="high" loading="eager">
     <span class="nav-brand">Haligricity</span>
   </a>
   <div class="nav-links">
-    <a class="nav-link" href="https://Haligricity.IQProductionz.com/">Home</a>
+    <a class="nav-link" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener">♡ Donate</a>
     <a class="nav-link active" href="https://Haligricity.IQProductionz.com/Promo/">Promo</a>
     <a class="nav-link" href="https://Haligricity.IQProductionz.com/Contact/">Contact</a>
     <a class="nav-link" href="https://IQProductionz.com/">I.Q. Productionz</a>
@@ -231,7 +267,7 @@ footer a{color:var(--gold);text-decoration:none;}
 
     <!-- BROCHURE CARD -->
     <div class="promo-card">
-      <div class="preview-area" onclick="window.open('https://Haligricity.IQProductionz.com/Promo/HaligricityTriFold.pdf','_blank')">
+      <div class="preview-area" onclick="openBV()">
         <div class="preview-placeholder" style="display:flex;">
           <span>📄</span>Tri-Fold Brochure
         </div>
@@ -240,7 +276,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <div class="promo-body">
         <div class="promo-type">Brochure</div>
         <div class="promo-title">Haligricity Tri-Fold Brochure</div>
-        <div class="promo-desc">Print-ready tri-fold brochure introducing Haligricity. Click the preview to open the PDF in a new tab.</div>
+        <div class="promo-desc">Print-ready tri-fold brochure introducing Haligricity. Click the preview to flip through every page.</div>
         <a class="btn-download" href="https://Haligricity.IQProductionz.com/Promo/HaligricityTriFold.pdf" download="HaligricityTriFold.pdf">
           ⬇ Download Brochure
         </a>
@@ -261,6 +297,7 @@ footer a{color:var(--gold);text-decoration:none;}
   </p>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 function openLB(src) {
   document.getElementById('lb-img').src = src;
@@ -272,6 +309,97 @@ function closeLB(e) {
   }
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB({target:document.getElementById('lightbox')}); });
+
+/* ── BROCHURE VIEWER ──────────────────────────────────────────────────────
+   Renders HaligricityTriFold.pdf page-by-page with pdf.js, plus a
+   horizontally-scrolling thumbnail glider so a visitor can flip through
+   the whole brochure without downloading it first. */
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+var BV_URL = 'https://Haligricity.IQProductionz.com/Promo/HaligricityTriFold.pdf';
+var bvDoc = null, bvPage = 1, bvTotal = 0, bvLoaded = false;
+
+function openBV() {
+  document.getElementById('bviewer').classList.add('open');
+  if (!bvLoaded) loadBV();
+}
+function closeBV() {
+  document.getElementById('bviewer').classList.remove('open');
+}
+
+function loadBV() {
+  bvLoaded = true; // WHY: only fetch/render the PDF once, even if reopened
+  pdfjsLib.getDocument(BV_URL).promise.then(function(pdf) {
+    bvDoc = pdf;
+    bvTotal = pdf.numPages;
+    buildBVThumbs();
+    renderBVPage(1);
+  }).catch(function() {
+    document.getElementById('bv-pagelabel').textContent = 'Preview unavailable — use Download instead.';
+  });
+}
+
+/* WHY: thumbnails are rendered once up front (brochures are short) so the
+   glider scrolls instantly instead of re-rendering a page every click. */
+function buildBVThumbs() {
+  var strip = document.getElementById('bv-thumbs');
+  strip.innerHTML = '';
+  for (var i = 1; i <= bvTotal; i++) {
+    (function(pageNum) {
+      var cell = document.createElement('div');
+      cell.className = 'bv-thumb';
+      cell.id = 'bv-thumb-' + pageNum;
+      cell.onclick = function() { renderBVPage(pageNum); };
+      var c = document.createElement('canvas');
+      cell.appendChild(c);
+      strip.appendChild(cell);
+      bvDoc.getPage(pageNum).then(function(page) {
+        var vp0 = page.getViewport({ scale: 1 });
+        var sc = 84 / vp0.height;
+        var vp = page.getViewport({ scale: sc });
+        c.width = vp.width; c.height = vp.height;
+        page.render({ canvasContext: c.getContext('2d'), viewport: vp });
+      });
+    })(i);
+  }
+}
+
+function renderBVPage(n) {
+  if (n < 1 || n > bvTotal) return;
+  bvPage = n;
+
+  var oldActive = document.querySelector('.bv-thumb.active');
+  if (oldActive) oldActive.classList.remove('active');
+  var thumb = document.getElementById('bv-thumb-' + n);
+  if (thumb) {
+    thumb.classList.add('active');
+    thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  bvDoc.getPage(n).then(function(page) {
+    var canvas = document.getElementById('bv-canvas');
+    var vp0 = page.getViewport({ scale: 1 });
+    // WHY: fit the stage area without upscaling past 2.5x on small brochures
+    var sc = Math.min((window.innerWidth * 0.78) / vp0.width, (window.innerHeight * 0.62) / vp0.height, 2.5);
+    var vp = page.getViewport({ scale: sc });
+    canvas.width = vp.width; canvas.height = vp.height;
+    page.render({ canvasContext: canvas.getContext('2d'), viewport: vp });
+  });
+
+  document.getElementById('bv-pagelabel').textContent = 'Page ' + n + ' of ' + bvTotal;
+  document.getElementById('bv-prev').disabled = (n <= 1);
+  document.getElementById('bv-next').disabled = (n >= bvTotal);
+}
+
+function bvPrev() { renderBVPage(bvPage - 1); }
+function bvNext() { renderBVPage(bvPage + 1); }
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('bviewer').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') bvNext();
+  if (e.key === 'ArrowLeft') bvPrev();
+  if (e.key === 'Escape') closeBV();
+});
 </script>
 </body>
 </html>
