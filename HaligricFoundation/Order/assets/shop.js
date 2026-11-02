@@ -72,7 +72,8 @@
     },
     'real-magic': {
       title: 'Real Magic', ed: 'An Introduction',
-      cover: null, url: SITE + '/RealMagic/OrderNow/',
+      // WHY: same cover image as the book's own page — no more placeholder.
+      cover: SITE + '/RealMagic/Book-Front-Cover.gif', url: SITE + '/RealMagic/OrderNow/',
       specs: [['Format', 'Paperback, perfect bound'], ['Size', '5.5 × 8.5 in'], ['Pages', '71'],
               ['Author', 'Hali Sarah Parsons']],
       price: { USD: 777, EUR: 888, GBP: 777, AUD: 1111, CAD: 2222 },
