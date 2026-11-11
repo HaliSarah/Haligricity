@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--
+  Title: Daily Practice — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork)
+  Description: Installable quick-access app bundling just the three Proposed
+  Daily Practice cards (Rising, Zenith, Astral) and the EMF Reduction note
+  from the homepage's "Before You Begin — Health Maintenance" box, so the
+  full daily arc is one tap away without the rest of the site. Content and
+  class names are copied verbatim from index.html's #s-daily section.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Practice — Quick Access</title>
+<meta name="description" content="The Rising, Zenith, and Astral daily practice arcs, plus the EMF note — in one quick-access app.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFDF0; --gold: #C9A227; --gold-border: #B8860B; --gold-pale: #FFFAEC;
+    --purple: #4A1060; --purple-mid: #6B2D8E; --purple-light: #EDE0F5;
+    --ink: #1A1A1A; --gray: #555; --line: #EEE8D0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Cormorant Garamond', serif; background: var(--bg); color: var(--ink);
+    min-height: 100vh; padding-bottom: 60px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 20px 18px 10px; }
+
+  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
+    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
+    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
+    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
+  #installAppBtn:hover { background:rgba(74,16,96,1); }
+
+  header { text-align:center; padding:36px 0 18px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  h1 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:600; color:var(--purple); margin:10px 0 6px; letter-spacing:.03em; }
+  .sub { font-size:.92rem; color:var(--gray); font-style:italic; line-height:1.6; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 24px; }
+
+  /* ROUTINE CARDS — copied from homepage #s-daily */
+  .routine-card {
+    background:#fff; border:1.5px solid var(--gold-border); border-radius:14px;
+    padding:24px 20px; margin-bottom:18px; position:relative;
+    box-shadow:0 2px 14px rgba(180,140,0,.07);
+  }
+  .routine-title {
+    font-family:'Cinzel',serif; font-size:1.1rem; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--purple); font-weight:600; margin-bottom:6px;
+  }
+  .routine-flow {
+    font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold-border); margin-bottom:16px;
+  }
+  .step-acc { border:1px solid rgba(201,162,39,0.2); border-radius:8px; margin-bottom:8px; overflow:hidden; }
+  .step-acc-trigger {
+    display:flex; align-items:center; gap:12px; padding:13px 14px;
+    cursor:pointer; user-select:none; background:var(--gold-pale);
+    border:none; width:100%; text-align:left;
+    font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--purple); transition:background .2s; line-height:1.3;
+  }
+  .step-acc-trigger:hover { background:#fff; }
+  .step-acc-num { width:24px; min-width:24px; height:24px; border-radius:50%;
+    background:var(--purple); color:#fff; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:.68rem; font-weight:700; }
+  .step-acc-title { flex:1; }
+  .step-acc-arrow { font-size:.72rem; transition:transform .25s; }
+  .step-acc.open .step-acc-arrow { transform:rotate(180deg); }
+  .step-acc.open .step-acc-trigger { background:#fff; }
+  .step-acc-body { display:none; padding:14px; background:#fff; border-top:1px solid rgba(201,162,39,0.15);
+    font-size:.92rem; line-height:1.7; }
+  .step-acc.open .step-acc-body { display:block; }
+  .step-acc-body p + p { margin-top:8px; }
+  .step-acc-body a { color:var(--purple-mid); }
+  .affirm { background:var(--purple-light); border-left:3px solid var(--purple); padding:12px 14px;
+    border-radius:0 8px 8px 0; font-style:italic; color:var(--purple); line-height:1.6; font-size:.94rem; margin-top:8px; }
+
+  /* Zenith card variant (gold) */
+  .routine-card.zenith { background:var(--gold-border); border-color:#fff; }
+  .routine-card.zenith .routine-title, .routine-card.zenith .routine-flow { color:#fff; }
+  .routine-card.zenith .step-acc-trigger { background:var(--gold-pale); color:var(--gold-border); }
+  .routine-card.zenith .step-acc-num { background:var(--gold-border); }
+  .routine-card.zenith .affirm { background:#fff; border-color:var(--gold-border); color:var(--gold-border); }
+
+  /* Astral card variant (purple) */
+  .routine-card.astral { background:var(--purple-light); border-color:var(--purple-mid); }
+  .routine-card.astral .routine-flow { color:var(--purple); font-weight:600; }
+  .routine-card.astral .affirm { background:#fff; }
+
+  /* EMF / health note box */
+  .health-box { background:#FAFAF8; border:1.5px solid var(--purple-mid); border-radius:10px;
+    padding:16px 18px; margin:6px 0 20px; }
+  .health-box .eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--purple); margin-bottom:8px; font-weight:600; }
+  .health-box p { font-size:.86rem; color:var(--purple); line-height:1.7; margin-top:6px; }
+  .health-box a { color:var(--purple-mid); }
+
+  footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <h1>Daily Practice</h1>
+    <p class="sub">Three practice arcs — Rising, Zenith, and Astral. The body thrives on rhythm; this is the trellis.</p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <!-- RISING RITUAL -->
+  <div class="routine-card">
+    <div class="routine-title">Rising Ritual</div>
+    <div class="routine-flow">Varessence · Bowls · Pranayama · Mudra · Qigong · Yoga · Lymph</div>
+
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">1</div><div class="step-acc-title">Dream Journal</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Before you move — before you open your eyes fully, before you reach for your phone — stay in bed. Let your mind be still. In that quiet space between sleep and waking, follow any fragment of a dream back as far as it will go.</p>
+        <p>Then reach for your dream journal and record it: give the entry a title and a date. Over time, repeated symbols, repeated people, repeated settings will begin to emerge.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">2</div><div class="step-acc-title">Grounding — Earth Connection</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>If possible, begin the rise with bare feet on the actual earth — grass, soil, sand, or stone. A grounding mat plugged into a properly grounded outlet works just as well indoors.</p>
+        <p>Once grounded — physically or energetically — hold space. Let yourself be still until you arrive at a place of genuine emptiness.</p>
+        <p style="font-style:italic;">From this place of stillness, the Rising Varessence can land.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">3</div><div class="step-acc-title">Rising Varessence</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Hands together at the heart center. Speak the Rising Varessence aloud — repeat if needed, until you can feel it land in the body.</p>
+        <div class="affirm">"I honor myself, on this day, and shine my light, along the way."</div>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">4</div><div class="step-acc-title">Singing Bowl — Clear the Dreamworld</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Strike or rim your singing bowls (brass or crystal) <strong>three times</strong> to clear the residue of the dreamworld. Begin with the highest note; when you reach the lowest, you have fully arrived back into your body.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">5</div><div class="step-acc-title">Pranayama — Surya Bhedana (Rising Breath)</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Form Vishnu Mudra with your right hand. <strong>Surya Bhedana</strong> — the right-nostril solar breath — inhale through the right (solar) nostril, exhale through the left. Repeat for 5–10 rounds.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">6</div><div class="step-acc-title">Mudra — Pull a Card</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Pull your daily, weekly, or monthly mudra from a card deck. Hold the gesture for whatever feels right.</p>
+        <p style="font-style:italic;">Meditating while holding the Mudra is encouraged. Let the gesture anchor you as you explore your goals for the day.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">7</div><div class="step-acc-title">Qigong — Rising</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Move stagnant overnight energy and wake the meridian channels. <a href="https://www.youtube.com/watch?v=y2RAEnWreoE&list=PL_Fc1LFovCG1LQrd0z0IXxdidHx4sucT4" target="_blank" rel="noopener">Watch Rising Qigong →</a></p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">8</div><div class="step-acc-title">Yoga — Sun Salutation</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Follow the Qigong with a <a href="https://youtu.be/mtO2fRmh8D8?si=t36HMZ4_YJ0CKxzd" target="_blank" rel="noopener">sun salutation practice</a> to build heat and anchor the body before the day begins.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">9</div><div class="step-acc-title">Three Lymph Drainages — Neck, Armpits, Tummy</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Seal the rising practice with three gentle lymph drainages: <strong>Neck</strong> (30–40 sweeps toward the shoulder), <strong>Armpits</strong> (30–40 slides front to back), <strong>Tummy</strong> (36 counter-clockwise circles around the navel, then 24 off the skin).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZENITH RITUAL -->
+  <div class="routine-card zenith">
+    <div class="routine-title">Zenith Ritual</div>
+    <div class="routine-flow">Physical Grounding · Varessence</div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">1</div><div class="step-acc-title">Earth Connection — Physical Grounding</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Go outside and connect bare feet, bare hands, or both directly to the earth for at least five minutes.</p>
+        <p>The earth carries a mild negative charge. Research confirms earthing reduces inflammation, improves sleep, stabilizes cortisol rhythms, and calms the nervous system.</p>
+        <p style="font-style:italic;">If you cannot go outside, use a grounding mat connected to a properly grounded outlet.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">2</div><div class="step-acc-title">Zenith Varessence — Fine-Tune Your Focus</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>While grounded — feet or hands on the earth — speak the Zenith Varessence aloud:</p>
+        <div class="affirm">"This celestial body holds me.<br>Wrapped in its natural rhythms closely,<br>I allow the exchange of ions.<br>Peace radiates from all my cells,<br>anchoring me in Zion."</div>
+        <p>Remain grounded for as long as feels right after speaking. Let the earth respond.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMF / HEALTH MAINTENANCE NOTE -->
+  <div class="health-box">
+    <div class="eyebrow">Before You Begin — Health Maintenance</div>
+    <p>Two hours after your last meal, complete your skincare routine and change into pajamas or yoga clothes.</p>
+    <p><strong>Oral Care:</strong> Brush and floss. Hali Sarah uses a toothbrush with water only, silk dental floss and metal dental tools as needed, plus Jamaican toothbrushes (licorice sticks) and oral probiotics.</p>
+    <p><strong>EMF Reduction:</strong> Switch your phone to airplane mode. Unplug WiFi when possible. — See <a href="https://IQProductionz.com/Products/Orgonites" target="_blank" rel="noopener">orgone products</a> for additional assistance.</p>
+  </div>
+
+  <!-- ASTRAL RITUAL -->
+  <div class="routine-card astral">
+    <div class="routine-title">Astral Ritual</div>
+    <div class="routine-flow">Yoga · Qigong · Pranayama · Bowls · Varessence</div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">1</div><div class="step-acc-title">Yoga — Evening Wind Down</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Begin standing and fold forward over your toes, knees softly bent, swaying the back of the body gently side to side.</p>
+        <p>Move to the floor, sit tall, do slow then fast spinal twists, release into a forward fold, open the legs wide, come into Child's Pose, and close in Savasana for at least five minutes — not sleep, conscious release.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">2</div><div class="step-acc-title">Qigong — Astral</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Move into Astral Qigong to dissolve any remaining tension. <a href="https://www.youtube.com/watch?v=p-VPr5bs3eg&list=PL_Fc1LFovCG3xwotqf737-tWMOcM_ynQn&index=2" target="_blank" rel="noopener">Watch Astral Qigong →</a></p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">3</div><div class="step-acc-title">Mudra — Pull a Card</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Pull your daily mudra card and hold the gesture, reflecting on the day's activities until those thoughts are no longer prominent.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">4</div><div class="step-acc-title">Day Reflection Documentation</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Write it down. What happened, what you felt, what lingered — not a to-do list, a what-I've-done and what-I've-noticed list.</p>
+        <p>If there was anything difficult about the day, note it — and note one small thing that could shift it tomorrow. Writing it down is an act of release.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">5</div><div class="step-acc-title">Pranayama — Chandra Bhedana (Wind-Down Breath)</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Form Vishnu Mudra. <strong>Chandra Bhedana</strong> — the left-nostril lunar breath — inhale left, exhale right, for 5–10 rounds. For an even softer ending, transition into <em>Bhramari</em> (humming bee breath).</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">6</div><div class="step-acc-title">Singing Bowl — Cleanse the Day</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Close the practice with your singing bowls — begin with the lowest note and climb to the highest, the reverse of the morning sequence. When the last tone fades completely, the field is clear.</p>
+      </div>
+    </div>
+    <div class="step-acc">
+      <button class="step-acc-trigger" onclick="toggleStepAcc(this)">
+        <div class="step-acc-num">7</div><div class="step-acc-title">Astral Varessence — Seal the Day</div><span class="step-acc-arrow">▾</span>
+      </button>
+      <div class="step-acc-body">
+        <p>Hands together at the heart center. Speak the Astral Varessence aloud to seal the day before sleep.</p>
+        <div class="affirm">"Gratitude fills my heart, I've done my part. I send love from the end to the start."</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+function toggleStepAcc(btn) {
+  var item = btn.closest('.step-acc');
+  if (item) item.classList.toggle('open');
+}
+
+// WHY: identical install-prompt pattern already used on the DayEnergy app,
+// so "Add to Home Screen" behaves the same way across all Haligricity apps.
+var _deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  _deferredInstallPrompt = e;
+  var b = document.getElementById('installAppBtn');
+  if(b) b.style.display = 'inline-block';
+});
+window.addEventListener('appinstalled', function(){
+  var b = document.getElementById('installAppBtn');
+  if(b) b.style.display = 'none';
+});
+function installHaligricityApp(){
+  if(_deferredInstallPrompt){
+    _deferredInstallPrompt.prompt();
+    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
+  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    alert('To install: tap the Share icon, then "Add to Home Screen".');
+  } else {
+    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
+  }
+}
+if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = document.getElementById('installAppBtn');
+    if(b) b.style.display = 'inline-block';
+  });
+}
+</script>
+</body>
+</html>

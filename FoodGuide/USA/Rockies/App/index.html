@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<!--
+  Title: The Rockies Food Guide — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork)
+  Description: Installable quick-access app rendering the The Rockies
+  Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
+  + shopping list), generated from the source PDF via parse_guide.py.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rockies Food Guide</title>
+<meta name="description" content="• Dried Dates (for moisture retention) • Amaranth &amp; Teff (Nourishing)">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FFFDF0; --gold:#C9A227; --gold-border:#B8860B; --gold-pale:#FFFAEC;
+    --purple:#4A1060; --purple-mid:#6B2D8E; --purple-light:#EDE0F5;
+    --ink:#1A1A1A; --gray:#555; --line:#EEE8D0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
+
+  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
+    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
+    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
+    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
+  #installAppBtn:hover { background:rgba(74,16,96,1); }
+
+  header { text-align:center; padding:36px 0 10px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  .eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--purple-mid); margin-top:14px; }
+  h1 { font-family:'Cinzel',serif; font-size:1.55rem; font-weight:600; color:var(--purple); margin:6px 0 6px; letter-spacing:.02em; }
+  .tagline { font-size:.86rem; color:var(--gray); font-style:italic; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 18px; }
+
+  details.intro-box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  details.intro-box summary { cursor:pointer; font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--purple); }
+  details.intro-box p { font-size:.88rem; line-height:1.7; margin-top:10px; }
+  details.intro-box p + p { margin-top:8px; }
+  details.intro-box h4 { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold-border); margin-top:14px; margin-bottom:4px; }
+
+  .month-tabs { position:sticky; top:0; z-index:50; background:var(--bg); display:flex; gap:6px; overflow-x:auto;
+    padding:10px 0; margin-bottom:6px; border-bottom:1px solid var(--line); -webkit-overflow-scrolling:touch; }
+  .month-tabs::-webkit-scrollbar { height:4px; }
+  .month-tab { flex:0 0 auto; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase;
+    background:#fff; border:1px solid var(--gold-border); color:var(--purple); border-radius:20px; padding:7px 13px;
+    cursor:pointer; white-space:nowrap; }
+  .month-tab.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .month-panel { padding:14px 2px 30px; }
+  .month-eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-border); }
+  .month-title { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:600; color:var(--purple); margin:4px 0 12px; }
+  .month-intro { font-size:.92rem; line-height:1.75; margin-bottom:16px; }
+  .sub-h { font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple);
+    margin:18px 0 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+
+  .tri-table-wrap { overflow-x:auto; margin-bottom:8px; border-radius:8px; border:1px solid var(--line); }
+  table.tri-table { border-collapse:collapse; width:100%; font-size:.78rem; min-width:560px; }
+  table.tri-table th { background:var(--purple); color:#fff; font-family:'Cinzel',serif; font-size:.64rem;
+    letter-spacing:.04em; text-transform:uppercase; padding:9px 10px; text-align:left; }
+  table.tri-table td { padding:9px 10px; border-top:1px solid var(--line); vertical-align:top; }
+  table.tri-table td.tri-day { font-family:'Cinzel',serif; font-weight:600; color:var(--gold-border); white-space:nowrap; }
+  table.tri-table tr:nth-child(even) td { background:#FFFCF2; }
+
+  .recipe-grid { display:flex; flex-direction:column; gap:12px; }
+  .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
+  .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
+  .recipe-steps { font-size:.86rem; line-height:1.7; }
+
+  .shop-box { background:var(--purple-light); border-radius:10px; padding:14px 16px; margin-top:16px; }
+  .shop-title { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple); margin-bottom:8px; }
+  .shop-list { columns:2; column-gap:18px; font-size:.82rem; line-height:1.6; list-style:disc; padding-left:18px; }
+  .shop-list li { break-inside:avoid; margin-bottom:4px; }
+  @media (max-width:480px) { .shop-list { columns:1; } }
+
+  .gap-note { background:#FAFAF8; border:1px dashed var(--purple-mid); border-radius:8px; padding:12px 14px;
+    font-size:.8rem; color:var(--purple); font-style:italic; margin:10px 0 20px; }
+
+  .pdf-link-row { text-align:center; margin:10px 0 6px; }
+  .pdf-link-row a { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--purple-mid); text-decoration:none; border-bottom:1px solid var(--purple-mid); padding-bottom:1px; }
+
+  footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <div class="eyebrow">Eating as Practice</div>
+    <h1>The Rockies Food Guide</h1>
+    <p class="tagline">• Dried Dates (for moisture retention) • Amaranth &amp; Teff (Nourishing)</p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <details class="intro-box">
+    <summary>The Mountain Philosophy</summary>
+    <p>The Rockies Haligric Guide is calibrated for high-altitude metabolic demands and extreme environmental shifts. In an era of changing climate patterns, maintaining internal &quot;fire&quot; through thin air and dry blizzards is essential. This guide provides the nutritional density needed to protect your energy (Jing) against the bone-deep mountain cold.</p>
+    <h4>The Calendar Decoder</h4>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: Repetition is the key to biological alignment. By eating the same Trinity every Monday for a month, you reduce decision fatigue and allow your body to lock into the seasonal rhythm at a cellular level.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every day is a Trinity: One Grain + One Green + One Protein. In the Rockies, we prioritize warming grains like Rye and Buckwheat during the long winter and utilize moisture-retaining roots to combat the high-desert dryness.</p>
+  </details>
+
+  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
+  
+
+  <nav class="month-tabs" id="monthTabs">
+    <button class="month-tab active" onclick="showMonth(1, this)">Month 1</button>
+    <button class="month-tab" onclick="showMonth(2, this)">Month 2</button>
+    <button class="month-tab" onclick="showMonth(3, this)">Month 3</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Month 4</button>
+    <button class="month-tab" onclick="showMonth(5, this)">Month 5</button>
+    <button class="month-tab" onclick="showMonth(6, this)">Month 6</button>
+    <button class="month-tab" onclick="showMonth(7, this)">Month 7</button>
+    <button class="month-tab" onclick="showMonth(8, this)">Month 8</button>
+    <button class="month-tab" onclick="showMonth(9, this)">Month 9</button>
+    <button class="month-tab" onclick="showMonth(10, this)">Month 10</button>
+    <button class="month-tab" onclick="showMonth(11, this)">Month 11</button>
+    <button class="month-tab" onclick="showMonth(12, this)">Month 12</button>
+  </nav>
+
+  <section class="month-panel" id="m1" data-month="1" >
+<div class="month-eyebrow">Month 1 &middot; Spring Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Edition</h2>
+<p class="month-intro">WEEKS 1-4: HIGH-ALTITUDE SPRING ALIGNMENT In the Rockies, March is still a &#x27;Winter-Spring&#x27; hybrid. To maintain Haligricity at high altitudes, we focus on Deep Moistening to combat extreme dryness and Waking the Liver to move stagnant winter energy. We use stewed fruits to generate fluids and pungent greens to break the mountain chill.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Stewed Pears w/ Warm Amaranth</td>
+<td>Millet, Roasted Beets, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Kale</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Warm Steel-Cut Oats w/ Flax</td>
+<td>Brown Rice, Spinach, Chickpeas</td>
+<td>Farro, Sautéed Leeks, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Pumpkin Seeds</td>
+<td>Quinoa, Carrots, Red Lentils</td>
+<td>Buckwheat, Bok Choy, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Teff w/ Ginger &amp; Scallions</td>
+<td>Millet, Cabbage, Seitan</td>
+<td>Brown Rice, Swiss Chard, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Dates</td>
+<td>Wild Rice, Roasted Turnips, White Beans</td>
+<td>Steel-Cut Oats (Savory), Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Cornmeal Mush w/ Maple</td>
+<td>Brown Rice, Beets, Red Lentils</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Quinoa w/ Stewed Apples</td>
+<td>Wild Rice, Carrots, Chickpeas</td>
+<td>Lentil &amp; Leek Stew over Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: Leeks &amp; Seitan &quot;Spring-Wake&quot;</div>
+      <div class="recipe-trinity">Farro (Grain) + Leeks/Greens (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Sauté sliced leeks in olive oil until soft. 2. Add seitan medallions and a splash of vegetable broth to prevent drying. 3. Finish with fresh spinach. The pungent leeks move the Liver Qi, while the moisture protects the lungs in thin mountain air.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Deep-Moistening Stewed Pears</div>
+      
+      <div class="recipe-steps">1. Peel and slice pears. 2. Simmer with a tiny bit of water, cinnamon, and a slice of ginger until soft and juicy. 3. Serve over warm amaranth. This is critical for high-altitude dwellers to prevent &#x27;Lung Dryness&#x27; and &#x27;Internal Wind&#x27;.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Flax Seeds &amp; Hemp Hearts</li>
+<li>Pears &amp; Apples (Bulk - for stewing)</li>
+<li>Beets &amp; Carrots (8 lbs total)</li>
+<li>Turnips &amp; Cabbage (6 lbs total)</li>
+<li>Leeks &amp; Scallions (6 bunches)</li>
+<li>Farro &amp; Buckwheat (Warming/Grounding)</li>
+<li>Spinach, Kale, &amp; Bok Choy (Bulk)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Fresh Ginger Root &amp; Garlic</li>
+<li>Millet &amp; Quinoa</li>
+<li>Dried Dates (for moisture retention)</li>
+<li>Amaranth &amp; Teff (Nourishing)</li>
+<li>Steel-Cut Oats &amp; Cornmeal</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m2" data-month="2" hidden>
+<div class="month-eyebrow">Month 2 &middot; Spring Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Edition</h2>
+<p class="month-intro">WEEKS 5-8: MID-SPRING HIGH-ALTITUDE ALIGNMENT In the Rockies, April brings the &#x27;Great Wind.&#x27; As the snow melts, the air remains brutally dry. To maintain Haligricity, we focus on Anchoring the Yang to prevent internal restlessness (Wind) and continuing to Nourish the Yin. We use bitter-pungent Radishes to move the Liver and heavy Root Vegetables to stay grounded against the mountain gusts.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Amaranth w/ Stewed Apples</td>
+<td>Millet, Asparagus, White Beans</td>
+<td>Wild Rice, Seitan, Sautéed Radishes</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Steel-Cut Oats w/ Hemp Hearts</td>
+<td>Brown Rice, Parsnips, Chickpeas</td>
+<td>Farro, Spinach &amp; Garlic, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Millet w/ Sunflower Seeds</td>
+<td>Quinoa, Carrots, Red Lentils</td>
+<td>Buckwheat, Asparagus, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">8/15/22/29</td>
+<td>Savory Teff w/ Garlic &amp; Ginger</td>
+<td>Millet, Radish Greens, Seitan</td>
+<td>Brown Rice, Spinach, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">9/16/23/30</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Dates</td>
+<td>Wild Rice, Parsnips, White Beans</td>
+<td>Steel-Cut Oats (Savory), Asparagus, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">10/17/24/31</td>
+<td>Warm Cornmeal Mush w/ Flax</td>
+<td>Brown Rice, Carrots, Red Lentils</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">11/18/25/32</td>
+<td>Warm Quinoa w/ Stewed Pears</td>
+<td>Wild Rice, Parsnips, Chickpeas</td>
+<td>Lentil &amp; Radish Stew over Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: Asparagus &amp; Seitan &quot;Wind-Anchor&quot;</div>
+      <div class="recipe-trinity">Farro (Grain) + Asparagus (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Roast asparagus with a light coating of olive oil. 2. Sauté seitan with garlic and a hint of cumin. 3. Serve over warm farro. Asparagus is a natural diuretic that clears heat, while farro provides the dense &quot;Earth&quot; energy needed to stay centered at high altitudes.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Liver-Moving Radish &amp; Bean Sauté</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Radishes (Green/White) + White Beans (Protein)</div>
+      <div class="recipe-steps">1. Slice radishes and sauté with their greens until tender. 2. The pungent heat of the radish moves stagnant Liver Qi, helping the body adjust to the rapid spring transitions in the mountains.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Sunflower Seeds</li>
+<li>Hemp Hearts &amp; Flax Seeds</li>
+<li>Asparagus (6 bunches)</li>
+<li>Radishes with Greens (6 bunches)</li>
+<li>Parsnips &amp; Carrots (8 lbs total)</li>
+<li>Apples &amp; Pears (for stewing)</li>
+<li>Farro (Primary grounding grain)</li>
+<li>Spinach &amp; Mustard Greens (Bulk)</li>
+<li>Buckwheat &amp; Wild Rice</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Brown Rice &amp; Millet</li>
+<li>Dates (for Yin nourishment)</li>
+<li>Quinoa &amp; Amaranth</li>
+<li>Steel-Cut Oats, Teff, &amp; Cornmeal</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m3" data-month="3" hidden>
+<div class="month-eyebrow">Month 3 &middot; Spring Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Edition</h2>
+<p class="month-intro">WEEKS 9-12: LATE SPRING HIGH-ALTITUDE TRANSITION May in the Rockies is a time of rapid &#x27;Ascending Qi.&#x27; While the ground finally warms, the high-altitude sun intensifies. To maintain Haligricity, we focus on Clearing Liver Heat to prevent irritability and Deep Hydration to combat the mountain dryness. We use Rhubarb to drain heat and Asparagus to move fluids, keeping the spirit stable before the Summer Fire arrives.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">9/16/23/30</td>
+<td>Warm Quinoa w/ Rhubarb Sauce</td>
+<td>Millet, Asparagus, Red Lentils</td>
+<td>Wild Rice, Seitan, Steamed Spinach</td>
+</tr>
+<tr>
+<td class="tri-day">10/17/24/31</td>
+<td>Warm Steel-Cut Oats w/ Flax &amp; Berries</td>
+<td>Brown Rice, Bell Peppers, Chickpeas</td>
+<td>Farro, Spring Onions &amp; Garlic, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">11/18/25/32</td>
+<td>Warm Millet w/ Pumpkin Seeds</td>
+<td>Quinoa, Asparagus, White Beans</td>
+<td>Buckwheat, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">12/19/26/33</td>
+<td>Savory Teff w/ Ginger &amp; Herbs</td>
+<td>Millet, Spinach, Seitan</td>
+<td>Brown Rice, Asparagus, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">13/20/27/34</td>
+<td>Warm Amaranth w/ Stewed Pears</td>
+<td>Wild Rice, Bok Choy, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">14/21/28/35</td>
+<td>Warm Cornmeal Mush w/ Walnuts</td>
+<td>Brown Rice, Bell Peppers, White Beans</td>
+<td>Quinoa, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">15/22/29/36</td>
+<td>Warm Buckwheat w/ Dates</td>
+<td>Wild Rice, Asparagus, Red Lentils</td>
+<td>Lentil &amp; Pepper Stew over Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: High-Altitude Asparagus &amp; Seitan</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Sauté seitan medallions. 2. Add fresh asparagus spears and a splash of water to steam in-pan. 3. Quinoa is cooling and hydrating, while asparagus moves the Liver Qi, making this a perfect Rockies spring transition meal.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Rhubarb Heat-Drainer Rising</div>
+      
+      <div class="recipe-steps">1. Simmer chopped rhubarb with ginger and a touch of maple syrup. 2. Serve over warm quinoa. The sourness and bitterness of rhubarb specifically &#x27;drain&#x27; the rising Liver Heat that can lead to headaches and agitation in the high-mountain spring.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Flax Seeds &amp; Dates</li>
+<li>Asparagus (8 bunches)</li>
+<li>Fresh Rhubarb (4 lbs)</li>
+<li>Spring Onions &amp; Garlic</li>
+<li>Bell Peppers (Greenhouse - 6 total)</li>
+<li>Quinoa &amp; Millet (Hydrating/Cooling)</li>
+<li>Spinach, Swiss Chard, &amp; Mustard Greens</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Pears &amp; Berries (Moistening focus)</li>
+<li>Farro &amp; Buckwheat (Grounding)</li>
+<li>Fresh Ginger Root</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Seitan (8 packs)</li>
+<li>Red Lentils &amp; White Navy Beans</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m4" data-month="4" hidden>
+<div class="month-eyebrow">Month 4 &middot; Summer Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Edition</h2>
+<p class="month-intro">WEEKS 13-16: EARLY SUMMER HIGH-ALTITUDE FIRE ALIGNMENT June in the Rockies brings the &#x27;Intense Fire.&#x27; With thin air and high UV exposure, the primary threat to Haligricity is &#x27;Yin Scorching.&#x27; We focus on Nourishing the Heart while Guarding the Fluids. We use bitter-cool greens to clear Heart-Fire and cooling red Apricots or Berries to protect the internal moisture from the high-desert sun.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">13/20/27/34</td>
+<td>Warm Quinoa w/ Fresh Berries</td>
+<td>Millet, Summer Squash, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Kale</td>
+</tr>
+<tr>
+<td class="tri-day">14/21/28/35</td>
+<td>Warm Steel-Cut Oats w/ Hemp Hearts</td>
+<td>Brown Rice, Green Beans, Chickpeas</td>
+<td>Quinoa, Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">15/22/29/36</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Mint</td>
+<td>Buckwheat (Cooling), Squash, Red Lentils</td>
+<td>Amaranth, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">16/23/30/37</td>
+<td>Savory Teff w/ Garlic &amp; Basil</td>
+<td>Millet, Kale, Seitan</td>
+<td>Brown Rice, Summer Squash, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">17/24/31/38</td>
+<td>Warm Amaranth w/ Apricots</td>
+<td>Buckwheat, Green Beans, White Beans</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">18/25/32/39</td>
+<td>Warm Cornmeal Mush w/ Sunflower Seeds</td>
+<td>Brown Rice, Broccoli, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">19/26/33/40</td>
+<td>Warm Quinoa w/ Flax &amp; Cardamom</td>
+<td>Wild Rice, Green Beans, Chickpeas</td>
+<td>Lentil &amp; Squash Stew over Quinoa</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: High-Altitude Squash &amp; Seitan</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Summer Squash (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Lightly sauté summer squash with fresh basil and a splash of water to keep it moist. 2. Sauté seitan. 3. Serve over quinoa. In the Rockies, the high UV can cause &#x27;Heart-Fire&#x27; agitation; quinoa is the ultimate cooling grain to stabilize your Shen (spirit).</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Apricot &amp; Berry &quot;Fluid-Guard&quot; Breakfast</div>
+      
+      <div class="recipe-steps">1. Lightly warm fresh berries or apricots (which are plentiful in mountain orchards). 2. Serve over warm amaranth. In TCM, apricots &#x27;generate fluids&#x27; and help moisten the lungs—a mandatory practice for mountain living during the peak dry heat of summer. 1 0</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Hemp Hearts</li>
+<li>Sunflower Seeds &amp; Pumpkin Seeds</li>
+<li>Fresh Berries &amp; Apricots (8 lbs total)</li>
+<li>Summer Squash &amp; Zucchini (8 lbs)</li>
+<li>Green Beans &amp; Early Snap Peas (6 lbs)</li>
+<li>Broccoli &amp; Kale (8 large bunches/heads)</li>
+<li>Quinoa &amp; Millet (Primary hydrating grains)</li>
+<li>Fresh Basil &amp; Mint (4 bunches each)</li>
+<li>Amaranth &amp; Teff (Nourishing/Cooling)</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Lemon &amp; Early Tomatoes (for moisture)</li>
+<li>Steel-Cut Oats &amp; Flax Seeds</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m5" data-month="5" hidden>
+<div class="month-eyebrow">Month 5 &middot; Summer Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Edition</h2>
+<p class="month-intro">WEEKS 17-20: PEAK SUMMER HIGH-ALTITUDE FIRE ALIGNMENT July in the Rockies represents the peak of the &#x27;Fire Phase.&#x27; While the air is arid, the afternoon monsoons can bring sudden dampness. To maintain Haligricity, we focus on Clearing Summer Heat while Protecting the Spleen. We use cooling Cucumbers and Tomatoes to hydrate the Heart-Blood, and use Corn to support the Earth element during the monsoon shifts.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">17/24/31/38</td>
+<td>Warm Quinoa w/ Fresh Peaches</td>
+<td>Millet, Cucumber &amp; Tomato, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Chard</td>
+</tr>
+<tr>
+<td class="tri-day">18/25/32/39</td>
+<td>Warm Cornmeal Mush w/ Cherries</td>
+<td>Brown Rice, Summer Squash, Chickpeas</td>
+<td>Quinoa, Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">19/26/33/40</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Mint</td>
+<td>Buckwheat (Cooling), Corn, Red Lentils</td>
+<td>Amaranth, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">20/27/34/41</td>
+<td>Savory Teff w/ Garlic &amp; Basil</td>
+<td>Millet, Kale, Seitan</td>
+<td>Brown Rice, Summer Squash, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">21/28/35/42</td>
+<td>Warm Amaranth w/ Peaches &amp; Berries</td>
+<td>Buckwheat, Cucumber &amp; Tomato, White Beans</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">22/29/36/43</td>
+<td>Warm Cornmeal Mush w/ Walnuts</td>
+<td>Brown Rice, Broccoli, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">23/30/37/44</td>
+<td>Warm Quinoa w/ Flax &amp; Peach Zest</td>
+<td>Wild Rice, Corn &amp; Peppers, Chickpeas</td>
+<td>Lentil &amp; Tomato Stew over Quinoa</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Peak Trinity: Corn, Pepper &amp; Seitan</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Corn/Peppers (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Lightly sauté fresh corn off the cob with green peppers. 2. Sauté seitan medallions. 3. Serve over cooling quinoa. Corn is the essential &#x27;Earth&#x27; food to transition the body through the humid monsoons of the high desert.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Peach &amp; Mint &quot;Cooling Heart&quot; Breakfast</div>
+      
+      <div class="recipe-steps">1. Slice fresh mountain peaches. 2. Serve over warm quinoa with fresh mint and hemp hearts. Peaches generate fluids to combat altitude dryness, while mint clears the head from intense peak-summer heat. 1 2</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Hemp Hearts</li>
+<li>Pumpkin Seeds</li>
+<li>Fresh Peaches &amp; Cherries (8 lbs total)</li>
+<li>Tomatoes &amp; Cucumbers (10 lbs total)</li>
+<li>Fresh Corn on the Cob (12 ears)</li>
+<li>Summer Squash &amp; Bell Peppers</li>
+<li>Quinoa &amp; Millet (Primary cooling grains)</li>
+<li>Broccoli &amp; Swiss Chard</li>
+<li>Cornmeal (for Earth element support)</li>
+<li>Fresh Basil &amp; Mint (Bulk)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Amaranth &amp; Teff</li>
+<li>Flax Seeds</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m6" data-month="6" hidden>
+<div class="month-eyebrow">Month 6 &middot; Summer Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Earth Phase</h2>
+<p class="month-intro">WEEKS 21-24: LATE SUMMER MOUNTAIN ALIGNMENT August in the Rockies is the &#x27;Center&#x27; of the year. While the sun remains sharp, the energy begins to stabilize. To maintain Haligricity, we focus on Strengthening the Spleen and Transforming Dampness from late-summer monsoons. We use naturally sweet Corn and Bell Peppers to support the Earth element and Plums or Apples to begin astringing energy for the coming fall.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">21/28/35/42</td>
+<td>Warm Cornmeal Mush w/ Peaches</td>
+<td>Millet, Bell Peppers, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Chard</td>
+</tr>
+<tr>
+<td class="tri-day">22/29/36/43</td>
+<td>Warm Quinoa w/ Plums &amp; Flax</td>
+<td>Brown Rice, Summer Squash, Chickpeas</td>
+<td>Quinoa, Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">23/30/37/44</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Cinnamon</td>
+<td>Buckwheat, Sweet Corn, Red Lentils</td>
+<td>Amaranth, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">24/31/38/45</td>
+<td>Savory Teff w/ Garlic &amp; Bell Pepper</td>
+<td>Millet, Kale, Seitan</td>
+<td>Brown Rice, Summer Squash, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">25/32/39/46</td>
+<td>Warm Amaranth w/ Apples &amp; Walnuts</td>
+<td>Buckwheat, Tomato &amp; Cucumber, White Beans</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">26/33/40/47</td>
+<td>Warm Cornmeal Mush w/ Walnuts</td>
+<td>Brown Rice, Broccoli, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">27/34/41/48</td>
+<td>Warm Quinoa w/ Flax &amp; Cardamom</td>
+<td>Wild Rice, Sweet Corn &amp; Peppers, Chickpeas</td>
+<td>Lentil &amp; Tomato Stew over Quinoa</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Earth Trinity: Corn, Pepper &amp; Seitan</div>
+      <div class="recipe-trinity">Millet (Grain) + Corn/Peppers (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Lightly sauté fresh sweet corn and bell peppers. 2. Sauté seitan. 3. Serve over millet. Millet is the &#x27;Queen of Grains&#x27; for the Spleen, helping process the erratic humidity of late-summer mountain storms.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Late Summer Plum &amp; Amaranth &quot;Center&quot;</div>
+      
+      <div class="recipe-steps">1. Slice fresh plums or early apples. 2. Serve over warm amaranth with a sprinkle of walnuts. The sour-sweet profile of plums helps &#x27;astringe&#x27; the energy, preventing it from leaking out during the high-heat days of August. 1 4</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Sweet Corn (12 ears)</li>
+<li>Seitan (8 packs)</li>
+<li>Bell Peppers (Red/Yellow/Green - 10 total)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Plums &amp; Early Apples (8 lbs total)</li>
+<li>Chickpeas</li>
+<li>Tomatoes &amp; Cucumbers (8 lbs total)</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Summer Squash &amp; Zucchini</li>
+<li>Flax Seeds</li>
+<li>Broccoli, Chard, &amp; Kale</li>
+<li>Fresh Basil &amp; Parsley</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Millet &amp; Cornmeal (Primary Earth grains)</li>
+<li>Quinoa &amp; Amaranth</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Buckwheat &amp; Teff</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m7" data-month="7" hidden>
+<div class="month-eyebrow">Month 7 &middot; Autumn Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains Metal Phase</h2>
+<p class="month-intro">WEEKS 25-28: EARLY AUTUMN HIGH-ALTITUDE ALIGNMENT September in the Rockies is the &#x27;Sharp Descent.&#x27; As the first frosts hit the high country, the air turns crisp and brutally dry. To maintain Haligricity, we focus on Protecting the Lungs and Astringing the Qi. We use white foods like Cauliflower and Turnips to support the Metal element and stewed Pears to moisten the interior against the mountain wind.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">25/32/39/46</td>
+<td>Warm Amaranth w/ Stewed Pears</td>
+<td>Millet, Cauliflower, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Kale</td>
+</tr>
+<tr>
+<td class="tri-day">26/33/40/47</td>
+<td>Warm Steel-Cut Oats w/ Hemp Hearts</td>
+<td>Brown Rice, Roasted Turnips, Chickpeas</td>
+<td>Farro, Broccoli &amp; Garlic, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">27/34/41/48</td>
+<td>Warm Millet w/ Sunflower Seeds &amp; Ginger</td>
+<td>Quinoa, Cauliflower, Red Lentils</td>
+<td>Buckwheat, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">28/35/42/49</td>
+<td>Savory Teff w/ Garlic &amp; Black Pepper</td>
+<td>Millet, Turnip Greens, Seitan</td>
+<td>Brown Rice, Broccoli, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">29/36/43/50</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Dates</td>
+<td>Wild Rice, Roasted Turnips, White Beans</td>
+<td>Steel-Cut Oats (Savory), Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">30/37/44/51</td>
+<td>Warm Cornmeal Mush w/ Flax</td>
+<td>Brown Rice, Cauliflower, Red Lentils</td>
+<td>Quinoa, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">31/38/45/52</td>
+<td>Warm Quinoa w/ Stewed Apples</td>
+<td>Wild Rice, Roasted Turnips, Chickpeas</td>
+<td>Lentil &amp; Cauliflower Stew over Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Metal Trinity: Turnips &amp; Seitan</div>
+      <div class="recipe-trinity">Farro (Grain) + Turnips (Green/White) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Roast turnips until tender and sweet. 2. Sauté seitan medallions with garlic and ginger. 3. Serve over warm farro. Turnips are &#x27;Metal&#x27; element roots that clear lung stagnation—essential as the mountain air cools and dries rapidly.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Deep-Moistening Stewed Pear Rising</div>
+      
+      <div class="recipe-steps">1. Simmer sliced pears with cinnamon and a splash of water. 2. Serve over warm amaranth. In the high-altitude Autumn, pears are the primary medicinal food used to prevent &#x27;Lung Dryness&#x27; and a dry cough. 1 6</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Sunflower Seeds</li>
+<li>Hemp Hearts &amp; Flax Seeds</li>
+<li>Pears &amp; Apples (Bulk - for stewing)</li>
+<li>White Turnips with Greens (6 bunches)</li>
+<li>Cauliflower &amp; Broccoli (10 heads total)</li>
+<li>Kale, Spinach, &amp; Mustard Greens</li>
+<li>Farro (Grounding/Earth support)</li>
+<li>Late Summer Squash (Final harvest)</li>
+<li>Buckwheat &amp; Wild Rice (Warming/Drying)</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Millet &amp; Quinoa (Hydrating)</li>
+<li>Dates (for Yin nourishment)</li>
+<li>Amaranth &amp; Teff (Nourishing)</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m8" data-month="8" hidden>
+<div class="month-eyebrow">Month 8 &middot; Autumn Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains (The Sharp Edge)</h2>
+<p class="month-intro">WEEKS 29-32: MID-AUTUMN HIGH-ALTITUDE ALIGNMENT October in the Rockies is &#x27;The Sharp Edge.&#x27; As mountain winds increase and nights drop below freezing, we focus on Consolidating the Exterior and Transforming Phlegm. We use Daikon and Parsnips to clear the lungs and sour Apples to pull the energy inward, protecting the body from the thinning, cooling air.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">29/36/43/50</td>
+<td>Warm Steel-Cut Oats w/ Stewed Apples</td>
+<td>Farro, Daikon Radish, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Broccoli</td>
+</tr>
+<tr>
+<td class="tri-day">30/37/44/51</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Flax</td>
+<td>Millet, Parsnips, Chickpeas</td>
+<td>Farro, Kale &amp; Garlic, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">31/38/45/52</td>
+<td>Warm Amaranth w/ Stewed Pears</td>
+<td>Quinoa, Daikon, Red Lentils</td>
+<td>Buckwheat, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">32/39/46/53</td>
+<td>Savory Teff w/ Garlic &amp; Ginger</td>
+<td>Farro, Cauliflower, Seitan</td>
+<td>Brown Rice, Parsnips, Chickpeas</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: Daikon &amp; Parsnip &quot;Metal Guard&quot;</div>
+      <div class="recipe-trinity">Farro (Grain) + Daikon/Parsnips (White) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Roast parsnips and daikon until caramelized. 2. Sauté seitan medallions. 3. Serve over dense farro. These white roots are the &#x27;Metal&#x27; medicine for the high-altitude Autumn, clearing the respiratory tract and grounding the body against the wind.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Daikon Radish &amp; Parsnips (Bulk)</li>
+<li>Seitan (8 packs)</li>
+<li>Cauliflower &amp; Broccoli</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Apples &amp; Pears (for stewing)</li>
+<li>Farro, Buckwheat, &amp; Steel-Cut Oats</li>
+<li>Kale, Spinach, &amp; Mustard Greens</li>
+<li>Walnuts, Flax, &amp; Ginger</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m9" data-month="9" hidden>
+<div class="month-eyebrow">Month 9 &middot; Autumn Quarter</div>
+<h2 class="month-title">Rockies High-Altitude Consolidation</h2>
+<p class="month-intro">WEEKS 33-36: LATE AUTUMN MOUNTAIN ALIGNMENT November in the Rockies is the &#x27;Great Hardening.&#x27; As the first heavy snows blanket the peaks, the air becomes paper-dry. To maintain Haligricity, we focus on Nourishing the Kidney Yin and Warming the Core. We use deep- orange Winter Squash to ground the energy and Garlic/Leeks to move the Qi through the contracting vessels.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">33/40/47/54</td>
+<td>Warm Steel-Cut Oats w/ Stewed Pears</td>
+<td>Farro, Butternut Squash, White Beans</td>
+<td>Wild Rice, Seitan, Steamed Kale</td>
+</tr>
+<tr>
+<td class="tri-day">34/41/48/55</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Dates</td>
+<td>Brown Rice, Beets, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">35/42/49/56</td>
+<td>Warm Millet w/ Sunflower Seeds &amp; Ginger</td>
+<td>Quinoa, Butternut Squash, Red Lentils</td>
+<td>Buckwheat, Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">36/43/50/57</td>
+<td>Savory Teff w/ Garlic &amp; Leeks</td>
+<td>Farro, Beets, Seitan</td>
+<td>Brown Rice, Butternut Squash, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">37/44/51/58</td>
+<td>Warm Amaranth w/ Baked Apple</td>
+<td>Wild Rice, Roasted Beets, White Beans</td>
+<td>Buckwheat, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">38/45/52/59</td>
+<td>Warm Cornmeal Mush w/ Pecans</td>
+<td>Brown Rice, Butternut Squash, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">39/46/53/60</td>
+<td>Warm Quinoa w/ Flax &amp; Cardamom</td>
+<td>Wild Rice, Beets, Chickpeas</td>
+<td>Lentil &amp; Squash Stew over Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: Butternut Squash &amp; Seitan</div>
+      <div class="recipe-trinity">Farro (Grain) + Butternut Squash (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Roast butternut squash cubes with cinnamon and garlic. 2. Sauté seitan. 3. Serve over farro. Butternut squash provides the &#x27;Earth&#x27; sweetness needed to stabilize the Spleen as the environment turns harsh and &#x27;Metal&#x27;.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Beet &amp; Ginger &quot;Blood-Warm&quot; Sauté</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Beets (Purple) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Roast storage beets. 2. Sauté with fresh ginger to ensure the cooling nature of the beet doesn&#x27;t extinguish the digestive fire. This Trinity builds blood and warms the interior, essential for the high-altitude freeze. 1 9</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Chickpeas</li>
+<li>Walnuts &amp; Pecans</li>
+<li>Flax Seeds &amp; Hemp Hearts</li>
+<li>Butternut Squash &amp; Pumpkin (12 lbs total)</li>
+<li>Storage Beets &amp; Carrots (10 lbs total)</li>
+<li>Pears &amp; Apples (for stewing)</li>
+<li>Leeks, Garlic, &amp; Large Onions (Bulk)</li>
+<li>Farro &amp; Buckwheat (Warming/Grounding)</li>
+<li>Kale, Spinach, &amp; Swiss Chard</li>
+<li>Steel-Cut Oats (for viscosity)</li>
+<li>Fresh Ginger Root (Bulk)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Dates (for Yin support)</li>
+<li>Millet, Quinoa, &amp; Amaranth</li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m10" data-month="10" hidden>
+<div class="month-eyebrow">Month 10 &middot; Winter Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains (The Frozen Deep)</h2>
+<p class="month-intro">WEEKS 37-40: EARLY WINTER HIGH-ALTITUDE ALIGNMENT December in the Rockies is &#x27;The Frozen Deep.&#x27; As the air reaches maximum desiccation and the cold penetrates the bone, we focus on Nourishing Kidney Jing and Moistening the Interior. We use Black Beans and Walnuts to fortify the lower burner and stewed Pears to protect the membranes from heater-dryness.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising</th>
+<th>Mid-Day Trinity</th>
+<th>Evening Trinity</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">37/44/51/58</td>
+<td>Warm Rye w/ Stewed Pears</td>
+<td>Buckwheat, Black Beans, Steamed Kale</td>
+<td>Wild Rice, Seitan, Garlic Broccoli</td>
+</tr>
+<tr>
+<td class="tri-day">38/45/52/59</td>
+<td>Warm Steel-Cut Oats w/ Walnuts</td>
+<td>Brown Rice, White Beans, Parsnips</td>
+<td>Buckwheat, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">39/46/53/60</td>
+<td>Warm Millet w/ Ginger &amp; Dates</td>
+<td>Wild Rice, Chickpeas, Beets</td>
+<td>Rye, Spinach, Black Beans</td>
+</tr>
+<tr>
+<td class="tri-day">40/47/54/61</td>
+<td>Savory Teff w/ Garlic &amp; Kelp</td>
+<td>Buckwheat, Black Beans, Seitan</td>
+<td>Brown Rice, Cabbage, White Beans</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Winter Trinity: Black Beans &amp; Walnuts</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Kale (Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Simmer black beans with ginger. 2. Sauté seitan or beans with crushed walnuts. 3. Serve over buckwheat. This &#x27;Water&#x27; element meal builds Kidney energy to resist the deep mountain freeze.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Black Beans &amp; White Beans</li>
+<li>Pears &amp; Apples (Stewing)</li>
+<li>Seitan &amp; Walnuts</li>
+<li>Buckwheat &amp; Rye (Warming)</li>
+<li>Parsnips &amp; Storage Beets</li>
+<li>Wild Rice &amp; Steel-Cut Oats</li>
+<li>Kale, Cabbage, &amp; Broccoli</li>
+<li>Kelp Flakes &amp; Fresh Ginger</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m11" data-month="11" hidden>
+<div class="month-eyebrow">Month 11 &middot; Winter Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains (The Bone Chill)</h2>
+<p class="month-intro">WEEKS 41-44: PEAK WINTER HIGH-ALTITUDE ALIGNMENT January in the Rockies is &#x27;The Bone Chill.&#x27; With the deepest snowpack and sub-zero nights, the external cold attempts to extinguish the Ming Men (Life Gate) Fire. We focus on Protecting Kidney Yang and Warming the Bones. We use warming Black Beans and pungent Garlic to keep the blood moving through the high-desert freeze.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">41/48/55/62</td>
+<td>Warm Buckwheat w/ Ginger &amp; Dates</td>
+<td>Rye, Black Beans, Steamed Cabbage</td>
+<td>Wild Rice, Seitan, Garlic Broccoli</td>
+</tr>
+<tr>
+<td class="tri-day">42/49/56/63</td>
+<td>Warm Steel-Cut Oats w/ Walnuts</td>
+<td>Brown Rice, White Beans, Beets</td>
+<td>Buckwheat, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">43/50/57/64</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Cinnamon</td>
+<td>Wild Rice, Black Beans, Cabbage</td>
+<td>Rye, Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">44/51/58/65</td>
+<td>Savory Teff w/ Garlic &amp; Kelp</td>
+<td>Buckwheat, Chickpeas, Beets</td>
+<td>Brown Rice, Cabbage, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">45/52/59/66</td>
+<td>Warm Amaranth w/ Baked Apple &amp; Ginger</td>
+<td>Rye, Black Beans, Seitan</td>
+<td>Wild Rice, Kale, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">46/53/60/67</td>
+<td>Warm Cornmeal Mush w/ Pecans</td>
+<td>Brown Rice, White Beans, Broccoli</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">47/54/61/68</td>
+<td>Warm Quinoa w/ Flax &amp; Cardamom</td>
+<td>Wild Rice, Black Beans, Beets</td>
+<td>Lentil &amp; Root Stew over Rye</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Winter Trinity: &quot;The Ming Men Warmer&quot;</div>
+      <div class="recipe-trinity">Rye (Grain) + Cabbage (Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Sauté shredded cabbage with plenty of garlic and fresh ginger. 2. Add cooked black beans. 3. Serve over rye. Rye and ginger specifically target the Kidney Yang, providing the internal fire needed for mountain winters.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Kelp &amp; Garlic Savory Rising</div>
+      
+      <div class="recipe-steps">1. Prepare savory teff or steel-cut oats. 2. Stir in kelp flakes and minced garlic sautéed in a tiny amount of sesame oil. In TCM, the saltiness of kelp &#x27;softens hardness&#x27; and guides energy to the Kidneys during the peak of the Water phase. 2 2</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>White Navy Beans &amp; Chickpeas</li>
+<li>Walnuts &amp; Pecans</li>
+<li>Pumpkin Seeds &amp; Hemp Hearts</li>
+<li>Cabbage (Green/Red - 12 lbs)</li>
+<li>Storage Beets &amp; Carrots (10 lbs)</li>
+<li>Garlic &amp; Fresh Ginger Root (Bulk)</li>
+<li>Storage Onions (8 lbs)</li>
+<li>Rye &amp; Buckwheat (Primary warming grains)</li>
+<li>Broccoli &amp; Kale (Final hardy greens)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Apples (for baking/stewing)</li>
+<li>Steel-Cut Oats &amp; Teff</li>
+<li>Seaweed/Kelp Flakes (Essential)</li>
+<li>Millet, Quinoa, &amp; Amaranth</li>
+<li>Black Beans (Dry - 8 lbs)</li>
+<li>Seitan (8 packs)</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m12" data-month="12" hidden>
+<div class="month-eyebrow">Month 12 &middot; Winter Quarter</div>
+<h2 class="month-title">Rockies &amp; High Plains (The Quickening)</h2>
+<p class="month-intro">WEEKS 45-48: LATE WINTER HIGH-ALTITUDE TRANSITION February in the Rockies is &#x27;The Quickening.&#x27; While blizzards remain common, the underground energy is shifting from Water to Wood. To maintain Haligricity, we focus on Stirring the Liver Qi and Clearing Storage Heat. We use pungent Sprouts and Lemon to wake the system, while maintaining warming Beets to protect the core.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">45/52/59/66</td>
+<td>Warm Amaranth w/ Stewed Pears &amp; Lemon</td>
+<td>Quinoa, Sprouts/Cabbage, Black Beans</td>
+<td>Wild Rice, Seitan, Garlic Broccoli</td>
+</tr>
+<tr>
+<td class="tri-day">46/53/60/67</td>
+<td>Warm Steel-Cut Oats w/ Walnuts</td>
+<td>Brown Rice, Beets, Chickpeas</td>
+<td>Buckwheat, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">47/54/61/68</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Ginger</td>
+<td>Wild Rice, Parsnips, Black Beans</td>
+<td>Rye, Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">48/55/62/69</td>
+<td>Savory Teff w/ Garlic &amp; Parsley</td>
+<td>Millet, Sprouts, Seitan</td>
+<td>Brown Rice, Cabbage, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">49/56/63/70</td>
+<td>Warm Buckwheat w/ Dates &amp; Cinnamon</td>
+<td>Rye, Beets, White Beans</td>
+<td>Wild Rice, Kale, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">50/57/64/71</td>
+<td>Warm Cornmeal Mush w/ Pecans</td>
+<td>Brown Rice, Parsnips, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">51/58/65/72</td>
+<td>Warm Quinoa w/ Flax &amp; Cardamom</td>
+<td>Wild Rice, Beets, Chickpeas</td>
+<td>Lentil &amp; Root Stew over Rye</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Rockies Trinity: The &quot;Quickening&quot; Sprouts</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Sprouts/Cabbage (Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Sauté shredded cabbage and fresh clover or alfalfa sprouts. 2. Add cooked black beans. 3. Finish with a squeeze of fresh lemon. The lemon and sprouts &#x27;stir&#x27; the Liver energy, preparing your body for the rapid mountain spring. 2 4</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Cabbage &amp; Fresh Sprouts (8 lbs)</li>
+<li>Black Beans &amp; White Beans</li>
+<li>Storage Beets &amp; Parsnips (8 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Garlic &amp; Fresh Ginger Root (Bulk)</li>
+<li>Chickpeas &amp; Red Lentils</li>
+<li>Fresh Lemons (1 bag - Qi circulation)</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Broccoli &amp; Kale</li>
+<li>Pears (Moistening focus)</li>
+<li>Fresh Parsley (2 bunches)</li>
+<li>Quinoa &amp; Millet (Hydrating/Moving)</li>
+<li>Rye &amp; Buckwheat (Warming)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li></ul>
+    </div>
+</section>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+function showMonth(num, btn) {
+  document.querySelectorAll('.month-panel').forEach(function(p){ p.hidden = (p.dataset.month !== String(num)); });
+  document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+}
+
+var _deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault(); _deferredInstallPrompt = e;
+  var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
+});
+window.addEventListener('appinstalled', function(){
+  var b = document.getElementById('installAppBtn'); if(b) b.style.display='none';
+});
+function installHaligricityApp(){
+  if(_deferredInstallPrompt){
+    _deferredInstallPrompt.prompt();
+    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
+  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    alert('To install: tap the Share icon, then "Add to Home Screen".');
+  } else {
+    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
+  }
+}
+if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
+  });
+}
+</script>
+</body>
+</html>

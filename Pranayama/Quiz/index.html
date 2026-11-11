@@ -1,4 +1,6 @@
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pranayama Quiz | Haligricity</title>
   <!-- SEO:start (written by seo_wire.py; search data only, nothing visible) -->
   <meta name="description" content="Answer 8 questions to discover the practice your body and mind need most">
@@ -82,6 +84,7 @@
   .question-card{background:#fff;border:1.5px solid var(--gold-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(180,140,0,.08)}
   .question-num{font-size:.75rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
   .question-text{font-size:1.15rem;color:var(--purple);line-height:1.5;margin-bottom:1.4rem;font-weight:normal}
+@media(max-width:600px){ .quiz-wrap{padding:1.2rem 1rem 3rem} .question-card{padding:1.4rem 1.1rem} .question-text{font-size:1.35rem;line-height:1.4} .option{font-size:1.05rem;padding:1rem 1.1rem} .quiz-header h1{font-size:1.45rem} }
   .options{display:flex;flex-direction:column;gap:.65rem}
   .option{background:var(--gold-light);border:1.5px solid var(--gold-border);border-radius:8px;padding:.85rem 1.1rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:all .18s;text-align:left;font-family:Georgia,serif;display:flex;align-items:flex-start;gap:.7rem}
   .option:hover{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple)}
@@ -447,7 +450,9 @@ render();
 </script>
 <script>
 var _deferredInstallPrompt = null;
+var _runningAsInstalledApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 window.addEventListener('beforeinstallprompt', function(e){
+  if(_runningAsInstalledApp) return;
   e.preventDefault();
   _deferredInstallPrompt = e;
   var b = document.getElementById('installAppBtn');
@@ -467,7 +472,7 @@ function installHaligricityApp(){
     alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
   }
 }
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+if(!_runningAsInstalledApp && /iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
   document.addEventListener('DOMContentLoaded', function(){
     var b = document.getElementById('installAppBtn');
     if(b) b.style.display = 'inline-block';

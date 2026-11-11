@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--
+  Title: Varessence — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork)
+  Description: Installable quick-access app bundling every Varessence on the
+  homepage — grouped exactly as they appear there (Daily, Dining, Sacred) —
+  so a practitioner can pull one up instantly without scrolling the full site.
+  Content and styling are copied verbatim from index.html's #s-varessence,
+  #s-dining and #s-sacredspace sections so this stays visually identical to
+  the source cards; only the layout is simplified to a single column, since
+  this is a small on-the-go app rather than a wide desktop page.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varessence — Quick Access</title>
+<meta name="description" content="Every Varessence — Daily, Dining, and Sacred Space — in one quick-access app.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFDF0; --gold: #C9A227; --gold-mid: #DAA520; --gold-border: #B8860B;
+    --gold-pale: #FFFAEC; --purple: #4A1060; --purple-mid: #6B2D8E; --purple-light: #EDE0F5;
+    --ink: #1A1A1A; --gray: #555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Cormorant Garamond', serif; background: var(--bg); color: var(--ink);
+    min-height: 100vh; padding-bottom: 60px;
+  }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 20px 18px 10px; }
+
+  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
+    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
+    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
+    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
+  #installAppBtn:hover { background:rgba(74,16,96,1); }
+
+  header { text-align:center; padding:36px 0 18px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  h1 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:600; color:var(--purple); margin:10px 0 6px; letter-spacing:.03em; }
+  .sub { font-size:.92rem; color:var(--gray); font-style:italic; line-height:1.6; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 0; }
+
+  /* TABS */
+  .tabs { display:flex; gap:8px; margin:22px 0 20px; }
+  .tab-btn { flex:1; padding:11px 6px; font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.1em;
+    text-transform:uppercase; border:1.5px solid var(--gold-border); border-radius:8px; background:#fff;
+    color:var(--purple); cursor:pointer; transition:all .2s; }
+  .tab-btn.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  /* VARESSENCE CARDS — single column in the app */
+  .vares-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:14px;
+    padding:14px; display:flex; flex-direction:column; gap:8px; margin-bottom:16px;
+    box-shadow:0 2px 12px rgba(180,140,0,.08); }
+  .vares-card .vares-img { width:100%; border-radius:8px; border:1px solid var(--gold-border);
+    background:var(--gold-pale); object-fit:cover; height:200px; }
+  .vares-card p { font-size:.92rem; color:var(--gray); line-height:1.6; }
+  .vares-card .label { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--purple); }
+  .vares-actions { display:flex; flex-wrap:wrap; gap:8px; }
+  .mini-link { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+    padding:7px 14px; border:1px solid var(--gold-mid); border-radius:6px; color:var(--gold-mid);
+    background:transparent; text-decoration:none; transition:all .2s; }
+  .mini-link:hover { background:var(--gold-mid); color:#fff; }
+  .mini-link.solid { background:var(--gold-mid); color:#fff; }
+  .mini-link.solid:hover { background:var(--gold); }
+
+  /* DINING — full content shown directly, no sub-click */
+  .book-img { width:100%; border-radius:10px 10px 0 0; overflow:hidden; border:1px solid var(--purple-mid); border-bottom:none; }
+  .book-img img { width:100%; display:block; max-height:320px; object-fit:cover; }
+  .book-text { background:#fff; border:1px solid var(--purple-mid); border-top:none; border-radius:0 0 10px 10px; padding:20px; }
+  .book-text h4 { font-family:'Cinzel',serif; color:var(--purple); font-size:.95rem; letter-spacing:.05em;
+    text-transform:uppercase; margin-bottom:12px; }
+  .book-text ol { margin-left:18px; font-size:.95rem; line-height:1.7; }
+  .book-text ol li { margin-bottom:9px; }
+  .affirm-box { background:var(--purple-light); border-left:3px solid var(--purple); padding:12px 14px;
+    border-radius:0 8px 8px 0; font-style:italic; color:var(--purple); line-height:1.6; font-size:.94rem; margin:10px 0; }
+  .affirm-box.gold { background:var(--gold-pale); border-left-color:var(--gold); color:var(--gold-border); }
+
+  footer { text-align:center; margin-top:36px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <h1>Varessence — Quick Access</h1>
+    <p class="sub">Every spoken declaration, grouped and ready — print it, keep it near your practice space, speak it aloud until you feel it.</p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-panel="daily" onclick="showPanel('daily', this)">Daily</button>
+    <button class="tab-btn" data-panel="dining" onclick="showPanel('dining', this)">Dining</button>
+    <button class="tab-btn" data-panel="sacred" onclick="showPanel('sacred', this)">Sacred</button>
+  </div>
+
+  <!-- DAILY -->
+  <section id="panel-daily" class="panel active">
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Rising.png" loading="lazy" alt="Rising Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Rising</span> — Spoken at the opening of the day, hands at heart center: <em>"I honor myself, on this day, and shine my light, along the way."</em></p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" loading="lazy" alt="Zenith Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Zenith</span> — Spoken at the midpoint of the day while grounded to the earth — centering your focus and authority within the natural flow.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/ZenithVaressence.png" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Astral.png" loading="lazy" alt="Astral Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Astral</span> — Spoken at the close of the day: <em>"Gratitude fills my heart, I've done my part. I send love from the end to the start."</em></p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Astral.png" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Astral.png" download>⬇ Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING — only one, so the tab opens straight to the full ritual -->
+  <section id="panel-dining" class="panel">
+    <div class="book-img"><img src="https://haligricity.iqproductionz.com/Varessence/Dining.png" alt="Dining Varessence reference card" onerror="this.style.opacity='0.3'"></div>
+    <div class="book-text">
+      <h4>Hand Movements for Energy Cultivation</h4>
+      <ol>
+        <li><strong>Rub the hands together</strong> briskly until you feel warmth and tingling — friction wakes the meridians in the palms.</li>
+        <li><strong>Open the hands to the sky</strong>, palms up, to draw down celestial energy.</li>
+        <li><strong>Twist the wrists to scoop the earth energy</strong>, then direct both hands toward your food.</li>
+        <li><strong>Speak the Dining Varessence:</strong></li>
+      </ol>
+      <div class="affirm-box">"I plant the seeds of greatness, merging nutrient-dense sensations. I invite my seat of power woven in what I devour."</div>
+      <p><strong>Seal with Ashe'</strong> — snap the fingers in alternating bursts, three snaps per hand:</p>
+      <div class="affirm-box gold">"Ashe'. Gratitude circulates in me."</div>
+      <div class="vares-actions" style="margin-top:10px;">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Dining.png" target="_blank">View Full Image</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Dining.png" download>⬇ Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SACRED -->
+  <section id="panel-sacred" class="panel">
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/OpenVortex.jpg" loading="lazy" alt="Open Vortex Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Open Vortex</span> — Spoken at the opening of any ceremony, gathering, or extended session of practice, group or solo, to formally begin sacred work.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/OpenVortex.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/OpenVortex.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/CloseVortex.jpg" loading="lazy" alt="Close Vortex Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Close Vortex</span> — Spoken to formally close any ceremony or session opened with the Open Vortex Varessence — never left unclosed.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/CloseVortex.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/CloseVortex.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" loading="lazy" alt="Soul Offering Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Soul Offering</span> — Spoken after the Astral Varessence in support of dreamwork, or before a channeling session.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" loading="lazy" alt="Soul Retrieval Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Soul Retrieval</span> — Spoken once you realize you've woken up, or as you regain consciousness after a session.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Oath.jpg" loading="lazy" alt="The Haligric Oath" onerror="this.style.opacity='0.3'">
+      <p><span class="label">The Haligric Oath</span> — Spoken during an initiation ceremony, or anytime in a sacred space, to focus one's intention to live a new way.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Oath.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Oath.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" loading="lazy" alt="Sage Goddess Altar Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Sage Goddess Altar Varessence</span> — A sacred blessing from Sage Goddess, for use when adding new tools to your altar or practice space.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SageBlessing.jpeg" download>⬇ Download</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+// WHY: tab switching is a plain show/hide — no framework needed for three panels.
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// WHY: identical install-prompt pattern already used on the DayEnergy app,
+// so "Add to Home Screen" behaves the same way across all Haligricity apps.
+var _deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  _deferredInstallPrompt = e;
+  var b = document.getElementById('installAppBtn');
+  if(b) b.style.display = 'inline-block';
+});
+window.addEventListener('appinstalled', function(){
+  var b = document.getElementById('installAppBtn');
+  if(b) b.style.display = 'none';
+});
+function installHaligricityApp(){
+  if(_deferredInstallPrompt){
+    _deferredInstallPrompt.prompt();
+    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
+  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    alert('To install: tap the Share icon, then "Add to Home Screen".');
+  } else {
+    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
+  }
+}
+if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = document.getElementById('installAppBtn');
+    if(b) b.style.display = 'inline-block';
+  });
+}
+</script>
+</body>
+</html>

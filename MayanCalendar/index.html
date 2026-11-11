@@ -515,7 +515,9 @@ setInterval(() => {
 </script>
 <script>
 var _deferredInstallPrompt = null;
+var _runningAsInstalledApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 window.addEventListener('beforeinstallprompt', function(e){
+  if(_runningAsInstalledApp) return;
   e.preventDefault();
   _deferredInstallPrompt = e;
   var b = document.getElementById('installAppBtn');
@@ -535,7 +537,7 @@ function installHaligricityApp(){
     alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
   }
 }
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+if(!_runningAsInstalledApp && /iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
   document.addEventListener('DOMContentLoaded', function(){
     var b = document.getElementById('installAppBtn');
     if(b) b.style.display = 'inline-block';

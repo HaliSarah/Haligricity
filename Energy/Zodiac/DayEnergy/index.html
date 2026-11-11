@@ -171,7 +171,7 @@
   .sky-strip{
     display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
   }
-  @media (max-width:420px){ .sky-strip{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:420px){ .sky-strip{ grid-template-columns:repeat(3,1fr); gap:6px; } .sky-card{ padding:8px 4px; } .sky-card .glyph{ font-size:1.15rem; } .sky-card .value{ font-size:.74rem; } .sky-card .label{ font-size:.56rem; } }
   .sky-card{
     background:var(--surface); border:1px solid var(--line); border-radius:14px;
     padding:12px 10px; display:flex; flex-direction:column; align-items:center; gap:4px; text-align:center;
@@ -489,7 +489,9 @@
 
 <script>
 var _deferredInstallPrompt = null;
+var _runningAsInstalledApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 window.addEventListener('beforeinstallprompt', function(e){
+  if(_runningAsInstalledApp) return;
   e.preventDefault();
   _deferredInstallPrompt = e;
   var b = document.getElementById('installAppBtn');
@@ -509,7 +511,7 @@ function installHaligricityApp(){
     alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
   }
 }
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+if(!_runningAsInstalledApp && /iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
   document.addEventListener('DOMContentLoaded', function(){
     var b = document.getElementById('installAppBtn');
     if(b) b.style.display = 'inline-block';

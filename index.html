@@ -728,6 +728,12 @@ document.addEventListener('click', function(e) {
     .vares-grid {
       grid-template-columns: 1fr !important;
     }
+    /* WHY: the Sacred Space Varessence cards use an inline max-width:calc(33.333%...)
+       sized for a 3-up desktop row — neutralize it so each card gets its own line. */
+    .vares-card {
+      max-width: 100% !important;
+      flex: 1 1 100% !important;
+    }
   }
 
 </style>
@@ -775,7 +781,6 @@ document.addEventListener('click', function(e) {
   </div>
   <span style="width:18px;display:inline-block;flex-shrink:0;"></span>
   <a class="nav-donate" href="https://www.paypal.com/donate/?business=26GQNXYSDKHHU&no_recurring=0&item_name=Empower+personal+growth+and+self-care+to+nurture+a+thriving+world%3A+support+our+mission.&currency_code=USD" target="_blank" rel="noopener">♡ Donate</a>
-  <a class="nav-home" href="https://Haligricity.IQProductionz.com/" style="margin-left:12px;">↩ Site Home</a>
     <div class="nav-links">
     <a class="nav-link" href="#s-varessence">Varessence</a>
     <a class="nav-link" href="#s-daily">Daily Practice</a>
@@ -1343,6 +1348,7 @@ document.addEventListener('click', function(e) {
   <div class="section-eyebrow">View &amp; Download</div>
   <h2 class="section-title">Daily Varessences</h2>
   <p class="section-sub">Each Varessence is a spoken declaration —<br>print it, keep it near your practice space, speak it aloud until you feel it.</p>
+  <p style="text-align:center;margin-top:14px;"><a class="download-mini" href="https://Haligricity.IQProductionz.com/Varessence/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">DOWNLOAD THE VARESSENCE APP</a></p>
   <div class="gold-divider"></div>
 
   <div class="vares-grid">
@@ -1476,7 +1482,8 @@ document.addEventListener('click', function(e) {
   <h2 class="section-title">Proposed Daily Practice</h2>
   <p class="section-sub">Three practice arcs — Rising, Zenith, and Astral. As above, so below — Rising and Astral are reflections of each other. The Rising Varessence opens the day and retrieves your spirit from the dream world. The Zenith Ritual offers a centering midday. The Astral Varessence closes the practice and releases your spirit to play in the dream world. The body thrives on rhythm; this is the trellis.</p>
   <div class="gold-divider"></div>
-  <p style="text-align:center;margin-bottom:36px;"><a class="download-mini" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/DayEnergy/" target="_blank" rel="noopener">See Today's Energetic Influence</a></p>
+  <p style="text-align:center;margin-bottom:10px;"><a class="download-mini" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/DayEnergy/" target="_blank" rel="noopener">See Today's Energetic Influence</a></p>
+  <p style="text-align:center;margin-bottom:36px;"><a class="download-mini" href="https://Haligricity.IQProductionz.com/DailyPractice/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">DOWNLOAD THE DAILY PRACTICE APP</a></p>
 
   <!-- RISING RITUAL -->
   <div class="routine-card">
@@ -1759,13 +1766,13 @@ document.addEventListener('click', function(e) {
       <div class="region-card">
       <span class="area">United States · North</span>
       <span class="place">New England</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/New-England.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/North/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
       <div class="region-card">
       <span class="area">United States · PNW</span>
       <span class="place">Pacific Northwest</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/Pacific-Northwest.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/PNW/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     </div>
@@ -1773,37 +1780,37 @@ document.addEventListener('click', function(e) {
     <div class="region-card">
       <span class="area">United States · West</span>
       <span class="place">Pacific Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">United States · Rockies</span>
       <span class="place">The Rockies</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/Rockies.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/Rockies/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">United States · South</span>
       <span class="place">The South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Tropical North</span>
       <span class="place">Tropical North</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/TropicalNorth/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Subtropical East Coast</span>
       <span class="place">Subtropical East Coast</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Subtropical_East_Coast.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/SubtropicalEastCoast/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     <div class="region-card">
       <span class="area">Australia · Temperate South</span>
       <span class="place">Temperate South</span>
-      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">↗ View</a>
+      <div class="card-btns"><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" download>⬇ Download PDF</a><a class="download-mini" href="https://Haligricity.IQProductionz.com/FoodGuide/AU/TemperateSouth/App/" target="_blank" rel="noopener" style="color:var(--purple);border-color:var(--purple);">📱 Download APP</a>
       </div>
     </div>
     </div>

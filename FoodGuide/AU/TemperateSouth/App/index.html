@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--
+  Title: Temperate South Food Guide — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork)
+  Description: Installable quick-access app rendering the Temperate South
+  Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
+  + shopping list), generated from the source PDF via parse_guide.py.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperate South Food Guide</title>
+<meta name="description" content="Melbourne · Adelaide · Perth · Tasmania · Nourishing Through Four True Seasons">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FFFDF0; --gold:#C9A227; --gold-border:#B8860B; --gold-pale:#FFFAEC;
+    --purple:#4A1060; --purple-mid:#6B2D8E; --purple-light:#EDE0F5;
+    --ink:#1A1A1A; --gray:#555; --line:#EEE8D0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
+
+  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
+    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
+    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
+    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
+  #installAppBtn:hover { background:rgba(74,16,96,1); }
+
+  header { text-align:center; padding:36px 0 10px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  .eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--purple-mid); margin-top:14px; }
+  h1 { font-family:'Cinzel',serif; font-size:1.55rem; font-weight:600; color:var(--purple); margin:6px 0 6px; letter-spacing:.02em; }
+  .tagline { font-size:.86rem; color:var(--gray); font-style:italic; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 18px; }
+
+  details.intro-box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  details.intro-box summary { cursor:pointer; font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--purple); }
+  details.intro-box p { font-size:.88rem; line-height:1.7; margin-top:10px; }
+  details.intro-box p + p { margin-top:8px; }
+  details.intro-box h4 { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold-border); margin-top:14px; margin-bottom:4px; }
+
+  .month-tabs { position:sticky; top:0; z-index:50; background:var(--bg); display:flex; gap:6px; overflow-x:auto;
+    padding:10px 0; margin-bottom:6px; border-bottom:1px solid var(--line); -webkit-overflow-scrolling:touch; }
+  .month-tabs::-webkit-scrollbar { height:4px; }
+  .month-tab { flex:0 0 auto; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase;
+    background:#fff; border:1px solid var(--gold-border); color:var(--purple); border-radius:20px; padding:7px 13px;
+    cursor:pointer; white-space:nowrap; }
+  .month-tab.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .month-panel { padding:14px 2px 30px; }
+  .month-eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-border); }
+  .month-title { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:600; color:var(--purple); margin:4px 0 12px; }
+  .month-intro { font-size:.92rem; line-height:1.75; margin-bottom:16px; }
+  .sub-h { font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple);
+    margin:18px 0 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+
+  .tri-table-wrap { overflow-x:auto; margin-bottom:8px; border-radius:8px; border:1px solid var(--line); }
+  table.tri-table { border-collapse:collapse; width:100%; font-size:.78rem; min-width:560px; }
+  table.tri-table th { background:var(--purple); color:#fff; font-family:'Cinzel',serif; font-size:.64rem;
+    letter-spacing:.04em; text-transform:uppercase; padding:9px 10px; text-align:left; }
+  table.tri-table td { padding:9px 10px; border-top:1px solid var(--line); vertical-align:top; }
+  table.tri-table td.tri-day { font-family:'Cinzel',serif; font-weight:600; color:var(--gold-border); white-space:nowrap; }
+  table.tri-table tr:nth-child(even) td { background:#FFFCF2; }
+
+  .recipe-grid { display:flex; flex-direction:column; gap:12px; }
+  .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
+  .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
+  .recipe-steps { font-size:.86rem; line-height:1.7; }
+
+  .shop-box { background:var(--purple-light); border-radius:10px; padding:14px 16px; margin-top:16px; }
+  .shop-title { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple); margin-bottom:8px; }
+  .shop-list { columns:2; column-gap:18px; font-size:.82rem; line-height:1.6; list-style:disc; padding-left:18px; }
+  .shop-list li { break-inside:avoid; margin-bottom:4px; }
+  @media (max-width:480px) { .shop-list { columns:1; } }
+
+  .gap-note { background:#FAFAF8; border:1px dashed var(--purple-mid); border-radius:8px; padding:12px 14px;
+    font-size:.8rem; color:var(--purple); font-style:italic; margin:10px 0 20px; }
+
+  .pdf-link-row { text-align:center; margin:10px 0 6px; }
+  .pdf-link-row a { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--purple-mid); text-decoration:none; border-bottom:1px solid var(--purple-mid); padding-bottom:1px; }
+
+  footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <div class="eyebrow">Eating as Practice</div>
+    <h1>Temperate South Food Guide</h1>
+    <p class="tagline">Melbourne · Adelaide · Perth · Tasmania · Nourishing Through Four True Seasons</p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <details class="intro-box">
+    <summary>The Temperate South Philosophy</summary>
+    <p>The Temperate South Haligric Guide is designed for the four distinct seasons of Australia&#x27;s southern states — where Melbourne is famous for having four seasons in one day, Adelaide offers a Mediterranean climate of dry summers and wet winters, Perth combines Mediterranean warmth with Indian Ocean influence, and Tasmania experiences the coldest and wettest conditions in Australia. Despite this diversity, all four share the fundamental four-season structure that the Haligric Trinity system is built around: the Wood energy of spring, the Fire of summer, the Metal of autumn, and the Water depth of winter.</p>
+    <h4>The Calendar Decoder</h4>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Trinity each Monday for a month, you establish a consistent rhythm that allows your body to align with the Temperate South&#x27;s clear seasonal shifts at a cellular level.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every day is a Trinity: One Grain + One Green + One Protein. In the Temperate South, we emphasize the full range of four-season grains — light and sprouted in spring, cooling in summer, hearty in autumn, and warming in winter — alongside the extraordinary seasonal variety of temperate vegetables and the clean proteins that support each season&#x27;s specific metabolic demands.</p>
+  </details>
+
+  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
+  <div class="gap-note">This guide currently covers Months 1, 4, and 7 (one representative month per season) — the remaining months listed in the original table of contents have not been written yet. More will be added here as they are completed.</div>
+
+  <nav class="month-tabs" id="monthTabs">
+    <button class="month-tab active" onclick="showMonth(1, this)">Month 1</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Month 4</button>
+    <button class="month-tab" onclick="showMonth(10, this)">Month 10</button>
+  </nav>
+
+  <section class="month-panel" id="m1" data-month="1" >
+<div class="month-eyebrow">Month 1 &middot; Spring Quarter</div>
+<h2 class="month-title">Temperate South Edition</h2>
+<p class="month-intro">Temperate South Spring arrives dramatically after a true winter — longer days, warming soil, and the first flush of spring vegetables from the market gardens of the Yarra Valley, the Adelaide Hills, and the Swan Valley. To anchor your Haligricity here, we focus on the Liver&#x27;s spring upwelling using local asparagus, baby spinach, peas, and spring herbs. Light, upward-moving foods that reflect the season&#x27;s Yang expansion.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Quinoa w/ Lemon Zest &amp; Pumpkin Seeds</td>
+<td>Brown Rice, Asparagus, Chickpeas</td>
+<td>Millet, Wilted Baby Spinach, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Sliced Pear &amp; Almonds</td>
+<td>Wild Rice, Snap Peas, Tempeh</td>
+<td>Farro, Arugula (Wilted), Savory White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Spring Herbs &amp; Hemp</td>
+<td>Quinoa, Steamed Broccolini, White Beans</td>
+<td>Buckwheat, Snap Peas, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Spelt Porridge w/ Fennel Seeds</td>
+<td>Brown Rice, Kale, Kidney Beans</td>
+<td>Wild Rice, Roasted Cauliflower, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Buckwheat w/ Flax &amp; Stewed Apple</td>
+<td>Millet, Silverbeet, Adzuki Beans</td>
+<td>Farro, Bok Choy, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Spelt Porridge w/ Pumpkin Seeds</td>
+<td>Quinoa, Asparagus, Red Lentils</td>
+<td>Brown Rice, Fennel &amp; Celery, Tempeh</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Teff w/ Walnuts &amp; Poached Pear</td>
+<td>Wild Rice, Baby Spinach, White Beans</td>
+<td>Lentil &amp; Vegetable Stew over Quinoa</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Asparagus &amp; Chickpea Spring Stir</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Asparagus (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Snap the woody ends from a bunch of local asparagus; cut into 3cm pieces. 3. In a pan, warm chickpeas with two cloves of garlic and a pinch of cumin. 4. Add asparagus to the pan; toss on high heat for 2-3 minutes until bright green and just tender. 5. Serve over brown rice; finish with lemon juice and a sprinkle of nutritional yeast. Asparagus is one of the first local vegetables to appear in the temperate south spring and its upward-moving energy matches the season perfectly.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Broccolini &amp; White Bean Quinoa Bowl</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Steamed Broccolini (Green) + White Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Steam broccolini for 3-4 minutes until bright and just tender. 3. Warm white beans in a pan with garlic, fresh thyme, and a squeeze of lemon. 4. Assemble: quinoa base, white beans, broccolini arranged on top. 5. Drizzle with tahini-lemon sauce and fresh herbs. Broccolini from the Adelaide Hills or Yarra Valley is outstanding in spring — its slight bitterness moves the Liver gently.</div>
+    </div>
+</div>
+</section>
+
+  <section class="month-panel" id="m4" data-month="4" hidden>
+<div class="month-eyebrow">Month 4 &middot; Summer Quarter</div>
+<h2 class="month-title">The Dry Heat</h2>
+<p class="month-intro">Temperate South summer brings the driest and hottest period of the year — Mediterranean-style heat in Adelaide and Perth, warm but variable heat in Melbourne, and Tasmania&#x27;s most pleasant season. We shift to cooling, hydrating foods that protect the Heart from excess fire while celebrating the extraordinary summer stone fruits, tomatoes, zucchini, and leafy greens that the temperate summer produces in abundance.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Cooling Oat Bowl w/ Peach &amp; Mint</td>
+<td>Jasmine Rice, Zucchini, White Beans</td>
+<td>Quinoa, Watercress, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Millet Porridge w/ Nectarine &amp; Coconut</td>
+<td>Brown Rice, Tomato &amp; Basil, Tempeh</td>
+<td>Wild Rice, Baby Spinach, Lentil Salad</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Chilled Quinoa w/ Berries &amp; Pepitas</td>
+<td>Millet, Zucchini &amp; Mint, Adzuki Beans</td>
+<td>Buckwheat, Cucumber Salad, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Amaranth w/ Plum &amp; Hemp</td>
+<td>Jasmine Rice, Green Beans, Mung Beans</td>
+<td>Brown Rice, Roasted Capsicum, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Mango &amp; Chia</td>
+<td>Brown Rice, Silverbeet, Chickpeas</td>
+<td>Millet, Zucchini &amp; Basil, Adzuki Beans</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Brown Rice w/ Lemon &amp; Avocado</td>
+<td>Wild Rice, Green Beans, Tempeh</td>
+<td>Quinoa, Baby Spinach, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Teff Porridge w/ Fresh Fig &amp; Walnuts</td>
+<td>Jasmine Rice, Watercress, Mung Beans</td>
+<td>Millet, Roasted Eggplant, White Beans</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Zucchini &amp; White Bean Summer Bowl</div>
+      <div class="recipe-trinity">Jasmine Rice (Grain) + Zucchini (Green) + White Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook Jasmine Rice. 2. Slice zucchini into rounds; grill or char on a hot pan until marked and just tender. 3. Warm white beans with fresh basil and garlic. 4. Assemble with rice; add grilled zucchini, white beans, and fresh tomato slices. 5. Finish with extra virgin olive oil and torn basil. Zucchini from the temperate market gardens peaks in January-February and is one of the most cooling summer vegetables.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Peach &amp; Oat Summer Sunrise</div>
+      <div class="recipe-trinity">Rolled Oats (Grain) + Fresh Peach (Green/Fruit) + Pepitas (Protein supplement)</div>
+      <div class="recipe-steps">1. Cook rolled oats with water and a pinch of cinnamon. 2. Slice a ripe summer peach; lay over the warm oats. 3. Top with a tablespoon of pepitas and a drizzle of honey (optional). 4. Add a few fresh mint leaves. White nectarines and peaches from the Adelaide Hills and Mornington Peninsula are among the finest stone fruits in the world — peak season December through February.</div>
+    </div>
+</div>
+</section>
+
+  <section class="month-panel" id="m10" data-month="10" hidden>
+<div class="month-eyebrow">Month 10 &middot; Winter Quarter</div>
+<h2 class="month-title">The Winter Depth</h2>
+<p class="month-intro">The Temperate South winter is a genuine winter — Melbourne&#x27;s windswept cold, Adelaide&#x27;s wet season, Perth&#x27;s grey skies, and Tasmania&#x27;s proper cold with snow on the peaks. This is Water Phase: the body draws inward, conserves energy, and benefits most from deeply nourishing, warming foods. Root vegetables, hearty brassicas, dark leafy greens, and warming grains like oats, spelt, and black rice are the season&#x27;s gifts.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oat Porridge w/ Cinnamon &amp; Walnut</td>
+<td>Brown Rice, Cavolo Nero, Chickpeas</td>
+<td>Millet, Roasted Parsnip, Red Lentil Dahl</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Buckwheat Congee w/ Ginger &amp; Miso</td>
+<td>Wild Rice, Kale &amp; Leek, Kidney Beans</td>
+<td>Farro, Brussels Sprouts, Tempeh</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Savory Spelt Porridge w/ Turmeric</td>
+<td>Quinoa, Roasted Beetroot, White Beans</td>
+<td>Buckwheat, Silverbeet, Adzuki Beans</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Teff w/ Stewed Pear &amp; Cardamom</td>
+<td>Brown Rice, Cavolo Nero, Black Beans</td>
+<td>Wild Rice, Roasted Swede, Lentil Stew</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Prune &amp; Clove</td>
+<td>Millet, Roasted Celeriac, Chickpeas</td>
+<td>Quinoa, Kale, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Black Rice w/ Coconut &amp; Cinnamon</td>
+<td>Brown Rice, Roasted Cauliflower, Kidney Beans</td>
+<td>Amaranth, Silverbeet, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Stewed Apple &amp; Ginger</td>
+<td>Wild Rice, Brussels Sprouts, Tempeh</td>
+<td>Millet, Roasted Parsnip &amp; Carrot, Adzuki</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Cavolo Nero &amp; Chickpea Winter Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Cavolo Nero (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Strip cavolo nero leaves from their stems; tear into pieces. 3. Blanch in boiling salted water for 3 minutes until tender. 4. Warm chickpeas with garlic, smoked paprika, and a splash of vegetable stock. 5. Assemble over brown rice; drizzle with olive oil and a squeeze of lemon. Cavolo nero from the temperate south&#x27;s winter gardens is exceptional — deeply nourishing, rich in iron, and one of the finest cold-weather greens.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Root &amp; Lentil Winter Stew over Millet</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Parsnip and Carrot (Green/Vegetable) + Red Lentils (Protein)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Cube parsnip and carrot; toss with olive oil, thyme, and rosemary. Roast at 190C for 25 minutes until golden. 3. Simmer red lentils with onion, garlic, cumin, turmeric, and bay leaf until soft. 4. Serve lentil stew over millet with roasted root vegetables piled on top. 5. Finish with fresh parsley. Parsnip and carrot are the great temperate winter root vegetables — their sweetness intensifies with cold and their warmth supports Kidney energy through winter.</div>
+    </div>
+</div>
+</section>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+function showMonth(num, btn) {
+  document.querySelectorAll('.month-panel').forEach(function(p){ p.hidden = (p.dataset.month !== String(num)); });
+  document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+}
+
+var _deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault(); _deferredInstallPrompt = e;
+  var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
+});
+window.addEventListener('appinstalled', function(){
+  var b = document.getElementById('installAppBtn'); if(b) b.style.display='none';
+});
+function installHaligricityApp(){
+  if(_deferredInstallPrompt){
+    _deferredInstallPrompt.prompt();
+    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
+  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    alert('To install: tap the Share icon, then "Add to Home Screen".');
+  } else {
+    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
+  }
+}
+if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Haligricity — Pacific Northwest Food Guide",
+  "short_name": "PNW Food Guide",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF0",
+  "theme_color": "#4A1060",
+  "icons": [
+    {
+      "src": "app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
