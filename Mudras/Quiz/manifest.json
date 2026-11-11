@@ -1,0 +1,16 @@
+{
+  "name": "Haligricity \u2014 Mudra Finder",
+  "short_name": "Mudra Finder",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF0",
+  "theme_color": "#4A1060",
+  "icons": [
+    {
+      "src": "app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

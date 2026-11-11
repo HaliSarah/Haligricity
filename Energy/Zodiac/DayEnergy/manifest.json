@@ -1,0 +1,16 @@
+{
+  "name": "Haligricity \u2014 Sky Energy",
+  "short_name": "Sky Energy",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2c0940",
+  "theme_color": "#2c0940",
+  "icons": [
+    {
+      "src": "app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

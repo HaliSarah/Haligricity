@@ -492,6 +492,10 @@
   .mob-drawer a { padding:8px 14px; border-radius:6px; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); text-decoration:none; transition:background .2s; }
   .mob-drawer a:hover { background:var(--purple-light); }
   .region-card a.read-online { display:inline-block; padding:4px 9px; border:1px solid var(--gold-border); border-radius:4px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-border); text-decoration:none; transition:all .2s; white-space:nowrap; }
+  .watch-btn.not-live { background:var(--gold-pale); border-color:var(--gold-border); opacity:.85; cursor:pointer; }
+  .watch-btn.not-live svg rect { fill:#B8860B; }
+  .watch-btn.not-live:hover { background:#FFF3C9; }
+
   .region-card a.read-online:hover { background:var(--gold-border); color:#fff; }
   .region-card .card-btns { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
   @media (max-width:640px) { .vares-grid { grid-template-columns:1fr; } .mob-fab { display:flex; } .nav-links { display:none; } .term-grid { grid-template-columns:1fr; } .term-card { text-align:center; } .practice-grid { grid-template-columns:1fr !important; flex-direction:column !important; } .dining-card { flex-direction:column !important; } .dining-card img { height:auto !important; width:100% !important; } }
@@ -960,6 +964,16 @@
         <a href="https://youtu.be/kCjjJvfmuN0" target="_blank" rel="noopener" class="download-mini" style="display:inline-flex;align-items:center;gap:4px;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> Listen Here</a>
       </div>
     </div>
+  <div class="region-card">
+      <img src="https://Haligricity.IQProductionz.com/HistoryCollection/Images/SunChildren.jpeg" loading="lazy" alt="Sámi Traditions — The Sun's Children of the Reindeer Road" style="width:100%;border-radius:6px;margin-bottom:8px;object-fit:cover;max-height:140px;" onerror="this.style.opacity='0.3'">
+      <span class="area">Arctic Scandinavia · Sápmi</span>
+      <span class="place">Sámi Traditions — The Sun's Children of the Reindeer Road</span>
+      <div class="card-btns">
+        <a class="download-mini" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sami_master.pdf" download>⬇ Download</a>
+        <a class="read-online" href="https://Haligricity.IQProductionz.com/HistoryCollection/Sami_master.pdf" target="_blank" rel="noopener">↗ Read Online</a>
+        <a href="https://youtu.be/ulki-vVo4ag" target="_blank" rel="noopener" class="download-mini watch-btn" data-publish="2026-12-01T12:00:00Z" style="display:inline-flex;align-items:center;gap:4px;"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" rx="3" fill="#FF0000"/><polygon points="8,3.5 8,10.5 14,7" fill="white"/></svg> <span class="watch-label">Listen Here</span></a>
+      </div>
+    </div>
   </div>
 </div>
 <button class="mob-fab" onclick="toggleDrawer()" aria-label="Menu">☰</button>
@@ -1004,6 +1018,39 @@ document.addEventListener('click',function(e){
   var d=document.getElementById('mobDrawer');
   if(d&&!d.contains(e.target)&&!e.target.closest('.mob-fab'))d.classList.remove('open');
 });
+</script>
+
+<div class="modal-overlay" id="premiereModal" style="display:none;position:fixed;inset:0;background:rgba(26,8,16,.55);z-index:500;align-items:center;justify-content:center;padding:20px;">
+  <div class="modal-box" style="background:#fff;border:1.5px solid var(--gold-border);border-radius:14px;padding:30px 26px;max-width:380px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.25);position:relative;text-align:center;">
+    <button onclick="document.getElementById('premiereModal').style.display='none';" aria-label="Close" style="position:absolute;top:10px;right:13px;background:none;border:none;font-size:1.3rem;color:var(--gold-border);cursor:pointer;line-height:1;">&times;</button>
+    <h3 style="font-family:'Cinzel',serif;color:var(--purple);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;">Premiering Soon</h3>
+    <p id="premiereModalText" style="font-size:.92rem;color:var(--gray);font-style:italic;line-height:1.65;margin:0;"></p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var modal = document.getElementById('premiereModal');
+  var textEl = document.getElementById('premiereModalText');
+  if (!modal) return;
+  document.querySelectorAll('.watch-btn[data-publish]').forEach(function(btn) {
+    var publishDate = new Date(btn.getAttribute('data-publish'));
+    if (isNaN(publishDate.getTime())) return;
+    if (Date.now() < publishDate.getTime()) {
+      btn.classList.add('not-live');
+      var label = btn.querySelector('.watch-label');
+      var dateStr = publishDate.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+      if (label) label.textContent = 'Premieres ' + dateStr;
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var longDate = publishDate.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+        textEl.textContent = "This episode is recorded and scheduled to premiere on " + longDate + ". Check back then -- this link goes live on its own, no need to come looking for a new one.";
+        modal.style.display = 'flex';
+      });
+    }
+  });
+  modal.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
+})();
 </script>
 </body>
 </html>
