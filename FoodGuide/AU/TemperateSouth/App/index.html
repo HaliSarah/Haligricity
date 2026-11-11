@@ -3,7 +3,7 @@
   Title: Temperate South Food Guide — Quick Access App
   Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
   Date: 2026-11-11
-  Modified By: Claude (Cowork)
+  Modified By: Claude (Opus 5.5) — Tetralty update
   Description: Installable quick-access app rendering the Temperate South
   Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
   + shopping list), generated from the source PDF via parse_guide.py.
@@ -77,6 +77,7 @@
   .recipe-grid { display:flex; flex-direction:column; gap:12px; }
   .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
   .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .shop-list li strong { color:var(--purple); }
   .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
   .recipe-steps { font-size:.86rem; line-height:1.7; }
 
@@ -112,227 +113,1722 @@
 
   <details class="intro-box">
     <summary>The Temperate South Philosophy</summary>
-    <p>The Temperate South Haligric Guide is designed for the four distinct seasons of Australia&#x27;s southern states — where Melbourne is famous for having four seasons in one day, Adelaide offers a Mediterranean climate of dry summers and wet winters, Perth combines Mediterranean warmth with Indian Ocean influence, and Tasmania experiences the coldest and wettest conditions in Australia. Despite this diversity, all four share the fundamental four-season structure that the Haligric Trinity system is built around: the Wood energy of spring, the Fire of summer, the Metal of autumn, and the Water depth of winter.</p>
+    <p>The Temperate South Haligric Guide is designed for the four distinct seasons of Australia&#x27;s southern states — where Melbourne is famous for having four seasons in one day, Adelaide offers a Mediterranean climate of dry summers and wet winters, Perth combines Mediterranean warmth with Indian Ocean influence, and Tasmania experiences the coldest and wettest conditions in Australia. Despite this diversity, all four share the fundamental four-season structure that the Haligric Tetralty system is built around: the Wood energy of spring, the Fire of summer, the Metal of autumn, and the Water depth of winter.</p>
     <h4>The Calendar Decoder</h4>
-    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Trinity each Monday for a month, you establish a consistent rhythm that allows your body to align with the Temperate South&#x27;s clear seasonal shifts at a cellular level.</p>
-    <h4>The Trinity Formula</h4>
-    <p>Every day is a Trinity: One Grain + One Green + One Protein. In the Temperate South, we emphasize the full range of four-season grains — light and sprouted in spring, cooling in summer, hearty in autumn, and warming in winter — alongside the extraordinary seasonal variety of temperate vegetables and the clean proteins that support each season&#x27;s specific metabolic demands.</p>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22 ). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Tetralty each Monday for a month, you establish a consistent rhythm that allows your body to align with the Temperate South&#x27;s clear seasonal shifts at a cellular level.</p>
+    <h4>The Tetralty Formula</h4>
+    <p>Every day is a Tetralty: One Grain + One Green + One Protein + One Digestive Seal. This four-fold structure mirrors the four pillars of Haligricity — Thinking, Feeling, Doing and Being — ensuring cellular satiety, elemental balance and metabolic equilibrium without digestive fatigue. . In the Temperate South, we emphasize the full range of four-season grains — light and sprouted in spring, cooling in summer, hearty in autumn, and warming in winter — alongside the extraordinary seasonal variety of temperate vegetables and the clean proteins that support each season&#x27;s specific metabolic demands.</p>
+    <p>The Seal is a small digestive finisher taken after lunch and dinner. It completes the six Vedic tastes and needs no cooking: a warm Digestive Brew (cumin, coriander, fennel, ginger and lemon) in the damp and spring months, a cooling brew or fresh fruit in peak heat, a Spiced Orchard Anchor of gently stewed fruit in late summer and autumn, and a Mineral Jing Truffle (a date filled with tahini or nuts) in deep winter. No refined sugar — sweetness comes only from fruit, dates and warm spices.</p>
   </details>
 
-  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
-  <div class="gap-note">This guide currently covers Months 1, 4, and 7 (one representative month per season) — the remaining months listed in the original table of contents have not been written yet. More will be added here as they are completed.</div>
+  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/AU/TemperateSouth/Australian_Meal_Guide_Temperate_South.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
 
   <nav class="month-tabs" id="monthTabs">
     <button class="month-tab active" onclick="showMonth(1, this)">Month 1</button>
+    <button class="month-tab" onclick="showMonth(2, this)">Month 2</button>
+    <button class="month-tab" onclick="showMonth(3, this)">Month 3</button>
     <button class="month-tab" onclick="showMonth(4, this)">Month 4</button>
+    <button class="month-tab" onclick="showMonth(5, this)">Month 5</button>
+    <button class="month-tab" onclick="showMonth(6, this)">Month 6</button>
+    <button class="month-tab" onclick="showMonth(7, this)">Month 7</button>
+    <button class="month-tab" onclick="showMonth(8, this)">Month 8</button>
+    <button class="month-tab" onclick="showMonth(9, this)">Month 9</button>
     <button class="month-tab" onclick="showMonth(10, this)">Month 10</button>
+    <button class="month-tab" onclick="showMonth(11, this)">Month 11</button>
+    <button class="month-tab" onclick="showMonth(12, this)">Month 12</button>
   </nav>
 
   <section class="month-panel" id="m1" data-month="1" >
 <div class="month-eyebrow">Month 1 &middot; Spring Quarter</div>
-<h2 class="month-title">Temperate South Edition</h2>
+<h2 class="month-title">The Spring Opening <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
 <p class="month-intro">Temperate South Spring arrives dramatically after a true winter — longer days, warming soil, and the first flush of spring vegetables from the market gardens of the Yarra Valley, the Adelaide Hills, and the Swan Valley. To anchor your Haligricity here, we focus on the Liver&#x27;s spring upwelling using local asparagus, baby spinach, peas, and spring herbs. Light, upward-moving foods that reflect the season&#x27;s Yang expansion.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Quinoa w/ Lemon Zest &amp; Pumpkin Seeds</td>
 <td>Brown Rice, Asparagus, Chickpeas</td>
 <td>Millet, Wilted Baby Spinach, Red Lentils</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Steel-Cut Oats w/ Sliced Pear &amp; Almonds</td>
 <td>Wild Rice, Snap Peas, Tempeh</td>
 <td>Farro, Arugula (Wilted), Savory White Beans</td>
+<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Warm Millet w/ Spring Herbs &amp; Hemp</td>
 <td>Quinoa, Steamed Broccolini, White Beans</td>
 <td>Buckwheat, Snap Peas, Red Lentils</td>
+<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Savory Spelt Porridge w/ Fennel Seeds</td>
 <td>Brown Rice, Kale, Kidney Beans</td>
 <td>Wild Rice, Roasted Cauliflower, Chickpeas</td>
+<td>Stewed Rhubarb w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Buckwheat w/ Flax &amp; Stewed Apple</td>
 <td>Millet, Silverbeet, Adzuki Beans</td>
 <td>Farro, Bok Choy, White Beans</td>
+<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Warm Spelt Porridge w/ Pumpkin Seeds</td>
 <td>Quinoa, Asparagus, Red Lentils</td>
 <td>Brown Rice, Fennel &amp; Celery, Tempeh</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Teff w/ Walnuts &amp; Poached Pear</td>
 <td>Wild Rice, Baby Spinach, White Beans</td>
 <td>Lentil &amp; Vegetable Stew over Quinoa</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Asparagus &amp; Chickpea Spring Stir</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Asparagus (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Asparagus (Green) + Chickpeas (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
       <div class="recipe-steps">1. Cook Brown Rice. 2. Snap the woody ends from a bunch of local asparagus; cut into 3cm pieces. 3. In a pan, warm chickpeas with two cloves of garlic and a pinch of cumin. 4. Add asparagus to the pan; toss on high heat for 2-3 minutes until bright green and just tender. 5. Serve over brown rice; finish with lemon juice and a sprinkle of nutritional yeast. Asparagus is one of the first local vegetables to appear in the temperate south spring and its upward-moving energy matches the season perfectly.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Broccolini &amp; White Bean Quinoa Bowl</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Steamed Broccolini (Green) + White Beans (Protein)</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Steamed Broccolini (Green) + White Beans (Protein) + Fennel &amp; Mint Brew (Seal)</div>
       <div class="recipe-steps">1. Cook Quinoa. 2. Steam broccolini for 3-4 minutes until bright and just tender. 3. Warm white beans in a pan with garlic, fresh thyme, and a squeeze of lemon. 4. Assemble: quinoa base, white beans, broccolini arranged on top. 5. Drizzle with tahini-lemon sauce and fresh herbs. Broccolini from the Adelaide Hills or Yarra Valley is outstanding in spring — its slight bitterness moves the Liver gently.</div>
     </div>
 </div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Asparagus (4 bunches)</li>
+<li>Baby Spinach (1 bag)</li>
+<li>Bok Choy (2 bunches)</li>
+<li>Broccolini (2 bunches)</li>
+<li>Cauliflower (2)</li>
+<li>Celery (2 bunches)</li>
+<li>Fennel (2)</li>
+<li>Kale (2 bunches)</li>
+<li>Rocket (1 bag)</li>
+<li>Silverbeet (2 bunches)</li>
+<li>Snap Peas (2 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (2)</li>
+<li>Lemons (2)</li>
+<li>Pears (4)</li>
+<li><strong>Grains</strong></li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (1 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (0.5 kg)</li>
+<li>Quinoa (1.5 kg)</li>
+<li>Spelt (1 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (8 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Fennel Seeds</li>
+<li>Flaxseed (1 bag)</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Nutritional Yeast</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Tahini</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Mixed Fresh Herbs (2 bunches)</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Rhubarb (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m2" data-month="2" hidden>
+<div class="month-eyebrow">Month 2 &middot; Spring Quarter</div>
+<h2 class="month-title">The Blossom Surge <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
+<p class="month-intro">The Blossom Surge fills the southern states with fruit-tree blossom, longer evenings and the fast, green growth of mid-spring. Wood Phase is at full strength, and the Liver&#x27;s upward energy can easily overshoot into tension or restlessness. We use fresh peas, broad beans, asparagus and leafy greens to keep Qi flowing smoothly, with light sprouted grains and clean proteins to keep the body steady.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Quinoa w/ Strawberries &amp; Almonds</td>
+<td>Brown Rice, Broad Beans &amp; Greens, Chickpeas</td>
+<td>Millet, Asparagus, Red Lentils</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Rhubarb &amp; Pumpkin Seeds</td>
+<td>Wild Rice, Snap Peas, Tempeh</td>
+<td>Farro, Baby Spinach, White Beans</td>
+<td>Ginger-Lemon Brew</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Spring Herbs &amp; Hemp</td>
+<td>Quinoa, Broccolini, Kidney Beans</td>
+<td>Buckwheat, Asparagus, Adzuki Beans</td>
+<td>Fennel &amp; Mint Brew</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Spelt Porridge w/ Chives</td>
+<td>Brown Rice, Silverbeet, White Beans</td>
+<td>Wild Rice, Broad Beans &amp; Greens, Chickpeas</td>
+<td>Stewed Rhubarb w/ Ginger</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Buckwheat w/ Flax &amp; Stewed Rhubarb</td>
+<td>Millet, Snap Peas, Red Lentils</td>
+<td>Farro, Bok Choy, Tempeh</td>
+<td>CCF Brew w/ Lemon</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Teff w/ Strawberries &amp; Walnuts</td>
+<td>Quinoa, Baby Spinach, Black Beans</td>
+<td>Brown Rice, Broccolini, Kidney Beans</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Oat Porridge w/ Pear &amp; Chia</td>
+<td>Wild Rice, Asparagus, Chickpeas</td>
+<td>Pea, Mint &amp; Lentil Stew over Millet</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Broad Bean &amp; Chickpea Blossom Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Broad Beans &amp; Greens (Green) + Chickpeas (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Pod broad beans, blanch for 2 minutes, then slip off the outer skins. 3. Warm chickpeas with garlic, lemon zest and fresh thyme. 4. Add broad beans and a handful of baby spinach; toss until just wilted. 5. Serve over rice with olive oil and mint. Broad beans are a true southern spring delicacy — their fresh, upward energy matches the Blossom Surge.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Pea, Mint &amp; Lentil Stew over Millet</div>
+      <div class="recipe-trinity">Millet (Grain) + Snap Peas &amp; Mint (Green) + Red Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Simmer red lentils with garlic, leek and vegetable stock until soft. 3. Add sliced snap peas and fresh peas for the final 3 minutes. 4. Stir through chopped mint and lemon juice. 5. Serve over millet. Sweet spring peas and cooling mint keep the Liver&#x27;s rising energy smooth and even.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Asparagus (6 bunches)</li>
+<li>Baby Spinach (1 bag)</li>
+<li>Bok Choy (2 bunches)</li>
+<li>Broad Beans (2 kg)</li>
+<li>Broccolini (4 bunches)</li>
+<li>Mixed Spring Greens (4 bunches)</li>
+<li>Silverbeet (2 bunches)</li>
+<li>Snap Peas (2.5 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Lemons</li>
+<li>Pears (2)</li>
+<li>Rhubarb (4 bunches)</li>
+<li>Strawberries (4 punnets)</li>
+<li><strong>Grains</strong></li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (1 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1.5 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Chickpeas (6 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (4 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (4 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Chia Seeds (1 bag)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Flaxseed (1 bag)</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Fresh Mint (2 bunches)</li>
+<li>Garlic</li>
+<li>Mixed Fresh Herbs (2 bunches)</li>
+<li>Spring Onions / Chives (2 bunches)</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Rhubarb (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m3" data-month="3" hidden>
+<div class="month-eyebrow">Month 3 &middot; Spring Quarter</div>
+<h2 class="month-title">The Pre-Summer Warmth <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
+<p class="month-intro">The Pre-Summer Warmth brings the first hot days to Adelaide and Perth, while Melbourne and Tasmania swing between warm afternoons and cool changes. This transition month bridges Wood and Fire: the body needs to begin cooling without losing spring&#x27;s lightness. We introduce early summer produce — zucchini, green beans, strawberries and cherries — while keeping cooked grains as the anchor.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Quinoa w/ Cherries &amp; Almonds</td>
+<td>Brown Rice, Zucchini, Chickpeas</td>
+<td>Millet, Green Beans, Red Lentils</td>
+<td>Fennel &amp; Mint Cooler</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Strawberries &amp; Chia</td>
+<td>Wild Rice, Baby Spinach, Tempeh</td>
+<td>Farro, Snap Peas, White Beans</td>
+<td>Fresh Rhubarb w/ Lime &amp; Mint</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Lemon &amp; Pumpkin Seeds</td>
+<td>Quinoa, Asparagus, Mung Beans</td>
+<td>Brown Rice, Broccolini, Adzuki Beans</td>
+<td>Coriander-Seed Cooler</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Cooling Oat Bowl w/ Cherries &amp; Mint</td>
+<td>Jasmine Rice, Green Beans, White Beans</td>
+<td>Wild Rice, Zucchini &amp; Mint, Chickpeas</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Amaranth w/ Strawberries &amp; Hemp</td>
+<td>Millet, Silverbeet, Kidney Beans</td>
+<td>Quinoa, Cucumber Salad, Red Lentils</td>
+<td>Fresh Strawberries w/ Mint</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Spelt Porridge w/ Apricot &amp; Walnuts</td>
+<td>Brown Rice, Snap Peas, Tempeh</td>
+<td>Farro, Baby Spinach, Mung Beans</td>
+<td>CCF Cooler w/ Lime</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Teff w/ Cherries &amp; Coconut</td>
+<td>Wild Rice, Zucchini, Black Beans</td>
+<td>Green Bean &amp; White Bean Stew over Millet</td>
+<td>Fresh Apples w/ Cardamom</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Zucchini &amp; Chickpea Warmth Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Zucchini (Green) + Chickpeas (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Slice zucchini lengthways and grill until lightly charred. 3. Warm chickpeas with garlic, lemon and fresh oregano. 4. Arrange zucchini and chickpeas over the rice. 5. Finish with olive oil and torn basil. The first local zucchini begins the gentle cooling the body needs as summer approaches.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Green Bean &amp; White Bean Stew over Millet</div>
+      <div class="recipe-trinity">Millet (Grain) + Green Beans (Green) + White Beans (Protein) + Coriander-Seed Cooler (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Sauté onion and garlic in olive oil; add chopped tomato and simmer 5 minutes. 3. Add trimmed green beans, white beans and fresh thyme with a splash of stock. 4. Simmer 10 minutes until the beans are tender. 5. Serve over millet with basil. A light, Mediterranean-style stew for the warming weeks before summer.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Asparagus (2 bunches)</li>
+<li>Baby Spinach (1 bag)</li>
+<li>Broccolini (2 bunches)</li>
+<li>Brown Onions</li>
+<li>Cucumber (2)</li>
+<li>Green Beans (2.5 kg)</li>
+<li>Silverbeet (2 bunches)</li>
+<li>Snap Peas (2 kg)</li>
+<li>Zucchini (2.5 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apricots (2)</li>
+<li>Cherries (6 punnets)</li>
+<li>Lemons (2)</li>
+<li>Strawberries (4 punnets)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Jasmine Rice (0.5 kg)</li>
+<li>Millet (1.5 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Mung Beans (1 kg dry)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (6 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Chia Seeds (1 bag)</li>
+<li>Coconut (flakes / milk)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Fresh Mint (4 bunches)</li>
+<li>Fresh Oregano</li>
+<li>Garlic</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Rhubarb (for Seals)</li>
+<li>Strawberries (for Seals)</li>
+<li>Apples (for Seals)</li>
+</ul>
+    </div>
 </section>
 
   <section class="month-panel" id="m4" data-month="4" hidden>
 <div class="month-eyebrow">Month 4 &middot; Summer Quarter</div>
-<h2 class="month-title">The Dry Heat</h2>
+<h2 class="month-title">The Dry Heat <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
 <p class="month-intro">Temperate South summer brings the driest and hottest period of the year — Mediterranean-style heat in Adelaide and Perth, warm but variable heat in Melbourne, and Tasmania&#x27;s most pleasant season. We shift to cooling, hydrating foods that protect the Heart from excess fire while celebrating the extraordinary summer stone fruits, tomatoes, zucchini, and leafy greens that the temperate summer produces in abundance.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Cooling Oat Bowl w/ Peach &amp; Mint</td>
 <td>Jasmine Rice, Zucchini, White Beans</td>
 <td>Quinoa, Watercress, Chickpeas</td>
+<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Millet Porridge w/ Nectarine &amp; Coconut</td>
 <td>Brown Rice, Tomato &amp; Basil, Tempeh</td>
 <td>Wild Rice, Baby Spinach, Lentil Salad</td>
+<td>Fresh Cherries w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Chilled Quinoa w/ Berries &amp; Pepitas</td>
 <td>Millet, Zucchini &amp; Mint, Adzuki Beans</td>
 <td>Buckwheat, Cucumber Salad, Red Lentils</td>
+<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Warm Amaranth w/ Plum &amp; Hemp</td>
 <td>Jasmine Rice, Green Beans, Mung Beans</td>
 <td>Brown Rice, Roasted Capsicum, White Beans</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Steel-Cut Oats w/ Mango &amp; Chia</td>
 <td>Brown Rice, Silverbeet, Chickpeas</td>
 <td>Millet, Zucchini &amp; Basil, Adzuki Beans</td>
+<td>Fresh Peaches w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Brown Rice w/ Lemon &amp; Avocado</td>
 <td>Wild Rice, Green Beans, Tempeh</td>
 <td>Quinoa, Baby Spinach, Kidney Beans</td>
+<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Teff Porridge w/ Fresh Fig &amp; Walnuts</td>
 <td>Jasmine Rice, Watercress, Mung Beans</td>
 <td>Millet, Roasted Eggplant, White Beans</td>
+<td>Fresh Apricots w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Zucchini &amp; White Bean Summer Bowl</div>
-      <div class="recipe-trinity">Jasmine Rice (Grain) + Zucchini (Green) + White Beans (Protein)</div>
+      <div class="recipe-trinity">Jasmine Rice (Grain) + Zucchini (Green) + White Beans (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
       <div class="recipe-steps">1. Cook Jasmine Rice. 2. Slice zucchini into rounds; grill or char on a hot pan until marked and just tender. 3. Warm white beans with fresh basil and garlic. 4. Assemble with rice; add grilled zucchini, white beans, and fresh tomato slices. 5. Finish with extra virgin olive oil and torn basil. Zucchini from the temperate market gardens peaks in January-February and is one of the most cooling summer vegetables.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Peach &amp; Oat Summer Sunrise</div>
-      <div class="recipe-trinity">Rolled Oats (Grain) + Fresh Peach (Green/Fruit) + Pepitas (Protein supplement)</div>
+      <div class="recipe-trinity">Rolled Oats (Grain) + Fresh Peach (Green/Fruit) + Pepitas (Protein supplement) + Coriander-Seed Cooler (Seal)</div>
       <div class="recipe-steps">1. Cook rolled oats with water and a pinch of cinnamon. 2. Slice a ripe summer peach; lay over the warm oats. 3. Top with a tablespoon of pepitas and a drizzle of honey (optional). 4. Add a few fresh mint leaves. White nectarines and peaches from the Adelaide Hills and Mornington Peninsula are among the finest stone fruits in the world — peak season December through February.</div>
     </div>
 </div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Baby Spinach (1 bag)</li>
+<li>Capsicum (2)</li>
+<li>Cucumber (2)</li>
+<li>Eggplant (1 kg)</li>
+<li>Green Beans (2 kg)</li>
+<li>Silverbeet (2 bunches)</li>
+<li>Tomatoes (1 kg)</li>
+<li>Watercress (4 bunches)</li>
+<li>Zucchini (2.5 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Avocado (2)</li>
+<li>Figs (2)</li>
+<li>Lemons (2)</li>
+<li>Mango (2)</li>
+<li>Mixed Berries (2 punnets)</li>
+<li>Nectarines (2)</li>
+<li>Peaches (2)</li>
+<li>Plums (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1.5 kg)</li>
+<li>Buckwheat (0.5 kg)</li>
+<li>Jasmine Rice (1 kg)</li>
+<li>Millet (1.5 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (1 kg dry)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Mung Beans (1 kg dry)</li>
+<li>Red Lentils (0.5 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (6 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Chia Seeds (1 bag)</li>
+<li>Coconut (flakes / milk)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pepitas (1 bag)</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Cinnamon</li>
+<li>Fresh Basil (4 bunches)</li>
+<li>Fresh Mint (4 bunches)</li>
+<li>Garlic</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Cherries (for Seals)</li>
+<li>Peaches (for Seals)</li>
+<li>Apricots (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m5" data-month="5" hidden>
+<div class="month-eyebrow">Month 5 &middot; Summer Quarter</div>
+<h2 class="month-title">The Peak Summer <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
+<p class="month-intro">The Peak Summer brings the south its fiercest heat — scorching northerly winds in Adelaide and Melbourne, long dry days in Perth and Tasmania&#x27;s warmest weeks. Fire Phase is at its height: the Heart needs protecting and fluids must be replenished constantly. We build meals around cooling summer abundance — tomatoes, cucumber, stone fruit, watercress and mung beans — with light grains that never add heat.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Cooling Oat Bowl w/ Watermelon &amp; Mint</td>
+<td>Jasmine Rice, Cucumber Salad, Mung Beans</td>
+<td>Quinoa, Watercress, Chickpeas</td>
+<td>Fennel &amp; Mint Cooler</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Chilled Quinoa w/ Apricot &amp; Almonds</td>
+<td>Brown Rice, Tomato &amp; Basil, White Beans</td>
+<td>Millet, Zucchini, Tempeh</td>
+<td>Fresh Cherries w/ Lime &amp; Mint</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Millet Porridge w/ Nectarine &amp; Coconut</td>
+<td>Wild Rice, Green Beans, Adzuki Beans</td>
+<td>Jasmine Rice, Baby Spinach, Red Lentils</td>
+<td>Coriander-Seed Cooler</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Chilled Amaranth w/ Berries &amp; Chia</td>
+<td>Jasmine Rice, Watercress, Mung Beans</td>
+<td>Brown Rice, Roasted Capsicum, White Beans</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Peach &amp; Pepitas</td>
+<td>Millet, Zucchini &amp; Mint, Chickpeas</td>
+<td>Quinoa, Cucumber Salad, Kidney Beans</td>
+<td>Fresh Peaches w/ Mint</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Brown Rice w/ Plum &amp; Coconut</td>
+<td>Wild Rice, Tomato &amp; Basil, Tempeh</td>
+<td>Jasmine Rice, Green Beans, Mung Beans</td>
+<td>CCF Cooler w/ Lime</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Teff Porridge w/ Cherries &amp; Hemp</td>
+<td>Brown Rice, Baby Spinach, White Beans</td>
+<td>Chilled Tomato &amp; White Bean Soup over Quinoa</td>
+<td>Fresh Apricots w/ Cardamom</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Tomato, Basil &amp; White Bean Summer Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Tomato &amp; Basil (Green/Vegetable) + White Beans (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice and let it cool slightly. 2. Dice ripe summer tomatoes and tear a handful of fresh basil. 3. Warm white beans gently with garlic and olive oil. 4. Combine rice, beans, tomato and basil. 5. Finish with a splash of red wine vinegar and black pepper. Peak-season tomatoes cool the body and replenish fluids lost in the summer heat.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Watercress &amp; Mung Bean Cooling Bowl</div>
+      <div class="recipe-trinity">Jasmine Rice (Grain) + Watercress (Green) + Mung Beans (Protein) + Coriander-Seed Cooler (Seal)</div>
+      <div class="recipe-steps">1. Cook Jasmine Rice and let it come to room temperature. 2. Warm cooked mung beans with ginger and a splash of coconut aminos. 3. Wash a large bunch of watercress. 4. Layer rice, mung beans and watercress. 5. Finish with lemon juice and fresh mint. The most cooling pairing of the year — ideal for the hottest southern weeks.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Baby Spinach (1 bag)</li>
+<li>Capsicum (2)</li>
+<li>Cucumber (4)</li>
+<li>Green Beans (2 kg)</li>
+<li>Tomatoes (2.5 kg)</li>
+<li>Watercress (4 bunches)</li>
+<li>Zucchini (2 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apricots (2)</li>
+<li>Cherries (2 punnets)</li>
+<li>Lemons</li>
+<li>Mixed Berries (2 punnets)</li>
+<li>Nectarines (2)</li>
+<li>Peaches (2)</li>
+<li>Plums (2)</li>
+<li>Watermelon (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1.5 kg)</li>
+<li>Jasmine Rice (1.5 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Mung Beans (1 kg dry)</li>
+<li>Red Lentils (0.5 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (8 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Chia Seeds (1 bag)</li>
+<li>Coconut (flakes / milk)</li>
+<li>Coconut Aminos</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pepitas (1 bag)</li>
+<li>Vinegar (balsamic / red wine)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Fresh Basil (4 bunches)</li>
+<li>Fresh Ginger</li>
+<li>Fresh Mint (4 bunches)</li>
+<li>Garlic</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Cherries (for Seals)</li>
+<li>Peaches (for Seals)</li>
+<li>Apricots (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m6" data-month="6" hidden>
+<div class="month-eyebrow">Month 6 &middot; Summer Quarter</div>
+<h2 class="month-title">The Mediterranean Pause <span style="font-size:.7em;opacity:.7">(Late Summer)</span></h2>
+<p class="month-intro">The Mediterranean Pause settles in as summer&#x27;s heat eases — warm, golden days, cooler nights and the vineyards and orchards heavy with fruit. This is the Earth season: the Spleen and Stomach take centre stage. We favour sweet, centring foods — corn, pumpkin, eggplant, figs and millet — that steady digestion and bring the body back to balance before autumn.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Millet w/ Fig &amp; Walnuts</td>
+<td>Brown Rice, Sweet Corn &amp; Capsicum, Chickpeas</td>
+<td>Quinoa, Roasted Eggplant, Red Lentils</td>
+<td>Spiced Cherry Anchor (Cinnamon &amp; Cardamom)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Plum &amp; Almonds</td>
+<td>Wild Rice, Green Beans, White Beans</td>
+<td>Millet, Roasted Pumpkin, Tempeh</td>
+<td>Stewed Peaches w/ Clove</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Amaranth w/ Pear &amp; Cinnamon</td>
+<td>Quinoa, Zucchini, Kidney Beans</td>
+<td>Brown Rice, Silverbeet, Adzuki Beans</td>
+<td>Baked Cinnamon Cherries</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Spelt Porridge w/ Turmeric</td>
+<td>Brown Rice, Roasted Eggplant, Chickpeas</td>
+<td>Wild Rice, Sweet Corn &amp; Capsicum, Black Beans</td>
+<td>Cardamom-Stewed Apricots</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Teff w/ Fig &amp; Pumpkin Seeds</td>
+<td>Millet, Baby Spinach, Red Lentils</td>
+<td>Farro, Green Beans, White Beans</td>
+<td>Warm CCF Brew</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Oat Porridge w/ Grapes &amp; Hemp</td>
+<td>Quinoa, Roasted Pumpkin, Tempeh</td>
+<td>Brown Rice, Zucchini, Black-Eye Peas</td>
+<td>Spiced Peach Anchor</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Brown Rice w/ Pear &amp; Cardamom</td>
+<td>Wild Rice, Silverbeet, Chickpeas</td>
+<td>Eggplant &amp; Chickpea Stew over Millet</td>
+<td>Stewed Cherries w/ Ginger</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Eggplant &amp; Red Lentil Bowl</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Roasted Eggplant (Green/Vegetable) + Red Lentils (Protein) + Spiced Cherry Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Cube eggplant, toss with olive oil, cumin and smoked paprika and roast at 200C for 25 minutes. 3. Simmer red lentils with garlic and a bay leaf until soft. 4. Layer quinoa, lentils and eggplant. 5. Finish with parsley, lemon and a drizzle of tahini. Late-summer eggplant is soft, sweet and centring — perfect for the Earth season.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Eggplant &amp; Chickpea Stew over Millet</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Eggplant (Green/Vegetable) + Chickpeas (Protein) + Baked Cinnamon Cherries (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Sauté onion, garlic and diced eggplant in olive oil for 8 minutes. 3. Add chickpeas, chopped tomato, cumin and cinnamon with a splash of stock. 4. Simmer 20 minutes until thick. 5. Serve over millet with fresh mint. A gentle Mediterranean stew that steadies digestion as summer gives way to autumn.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Baby Spinach (1 bag)</li>
+<li>Brown Onions</li>
+<li>Capsicum (4)</li>
+<li>Eggplant (2.5 kg)</li>
+<li>Green Beans (2 kg)</li>
+<li>Pumpkin (2 kg)</li>
+<li>Silverbeet (4 bunches)</li>
+<li>Sweet Corn (4)</li>
+<li>Zucchini (2 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Figs (4)</li>
+<li>Grapes (2 punnets)</li>
+<li>Lemons</li>
+<li>Pears (4)</li>
+<li>Plums (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1.5 kg)</li>
+<li>Farro (0.5 kg)</li>
+<li>Millet (1.5 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Black-Eye Peas (2 × 400g tins)</li>
+<li>Chickpeas (8 × 400g tins)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (4 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Tahini</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Bay Leaves</li>
+<li>Cardamom</li>
+<li>Cinnamon</li>
+<li>Fresh Parsley</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Smoked Paprika</li>
+<li>Turmeric</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Cherries (for Seals)</li>
+<li>Peaches (for Seals)</li>
+<li>Apricots (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m7" data-month="7" hidden>
+<div class="month-eyebrow">Month 7 &middot; Autumn Quarter</div>
+<h2 class="month-title">The Golden Shift <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
+<p class="month-intro">The Golden Shift turns the south&#x27;s parks and vineyards amber and red — crisp mornings, still sunny afternoons and the first frosts in the Tasmanian highlands. This is Metal Phase: the Lungs and Large Intestine come into focus, and the body begins to draw inward. We introduce white and pungent foods — cauliflower, leek, pear, white beans and garlic — and return to warm, cooked meals.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oats w/ Poached Pear &amp; Cinnamon</td>
+<td>Brown Rice, Cauliflower, White Beans</td>
+<td>Millet, Leek &amp; Silverbeet, Chickpeas</td>
+<td>Spiced Apple Anchor (Cinnamon &amp; Cardamom)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Savory Spelt Porridge w/ Leek &amp; Thyme</td>
+<td>Wild Rice, Broccoli, Tempeh</td>
+<td>Farro, Roasted Pumpkin, Red Lentils</td>
+<td>Stewed Pears w/ Clove</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Apple &amp; Walnuts</td>
+<td>Quinoa, Kale, Kidney Beans</td>
+<td>Brown Rice, Cauliflower, Adzuki Beans</td>
+<td>Baked Cinnamon Apples</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Steel-Cut Oats w/ Pear &amp; Almonds</td>
+<td>Farro, Green Beans, Chickpeas</td>
+<td>Wild Rice, Leek &amp; Silverbeet, White Beans</td>
+<td>Cardamom-Stewed Quince</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Buckwheat w/ Quince &amp; Hemp</td>
+<td>Millet, Broccoli, Black Beans</td>
+<td>Quinoa, Roasted Pumpkin, Tempeh</td>
+<td>Warm CCF Brew</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Teff w/ Stewed Apple &amp; Ginger</td>
+<td>Brown Rice, Cauliflower, Red Lentils</td>
+<td>Farro, Kale, Black-Eye Peas</td>
+<td>Spiced Pear Anchor</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Pear &amp; Cardamom</td>
+<td>Wild Rice, Brussels Sprouts, White Beans</td>
+<td>Leek &amp; White Bean Soup over Spelt</td>
+<td>Stewed Apples w/ Ginger</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Cauliflower &amp; White Bean Golden Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Cauliflower (Green/Vegetable) + White Beans (Protein) + Spiced Apple Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Cut cauliflower into florets and roast with olive oil, turmeric and cumin at 200C for 20 minutes. 3. Warm white beans with garlic, rosemary and white pepper. 4. Combine with the rice. 5. Finish with lemon and parsley. White foods nourish the Lungs as Metal Phase begins and the air turns cool and dry.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Leek &amp; White Bean Soup over Spelt</div>
+      <div class="recipe-trinity">Spelt (Grain) + Leek &amp; Silverbeet (Green) + White Beans (Protein) + Baked Cinnamon Apples (Seal)</div>
+      <div class="recipe-steps">1. Cook Spelt grains until chewy (about 45 minutes). 2. Slice two leeks and soften slowly in olive oil with garlic for 10 minutes. 3. Add white beans, stock and thyme; simmer 15 minutes. 4. Stir in shredded silverbeet for the last 3 minutes. 5. Serve over spelt with black pepper. Pungent leek opens the Lungs in the first cool weeks of autumn.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Broccoli (3)</li>
+<li>Brussels Sprouts (1 kg)</li>
+<li>Cauliflower (4)</li>
+<li>Green Beans (1 kg)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (8)</li>
+<li>Pumpkin (2 kg)</li>
+<li>Silverbeet (4 bunches)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (4)</li>
+<li>Lemons</li>
+<li>Pears (6)</li>
+<li>Quince (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (0.5 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (1 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Black-Eye Peas (2 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (8 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Cardamom</li>
+<li>Cinnamon</li>
+<li>Fresh Ginger</li>
+<li>Fresh Parsley</li>
+<li>Fresh Rosemary</li>
+<li>Fresh Thyme (2 bunches)</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Turmeric</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Apples (for Seals)</li>
+<li>Pears (for Seals)</li>
+<li>Quince (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m8" data-month="8" hidden>
+<div class="month-eyebrow">Month 8 &middot; Autumn Quarter</div>
+<h2 class="month-title">The Harvest Root <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
+<p class="month-intro">The Harvest Root season brings the south&#x27;s autumn harvest to its peak — apples and pears from the Adelaide Hills, pumpkins and potatoes from Gippsland, and the first truly cold nights. Still in Metal Phase, the body is gathering and storing. We build hearty meals around roasted roots, brassicas and warming grains, with nuts and seeds to keep the Lungs and skin moist as the air dries.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oats w/ Apple &amp; Walnuts</td>
+<td>Brown Rice, Roasted Beetroot, Chickpeas</td>
+<td>Millet, Broccoli, Red Lentils</td>
+<td>Spiced Apple Anchor (Cinnamon &amp; Cardamom)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Savory Spelt Porridge w/ Sage</td>
+<td>Wild Rice, Kale &amp; Leek, White Beans</td>
+<td>Farro, Roasted Pumpkin, Tempeh</td>
+<td>Stewed Pears w/ Clove</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Steel-Cut Oats w/ Pear &amp; Almonds</td>
+<td>Quinoa, Brussels Sprouts, Kidney Beans</td>
+<td>Brown Rice, Parsnip &amp; Carrot, Black Beans</td>
+<td>Baked Cinnamon Apples</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Buckwheat w/ Quince &amp; Cinnamon</td>
+<td>Farro, Silverbeet, Adzuki Beans</td>
+<td>Wild Rice, Roasted Beetroot, Chickpeas</td>
+<td>Cardamom-Stewed Quince</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Teff w/ Stewed Apple &amp; Hemp</td>
+<td>Millet, Cauliflower, Tempeh</td>
+<td>Quinoa, Kale, White Beans</td>
+<td>Warm CCF Brew</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Millet w/ Fig &amp; Pumpkin Seeds</td>
+<td>Brown Rice, Broccoli, Red Lentils</td>
+<td>Farro, Parsnip &amp; Carrot, Black-Eye Peas</td>
+<td>Spiced Pear Anchor</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Pear &amp; Ginger</td>
+<td>Wild Rice, Brussels Sprouts, Kidney Beans</td>
+<td>Pumpkin &amp; Lentil Harvest Stew over Spelt</td>
+<td>Stewed Apples w/ Ginger</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Beetroot &amp; Chickpea Harvest Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Roasted Beetroot (Green/Vegetable) + Chickpeas (Protein) + Spiced Apple Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Peel and cube beetroot; roast with olive oil and thyme at 200C for 30 minutes. 3. Warm chickpeas with garlic, cumin and a splash of balsamic. 4. Layer rice, chickpeas and beetroot. 5. Finish with rocket and toasted walnuts. Beetroot builds the Blood and helps the body gather and store as autumn deepens.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Pumpkin &amp; Lentil Harvest Stew over Spelt</div>
+      <div class="recipe-trinity">Spelt (Grain) + Roasted Pumpkin (Green/Vegetable) + Red Lentils (Protein) + Baked Cinnamon Apples (Seal)</div>
+      <div class="recipe-steps">1. Cook Spelt grains. 2. Sauté onion, garlic and sage in olive oil. 3. Add cubed pumpkin, red lentils, cumin and stock to cover. 4. Simmer 25 minutes until thick and golden. 5. Serve over spelt with parsley. A warming harvest stew that celebrates the best of the southern autumn.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Beetroot (2 kg)</li>
+<li>Broccoli (3)</li>
+<li>Brown Onions</li>
+<li>Brussels Sprouts (2 kg)</li>
+<li>Carrots (2 kg)</li>
+<li>Cauliflower (2)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (2)</li>
+<li>Parsnip (2 kg)</li>
+<li>Pumpkin (2 kg)</li>
+<li>Silverbeet (2 bunches)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (4)</li>
+<li>Figs (2)</li>
+<li>Pears (4)</li>
+<li>Quince (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (0.5 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (1 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Black-Eye Peas (2 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (4 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (4 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Vegetable Stock</li>
+<li>Vinegar (balsamic / red wine)</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Cinnamon</li>
+<li>Fresh Ginger</li>
+<li>Fresh Parsley</li>
+<li>Fresh Sage (2 bunches)</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Apples (for Seals)</li>
+<li>Pears (for Seals)</li>
+<li>Quince (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m9" data-month="9" hidden>
+<div class="month-eyebrow">Month 9 &middot; Autumn Quarter</div>
+<h2 class="month-title">The Pre-Winter Depth <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
+<p class="month-intro">The Pre-Winter Depth arrives with short days, cold rain and the first heavy frosts inland. The body is moving from Metal toward Water, drawing its energy down into the roots. We follow it with deeply warming root vegetables, dark leafy greens, black beans and hearty grains like spelt, black rice and oats — preparing the Kidneys for the true winter ahead.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oats w/ Stewed Apple &amp; Cinnamon</td>
+<td>Brown Rice, Roasted Parsnip, Chickpeas</td>
+<td>Millet, Cavolo Nero, Red Lentils</td>
+<td>Spiced Apple Anchor (Cinnamon &amp; Cardamom)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Buckwheat Congee w/ Ginger</td>
+<td>Wild Rice, Kale &amp; Leek, Kidney Beans</td>
+<td>Farro, Brussels Sprouts, Tempeh</td>
+<td>Stewed Pears w/ Clove</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Savory Spelt Porridge w/ Turmeric</td>
+<td>Quinoa, Roasted Beetroot, White Beans</td>
+<td>Brown Rice, Silverbeet, Black Beans</td>
+<td>Baked Cinnamon Apples</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Black Rice w/ Coconut &amp; Dates</td>
+<td>Brown Rice, Cavolo Nero, Adzuki Beans</td>
+<td>Wild Rice, Roasted Swede, Lentil Stew</td>
+<td>Cardamom-Stewed Quince</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Pear &amp; Clove</td>
+<td>Millet, Broccoli, Chickpeas</td>
+<td>Quinoa, Parsnip &amp; Carrot, Kidney Beans</td>
+<td>Warm CCF Brew</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Teff w/ Fig &amp; Walnuts</td>
+<td>Farro, Kale, Red Lentils</td>
+<td>Brown Rice, Roasted Beetroot, Tempeh</td>
+<td>Spiced Pear Anchor</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Apple &amp; Ginger</td>
+<td>Wild Rice, Brussels Sprouts, Black Beans</td>
+<td>Black Bean &amp; Root Stew over Black Rice</td>
+<td>Stewed Apples w/ Ginger</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Cavolo Nero &amp; Red Lentil Depth Bowl</div>
+      <div class="recipe-trinity">Millet (Grain) + Cavolo Nero (Green) + Red Lentils (Protein) + Spiced Apple Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Simmer red lentils with garlic, ginger, cumin and turmeric until soft. 3. Strip cavolo nero from its stems, tear and sauté with garlic for 4 minutes. 4. Layer millet, lentils and greens. 5. Finish with olive oil and lemon. Dark winter greens and warming lentils begin to fortify the body for the cold months.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Black Bean &amp; Root Stew over Black Rice</div>
+      <div class="recipe-trinity">Black Rice (Grain) + Parsnip &amp; Carrot (Green/Vegetable) + Black Beans (Protein) + Baked Cinnamon Apples (Seal)</div>
+      <div class="recipe-steps">1. Cook Black Rice (about 35 minutes). 2. Sauté onion and garlic, then add diced parsnip, carrot and swede. 3. Add black beans, smoked paprika, bay leaf and stock to cover. 4. Simmer 25 minutes until the roots are tender. 5. Serve over black rice with parsley. Black foods nourish the Kidneys — the organ system that carries the body through winter.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Beetroot (2 kg)</li>
+<li>Broccoli (2)</li>
+<li>Brown Onions</li>
+<li>Brussels Sprouts (2 kg)</li>
+<li>Carrots (1 kg)</li>
+<li>Cavolo Nero (4 bunches)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (2)</li>
+<li>Parsnip (2 kg)</li>
+<li>Silverbeet (2 bunches)</li>
+<li>Swede (1 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (4)</li>
+<li>Figs (2)</li>
+<li>Lemons</li>
+<li>Pears (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Black Rice (1 kg)</li>
+<li>Brown Rice (1.5 kg)</li>
+<li>Buckwheat (0.5 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (6 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (4 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (2 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Coconut (flakes / milk)</li>
+<li>Dates (2 packs)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Bay Leaves</li>
+<li>Cinnamon</li>
+<li>Cloves</li>
+<li>Fresh Ginger</li>
+<li>Fresh Parsley</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Smoked Paprika</li>
+<li>Turmeric</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Apples (for Seals)</li>
+<li>Pears (for Seals)</li>
+<li>Quince (for Seals)</li>
+</ul>
+    </div>
 </section>
 
   <section class="month-panel" id="m10" data-month="10" hidden>
 <div class="month-eyebrow">Month 10 &middot; Winter Quarter</div>
-<h2 class="month-title">The Winter Depth</h2>
+<h2 class="month-title">The Winter Depth <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
 <p class="month-intro">The Temperate South winter is a genuine winter — Melbourne&#x27;s windswept cold, Adelaide&#x27;s wet season, Perth&#x27;s grey skies, and Tasmania&#x27;s proper cold with snow on the peaks. This is Water Phase: the body draws inward, conserves energy, and benefits most from deeply nourishing, warming foods. Root vegetables, hearty brassicas, dark leafy greens, and warming grains like oats, spelt, and black rice are the season&#x27;s gifts.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Oat Porridge w/ Cinnamon &amp; Walnut</td>
 <td>Brown Rice, Cavolo Nero, Chickpeas</td>
 <td>Millet, Roasted Parsnip, Red Lentil Dahl</td>
+<td>Jing Truffle (Date &amp; Tahini)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Buckwheat Congee w/ Ginger &amp; Miso</td>
 <td>Wild Rice, Kale &amp; Leek, Kidney Beans</td>
 <td>Farro, Brussels Sprouts, Tempeh</td>
+<td>Date &amp; Walnut Truffle</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Savory Spelt Porridge w/ Turmeric</td>
 <td>Quinoa, Roasted Beetroot, White Beans</td>
 <td>Buckwheat, Silverbeet, Adzuki Beans</td>
+<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Warm Teff w/ Stewed Pear &amp; Cardamom</td>
 <td>Brown Rice, Cavolo Nero, Black Beans</td>
 <td>Wild Rice, Roasted Swede, Lentil Stew</td>
+<td>Jing Truffle w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Steel-Cut Oats w/ Prune &amp; Clove</td>
 <td>Millet, Roasted Celeriac, Chickpeas</td>
 <td>Quinoa, Kale, Red Lentils</td>
+<td>Ginger-Cinnamon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Warm Black Rice w/ Coconut &amp; Cinnamon</td>
 <td>Brown Rice, Roasted Cauliflower, Kidney Beans</td>
 <td>Amaranth, Silverbeet, White Beans</td>
+<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Amaranth w/ Stewed Apple &amp; Ginger</td>
 <td>Wild Rice, Brussels Sprouts, Tempeh</td>
 <td>Millet, Roasted Parsnip &amp; Carrot, Adzuki</td>
+<td>Warm Spiced Pears</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Cavolo Nero &amp; Chickpea Winter Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Cavolo Nero (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Cavolo Nero (Green) + Chickpeas (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
       <div class="recipe-steps">1. Cook Brown Rice. 2. Strip cavolo nero leaves from their stems; tear into pieces. 3. Blanch in boiling salted water for 3 minutes until tender. 4. Warm chickpeas with garlic, smoked paprika, and a splash of vegetable stock. 5. Assemble over brown rice; drizzle with olive oil and a squeeze of lemon. Cavolo nero from the temperate south&#x27;s winter gardens is exceptional — deeply nourishing, rich in iron, and one of the finest cold-weather greens.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Roasted Root &amp; Lentil Winter Stew over Millet</div>
-      <div class="recipe-trinity">Millet (Grain) + Roasted Parsnip and Carrot (Green/Vegetable) + Red Lentils (Protein)</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Parsnip and Carrot (Green/Vegetable) + Red Lentils (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
       <div class="recipe-steps">1. Cook Millet. 2. Cube parsnip and carrot; toss with olive oil, thyme, and rosemary. Roast at 190C for 25 minutes until golden. 3. Simmer red lentils with onion, garlic, cumin, turmeric, and bay leaf until soft. 4. Serve lentil stew over millet with roasted root vegetables piled on top. 5. Finish with fresh parsley. Parsnip and carrot are the great temperate winter root vegetables — their sweetness intensifies with cold and their warmth supports Kidney energy through winter.</div>
     </div>
 </div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Beetroot (1 kg)</li>
+<li>Brown Onions</li>
+<li>Brussels Sprouts (2 kg)</li>
+<li>Carrots (1 kg)</li>
+<li>Cauliflower (2)</li>
+<li>Cavolo Nero (4 bunches)</li>
+<li>Celeriac (2)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (2)</li>
+<li>Parsnip (2 kg)</li>
+<li>Silverbeet (4 bunches)</li>
+<li>Swede (1 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (2)</li>
+<li>Lemons</li>
+<li>Pears (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (1 kg)</li>
+<li>Black Rice (0.5 kg)</li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (1 kg)</li>
+<li>Farro (0.5 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (1 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (4 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (4 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Coconut (flakes / milk)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Miso Paste (chickpea or barley)</li>
+<li>Prunes (2 packs)</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Bay Leaves</li>
+<li>Cardamom</li>
+<li>Cinnamon</li>
+<li>Cloves</li>
+<li>Fresh Ginger</li>
+<li>Fresh Parsley</li>
+<li>Fresh Rosemary</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Smoked Paprika</li>
+<li>Turmeric</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Fresh Ginger Root</li>
+<li>Cinnamon Sticks</li>
+<li>Ground Turmeric</li>
+<li>Unsweetened Plant Milk</li>
+<li>Medjool Dates (1 box)</li>
+<li>Stone-Ground Tahini</li>
+<li>Pink Rock Salt</li>
+<li>Walnuts (for Truffles)</li>
+<li>Pears (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m11" data-month="11" hidden>
+<div class="month-eyebrow">Month 11 &middot; Winter Quarter</div>
+<h2 class="month-title">The Cold Peak <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
+<p class="month-intro">The Cold Peak is the deepest point of the southern winter — icy mornings, short grey days, snow on the Victorian Alps and Tasmania&#x27;s highlands. Water Phase is at its strongest: the Kidneys need maximum warmth and nourishment. We lean on slow-cooked stews, congees, warming spices, black beans, roasted roots and dark greens, and keep every meal warm and thoroughly cooked.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oat Porridge w/ Cinnamon &amp; Walnuts</td>
+<td>Brown Rice, Cavolo Nero, Black Beans</td>
+<td>Millet, Roasted Parsnip, Red Lentil Dahl</td>
+<td>Jing Truffle (Date &amp; Tahini)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Buckwheat Congee w/ Ginger &amp; Sesame</td>
+<td>Wild Rice, Kale &amp; Leek, Kidney Beans</td>
+<td>Farro, Brussels Sprouts, Tempeh</td>
+<td>Date &amp; Walnut Truffle</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Black Rice w/ Coconut &amp; Cinnamon</td>
+<td>Quinoa, Roasted Beetroot, Chickpeas</td>
+<td>Buckwheat, Silverbeet, Adzuki Beans</td>
+<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Spelt Porridge w/ Turmeric &amp; Pepper</td>
+<td>Brown Rice, Roasted Swede, White Beans</td>
+<td>Wild Rice, Cavolo Nero, Lentil Stew</td>
+<td>Jing Truffle w/ Ginger</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Stewed Pear &amp; Cardamom</td>
+<td>Millet, Roasted Celeriac, Black Beans</td>
+<td>Quinoa, Kale, Red Lentils</td>
+<td>Ginger-Cinnamon Brew</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Teff w/ Dates &amp; Ginger</td>
+<td>Farro, Brussels Sprouts, Chickpeas</td>
+<td>Brown Rice, Parsnip &amp; Carrot, Kidney Beans</td>
+<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Prune &amp; Star Anise</td>
+<td>Wild Rice, Silverbeet, Tempeh</td>
+<td>Black Bean &amp; Cavolo Nero Stew over Spelt</td>
+<td>Warm Spiced Pears</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Cavolo Nero &amp; Black Bean Cold Peak Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Cavolo Nero (Green) + Black Beans (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Warm black beans with garlic, cumin, smoked paprika and a splash of stock until thick. 3. Strip and tear cavolo nero; sauté with garlic and chilli for 4 minutes. 4. Layer rice, beans and greens. 5. Finish with olive oil and lemon zest. Black beans and dark greens are the strongest Kidney support for the coldest weeks of the year.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Celeriac &amp; Black Bean Millet Bowl</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Celeriac (Green/Vegetable) + Black Beans (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Peel and cube celeriac; roast with olive oil, thyme and garlic at 200C for 30 minutes. 3. Warm black beans with bay leaf and black pepper. 4. Combine millet, beans and celeriac. 5. Finish with parsley and a drizzle of tahini. Earthy celeriac is a southern winter staple — warming, grounding and deeply nourishing.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Beetroot (1 kg)</li>
+<li>Brussels Sprouts (2 kg)</li>
+<li>Carrots (1 kg)</li>
+<li>Cavolo Nero (6 bunches)</li>
+<li>Celeriac (2)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (2)</li>
+<li>Parsnip (2 kg)</li>
+<li>Silverbeet (4 bunches)</li>
+<li>Swede (1 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Lemons</li>
+<li>Pears (2)</li>
+<li><strong>Grains</strong></li>
+<li>Amaranth (0.5 kg)</li>
+<li>Black Rice (0.5 kg)</li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (1 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1 kg)</li>
+<li>Spelt (1 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (6 × 400g tins)</li>
+<li>Chickpeas (4 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (4 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (2 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Coconut (flakes / milk)</li>
+<li>Dates (2 packs)</li>
+<li>Extra Virgin Olive Oil</li>
+<li>Prunes (2 packs)</li>
+<li>Sesame Seeds (1 bag)</li>
+<li>Tahini</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Bay Leaves</li>
+<li>Black Pepper</li>
+<li>Cardamom</li>
+<li>Cinnamon</li>
+<li>Fresh Chilli</li>
+<li>Fresh Ginger</li>
+<li>Fresh Parsley</li>
+<li>Garlic</li>
+<li>Ground Cumin</li>
+<li>Smoked Paprika</li>
+<li>Star Anise</li>
+<li>Turmeric</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Fresh Ginger Root</li>
+<li>Cinnamon Sticks</li>
+<li>Ground Turmeric</li>
+<li>Unsweetened Plant Milk</li>
+<li>Medjool Dates (1 box)</li>
+<li>Stone-Ground Tahini</li>
+<li>Pink Rock Salt</li>
+<li>Walnuts (for Truffles)</li>
+<li>Pears (for Seals)</li>
+</ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m12" data-month="12" hidden>
+<div class="month-eyebrow">Month 12 &middot; Winter Quarter</div>
+<h2 class="month-title">The Spring Quickening <span style="font-size:.7em;opacity:.7">(Early Wood)</span></h2>
+<p class="month-intro">The Spring Quickening arrives as late winter loosens its grip — wattle flowers, longer evenings and the first asparagus and spring greens at the markets. This is Early Wood: the Liver begins to stir after winter&#x27;s deep rest. We ease out of heavy stews toward lighter grains and fresh greens, keeping a little warmth on the plate so the body wakes gradually.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Quinoa w/ Lemon Zest &amp; Pumpkin Seeds</td>
+<td>Brown Rice, Silverbeet, Chickpeas</td>
+<td>Millet, Broccolini, Red Lentils</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Stewed Rhubarb &amp; Almonds</td>
+<td>Wild Rice, Baby Spinach, Tempeh</td>
+<td>Farro, Kale, White Beans</td>
+<td>Ginger-Lemon Brew</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Millet w/ Spring Herbs &amp; Hemp</td>
+<td>Quinoa, Asparagus, Kidney Beans</td>
+<td>Buckwheat, Cavolo Nero, Adzuki Beans</td>
+<td>Fennel &amp; Mint Brew</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Spelt Porridge w/ Leek &amp; Chives</td>
+<td>Brown Rice, Broccolini, Black Beans</td>
+<td>Wild Rice, Silverbeet, Chickpeas</td>
+<td>Stewed Pears w/ Ginger</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Buckwheat w/ Flax &amp; Stewed Apple</td>
+<td>Millet, Baby Spinach, Red Lentils</td>
+<td>Quinoa, Snap Peas, Tempeh</td>
+<td>CCF Brew w/ Lemon</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Warm Teff w/ Pear &amp; Walnuts</td>
+<td>Farro, Asparagus, White Beans</td>
+<td>Brown Rice, Kale, Black-Eye Peas</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Oat Porridge w/ Lemon &amp; Chia</td>
+<td>Wild Rice, Broccolini, Chickpeas</td>
+<td>Spring Green &amp; Lentil Stew over Quinoa</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Broccolini &amp; Red Lentil Quickening Bowl</div>
+      <div class="recipe-trinity">Millet (Grain) + Broccolini (Green) + Red Lentils (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Simmer red lentils with garlic, ginger and a bay leaf until just soft. 3. Steam broccolini for 3-4 minutes until bright. 4. Spoon lentils over millet and lay the broccolini on top. 5. Finish with lemon-tahini dressing. Broccolini&#x27;s gentle bitterness wakes the Liver as the new spring cycle begins.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Spring Green &amp; Lentil Stew over Quinoa</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Baby Spinach &amp; Asparagus (Green) + Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Simmer lentils with leek, garlic, thyme and stock until tender. 3. Add chopped asparagus for 3 minutes, then stir through baby spinach until wilted. 4. Season with lemon juice and black pepper. 5. Serve over quinoa with fresh dill. A light, green stew that carries winter&#x27;s last warmth into spring.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
+<li>Asparagus (4 bunches)</li>
+<li>Baby Spinach (1 bag)</li>
+<li>Broccolini (6 bunches)</li>
+<li>Cavolo Nero (2 bunches)</li>
+<li>Kale (4 bunches)</li>
+<li>Leeks (2)</li>
+<li>Mixed Spring Greens (2 bunches)</li>
+<li>Silverbeet (4 bunches)</li>
+<li>Snap Peas (1 kg)</li>
+<li><strong>Fruit</strong></li>
+<li>Apples (2)</li>
+<li>Lemons (4)</li>
+<li>Pears (2)</li>
+<li>Rhubarb (2 bunches)</li>
+<li><strong>Grains</strong></li>
+<li>Brown Rice (1 kg)</li>
+<li>Buckwheat (1 kg)</li>
+<li>Farro (1 kg)</li>
+<li>Millet (1 kg)</li>
+<li>Oats (rolled or steel-cut) (1 kg)</li>
+<li>Quinoa (1.5 kg)</li>
+<li>Spelt (0.5 kg)</li>
+<li>Teff (0.5 kg)</li>
+<li>Wild Rice (1 kg)</li>
+<li><strong>Proteins</strong></li>
+<li>Adzuki Beans (0.5 kg dry)</li>
+<li>Black Beans (2 × 400g tins)</li>
+<li>Black-Eye Peas (2 × 400g tins)</li>
+<li>Chickpeas (6 × 400g tins)</li>
+<li>Green / Brown Lentils (0.5 kg dry)</li>
+<li>Kidney Beans (2 × 400g tins)</li>
+<li>Red Lentils (1 kg dry)</li>
+<li>Tempeh (3 packs)</li>
+<li>White Beans (4 × 400g tins)</li>
+<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
+<li>Almonds (1 bag)</li>
+<li>Chia Seeds (1 bag)</li>
+<li>Flaxseed (1 bag)</li>
+<li>Hemp Seeds (1 bag)</li>
+<li>Pumpkin Seeds (1 bag)</li>
+<li>Tahini</li>
+<li>Vegetable Stock</li>
+<li>Walnuts (1 bag)</li>
+<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
+<li>Bay Leaves</li>
+<li>Fresh Dill</li>
+<li>Fresh Ginger</li>
+<li>Garlic</li>
+<li>Mixed Fresh Herbs (2 bunches)</li>
+<li>Spring Onions / Chives (2 bunches)</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Pears (for Seals)</li>
+</ul>
+    </div>
 </section>
 
   <footer>
