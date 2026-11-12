@@ -3,7 +3,7 @@
   Title: Tropical North Food Guide — Quick Access App
   Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
   Date: 2026-11-11
-  Modified By: Claude (Opus 5.5) — Tetralty update
+  Modified By: Claude (Cowork)
   Description: Installable quick-access app rendering the Tropical North
   Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
   + shopping list), generated from the source PDF via parse_guide.py.
@@ -27,12 +27,6 @@
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
   .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
-
-  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
-    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
-    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
-    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
-  #installAppBtn:hover { background:rgba(74,16,96,1); }
 
   header { text-align:center; padding:36px 0 10px; }
   .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
@@ -77,7 +71,6 @@
   .recipe-grid { display:flex; flex-direction:column; gap:12px; }
   .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
   .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
-  .shop-list li strong { color:var(--purple); }
   .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
   .recipe-steps { font-size:.86rem; line-height:1.7; }
 
@@ -100,7 +93,6 @@
 </style>
 </head>
 <body>
-<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
 
 <div class="wrap">
   <header>
@@ -115,1689 +107,230 @@
     <summary>The Tropical North Philosophy</summary>
     <p>The Tropical North Haligric Guide is designed for the two great seasons of Australia&#x27;s top end — the Wet (approximately October through April) and the Dry (May through September). Unlike the four-season model of southern Australia, the Tropics cycle between monsoon abundance and clear, dry vitality. This guide provides the metabolic framework to move with those cycles rather than against them: cooling, hydrating foods during the intense humidity of the Wet; grounding, warming foods during the clear, cooler Dry.</p>
     <h4>The Calendar Decoder</h4>
-    <p>Schedules are organized by date groups (e.g., 1/8/15/22 ). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Tetralty each Monday for a month, you establish a consistent rhythm that allows your body to align with the Tropical North&#x27;s unique seasonal shifts at a cellular level.</p>
-    <h4>The Tetralty Formula</h4>
-    <p>Every day is a Tetralty: One Grain + One Green + One Protein + One Digestive Seal. This four-fold structure mirrors the four pillars of Haligricity — Thinking, Feeling, Doing and Being — ensuring cellular satiety, elemental balance and metabolic equilibrium without digestive fatigue. . In the Tropical North, we emphasize cooling, light grains like jasmine rice and sago, hydrating greens including water spinach and bok choy, and clean proteins such as tempeh and legumes to navigate the heat and humidity without burdening digestion.</p>
-    <p>The Seal is a small digestive finisher taken after lunch and dinner. It completes the six Vedic tastes and needs no cooking: a warm Digestive Brew (cumin, coriander, fennel, ginger and lemon) in the damp and spring months, a cooling brew or fresh fruit in peak heat, a Spiced Orchard Anchor of gently stewed fruit in late summer and autumn, and a Mineral Jing Truffle (a date filled with tahini or nuts) in deep winter. No refined sugar — sweetness comes only from fruit, dates and warm spices.</p>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Trinity each Monday for a month, you establish a consistent rhythm that allows your body to align with the Tropical North&#x27;s unique seasonal shifts at a cellular level.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every day is a Trinity: One Grain + One Green + One Protein. In the Tropical North, we emphasize cooling, light grains like jasmine rice and sago, hydrating greens including water spinach and bok choy, and clean proteins such as tempeh and legumes to navigate the heat and humidity without burdening digestion.</p>
   </details>
 
-  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/AU/TropicalNorth/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
+  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/AU/Australian_Meal_Guide_Tropical_North.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
+  <div class="gap-note">This guide currently covers Months 1, 4, and 7 (one representative month per season) — the remaining months listed in the original table of contents have not been written yet. More will be added here as they are completed.</div>
 
   <nav class="month-tabs" id="monthTabs">
-    <button class="month-tab active" onclick="showMonth(1, this)">Month 1</button>
-    <button class="month-tab" onclick="showMonth(2, this)">Month 2</button>
-    <button class="month-tab" onclick="showMonth(3, this)">Month 3</button>
-    <button class="month-tab" onclick="showMonth(4, this)">Month 4</button>
-    <button class="month-tab" onclick="showMonth(5, this)">Month 5</button>
-    <button class="month-tab" onclick="showMonth(6, this)">Month 6</button>
-    <button class="month-tab" onclick="showMonth(7, this)">Month 7</button>
-    <button class="month-tab" onclick="showMonth(8, this)">Month 8</button>
-    <button class="month-tab" onclick="showMonth(9, this)">Month 9</button>
-    <button class="month-tab" onclick="showMonth(10, this)">Month 10</button>
-    <button class="month-tab" onclick="showMonth(11, this)">Month 11</button>
-    <button class="month-tab" onclick="showMonth(12, this)">Month 12</button>
+    <button class="month-tab active" onclick="showMonth(1, this)">Jan</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Feb</button>
+    <button class="month-tab" onclick="showMonth(7, this)">Mar</button>
   </nav>
 
   <section class="month-panel" id="m1" data-month="1" >
-<div class="month-eyebrow">Month 1 &middot; Spring Quarter</div>
-<h2 class="month-title">The Clear Dry Opening <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
+<div class="month-eyebrow">Jan &middot; Dry Season</div>
+<h2 class="month-title">Tropical North Edition</h2>
 <p class="month-intro">The early Dry Season in the Tropical North is characterised by low humidity, clear skies, and cooling nights. To align your Haligricity here, we focus on grounding the body after the Wet Season&#x27;s heat and hydration. We shift toward warming grains and mineral-rich vegetables from the local dry-season harvest. The Liver and Lungs are supported to clear accumulated Wet Season dampness.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Brown Rice w/ Turmeric &amp; Coconut</td>
 <td>Sorghum, Kangkong, Black-Eye Peas</td>
 <td>Millet, Roasted Pumpkin, Red Lentils</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Warm Rolled Oats w/ Mango &amp; Pepitas</td>
 <td>Brown Rice, Bok Choy, Tempeh</td>
 <td>Buckwheat, Sweet Potato Leaves, Chickpeas</td>
-<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Savory Teff w/ Shallots &amp; Sesame</td>
 <td>Wild Rice, Water Spinach, White Beans</td>
 <td>Brown Rice, Kale, Black Beans</td>
-<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Warm Amaranth w/ Papaya &amp; Hemp</td>
 <td>Millet, Chinese Broccoli, Adzuki Beans</td>
 <td>Quinoa, Roasted Zucchini, Lentil Stew</td>
-<td>Stewed Papaya w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Brown Rice Congee w/ Ginger &amp; Spring Onion</td>
 <td>Sorghum, Bok Choy, Tempeh</td>
 <td>Millet, Kangkong, Kidney Beans</td>
-<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Warm Quinoa w/ Pineapple &amp; Chia</td>
 <td>Brown Rice, Water Spinach, Chickpeas</td>
 <td>Buckwheat, Sweet Potato Leaves, Lentils</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Savory Oat Porridge w/ Sesame &amp; Scallion</td>
 <td>Wild Rice, Chinese Cabbage, White Beans</td>
 <td>Amaranth, Pumpkin, Black-Eye Peas</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Kangkong &amp; Tempeh Stir Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Kangkong/Water Morning Glory (Green) + Tempeh (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Kangkong/Water Morning Glory (Green) + Tempeh (Protein)</div>
       <div class="recipe-steps">1. Cook Brown Rice. 2. Slice tempeh into strips; marinate in coconut aminos and turmeric for 5 minutes. 3. In a wok over high heat, stir-fry tempeh until golden. 4. Add a bunch of kangkong; toss for 60 seconds until just wilted. 5. Serve over brown rice with a drizzle of lime juice. Kangkong clears Wet Season dampness and cools internal heat.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Pumpkin &amp; Red Lentil Dry Season Bowl</div>
-      <div class="recipe-trinity">Millet (Grain) + Roasted Pumpkin (Green/Vegetable) + Red Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Pumpkin (Green/Vegetable) + Red Lentils (Protein)</div>
       <div class="recipe-steps">1. Cook Millet. 2. Cube and roast pumpkin with cumin and a touch of coconut oil until caramelised. 3. Simmer red lentils with garlic, ginger, and a pinch of turmeric until soft. 4. Layer millet, pumpkin, and lentils. 5. Top with fresh coriander. Pumpkin grounds the body after the Wet Season&#x27;s dispersive energy.</div>
     </div>
 </div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kale (2 bunches)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Pumpkin (2 kg)</li>
-<li>Sweet Potato Leaves (4 bunches)</li>
-<li>Water Spinach (4 bunches)</li>
-<li>Zucchini (1 kg)</li>
-<li><strong>Fruit</strong></li>
-<li>Limes</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (1 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (1 kg)</li>
-<li>Millet (1 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (4 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (1 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Coconut Oil</li>
-<li>Hemp Seeds (1 bag)</li>
-<li>Pepitas (1 bag)</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Shallots</li>
-<li>Spring Onions / Chives (4 bunches)</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Papaya (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m2" data-month="2" hidden>
-<div class="month-eyebrow">Month 2 &middot; Spring Quarter</div>
-<h2 class="month-title">The Peak Dry <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
-<p class="month-intro">The Peak Dry brings the Tropical North its most comfortable weather — warm sunny days, cool nights and almost no humidity. This is Wood Phase at its most settled: the body has shed the Wet Season&#x27;s dampness and can now build strength. We lean on hearty dry-season greens, sweet potato and pumpkin from the market gardens, and grounding legumes to store energy for the heat ahead.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Rolled Oats w/ Banana &amp; Macadamia</td>
-<td>Brown Rice, Snake Beans, Chickpeas</td>
-<td>Millet, Roasted Sweet Potato, Red Lentils</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Brown Rice Congee w/ Ginger &amp; Sesame</td>
-<td>Sorghum, Bok Choy, Tempeh</td>
-<td>Quinoa, Kangkong, Black Beans</td>
-<td>Ginger-Lemon Brew</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Warm Millet w/ Papaya &amp; Pepitas</td>
-<td>Wild Rice, Snake Beans, White Beans</td>
-<td>Brown Rice, Pumpkin, Adzuki Beans</td>
-<td>Fennel &amp; Mint Brew</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Savory Teff w/ Shallots &amp; Turmeric</td>
-<td>Brown Rice, Chinese Broccoli, Kidney Beans</td>
-<td>Buckwheat, Sweet Potato Leaves, Chickpeas</td>
-<td>Stewed Papaya w/ Ginger</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Warm Quinoa w/ Mango &amp; Chia</td>
-<td>Millet, Water Spinach, Black-Eye Peas</td>
-<td>Wild Rice, Roasted Eggplant, Red Lentils</td>
-<td>CCF Brew w/ Lemon</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Warm Amaranth w/ Banana &amp; Hemp</td>
-<td>Sorghum, Kangkong, Tempeh</td>
-<td>Brown Rice, Bok Choy, White Beans</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Steel-Cut Oats w/ Pineapple &amp; Coconut</td>
-<td>Quinoa, Snake Beans, Mung Beans</td>
-<td>Sweet Potato &amp; Lentil Stew over Millet</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Snake Bean &amp; Chickpea Dry Season Stir</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Snake Beans (Green) + Chickpeas (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Cut snake beans into 4cm lengths. 3. In a wok, warm chickpeas with garlic, ginger and a pinch of turmeric. 4. Add snake beans and toss over high heat for 3-4 minutes until bright and crisp-tender. 5. Serve over rice with lime and fresh Thai basil. Snake beans thrive in the Dry Season gardens of Darwin and strengthen the Spleen while the body builds reserves.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Roasted Sweet Potato &amp; Red Lentil Bowl</div>
-      <div class="recipe-trinity">Millet (Grain) + Roasted Sweet Potato (Green/Vegetable) + Red Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
-      <div class="recipe-steps">1. Cook Millet. 2. Cube sweet potato; toss with coconut oil and cumin and roast at 200C for 25 minutes. 3. Simmer red lentils with garlic, ginger and turmeric until soft. 4. Layer millet, lentils and sweet potato. 5. Finish with fresh coriander and a squeeze of lime. Sweet potato is a Dry Season staple across the top end — sweet, warming and grounding.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Eggplant (1 kg)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Pumpkin (1 kg)</li>
-<li>Snake Beans (6 bunches)</li>
-<li>Sweet Potato (2 kg)</li>
-<li>Sweet Potato Leaves (2 bunches)</li>
-<li>Water Spinach (2 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (4)</li>
-<li>Limes</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Oil</li>
-<li>Hemp Seeds (1 bag)</li>
-<li>Macadamias (1 bag)</li>
-<li>Pepitas (1 bag)</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Shallots</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Papaya (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m3" data-month="3" hidden>
-<div class="month-eyebrow">Month 3 &middot; Spring Quarter</div>
-<h2 class="month-title">The Dry Plateau <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
-<p class="month-intro">The Dry Plateau is the calm before the climb. Days stay clear but begin to warm, and the land starts to dry out completely. This is a transition month: we keep the grounding foods of the Dry but begin to introduce lighter, cooling greens so the body is not caught off guard when the Build-Up arrives. The Spleen and Stomach are supported to keep digestion steady through the change.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Brown Rice w/ Coconut &amp; Banana</td>
-<td>Jasmine Rice, Bok Choy, Mung Beans</td>
-<td>Millet, Pumpkin, Red Lentils</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Rolled Oats w/ Papaya &amp; Lime</td>
-<td>Sorghum, Kangkong, Chickpeas</td>
-<td>Quinoa, Snake Beans, Tempeh</td>
-<td>Ginger-Lemon Brew</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Savory Millet Congee w/ Ginger</td>
-<td>Brown Rice, Chinese Cabbage, White Beans</td>
-<td>Wild Rice, Zucchini, Black-Eye Peas</td>
-<td>Fennel &amp; Mint Brew</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Warm Amaranth w/ Mango &amp; Pepitas</td>
-<td>Jasmine Rice, Water Spinach, Adzuki Beans</td>
-<td>Buckwheat, Sweet Potato Leaves, Lentils</td>
-<td>Stewed Papaya w/ Ginger</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Teff Porridge w/ Banana &amp; Sesame</td>
-<td>Millet, Bok Choy, Tempeh</td>
-<td>Brown Rice, Kangkong, Kidney Beans</td>
-<td>CCF Brew w/ Lemon</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Warm Quinoa w/ Pineapple &amp; Mint</td>
-<td>Wild Rice, Snake Beans, Chickpeas</td>
-<td>Sorghum, Roasted Pumpkin, Mung Beans</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Cooling Oat Bowl w/ Cucumber &amp; Lime</td>
-<td>Brown Rice, Chinese Broccoli, Black Beans</td>
-<td>Pumpkin &amp; Mung Bean Stew over Jasmine Rice</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Mung Bean &amp; Bok Choy Transition Bowl</div>
-      <div class="recipe-trinity">Jasmine Rice (Grain) + Bok Choy (Green) + Mung Beans (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Cook Jasmine Rice. 2. Halve baby bok choy and steam for 3 minutes. 3. Warm cooked mung beans with ginger, garlic and a splash of coconut aminos. 4. Arrange rice, bok choy and mung beans in a bowl. 5. Finish with sesame seeds and spring onion. Mung beans begin the gentle cooling the body needs as the Dry Plateau warms toward the Build-Up.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Zucchini &amp; Black-Eye Pea Wild Rice Bowl</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Zucchini (Green) + Black-Eye Peas (Protein) + Fennel &amp; Mint Brew (Seal)</div>
-      <div class="recipe-steps">1. Cook Wild Rice. 2. Slice zucchini into half-moons and sauté with garlic for 3 minutes. 3. Warm black-eye peas with cumin and a pinch of smoked paprika. 4. Combine with wild rice. 5. Top with fresh coriander and lime juice. Light, hydrating zucchini balances the still-grounding black-eye peas — a true transition plate.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Cucumber (2)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Pumpkin (2.5 kg)</li>
-<li>Snake Beans (4 bunches)</li>
-<li>Sweet Potato Leaves (2 bunches)</li>
-<li>Water Spinach (2 bunches)</li>
-<li>Zucchini (1 kg)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (4)</li>
-<li>Limes (4)</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Jasmine Rice (1 kg)</li>
-<li>Millet (1 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (1 kg dry)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (2 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Pepitas (1 bag)</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Fresh Mint (2 bunches)</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Smoked Paprika</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Papaya (for Seals)</li>
-</ul>
-    </div>
 </section>
 
   <section class="month-panel" id="m4" data-month="4" hidden>
-<div class="month-eyebrow">Month 4 &middot; Summer Quarter</div>
-<h2 class="month-title">The Build-Up Begins <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
+<div class="month-eyebrow">Feb &middot; Dry Season</div>
+<h2 class="month-title">The Build-Up</h2>
 <p class="month-intro">The Build-Up is the most energetically intense period of the Tropical North year — temperatures climb, humidity rises, thunderstorms develop. This is Fire Phase: the body needs cooling, hydrating foods to prevent the heat from penetrating too deeply. We emphasize bitter greens to clear Heart heat and light grains that do not add to internal fire.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Cooling Rice Congee w/ Cucumber &amp; Mint</td>
 <td>Jasmine Rice, Bitter Melon, Mung Beans</td>
 <td>Wild Rice, Watercress, White Beans</td>
-<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Oat Porridge w/ Banana &amp; Coconut Milk</td>
 <td>Brown Rice, Bok Choy, Tempeh</td>
 <td>Millet, Water Spinach, Chickpeas</td>
-<td>Fresh Mango w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Chilled Amaranth w/ Mango &amp; Lime</td>
 <td>Sorghum, Chinese Broccoli, Adzuki Beans</td>
 <td>Quinoa, Kangkong, Lentil Dahl</td>
-<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Warm Millet w/ Papaya &amp; Chia</td>
 <td>Wild Rice, Bitter Melon, Mung Beans</td>
 <td>Brown Rice, Bok Choy, Black-Eye Peas</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Brown Rice w/ Coconut &amp; Pineapple</td>
 <td>Millet, Water Spinach, White Beans</td>
 <td>Buckwheat, Bitter Greens, Red Lentils</td>
-<td>Fresh Papaya w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Teff Porridge w/ Banana &amp; Hemp</td>
 <td>Brown Rice, Chinese Cabbage, Tempeh</td>
 <td>Wild Rice, Kangkong, Kidney Beans</td>
-<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Cooling Oat Bowl w/ Cucumber Juice</td>
 <td>Jasmine Rice, Bok Choy, Chickpeas</td>
 <td>Millet, Watercress, Adzuki Beans</td>
-<td>Fresh Watermelon w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Bitter Melon &amp; Mung Bean Cooling Bowl</div>
-      <div class="recipe-trinity">Jasmine Rice (Grain) + Bitter Melon (Green) + Mung Beans (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
+      <div class="recipe-trinity">Jasmine Rice (Grain) + Bitter Melon (Green) + Mung Beans (Protein)</div>
       <div class="recipe-steps">1. Cook Jasmine Rice. 2. Slice bitter melon thinly; salt for 10 minutes then rinse to reduce bitterness. 3. Stir-fry bitter melon with garlic and a drop of sesame oil for 3 minutes. 4. Warm pre-cooked mung beans with ginger and coconut aminos. 5. Serve over rice. Bitter melon is the most potent cooling food available in the Tropical North and clears Heart heat during the Build-Up.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Mango &amp; Amaranth Sunrise Bowl</div>
-      <div class="recipe-trinity">Amaranth (Grain) + Fresh Mango (Green/Fruit) + Chia Seeds (Protein supplement) + Coriander-Seed Cooler (Seal)</div>
+      <div class="recipe-trinity">Amaranth (Grain) + Fresh Mango (Green/Fruit) + Chia Seeds (Protein supplement)</div>
       <div class="recipe-steps">1. Cook Amaranth until soft; allow to cool slightly. 2. Dice ripe mango; squeeze fresh lime over it. 3. Layer amaranth with mango and a tablespoon of chia seeds. 4. Top with fresh mint and a drizzle of coconut milk. Cooling, hydrating, and light — suited to the Build-Up&#x27;s rising heat.</div>
     </div>
 </div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bitter Greens (2 bunches)</li>
-<li>Bitter Melon (4)</li>
-<li>Bok Choy (6 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Cucumber (4)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Water Spinach (4 bunches)</li>
-<li>Watercress (4 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (4)</li>
-<li>Limes (2)</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Jasmine Rice (1 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (0.5 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (1 kg dry)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Coconut Milk (2 × 400g tins)</li>
-<li>Hemp Seeds (1 bag)</li>
-<li>Sesame Oil</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Fresh Mint (2 bunches)</li>
-<li>Garlic</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Mango (for Seals)</li>
-<li>Papaya (for Seals)</li>
-<li>Watermelon (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m5" data-month="5" hidden>
-<div class="month-eyebrow">Month 5 &middot; Summer Quarter</div>
-<h2 class="month-title">The Late Dry Intensity <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
-<p class="month-intro">The Late Dry Intensity pushes the heat higher while the air stays dry and dusty. This is full Fire Phase: the Heart works hard and the body loses fluids quickly. We focus on cooling, moistening foods — bitter greens, cucumber, melon and mung beans — and keep grains light so they never add to internal heat. Hydration with every meal is the priority this month.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Cooling Oat Bowl w/ Watermelon &amp; Mint</td>
-<td>Jasmine Rice, Bitter Melon, Mung Beans</td>
-<td>Millet, Watercress, White Beans</td>
-<td>Fennel &amp; Mint Cooler</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Chilled Amaranth w/ Mango &amp; Lime</td>
-<td>Brown Rice, Bok Choy, Tempeh</td>
-<td>Quinoa, Cucumber &amp; Mint Salad, Chickpeas</td>
-<td>Fresh Mango w/ Lime &amp; Mint</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Rice Congee w/ Cucumber &amp; Coriander</td>
-<td>Wild Rice, Water Spinach, Adzuki Beans</td>
-<td>Jasmine Rice, Kangkong, Lentil Dahl</td>
-<td>Coriander-Seed Cooler</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Warm Millet w/ Papaya &amp; Chia</td>
-<td>Jasmine Rice, Chinese Broccoli, Mung Beans</td>
-<td>Brown Rice, Bitter Greens, Black-Eye Peas</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Oat Porridge w/ Banana &amp; Coconut Milk</td>
-<td>Millet, Watercress, Chickpeas</td>
-<td>Wild Rice, Zucchini, Red Lentils</td>
-<td>Fresh Papaya w/ Mint</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Chilled Quinoa w/ Pineapple &amp; Mint</td>
-<td>Brown Rice, Kangkong, White Beans</td>
-<td>Jasmine Rice, Bok Choy, Tempeh</td>
-<td>CCF Cooler w/ Lime</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Cooling Teff Bowl w/ Rockmelon</td>
-<td>Jasmine Rice, Bitter Melon, Adzuki Beans</td>
-<td>Mung Bean &amp; Cucumber Soup over Millet</td>
-<td>Fresh Watermelon w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Watercress &amp; White Bean Cooling Bowl</div>
-      <div class="recipe-trinity">Millet (Grain) + Watercress (Green) + White Beans (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Millet and let it cool slightly. 2. Wash a large bunch of watercress; leave it fresh and uncooked. 3. Warm white beans with garlic, lemon juice and a pinch of salt. 4. Combine millet and beans, then fold through the watercress so it just wilts. 5. Finish with olive oil and fresh mint. Watercress is one of the most cooling greens available and clears Heart heat during the Late Dry.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Cucumber &amp; Mint Quinoa Salad with Chickpeas</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Cucumber &amp; Mint (Green) + Chickpeas (Protein) + Coriander-Seed Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Quinoa and spread it out to cool. 2. Dice two Lebanese cucumbers and chop a handful of mint. 3. Rinse chickpeas and toss with lime juice and a pinch of cumin. 4. Combine everything with a drizzle of olive oil. 5. Serve cool, never chilled straight from the fridge. Cucumber hydrates and cools — the perfect counterweight to the dry intensity of the season.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bitter Greens (2 bunches)</li>
-<li>Bitter Melon (4)</li>
-<li>Bok Choy (4 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Cucumber (6)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Water Spinach (2 bunches)</li>
-<li>Watercress (4 bunches)</li>
-<li>Zucchini (1 kg)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li>Lemons</li>
-<li>Limes (2)</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li>Rockmelon (2)</li>
-<li>Watermelon (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Jasmine Rice (1.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Mung Beans (1 kg dry)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut Milk (2 × 400g tins)</li>
-<li>Extra Virgin Olive Oil</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Coriander (2 bunches)</li>
-<li>Fresh Mint (6 bunches)</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Mango (for Seals)</li>
-<li>Papaya (for Seals)</li>
-<li>Watermelon (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m6" data-month="6" hidden>
-<div class="month-eyebrow">Month 6 &middot; Summer Quarter</div>
-<h2 class="month-title">The Pre-Monsoon Surge <span style="font-size:.7em;opacity:.7">(Late Fire)</span></h2>
-<p class="month-intro">The Pre-Monsoon Surge is the heaviest stretch of the year — building cloud, rising humidity and short, sharp storms that bring little relief. This is late Fire Phase: heat is now joined by dampness, which weighs on the Spleen. We keep meals cooling but add gentle drying foods like adzuki beans and barley-style grains, and keep everything light, fresh and easy to digest.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Rice Congee w/ Ginger &amp; Spring Onion</td>
-<td>Jasmine Rice, Kangkong, Adzuki Beans</td>
-<td>Millet, Bok Choy, Mung Beans</td>
-<td>Fennel &amp; Mint Cooler</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Oat Porridge w/ Papaya &amp; Lime</td>
-<td>Brown Rice, Bitter Melon, Chickpeas</td>
-<td>Wild Rice, Watercress, White Beans</td>
-<td>Fresh Mango w/ Lime &amp; Mint</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Warm Millet w/ Banana &amp; Pepitas</td>
-<td>Sorghum, Water Spinach, Tempeh</td>
-<td>Quinoa, Zucchini, Red Lentils</td>
-<td>Coriander-Seed Cooler</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Chilled Amaranth w/ Mango &amp; Coconut</td>
-<td>Jasmine Rice, Chinese Broccoli, Mung Beans</td>
-<td>Brown Rice, Kangkong, Adzuki Beans</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Teff Porridge w/ Pineapple &amp; Chia</td>
-<td>Millet, Bok Choy, Black-Eye Peas</td>
-<td>Jasmine Rice, Bitter Greens, Lentil Dahl</td>
-<td>Fresh Papaya w/ Mint</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Cooling Oat Bowl w/ Cucumber &amp; Mint</td>
-<td>Wild Rice, Chinese Cabbage, Kidney Beans</td>
-<td>Sorghum, Water Spinach, Tempeh</td>
-<td>CCF Cooler w/ Lime</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Warm Quinoa w/ Banana &amp; Coconut</td>
-<td>Jasmine Rice, Kangkong, Chickpeas</td>
-<td>Adzuki Bean &amp; Pumpkin Stew over Millet</td>
-<td>Fresh Watermelon w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Kangkong &amp; Adzuki Bean Damp-Clearing Bowl</div>
-      <div class="recipe-trinity">Jasmine Rice (Grain) + Kangkong (Green) + Adzuki Beans (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Jasmine Rice. 2. Simmer pre-soaked adzuki beans with a slice of ginger until tender (about 40 minutes). 3. Stir-fry kangkong with garlic over high heat for 60 seconds. 4. Season beans with coconut aminos and a squeeze of lime. 5. Serve beans and kangkong over rice. Adzuki beans gently drain the dampness that builds as humidity climbs before the monsoon.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Adzuki Bean &amp; Pumpkin Stew over Millet</div>
-      <div class="recipe-trinity">Millet (Grain) + Pumpkin (Green/Vegetable) + Adzuki Beans (Protein) + Coriander-Seed Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Millet. 2. Sauté onion, garlic and ginger in coconut oil. 3. Add cubed pumpkin, cooked adzuki beans, a pinch of turmeric and enough water to cover. 4. Simmer 20 minutes until the pumpkin is soft and the stew thickens. 5. Serve over millet with fresh coriander. Pumpkin steadies the Spleen while adzuki beans keep the stew light — a comforting anchor for the pre-monsoon weeks.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bitter Greens (2 bunches)</li>
-<li>Bitter Melon (2)</li>
-<li>Bok Choy (4 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Cucumber (2)</li>
-<li>Kangkong (Water Morning Glory) (6 bunches)</li>
-<li>Pumpkin (1 kg)</li>
-<li>Water Spinach (4 bunches)</li>
-<li>Watercress (2 bunches)</li>
-<li>Zucchini (1 kg)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (4)</li>
-<li>Limes (2)</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1 kg)</li>
-<li>Jasmine Rice (1.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (1 kg dry)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (2 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Coconut Oil</li>
-<li>Pepitas (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Fresh Mint (2 bunches)</li>
-<li>Garlic</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Mango (for Seals)</li>
-<li>Papaya (for Seals)</li>
-<li>Watermelon (for Seals)</li>
-</ul>
-    </div>
 </section>
 
   <section class="month-panel" id="m7" data-month="7" hidden>
-<div class="month-eyebrow">Month 7 &middot; Autumn Quarter</div>
-<h2 class="month-title">The First Rains <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
+<div class="month-eyebrow">Mar &middot; Wet Season</div>
+<h2 class="month-title">The First Rains</h2>
 <p class="month-intro">The Wet Season arrives with dramatic thunderstorms and sustained monsoonal rain. The body must adapt to heavy humidity, fluctuating temperatures, and the specific dampness that the Wet Season carries. We focus on supporting the Spleen and Kidney — the organs most challenged by excess dampness — while keeping meals light and digestible.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Ginger Rice Congee w/ Scallion</td>
 <td>Brown Rice, Kangkong, Red Lentil Dahl</td>
 <td>Millet, Bok Choy, Black Beans</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Warm Oats w/ Cinnamon &amp; Banana</td>
 <td>Wild Rice, Water Spinach, Tempeh</td>
 <td>Quinoa, Chinese Broccoli, White Beans</td>
-<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Savory Millet Congee w/ Mushroom</td>
 <td>Sorghum, Bitter Melon, Mung Beans</td>
 <td>Brown Rice, Kangkong, Adzuki Beans</td>
-<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Teff Porridge w/ Coconut &amp; Cinnamon</td>
 <td>Millet, Bok Choy, Chickpeas</td>
 <td>Wild Rice, Water Spinach, Kidney Beans</td>
-<td>Stewed Banana w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Brown Rice w/ Turmeric &amp; Pepper</td>
 <td>Brown Rice, Chinese Cabbage, Lentil Dahl</td>
 <td>Buckwheat, Bitter Greens, Black-Eye Peas</td>
-<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Savory Oat Congee w/ Ginger &amp; Sesame</td>
 <td>Quinoa, Kangkong, White Beans</td>
 <td>Millet, Pumpkin, Red Lentils</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Amaranth w/ Star Anise &amp; Coconut</td>
 <td>Wild Rice, Bok Choy, Tempeh</td>
 <td>Brown Rice, Water Spinach, Black Beans</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Ginger Rice Congee — The Monsoon Anchor</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Kangkong (Green) + Red Lentil Dahl (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Simmer 1 cup brown rice in 5 cups water with a thumb of fresh ginger and 2 garlic cloves until it becomes a thick congee (approximately 45 minutes). 2. Prepare a simple red lentil dahl: cook red lentils with turmeric, cumin, and coconut milk until soft. 3. Blanch kangkong in boiling water for 30 seconds. 4. Serve congee topped with kangkong, dahl, and fresh coriander. Congee is the most Spleen-protective food available during the Wet Season&#x27;s dampness.</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Kangkong (Green) + Red Lentil Dahl (Protein)</div>
+      <div class="recipe-steps"></div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Simmer 1 cup brown rice in 5 cups water with a thumb of fresh ginger and 2 garlic</div>
+      
+      <div class="recipe-steps">cloves until it becomes a thick congee (approximately 45 minutes). 2. Prepare a simple red lentil dahl: cook red lentils with turmeric, cumin, and coconut milk until soft. 3. Blanch kangkong in boiling water for 30 seconds. 4. Serve congee topped with kangkong, dahl, and fresh coriander. Congee is the most Spleen-protective food available during the Wet Season&#x27;s dampness.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Mushroom &amp; Millet Wet Season Bowl</div>
-      <div class="recipe-trinity">Millet (Grain) + Shiitake Mushroom (Green/Fungus) + Mung Beans (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-trinity">Millet (Grain) + Shiitake Mushroom (Green/Fungus) + Mung Beans (Protein)</div>
       <div class="recipe-steps">1. Cook Millet. 2. Soak and slice dried shiitake mushrooms; stir-fry with garlic, ginger, and a splash of coconut aminos. 3. Warm pre-cooked mung beans with a pinch of cumin. 4. Assemble and top with sesame seeds and scallion. Shiitake mushrooms tonify the immune system during the Wet Season&#x27;s damp challenge.</div>
     </div>
 </div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bitter Greens (2 bunches)</li>
-<li>Bitter Melon (2)</li>
-<li>Bok Choy (6 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kangkong (Water Morning Glory) (6 bunches)</li>
-<li>Pumpkin (1 kg)</li>
-<li>Shiitake Mushrooms (2 packs)</li>
-<li>Water Spinach (6 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (2 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (4 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (2 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Black Pepper</li>
-<li>Cinnamon</li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li>Star Anise</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Banana (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m8" data-month="8" hidden>
-<div class="month-eyebrow">Month 8 &middot; Autumn Quarter</div>
-<h2 class="month-title">The Full Monsoon <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
-<p class="month-intro">The Full Monsoon brings sustained rain, flooded creeks and air that never quite dries out. This is deep Water Phase in the Tropics: dampness is everywhere, and the Spleen and Kidney carry the load. We favour warm, cooked meals — congees, stews and stir-fries — with drying spices like ginger and cumin, and avoid cold or raw foods that add to internal damp.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Ginger Rice Congee w/ Sesame</td>
-<td>Brown Rice, Bok Choy, Red Lentils</td>
-<td>Millet, Pumpkin, Black Beans</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Warm Oats w/ Cinnamon &amp; Banana</td>
-<td>Wild Rice, Kangkong, Tempeh</td>
-<td>Quinoa, Chinese Broccoli, Adzuki Beans</td>
-<td>Ginger-Lemon Brew</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Savory Millet Congee w/ Mushroom</td>
-<td>Sorghum, Water Spinach, Chickpeas</td>
-<td>Brown Rice, Shiitake Mushrooms, Mung Beans</td>
-<td>Fennel &amp; Mint Brew</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Teff Porridge w/ Coconut &amp; Cardamom</td>
-<td>Millet, Chinese Cabbage, Kidney Beans</td>
-<td>Wild Rice, Bok Choy, Red Lentils</td>
-<td>Stewed Banana w/ Ginger</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Warm Brown Rice w/ Turmeric &amp; Pepper</td>
-<td>Brown Rice, Kangkong, Black-Eye Peas</td>
-<td>Buckwheat, Pumpkin, Tempeh</td>
-<td>CCF Brew w/ Lemon</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Savory Oat Congee w/ Ginger &amp; Spring Onion</td>
-<td>Quinoa, Bok Choy, Adzuki Beans</td>
-<td>Millet, Water Spinach, Chickpeas</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Warm Amaranth w/ Star Anise &amp; Coconut</td>
-<td>Wild Rice, Chinese Broccoli, Black Beans</td>
-<td>Red Lentil &amp; Pumpkin Dahl over Brown Rice</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Pumpkin &amp; Black Bean Monsoon Bowl</div>
-      <div class="recipe-trinity">Millet (Grain) + Pumpkin (Green/Vegetable) + Black Beans (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Cook Millet. 2. Cube pumpkin and roast with coconut oil, cumin and a pinch of chilli at 200C for 25 minutes. 3. Warm black beans with garlic, ginger and a splash of coconut aminos. 4. Layer millet, black beans and pumpkin. 5. Finish with spring onion and toasted sesame. Warm, cooked and drying — this bowl protects the Spleen through the wettest weeks.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Red Lentil &amp; Pumpkin Dahl over Brown Rice</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Pumpkin (Green/Vegetable) + Red Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Sauté onion, garlic, ginger, cumin and turmeric in coconut oil. 3. Add red lentils, diced pumpkin and coconut milk thinned with water. 4. Simmer 20 minutes until thick and creamy. 5. Serve over rice with fresh coriander and lime. Dahl is the Monsoon&#x27;s great comfort food — warming, easy to digest and deeply nourishing.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (6 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (4 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Pumpkin (2.5 kg)</li>
-<li>Shiitake Mushrooms (4 packs)</li>
-<li>Water Spinach (4 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li>Limes</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (2 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black Beans (4 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Coconut Oil</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Black Pepper</li>
-<li>Cardamom</li>
-<li>Cinnamon</li>
-<li>Fresh Chilli</li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li>Star Anise</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Banana (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m9" data-month="9" hidden>
-<div class="month-eyebrow">Month 9 &middot; Autumn Quarter</div>
-<h2 class="month-title">The Wet Peak <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
-<p class="month-intro">The Wet Peak is the hottest, wettest stretch of the monsoon — tropical lows, steamy afternoons and heavy overnight rain. This transition month asks the body to manage heat and dampness at the same time. We balance cooling greens with warm cooked grains and drying legumes, keeping portions moderate and meals simple so digestion stays strong.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Rice Congee w/ Ginger &amp; Coriander</td>
-<td>Jasmine Rice, Kangkong, Mung Beans</td>
-<td>Millet, Bok Choy, Adzuki Beans</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Warm Oats w/ Banana &amp; Coconut</td>
-<td>Brown Rice, Water Spinach, Tempeh</td>
-<td>Wild Rice, Pumpkin, Red Lentils</td>
-<td>Ginger-Lemon Brew</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Savory Millet w/ Shiitake &amp; Sesame</td>
-<td>Sorghum, Bitter Melon, Chickpeas</td>
-<td>Quinoa, Chinese Broccoli, Black Beans</td>
-<td>Fennel &amp; Mint Brew</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Teff Porridge w/ Papaya &amp; Lime</td>
-<td>Jasmine Rice, Bok Choy, White Beans</td>
-<td>Brown Rice, Kangkong, Mung Beans</td>
-<td>Stewed Banana w/ Ginger</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Warm Amaranth w/ Mango &amp; Ginger</td>
-<td>Millet, Chinese Cabbage, Adzuki Beans</td>
-<td>Buckwheat, Water Spinach, Tempeh</td>
-<td>CCF Brew w/ Lemon</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Brown Rice Congee w/ Spring Onion</td>
-<td>Wild Rice, Kangkong, Black-Eye Peas</td>
-<td>Jasmine Rice, Bitter Greens, Lentil Dahl</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Warm Quinoa w/ Banana &amp; Cinnamon</td>
-<td>Brown Rice, Bok Choy, Chickpeas</td>
-<td>Mung Bean &amp; Ginger Soup over Millet</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Bitter Melon &amp; Chickpea Wet Peak Stir</div>
-      <div class="recipe-trinity">Sorghum (Grain) + Bitter Melon (Green) + Chickpeas (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Cook Sorghum until chewy (about 50 minutes). 2. Slice bitter melon thinly, salt for 10 minutes and rinse. 3. Stir-fry with garlic and ginger for 3 minutes. 4. Add chickpeas and a splash of coconut aminos; toss until heated through. 5. Serve over sorghum with fresh coriander. Bitter melon clears heat while warm sorghum keeps the Spleen steady against the damp.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Mung Bean &amp; Ginger Soup over Millet</div>
-      <div class="recipe-trinity">Millet (Grain) + Bok Choy (Green) + Mung Beans (Protein) + Fennel &amp; Mint Brew (Seal)</div>
-      <div class="recipe-steps">1. Cook Millet. 2. Simmer mung beans with plenty of fresh ginger, garlic and water until soft and soupy (about 35 minutes). 3. Add halved bok choy for the last 3 minutes. 4. Season with coconut aminos and white pepper. 5. Ladle over millet. Mung bean soup is the classic remedy for summer heat with dampness — cooling, yet gentle on digestion.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bitter Greens (2 bunches)</li>
-<li>Bitter Melon (2)</li>
-<li>Bok Choy (6 bunches)</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kangkong (Water Morning Glory) (6 bunches)</li>
-<li>Pumpkin (1 kg)</li>
-<li>Shiitake Mushrooms (2 packs)</li>
-<li>Water Spinach (4 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (4)</li>
-<li>Limes (2)</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Jasmine Rice (1 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (0.5 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Mung Beans (1 kg dry)</li>
-<li>Red Lentils (0.5 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (2 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Cinnamon</li>
-<li>Fresh Coriander (2 bunches)</li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Banana (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m10" data-month="10" hidden>
-<div class="month-eyebrow">Month 10 &middot; Winter Quarter</div>
-<h2 class="month-title">The Monsoon Holds <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
-<p class="month-intro">The Monsoon Holds as the rains settle into a steadier rhythm and the heat begins, ever so slightly, to soften. This is Metal Phase in the Tropics: the Lungs are vulnerable to the constant moisture, and the body begins to look inward. We support the Lungs with white and pungent foods — white beans, ginger, garlic and Chinese cabbage — alongside warm grains that keep the Wet Season&#x27;s dampness in check.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Brown Rice Congee w/ Ginger &amp; Garlic</td>
-<td>Brown Rice, Chinese Cabbage, White Beans</td>
-<td>Millet, Pumpkin, Red Lentils</td>
-<td>Spiced Banana Anchor (Cinnamon &amp; Cardamom)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Warm Oats w/ Pear &amp; Cinnamon</td>
-<td>Wild Rice, Bok Choy, Chickpeas</td>
-<td>Quinoa, Kangkong, Tempeh</td>
-<td>Stewed Papaya w/ Clove</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Savory Millet w/ Sesame &amp; Spring Onion</td>
-<td>Sorghum, Chinese Broccoli, Adzuki Beans</td>
-<td>Brown Rice, Daikon &amp; Greens, White Beans</td>
-<td>Baked Cinnamon Banana</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Teff Porridge w/ Coconut &amp; Ginger</td>
-<td>Millet, Water Spinach, Black Beans</td>
-<td>Wild Rice, Chinese Cabbage, Mung Beans</td>
-<td>Cardamom-Stewed Pineapple</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Warm Amaranth w/ Banana &amp; Almonds</td>
-<td>Brown Rice, Kangkong, Kidney Beans</td>
-<td>Buckwheat, Bok Choy, Chickpeas</td>
-<td>Warm CCF Brew</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Rice Congee w/ Shiitake &amp; Pepper</td>
-<td>Quinoa, Chinese Cabbage, Tempeh</td>
-<td>Millet, Pumpkin, Black-Eye Peas</td>
-<td>Spiced Papaya Anchor</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Warm Quinoa w/ Papaya &amp; Sesame</td>
-<td>Wild Rice, Chinese Broccoli, Red Lentils</td>
-<td>White Bean &amp; Daikon Soup over Brown Rice</td>
-<td>Stewed Banana w/ Ginger</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Chinese Cabbage &amp; White Bean Lung Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Chinese Cabbage (Green) + White Beans (Protein) + Spiced Banana Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Shred Chinese cabbage and sauté with plenty of garlic and ginger for 4 minutes. 3. Warm white beans with white pepper and a splash of vegetable stock. 4. Combine cabbage and beans over rice. 5. Finish with toasted sesame and spring onion. White and pungent foods nourish the Lungs, which are most challenged by the monsoon&#x27;s lingering moisture.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">White Bean &amp; Daikon Soup over Brown Rice</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Daikon &amp; Greens (Green/Vegetable) + White Beans (Protein) + Baked Cinnamon Banana (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Simmer sliced daikon with ginger, garlic and vegetable stock for 15 minutes. 3. Add white beans and a handful of bok choy leaves; simmer 5 minutes more. 4. Season with white pepper and coconut aminos. 5. Ladle over rice. Daikon moves stuck dampness and supports the Lungs — a light, clarifying soup for the holding rains.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (4 bunches)</li>
-<li>Chinese Cabbage (4)</li>
-<li>Daikon (4)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Mixed Spring Greens (2 bunches)</li>
-<li>Pumpkin (2 kg)</li>
-<li>Shiitake Mushrooms (2 packs)</li>
-<li>Water Spinach (2 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li>Papaya (2)</li>
-<li>Pears (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (2 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (0.5 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (6 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Almonds (1 bag)</li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Sesame Seeds (1 bag)</li>
-<li>Vegetable Stock</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Black Pepper</li>
-<li>Cinnamon</li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Banana (for Seals)</li>
-<li>Papaya (for Seals)</li>
-<li>Pineapple (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m11" data-month="11" hidden>
-<div class="month-eyebrow">Month 11 &middot; Winter Quarter</div>
-<h2 class="month-title">The Wet Recedes <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
-<p class="month-intro">The Wet Recedes as storms grow fewer, the creeks drop and the first dry southeasterly breezes arrive. Still in Metal Phase, the body begins letting go of the season&#x27;s accumulated dampness. We use drying grains and legumes, pungent aromatics and lighter greens to clear what remains, preparing the system for the clear energy of the coming Dry.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Oats w/ Banana &amp; Cinnamon</td>
-<td>Brown Rice, Kangkong, Adzuki Beans</td>
-<td>Millet, Chinese Broccoli, Chickpeas</td>
-<td>Spiced Banana Anchor (Cinnamon &amp; Cardamom)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Savory Millet Congee w/ Ginger</td>
-<td>Wild Rice, Bok Choy, Tempeh</td>
-<td>Quinoa, Pumpkin, Red Lentils</td>
-<td>Stewed Papaya w/ Clove</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Warm Brown Rice w/ Coconut &amp; Pepitas</td>
-<td>Sorghum, Chinese Cabbage, White Beans</td>
-<td>Brown Rice, Snake Beans, Black Beans</td>
-<td>Baked Cinnamon Banana</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Teff Porridge w/ Papaya &amp; Hemp</td>
-<td>Millet, Water Spinach, Mung Beans</td>
-<td>Wild Rice, Kangkong, Kidney Beans</td>
-<td>Cardamom-Stewed Pineapple</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Warm Amaranth w/ Mango &amp; Sesame</td>
-<td>Brown Rice, Chinese Broccoli, Chickpeas</td>
-<td>Buckwheat, Sweet Potato Leaves, Adzuki Beans</td>
-<td>Warm CCF Brew</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Rice Congee w/ Spring Onion &amp; Pepper</td>
-<td>Quinoa, Bok Choy, Black-Eye Peas</td>
-<td>Millet, Pumpkin, Tempeh</td>
-<td>Spiced Papaya Anchor</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Warm Quinoa w/ Pineapple &amp; Coconut</td>
-<td>Wild Rice, Snake Beans, Red Lentils</td>
-<td>Adzuki &amp; Sweet Potato Stew over Brown Rice</td>
-<td>Stewed Banana w/ Ginger</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Snake Bean &amp; Black Bean Receding Wet Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Snake Beans (Green) + Black Beans (Protein) + Spiced Banana Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Cut snake beans into short lengths and stir-fry with garlic and chilli for 3 minutes. 3. Warm black beans with cumin and a splash of coconut aminos. 4. Toss beans together and serve over rice. 5. Finish with lime and fresh coriander. Snake beans return to the markets as the rains ease — a sign the Dry is on its way.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Adzuki &amp; Sweet Potato Stew over Brown Rice</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Sweet Potato (Green/Vegetable) + Adzuki Beans (Protein) + Baked Cinnamon Banana (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Sauté onion, garlic and ginger in coconut oil. 3. Add cubed sweet potato, cooked adzuki beans, a pinch of cinnamon and water to cover. 4. Simmer 20 minutes until thick. 5. Serve over rice with spring onion. Adzuki beans keep draining the last of the season&#x27;s dampness while sweet potato rebuilds the Spleen.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (4 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kangkong (Water Morning Glory) (4 bunches)</li>
-<li>Pumpkin (2 kg)</li>
-<li>Snake Beans (4 bunches)</li>
-<li>Sweet Potato (1 kg)</li>
-<li>Sweet Potato Leaves (2 bunches)</li>
-<li>Water Spinach (2 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li>Limes</li>
-<li>Mango (2)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (2 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (0.5 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (0.5 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (1 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (2 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Coconut (flakes / milk)</li>
-<li>Coconut Aminos</li>
-<li>Coconut Oil</li>
-<li>Hemp Seeds (1 bag)</li>
-<li>Pepitas (1 bag)</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Black Pepper</li>
-<li>Cinnamon</li>
-<li>Fresh Chilli</li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Banana (for Seals)</li>
-<li>Papaya (for Seals)</li>
-<li>Pineapple (for Seals)</li>
-</ul>
-    </div>
-</section>
-
-  <section class="month-panel" id="m12" data-month="12" hidden>
-<div class="month-eyebrow">Month 12 &middot; Winter Quarter</div>
-<h2 class="month-title">The Return to Dry <span style="font-size:.7em;opacity:.7">(Early Wood)</span></h2>
-<p class="month-intro">The Return to Dry brings blue skies, falling humidity and the first cool mornings in months. This is Early Wood: energy begins to rise and move outward again after the long inward pull of the Wet. We support the Liver with fresh greens and light, upward-moving grains, while keeping a few warming foods on the table to carry the body smoothly into the new Dry Season.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
-<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
-<th>Day</th>
-<th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
-</tr></thead><tbody>
-<tr>
-<td class="tri-day">1/8/15/22</td>
-<td>Warm Quinoa w/ Mango &amp; Lime Zest</td>
-<td>Brown Rice, Kangkong, Chickpeas</td>
-<td>Millet, Snake Beans, Red Lentils</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
-</tr>
-<tr>
-<td class="tri-day">2/9/16/23</td>
-<td>Rolled Oats w/ Banana &amp; Macadamia</td>
-<td>Wild Rice, Bok Choy, Tempeh</td>
-<td>Quinoa, Roasted Pumpkin, Black-Eye Peas</td>
-<td>Ginger-Lemon Brew</td>
-</tr>
-<tr>
-<td class="tri-day">3/10/17/24</td>
-<td>Savory Teff w/ Shallots &amp; Sesame</td>
-<td>Sorghum, Water Spinach, White Beans</td>
-<td>Brown Rice, Chinese Broccoli, Adzuki Beans</td>
-<td>Fennel &amp; Mint Brew</td>
-</tr>
-<tr>
-<td class="tri-day">4/11/18/25</td>
-<td>Warm Amaranth w/ Papaya &amp; Pepitas</td>
-<td>Millet, Kangkong, Kidney Beans</td>
-<td>Wild Rice, Sweet Potato Leaves, Chickpeas</td>
-<td>Stewed Banana w/ Ginger</td>
-</tr>
-<tr>
-<td class="tri-day">5/12/19/26</td>
-<td>Brown Rice Congee w/ Ginger &amp; Spring Onion</td>
-<td>Brown Rice, Snake Beans, Mung Beans</td>
-<td>Buckwheat, Bok Choy, Red Lentils</td>
-<td>CCF Brew w/ Lemon</td>
-</tr>
-<tr>
-<td class="tri-day">6/13/20/27</td>
-<td>Warm Millet w/ Pineapple &amp; Chia</td>
-<td>Quinoa, Chinese Cabbage, Tempeh</td>
-<td>Millet, Roasted Sweet Potato, Black Beans</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
-</tr>
-<tr>
-<td class="tri-day">7/14/21/28</td>
-<td>Steel-Cut Oats w/ Mango &amp; Hemp</td>
-<td>Wild Rice, Kangkong, White Beans</td>
-<td>Green Lentil &amp; Greens Stew over Sorghum</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
-</tr>
-</tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
-<div class="recipe-grid">
-<div class="recipe-card">
-      <div class="recipe-title">Kangkong &amp; Chickpea Rising Qi Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Kangkong (Green) + Chickpeas (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Cook Brown Rice. 2. Warm chickpeas with garlic, ginger and a pinch of turmeric. 3. Add a bunch of kangkong and toss over high heat for 60 seconds. 4. Season with lime juice and coconut aminos. 5. Serve over rice with fresh Thai basil. Fresh greens move Liver Qi upward as the Dry returns and energy begins to rise.</div>
-    </div>
-<div class="recipe-card">
-      <div class="recipe-title">Green Lentil &amp; Greens Stew over Sorghum</div>
-      <div class="recipe-trinity">Sorghum (Grain) + Kangkong &amp; Bok Choy (Green) + Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
-      <div class="recipe-steps">1. Cook Sorghum. 2. Simmer lentils with onion, garlic, ginger and cumin until tender (about 25 minutes). 3. Stir in chopped kangkong and bok choy for the final 3 minutes. 4. Season with lemon juice and black pepper. 5. Serve over sorghum. A light, green stew that bridges the last of the Wet and the first clear days of the Dry.</div>
-    </div>
-</div>
-<div class="shop-box">
-      <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Greens &amp; Vegetables</strong></li>
-<li>Bok Choy (4 bunches)</li>
-<li>Brown Onions</li>
-<li>Chinese Broccoli (Gai Lan) (2 bunches)</li>
-<li>Chinese Cabbage (2)</li>
-<li>Kangkong (Water Morning Glory) (6 bunches)</li>
-<li>Mixed Spring Greens (2 bunches)</li>
-<li>Pumpkin (1 kg)</li>
-<li>Snake Beans (4 bunches)</li>
-<li>Sweet Potato (1 kg)</li>
-<li>Sweet Potato Leaves (2 bunches)</li>
-<li>Water Spinach (2 bunches)</li>
-<li><strong>Fruit</strong></li>
-<li>Bananas (2)</li>
-<li>Lemons</li>
-<li>Limes (2)</li>
-<li>Mango (4)</li>
-<li>Papaya (2)</li>
-<li>Pineapple (2)</li>
-<li><strong>Grains</strong></li>
-<li>Amaranth (0.5 kg)</li>
-<li>Brown Rice (1.5 kg)</li>
-<li>Buckwheat (0.5 kg)</li>
-<li>Millet (1.5 kg)</li>
-<li>Oats (rolled or steel-cut) (1 kg)</li>
-<li>Quinoa (1 kg)</li>
-<li>Sorghum (1 kg)</li>
-<li>Teff (0.5 kg)</li>
-<li>Wild Rice (1 kg)</li>
-<li><strong>Proteins</strong></li>
-<li>Adzuki Beans (0.5 kg dry)</li>
-<li>Black Beans (2 × 400g tins)</li>
-<li>Black-Eye Peas (2 × 400g tins)</li>
-<li>Chickpeas (4 × 400g tins)</li>
-<li>Green / Brown Lentils (0.5 kg dry)</li>
-<li>Kidney Beans (2 × 400g tins)</li>
-<li>Mung Beans (0.5 kg dry)</li>
-<li>Red Lentils (1 kg dry)</li>
-<li>Tempeh (3 packs)</li>
-<li>White Beans (4 × 400g tins)</li>
-<li><strong>Seeds, Nuts &amp; Pantry</strong></li>
-<li>Chia Seeds (1 bag)</li>
-<li>Coconut Aminos</li>
-<li>Hemp Seeds (1 bag)</li>
-<li>Macadamias (1 bag)</li>
-<li>Pepitas (1 bag)</li>
-<li>Sesame Seeds (1 bag)</li>
-<li><strong>Herbs, Spices &amp; Aromatics</strong></li>
-<li>Fresh Ginger</li>
-<li>Garlic</li>
-<li>Ground Cumin</li>
-<li>Shallots</li>
-<li>Spring Onions / Chives (2 bunches)</li>
-<li>Turmeric</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Banana (for Seals)</li>
-</ul>
-    </div>
 </section>
 
   <footer>
@@ -1811,30 +344,6 @@ function showMonth(num, btn) {
   document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
   btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
-}
-
-var _deferredInstallPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault(); _deferredInstallPrompt = e;
-  var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
-});
-window.addEventListener('appinstalled', function(){
-  var b = document.getElementById('installAppBtn'); if(b) b.style.display='none';
-});
-function installHaligricityApp(){
-  if(_deferredInstallPrompt){
-    _deferredInstallPrompt.prompt();
-    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    alert('To install: tap the Share icon, then "Add to Home Screen".');
-  } else {
-    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
-  }
-}
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
-  document.addEventListener('DOMContentLoaded', function(){
-    var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
-  });
 }
 </script>
 </body>

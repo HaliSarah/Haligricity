@@ -3,7 +3,7 @@
   Title: Pacific Coast Food Guide — Quick Access App
   Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
   Date: 2026-11-11
-  Modified By: Claude (Opus 5.5) — Tetralty update
+  Modified By: Claude (Cowork)
   Description: Installable quick-access app rendering the Pacific Coast
   Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
   + shopping list), generated from the source PDF via parse_guide.py.
@@ -27,12 +27,6 @@
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
   .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
-
-  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
-    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
-    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
-    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
-  #installAppBtn:hover { background:rgba(74,16,96,1); }
 
   header { text-align:center; padding:36px 0 10px; }
   .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
@@ -77,7 +71,6 @@
   .recipe-grid { display:flex; flex-direction:column; gap:12px; }
   .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
   .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
-  .shop-list li strong { color:var(--purple); }
   .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
   .recipe-steps { font-size:.86rem; line-height:1.7; }
 
@@ -100,7 +93,6 @@
 </style>
 </head>
 <body>
-<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
 
 <div class="wrap">
   <header>
@@ -115,1373 +107,1125 @@
     <summary>The California Philosophy</summary>
     <p>The California Haligric Guide is designed for the diverse microclimates of the Pacific coast and the fertile valleys. As shifting global patterns influence the state&#x27;s agriculture and temperature, this guide provides the metabolic adaptability required to navigate the cooling coastal fog and the drying inland heat.</p>
     <h4>The Calendar Decoder</h4>
-    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday).</p>
-    <p>Logic: By repeating the same Tetralty each Monday for a month, you establish a consistent rhythm that allows your body to align with California&#x27;s unique seasonal shifts at a cellular level.</p>
-    <h4>The Tetralty Formula</h4>
-    <p>Every day is a Tetralty: One Grain + One Green + One Protein + One Digestive Seal. This four-fold structure mirrors the four pillars of Haligricity — Thinking, Feeling, Doing and Being — ensuring cellular satiety, elemental balance and metabolic equilibrium without digestive fatigue. In California, we emphasize hydrating, mineral-rich greens and versatile grains like Quinoa and Wild Rice to maintain balance through the state&#x27;s long growing seasons.</p>
-    <p>The Seal is a small digestive finisher taken after lunch and dinner. It completes the six Vedic tastes and needs no cooking: a warm Digestive Brew (cumin, coriander, fennel, ginger and lemon) in the damp and spring months, a cooling brew or fresh fruit in peak heat, a Spiced Orchard Anchor of gently stewed fruit in late summer and autumn, and a Mineral Jing Truffle (a date filled with tahini or nuts) in deep winter. No refined sugar — sweetness comes only from fruit, dates and warm spices.</p>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Trinity each Monday for a month, you establish a consistent rhythm that allows your body to align with California&#x27;s unique seasonal shifts at a cellular level.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every day is a Trinity: One Grain + One Green + One Protein. In California, we emphasize hydrating, mineral-rich greens and versatile grains like Quinoa and Wild Rice to maintain balance through the state&#x27;s long growing seasons.</p>
   </details>
 
   <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/USA/West/Pacific-Coast.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
+  
 
   <nav class="month-tabs" id="monthTabs">
-    <button class="month-tab active" onclick="showMonth(1, this)">Month 1</button>
-    <button class="month-tab" onclick="showMonth(2, this)">Month 2</button>
-    <button class="month-tab" onclick="showMonth(3, this)">Month 3</button>
-    <button class="month-tab" onclick="showMonth(4, this)">Month 4</button>
-    <button class="month-tab" onclick="showMonth(5, this)">Month 5</button>
-    <button class="month-tab" onclick="showMonth(6, this)">Month 6</button>
-    <button class="month-tab" onclick="showMonth(7, this)">Month 7</button>
-    <button class="month-tab" onclick="showMonth(8, this)">Month 8</button>
-    <button class="month-tab" onclick="showMonth(9, this)">Month 9</button>
-    <button class="month-tab" onclick="showMonth(10, this)">Month 10</button>
-    <button class="month-tab" onclick="showMonth(11, this)">Month 11</button>
-    <button class="month-tab" onclick="showMonth(12, this)">Month 12</button>
+    <button class="month-tab active" onclick="showMonth(1, this)">Jan</button>
+    <button class="month-tab" onclick="showMonth(2, this)">Feb</button>
+    <button class="month-tab" onclick="showMonth(3, this)">Mar</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Apr</button>
+    <button class="month-tab" onclick="showMonth(5, this)">May</button>
+    <button class="month-tab" onclick="showMonth(6, this)">Jun</button>
+    <button class="month-tab" onclick="showMonth(7, this)">Jul</button>
+    <button class="month-tab" onclick="showMonth(8, this)">Aug</button>
+    <button class="month-tab" onclick="showMonth(9, this)">Sep</button>
+    <button class="month-tab" onclick="showMonth(10, this)">Oct</button>
+    <button class="month-tab" onclick="showMonth(11, this)">Nov</button>
+    <button class="month-tab" onclick="showMonth(12, this)">Dec</button>
   </nav>
 
   <section class="month-panel" id="m1" data-month="1" >
-<div class="month-eyebrow">Month 1 &middot; Spring Quarter</div>
-<h2 class="month-title">The Coastal Bloom <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
+<div class="month-eyebrow">Jan &middot; Spring Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 1-4: CALIFORNIA COASTAL EARLY SPRING ALIGNMENT California&#x27;s Spring is characterized by &quot;Wind&quot; and &quot;Dryness&quot; in many regions. To anchor your Haligricity here, we focus on nourishing the &#x27;Yin&#x27; and protecting the Liver. We utilize the bounty of coastal greens and aromatic herbs to move the Qi gently without over-drying the system.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Quinoa w/ Citrus Zest &amp; Hemp</td>
 <td>Wild Rice, Braised Artichokes, Seitan</td>
 <td>Millet, Sautéed Fennel, Red Lentils</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Warm Amaranth w/ Sliced Avocado (Warm)</td>
 <td>Brown Rice, Asparagus, Chickpeas</td>
 <td>Farro, Arugula (Wilted), Savory Seitan</td>
-<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Warm Steel-Cut Oats w/ Chia &amp; Berries</td>
 <td>Quinoa, Steamed Spinach, White Beans</td>
 <td>Buckwheat, Snap Peas, Red Lentils</td>
-<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Savory Millet w/ Fresh Herbs</td>
 <td>Brown Rice, Kale, Kidney Beans</td>
 <td>Wild Rice, Roasted Cauliflower, Seitan</td>
-<td>Stewed Strawberries w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Buckwheat w/ Flax &amp; Almonds</td>
 <td>Millet, Chard, Chickpea Mash</td>
 <td>Farro, Bok Choy, White Beans</td>
-<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Warm Spelt Porridge w/ Pumpkin Seeds</td>
 <td>Quinoa, Asparagus, Red Lentils</td>
 <td>Brown Rice, Fennel &amp; Celery, Seitan</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Teff w/ Walnuts &amp; Dates</td>
 <td>Wild Rice, Spinach, White Beans</td>
 <td>Lentil &amp; Vegetable Stew over Quinoa</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Coastal Artichoke &amp; Seitan Braise</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Artichokes (Green) + Seitan (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Artichokes (Green) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Simmer Wild Rice. 2. Clean and quarter fresh artichoke hearts (or use frozen/canned in water). 3. Sauté Seitan strips with sliced fennel. 4. Add artichokes and a splash of vegetable broth and Coconut Aminos. 5. Cover and simmer until artichokes are tender. This meal is aromatic and moves Liver Qi.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Quinoa &amp; Arugula Glow Bowl</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Arugula (Green) + White Beans (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Arugula (Green) + White Beans (Protein)</div>
       <div class="recipe-steps">1. Cook Quinoa. 2. In a pan, lightly warm white beans with garlic. 3. Throw in a large handful of fresh arugula; stir for only 30 seconds until just barely wilted. 4. Serve over the quinoa with a drizzle of lemon-tahini dressing. The bitterness of arugula clears internal heat.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (California Early Spring)</strong></li>
+      <ul class="shop-list"><li>Chickpeas &amp; White Navy Beans</li>
+<li>Kidney Beans</li>
+<li>Hemp Hearts (Moistening for CA dryness)</li>
 <li>Artichokes (Fresh or hearts in water)</li>
+<li>Almonds &amp; Pumpkin Seeds</li>
 <li>Fresh Fennel (3-4 bulbs)</li>
 <li>Asparagus (4 bunches)</li>
 <li>Arugula (Large tubs/bags)</li>
 <li>Spinach &amp; Kale</li>
-<li>Bok Choy &amp; Swiss Chard</li>
-<li>Cauliflower (2 heads)</li>
-<li>Avocados (Local CA)</li>
-<li>Lemons &amp; Oranges (for zest/juice)</li>
-<li>Fresh Herbs (Parsley, Cilantro, Mint)</li>
-<li>Fresh Ginger &amp; Garlic</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (Uptons or similar - 6-8 packs)</li>
-<li>Red Lentils (Dry)</li>
-<li>Chickpeas &amp; White Navy Beans</li>
-<li>Kidney Beans</li>
-<li>Hemp Hearts (Moistening for CA dryness)</li>
-<li>Almonds &amp; Pumpkin Seeds</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa (Moistening for CA dry-heat)</li>
+<li>Bok Choy &amp; Swiss Chard</li>
 <li>Wild Rice &amp; Brown Rice</li>
+<li>Cauliflower (2 heads)</li>
 <li>Farro &amp; Millet</li>
+<li>Avocados (Local CA)</li>
 <li>Steel-Cut Oats &amp; Amaranth</li>
+<li>Lemons &amp; Oranges (for zest/juice)</li>
 <li>Buckwheat, Spelt, &amp; Teff</li>
+<li>Fresh Herbs (Parsley, Cilantro, Mint)</li>
 <li>Flax Seeds &amp; Chia Seeds</li>
-<li><strong>Pantry</strong></li>
+<li>Fresh Ginger &amp; Garlic</li>
 <li>Coconut Aminos</li>
+<li>Seitan (Uptons or similar - 6-8 packs)</li>
 <li>Tahini &amp; Olive Oil</li>
-<li>Cumin, Cardamom, Sea Salt</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Strawberries (for Seals)</li>
-</ul>
+<li>Red Lentils (Dry)</li>
+<li>Cumin, Cardamom, Sea Salt</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m2" data-month="2" hidden>
-<div class="month-eyebrow">Month 2 &middot; Spring Quarter</div>
-<h2 class="month-title">The Valley Awakening <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
-<p class="month-intro">WEEKS 5-8: MID-SPRING CALIFORNIA RESONANCE Mid-Spring in California brings the first stone fruits and the height of the pea harvest. We continue to nourish the Yin while moving the Liver Qi. The air can be windy and volatile, so we anchor our Haligricity with moistening grains and aromatic Tetralty combinations.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<div class="month-eyebrow">Feb &middot; Spring Quarter</div>
+<h2 class="month-title">California Edition</h2>
+<p class="month-intro">WEEKS 5-8: MID-SPRING CALIFORNIA RESONANCE Mid-Spring in California brings the first stone fruits and the height of the pea harvest. We continue to nourish the Yin while moving the Liver Qi. The air can be windy and volatile, so we anchor our Haligricity with moistening grains and aromatic Trinity combinations.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Oats w/ Apricots &amp; Almonds</td>
 <td>Millet, Spring Peas, Red Lentils</td>
 <td>Wild Rice, Seitan, Braised Fava Beans</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Savory Quinoa w/ Spring Onions</td>
 <td>Brown Rice, Artichoke Hearts, Chickpeas</td>
 <td>Farro, Sautéed Chard, White Beans</td>
-<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Amaranth w/ Flax &amp; Berries</td>
 <td>Quinoa, Steamed Spinach, Seitan</td>
 <td>Millet, Asparagus, Kidney Beans</td>
-<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">8/15/22/29</td>
 <td>Warm Buckwheat w/ Dates &amp; Walnuts</td>
 <td>Brown Rice, Snap Peas, Chickpea Mash</td>
 <td>Wild Rice, Roasted Fennel, Red Lentils</td>
-<td>Stewed Strawberries w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">9/16/23/30</td>
 <td>Warm Spelt Porridge w/ Pumpkin Seeds</td>
 <td>Farro, Broccoli, White Beans</td>
 <td>Steel-Cut Oats (Savory), Spinach, Seitan</td>
-<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">10/17/24/31</td>
 <td>Warm Millet w/ Sunflower Seeds</td>
 <td>Quinoa, Kale, Red Lentils</td>
 <td>Brown Rice, Artichokes, Chickpeas</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">11/18/25/32</td>
 <td>Savory Oats w/ Garlic &amp; Parsley</td>
 <td>Buckwheat, Dandelion Greens, Seitan</td>
 <td>Farro, Snap Peas, White Beans</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Fava Bean &amp; Seitan Spring Sauté</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Fava Beans/Spring Onions (Green) + Seitan (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Fava Beans/Spring Onions (Green) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Shell and blanch fava beans. 2. Sauté sliced seitan with spring onions. 3. Toss in the fava beans and a splash of Coconut Aminos. 4. Serve over warm wild rice. Fava beans are excellent for moving Qi and building Blood in the spring.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Apricot &amp; Almond Oats</div>
+      
       <div class="recipe-steps">1. Cook steel-cut oats. 2. Gently simmer sliced fresh apricots with a pinch of cardamom. 3. Top oats with the warm apricots and toasted almond slivers. 4. Almonds are particularly moistening for the California climate.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (California Mid-Spring)</strong></li>
+      <ul class="shop-list"><li>Kidney Beans</li>
+<li>Hemp Hearts &amp; Pumpkin Seeds</li>
+<li>Almonds &amp; Walnuts</li>
 <li>Fresh Apricots (4 lbs)</li>
 <li>Fava Beans or Spring Peas (5 lbs in pod)</li>
 <li>Artichokes (4-6 large)</li>
 <li>Spring Onions (3 bunches)</li>
-<li>Dandelion Greens &amp; Spinach</li>
-<li>Kale &amp; Swiss Chard</li>
-<li>Asparagus &amp; Fennel</li>
-<li>Fresh Berries &amp; Dates</li>
-<li>Fresh Herbs (Parsley, Mint, Cilantro)</li>
-<li>Fresh Ginger &amp; Garlic</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (Uptons or similar - 6-8 packs)</li>
-<li>Red Lentils (Dry)</li>
-<li>Chickpeas &amp; White Navy Beans</li>
-<li>Kidney Beans</li>
-<li>Hemp Hearts &amp; Pumpkin Seeds</li>
-<li>Almonds &amp; Walnuts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa &amp; Wild Rice</li>
+<li>Dandelion Greens &amp; Spinach</li>
 <li>Brown Rice &amp; Farro</li>
+<li>Kale &amp; Swiss Chard</li>
 <li>Millet &amp; Amaranth</li>
+<li>Asparagus &amp; Fennel</li>
 <li>Steel-Cut Oats &amp; Buckwheat</li>
+<li>Fresh Berries &amp; Dates</li>
 <li>Spelt Groats</li>
+<li>Fresh Herbs (Parsley, Mint, Cilantro)</li>
 <li>Flax Seeds &amp; Chia Seeds</li>
-<li><strong>Pantry</strong></li>
+<li>Fresh Ginger &amp; Garlic</li>
 <li>Coconut Aminos</li>
+<li>Seitan (Uptons or similar - 6-8 packs)</li>
 <li>Tahini &amp; Olive Oil</li>
+<li>Red Lentils (Dry)</li>
 <li>Cardamom &amp; Cumin</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Strawberries (for Seals)</li>
-</ul>
+<li>Chickpeas &amp; White Navy Beans</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m3" data-month="3" hidden>
-<div class="month-eyebrow">Month 3 &middot; Spring Quarter</div>
-<h2 class="month-title">The Verdant Surge <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
+<div class="month-eyebrow">Mar &middot; Spring Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 9-12: LATE SPRING CALIFORNIA ALIGNMENT As California transitions toward the golden dry heat of June, we anchor our Haligricity. We focus on &#x27;Clearing Heat&#x27; while nourishing the Yin fluids. We utilize the arrival of early stone fruits and berries to provide vibrant energy, paired with cooling grains to stabilize the core.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">9/16/23/30</td>
 <td>Warm Quinoa w/ Fresh Cherries</td>
 <td>Millet, Zucchini, Red Lentils</td>
 <td>Wild Rice, Braised Artichokes, Seitan</td>
-<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">10/17/24/31</td>
 <td>Warm Amaranth w/ Berries &amp; Flax</td>
 <td>Brown Rice, Snap Peas, Chickpeas</td>
 <td>Farro, Sautéed Spinach, Savory Seitan</td>
-<td>Fresh Strawberries w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">11/18/25/32</td>
 <td>Warm Millet w/ Sliced Avocado (Warm)</td>
 <td>Quinoa, Summer Squash, White Beans</td>
 <td>Buckwheat, Bok Choy, Red Lentils</td>
-<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">12/19/26/33</td>
 <td>Savory Teff w/ Spring Onions</td>
 <td>Brown Rice, Broccoli, Kidney Beans</td>
 <td>Millet, Kale, Seitan w/ Coconut Aminos</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">13/20/27/34</td>
 <td>Warm Steel-Cut Oats w/ Hemp Seeds</td>
 <td>Farro, Asparagus, Chickpea Mash</td>
 <td>Quinoa, Snap Peas, Seitan</td>
-<td>Fresh Oranges w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">14/21/28/35</td>
 <td>Warm Buckwheat w/ Dates &amp; Almonds</td>
 <td>Wild Rice, Swiss Chard, White Beans</td>
 <td>Millet, Summer Squash, Red Lentils</td>
-<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">15/22/29/36</td>
 <td>Warm Spelt w/ Walnut &amp; Berries</td>
 <td>Brown Rice, Collard Greens, Seitan</td>
 <td>Lentil &amp; Zucchini Stew over Quinoa</td>
-<td>Fresh Apricots w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">California Zucchini &amp; Seitan Sauté</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Zucchini (Green) + Seitan (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Quinoa. 2. Slice early summer zucchini and Seitan strips. 3. Sauté in a pan with fresh mint and lemon zest (very cooling for CA air). 4. Splash with Coconut Aminos. 5. Serve over the quinoa. This meal is light and helps prevent internal heat buildup.</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Zucchini (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Slice early summer zucchini and Seitan strips. 3. Sauté in a pan with fresh mint and lemon zest (very cooling for CA air). 4. Splash with Coconut Aminos. 5. Serve over the quinoa. This meal is light and helps prevent internal heat buildup. 1 0</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Cherry &amp; Quinoa Rising</div>
+      
       <div class="recipe-steps">1. Cook 1 cup Quinoa. 2. Pit and halve 1/2 cup fresh California cherries. 3. Warm the cherries in a small pan with a dash of water until they release their juice. 4. Top the warm quinoa with the cherries and a tablespoon of hemp hearts. Cherries nourish the blood and Heart energy.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (California Late Spring)</strong></li>
-<li>Fresh Cherries (4 lbs)</li>
+      <ul class="shop-list"><li>Fresh Cherries (4 lbs)</li>
+<li>Seitan (8 packs)</li>
 <li>Mixed Berries (Strawberries/Raspberries)</li>
+<li>Red Lentils (Dry)</li>
 <li>Early Zucchini &amp; Summer Squash (8 total)</li>
+<li>Chickpeas &amp; White Beans</li>
 <li>Artichokes (Final Harvest - 4 total)</li>
+<li>Hemp Hearts &amp; Almonds</li>
 <li>Snap Peas (4 lbs)</li>
 <li>Avocado (Local CA - 8 total)</li>
 <li>Spinach, Chard, &amp; Bok Choy</li>
 <li>Fresh Mint &amp; Parsley</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Red Lentils (Dry)</li>
-<li>Chickpeas &amp; White Beans</li>
-<li>Hemp Hearts &amp; Almonds</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa, Millet, &amp; Wild Rice</li>
 <li>Brown Rice &amp; Farro</li>
 <li>Steel-Cut Oats &amp; Amaranth</li>
-<li>Teff, Buckwheat, &amp; Spelt</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Strawberries (for Seals)</li>
-<li>Oranges (for Seals)</li>
-<li>Apricots (for Seals)</li>
-</ul>
+<li>Teff, Buckwheat, &amp; Spelt</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m4" data-month="4" hidden>
-<div class="month-eyebrow">Month 4 &middot; Summer Quarter</div>
-<h2 class="month-title">The Solar Apex <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
+<div class="month-eyebrow">Apr &middot; Summer Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 13-16: EARLY SUMMER CALIFORNIA ALIGNMENT In California, Early Summer is a time of abundance. As we enter the Heart-Fire season, our goal is to nourish the &#x27;Yin&#x27; to prevent dryness from the increasing heat. We use hydrating fruits like stone fruits and figs, paired with bitter arugula and cooling cucumbers to maintain an unwavering Haligricity.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">13/20/27/34</td>
 <td>Warm Quinoa w/ Fresh Apricots</td>
 <td>Millet, Cooling Cucumbers (Warmed), Red Lentils</td>
 <td>Wild Rice, Seitan strips, Wilted Arugula</td>
-<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">14/21/28/35</td>
 <td>Warm Amaranth w/ Figs &amp; Hemp</td>
 <td>Brown Rice, Bell Peppers, Chickpeas</td>
 <td>Farro, Sautéed Chard, White Beans</td>
-<td>Fresh Peaches w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">15/22/29/36</td>
 <td>Warm Millet w/ Plum Compote</td>
 <td>Quinoa, Bok Choy, Seitan</td>
 <td>Buckwheat, Green Beans, Red Lentils</td>
-<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">16/23/30/37</td>
 <td>Savory Teff w/ Herbs</td>
 <td>Barley, Collard Greens, Kidney Beans</td>
 <td>Wild Rice, Zucchini, Chickpeas</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">17/24/31/38</td>
 <td>Warm Steel-Cut Oats w/ Walnuts</td>
 <td>Brown Rice, Spinach, Seitan</td>
 <td>Quinoa, Bell Peppers, White Beans</td>
-<td>Fresh Figs w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">18/25/32/39</td>
 <td>Warm Spelt w/ Sunflower Seeds</td>
 <td>Millet, Summer Squash, Chickpeas</td>
 <td>Wild Rice, Arugula, Red Lentils</td>
-<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">19/26/33/40</td>
 <td>Warm Buckwheat w/ Dates</td>
 <td>Quinoa, Swiss Chard, Seitan</td>
 <td>Lentil &amp; Cucumber Stew over Brown Rice</td>
-<td>Fresh Nectarines w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Wilted Arugula &amp; Seitan &quot;Spirit-Cooler&quot;</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Arugula (Green) + Seitan (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Wild Rice. 2. Sauté Seitan strips with garlic. 3. At the last moment, toss in three large handfuls of fresh arugula. 4. Stir for only 30 seconds until just wilted. 5. The bitter flavor of the arugula drains the &#x27;Heart-Fire&#x27;, while the wild rice provides grounding.</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Arugula (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Cook Wild Rice. 2. Sauté Seitan strips with garlic. 3. At the last moment, toss in three large handfuls of fresh arugula. 4. Stir for only 30 seconds until just wilted. 5. The bitter flavor of the arugula drains the &#x27;Heart-Fire&#x27;, while the wild rice provides grounding. 1 2</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Plum &amp; Millet Awakening</div>
+      
       <div class="recipe-steps">1. Simmer sliced fresh plums with a tiny bit of water and cardamom until they soften. 2. Serve over steaming millet. Plums are highly moistening for the Yin, helping to counteract the dry California heat.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (California Early Summer)</strong></li>
-<li>Fresh Apricots &amp; Plums (5 lbs total)</li>
-<li>Fresh Figs (Local CA - 2 lbs)</li>
-<li>Cucumbers (8-10 - use for Tetralty warmth)</li>
-<li>Arugula (4 large tubs - the bitter fire-clearer)</li>
-<li>Bell Peppers (Red/Orange - 6 total)</li>
-<li>Spinach &amp; Swiss Chard</li>
-<li>Summer Squash &amp; Zucchini</li>
-<li>Fresh Herbs (Mint, Parsley)</li>
-<li>Garlic &amp; Lemons</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Red Lentils (Dry)</li>
-<li>Chickpeas &amp; White Navy Beans</li>
-<li>Kidney Beans</li>
+      <ul class="shop-list"><li>Kidney Beans</li>
 <li>Hemp Hearts &amp; Sunflower Seeds</li>
 <li>Walnuts &amp; Dates (Yin-nourishing)</li>
-<li><strong>Grains &amp; Seeds</strong></li>
+<li>Fresh Apricots &amp; Plums (5 lbs total)</li>
+<li>Fresh Figs (Local CA - 2 lbs)</li>
+<li>Cucumbers (8-10 - use for Trinity warmth)</li>
+<li>Arugula (4 large tubs - the bitter fire-clearer)</li>
 <li>Quinoa &amp; Millet (Nourishing/Cooling)</li>
+<li>Bell Peppers (Red/Orange - 6 total)</li>
 <li>Wild Rice &amp; Brown Rice</li>
+<li>Spinach &amp; Swiss Chard</li>
 <li>Farro &amp; Buckwheat</li>
+<li>Summer Squash &amp; Zucchini</li>
 <li>Steel-Cut Oats, Amaranth, &amp; Spelt</li>
+<li>Fresh Herbs (Mint, Parsley)</li>
 <li>Teff &amp; Flax Seeds</li>
-<li><strong>Pantry</strong></li>
+<li>Garlic &amp; Lemons</li>
 <li>Coconut Aminos</li>
+<li>Seitan (8 packs)</li>
 <li>Cardamom &amp; Cumin</li>
+<li>Red Lentils (Dry)</li>
 <li>Olive Oil &amp; Tahini</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Peaches (for Seals)</li>
-<li>Figs (for Seals)</li>
-<li>Nectarines (for Seals)</li>
-</ul>
+<li>Chickpeas &amp; White Navy Beans</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m5" data-month="5" hidden>
-<div class="month-eyebrow">Month 5 &middot; Summer Quarter</div>
-<h2 class="month-title">The Golden Intensity <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
+<div class="month-eyebrow">May &middot; Summer Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 17-20: MID-SUMMER CALIFORNIA ALIGNMENT July in California is a peak of solar energy. As we navigate the dry heat, our Haligricity depends on nourishing the &#x27;Yin&#x27; and protecting the fluids. We leverage the incredible bounty of Heirloom Tomatoes and Melons for hydration, while grounding the Earth element with Corn and Eggplant to prevent &#x27;floating fire&#x27; (anxiety/restlessness).</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">17/24/31/38</td>
 <td>Warm Quinoa w/ Fresh Grapes</td>
 <td>Millet, Heirloom Tomatoes, Red Lentils</td>
 <td>Wild Rice, Seitan, Sautéed Bell Peppers</td>
-<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">18/25/32/39</td>
 <td>Warm Cornmeal Mush w/ Hemp Seeds</td>
 <td>Brown Rice, Eggplant, Chickpeas</td>
 <td>Farro, Sautéed Arugula, White Beans</td>
-<td>Fresh Peaches w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">19/26/33/40</td>
 <td>Warm Amaranth w/ Sliced Melon</td>
 <td>Quinoa, Bell Peppers, Seitan</td>
 <td>Wild Rice, Zucchini, Red Lentils</td>
-<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">20/27/34/41</td>
 <td>Savory Millet w/ Fresh Herbs</td>
 <td>Barley, Collard Greens, Kidney Beans</td>
 <td>Brown Rice, Corn &amp; Peppers, Seitan</td>
-<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">21/28/35/42</td>
 <td>Warm Steel-Cut Oats w/ Flax</td>
 <td>Quinoa, Spinach, White Beans</td>
 <td>Steel-Cut Oats (Savory), Eggplant, Chickpeas</td>
-<td>Fresh Figs w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">22/29/36/43</td>
 <td>Warm Buckwheat w/ Walnuts</td>
 <td>Brown Rice, Tomatoes, Red Lentils</td>
 <td>Millet, Swiss Chard, Seitan</td>
-<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">23/30/37/44</td>
 <td>Warm Teff w/ Chia &amp; Cardamom</td>
 <td>Wild Rice, Corn, Chickpeas</td>
 <td>Lentil &amp; Tomato Stew over Quinoa</td>
-<td>Fresh Nectarines w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Heirloom Tomato &amp; Seitan Sauté</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Heirloom Tomatoes (Green/Red) + Seitan (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
-      <div class="recipe-steps">1. Cook Quinoa. 2. Slice Seitan into medallions and sear. 3. Add thick slices of California heirloom tomatoes; sauté for only 1-2 minutes so they stay juicy but warm. 4. Season with fresh basil and Coconut Aminos. Tomatoes nourish the &#x27;Yin&#x27; and clear heat.</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Heirloom Tomatoes (Green/Red) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Slice Seitan into medallions and sear. 3. Add thick slices of California heirloom tomatoes; sauté for only 1-2 minutes so they stay juicy but warm. 4. Season with fresh basil and Coconut Aminos. Tomatoes nourish the &#x27;Yin&#x27; and clear heat. 1 4</div>
     </div>
 <div class="recipe-card">
-      <div class="recipe-title">Golden CA Corn &amp; Pepper Tetralty</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Corn/Bell Peppers (Green/Yellow) + Chickpeas (Protein) + Coriander-Seed Cooler (Seal)</div>
+      <div class="recipe-title">Golden CA Corn &amp; Pepper Trinity</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Corn/Bell Peppers (Green/Yellow) + Chickpeas (Protein)</div>
       <div class="recipe-steps">1. Simmer Wild Rice. 2. Sauté corn off the cob and diced peppers with a pinch of cumin. 3. Add chickpeas. 4. This combination is sweet and grounding, supporting the Spleen during the &#x27;Late Summer&#x27; transition.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Mid-Summer California)</strong></li>
-<li>Heirloom Tomatoes (8-10 lbs)</li>
+      <ul class="shop-list"><li>Heirloom Tomatoes (8-10 lbs)</li>
+<li>Seitan (8 packs)</li>
 <li>Fresh Sweet Corn (10 ears)</li>
+<li>Red Lentils &amp; Chickpeas</li>
 <li>Bell Peppers (Various - 8 total)</li>
+<li>White Navy Beans &amp; Kidney Beans</li>
 <li>Eggplants (4 total)</li>
+<li>Hemp Hearts &amp; Walnuts</li>
 <li>Melons (Cantaloupe/Honeydew - 4 total)</li>
 <li>Table Grapes (Local CA - 4 lbs)</li>
 <li>Arugula &amp; Collard Greens</li>
 <li>Swiss Chard &amp; Spinach</li>
-<li>Fresh Basil, Mint, &amp; Parsley</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Red Lentils &amp; Chickpeas</li>
-<li>White Navy Beans &amp; Kidney Beans</li>
-<li>Hemp Hearts &amp; Walnuts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa &amp; Millet (Hydrating/Cooling)</li>
+<li>Fresh Basil, Mint, &amp; Parsley</li>
 <li>Cornmeal (Earth grounding)</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Barley &amp; Buckwheat</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Limes</li>
-<li>Fresh Mint</li>
-<li>Cardamom Pods</li>
-<li>Dried Rose Petals</li>
-<li>Peaches (for Seals)</li>
-<li>Figs (for Seals)</li>
-<li>Nectarines (for Seals)</li>
-</ul>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m6" data-month="6" hidden>
-<div class="month-eyebrow">Month 6 &middot; Summer Quarter</div>
-<h2 class="month-title">The Mediterranean Pause <span style="font-size:.7em;opacity:.7">(Late Summer)</span></h2>
+<div class="month-eyebrow">Jun &middot; Summer Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 21-24: LATE SUMMER CALIFORNIA ALIGNMENT August in California is the height of the &#x27;Earth&#x27; energy. While the valley heat remains, the coastal fog may bring dampness. We focus on &#x27;Clearing Damp&#x27; and &#x27;Gently Warming the Middle.&#x27; We use the final surge of Melons and Figs to nourish the fluids, while grounding with Millet and Peppers to maintain our Haligricity center.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">21/28/35/42</td>
 <td>Warm Millet w/ Fresh Figs</td>
 <td>Quinoa, Bell Peppers, Red Lentils</td>
 <td>Wild Rice, Seitan, Wilted Arugula</td>
-<td>Spiced Peach Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">22/29/36/43</td>
 <td>Warm Amaranth w/ Grapes &amp; Walnuts</td>
 <td>Brown Rice, Eggplant, Chickpeas</td>
 <td>Farro, Sautéed Spinach, White Beans</td>
-<td>Stewed Figs w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">23/30/37/44</td>
 <td>Warm Quinoa w/ Cinnamon &amp; Peach</td>
 <td>Millet, Summer Squash, Seitan</td>
 <td>Wild Rice, Tomatoes, Red Lentils</td>
-<td>Baked Cinnamon Peaches</td>
 </tr>
 <tr>
 <td class="tri-day">24/31/38/45</td>
 <td>Savory Buckwheat w/ Fresh Herbs</td>
 <td>Barley, Collard Greens, Kidney Beans</td>
 <td>Brown Rice, Peppers &amp; Corn, Seitan</td>
-<td>Cardamom-Stewed Nectarines</td>
 </tr>
 <tr>
 <td class="tri-day">25/32/39/46</td>
 <td>Warm Teff w/ Flax &amp; Cardamom</td>
 <td>Quinoa, Eggplant, White Beans</td>
 <td>Steel-Cut Oats (Savory), Kale, Chickpeas</td>
-<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">26/33/40/47</td>
 <td>Warm Cornmeal Mush w/ Sunflower Seeds</td>
 <td>Brown Rice, Tomatoes, Red Lentils</td>
 <td>Millet, Swiss Chard, Seitan</td>
-<td>Spiced Fig Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">27/34/41/48</td>
 <td>Warm Steel-Cut Oats w/ Melon slices (Warm)</td>
 <td>Wild Rice, Peppers, Chickpeas</td>
 <td>Lentil &amp; Tomato Stew over Quinoa</td>
-<td>Stewed Peaches w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">California Earth Tetralty: Peppers &amp; Seitan</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Bell Peppers (Green/Red) + Seitan (Protein) + Spiced Peach Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-title">California Earth Trinity: Peppers &amp; Seitan</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Bell Peppers (Green/Red) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Cook Brown Rice. 2. Sauté a mix of colorful California peppers with garlic. 3. Add seitan medallions. 4. Peppers are warming and help move stagnant Qi during the humid August afternoons in the valleys.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Fig &amp; Millet Rising</div>
-      <div class="recipe-steps">1. Cook 1 cup Millet in 2 cups water. 2. Slice 3-4 fresh California figs and place them on top of the steaming millet for 2 minutes to warm through. 3. Top with toasted walnuts. Figs are the ultimate Late-Summer &#x27;Earth&#x27; food for nourishing the fluids without causing dampness.</div>
+      
+      <div class="recipe-steps">1. Cook 1 cup Millet in 2 cups water. 2. Slice 3-4 fresh California figs and place them on top of the steaming millet for 2 minutes to warm through. 3. Top with toasted walnuts. Figs are the ultimate Late-Summer &#x27;Earth&#x27; food for nourishing the fluids without causing dampness. 1 6</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Late Summer California)</strong></li>
-<li>Fresh Figs (Local CA - 5 lbs)</li>
+      <ul class="shop-list"><li>Fresh Figs (Local CA - 5 lbs)</li>
+<li>Seitan (8 packs)</li>
 <li>Bell Peppers (Red/Orange/Yellow - 12 total)</li>
+<li>Red Lentils &amp; Chickpeas</li>
 <li>Tomatoes (Local - 8 lbs)</li>
+<li>White Navy Beans &amp; Kidney Beans</li>
 <li>Table Grapes (4 lbs)</li>
+<li>Hemp Hearts &amp; Walnuts</li>
 <li>Melons (Cantaloupe/Honeydew - 4 total)</li>
+<li>Sunflower Seeds &amp; Flax</li>
 <li>Eggplants &amp; Summer Squash</li>
 <li>Arugula, Kale, &amp; Collard Greens</li>
 <li>Fresh Basil, Mint, &amp; Thyme</li>
 <li>Garlic, Onions, &amp; Fresh Ginger</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Red Lentils &amp; Chickpeas</li>
-<li>White Navy Beans &amp; Kidney Beans</li>
-<li>Hemp Hearts &amp; Walnuts</li>
-<li>Sunflower Seeds &amp; Flax</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Millet (Primary Earth grain)</li>
 <li>Quinoa &amp; Amaranth</li>
 <li>Brown Rice &amp; Wild Rice</li>
 <li>Barley &amp; Buckwheat</li>
-<li>Steel-Cut Oats, Teff, &amp; Cornmeal</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Peaches (for Seals)</li>
-<li>Figs (for Seals)</li>
-<li>Nectarines (for Seals)</li>
-</ul>
+<li>Steel-Cut Oats, Teff, &amp; Cornmeal</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m7" data-month="7" hidden>
-<div class="month-eyebrow">Month 7 &middot; Autumn Quarter</div>
-<h2 class="month-title">The Cooling Mist <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
+<div class="month-eyebrow">Jul &middot; Autumn Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 25-28: EARLY AUTUMN CALIFORNIA ALIGNMENT In California, September is often the warmest month, yet the underlying energy is shifting. To maintain Haligricity, we focus on nourishing &#x27;Yin&#x27; to combat the peak dry-heat. We use Pomegranates and Persimmons to moisten the Lungs and generate fluids, while utilizing the white Metal-element bounty of Cauliflower to prepare for the change in season.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">25/32/39/46</td>
 <td>Warm Quinoa w/ Pomegranate Seeds</td>
 <td>Millet, Roasted Cauliflower, Red Lentils</td>
 <td>Wild Rice, Seitan, Sautéed Bell Peppers</td>
-<td>Spiced Persimmon Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">26/33/40/47</td>
 <td>Warm Amaranth w/ Sliced Persimmons</td>
 <td>Brown Rice, Broccoli, Chickpeas</td>
 <td>Farro, Swiss Chard, White Beans</td>
-<td>Stewed Pears w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">27/34/41/48</td>
 <td>Warm Buckwheat w/ Dates &amp; Almonds</td>
 <td>Quinoa, Cauliflower, Seitan</td>
 <td>Wild Rice, Spinach, Red Lentils</td>
-<td>Baked Cinnamon Persimmons</td>
 </tr>
 <tr>
 <td class="tri-day">28/35/42/49</td>
 <td>Savory Teff w/ Garlic &amp; Herbs</td>
 <td>Millet, Zucchini, Chickpeas</td>
 <td>Brown Rice, Bell Peppers, Seitan</td>
-<td>Cardamom-Stewed Pomegranate</td>
 </tr>
 <tr>
 <td class="tri-day">29/36/43/50</td>
 <td>Warm Steel-Cut Oats w/ Apple Compote</td>
 <td>Wild Rice, Bok Choy, White Beans</td>
 <td>Steel-Cut Oats (Savory), Kale, Red Lentils</td>
-<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">30/37/44/51</td>
 <td>Warm Millet w/ Pumpkin Seeds</td>
 <td>Brown Rice, Cauliflower, Seitan</td>
 <td>Quinoa, Swiss Chard, Chickpeas</td>
-<td>Spiced Pear Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">31/38/45/52</td>
 <td>Warm Amaranth w/ Walnuts &amp; Cinnamon</td>
 <td>Wild Rice, Peppers, White Beans</td>
 <td>Lentil &amp; Cauliflower Stew over Brown Rice</td>
-<td>Stewed Persimmons w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">CA Cauliflower &amp; Seitan Metal Tetralty</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Cauliflower (Green/White) + Seitan (Protein) + Spiced Persimmon Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
-      <div class="recipe-steps">1. Cook Quinoa. 2. Sauté Seitan medallions with garlic and a touch of ginger. 3. Add cauliflower florets and a splash of water to steam in the pan. 4. Finish with Coconut Aminos. This meal supports the Lung energy during the California dry transition.</div>
+      <div class="recipe-title">CA Cauliflower &amp; Seitan Metal Trinity</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Cauliflower (Green/White) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Sauté Seitan medallions with garlic and a touch of ginger. 3. Add cauliflower florets and a splash of water to steam in the pan. 4. Finish with Coconut Aminos. This meal supports the Lung energy during the California dry transition. 1 8</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Persimmon &amp; Amaranth Awakening</div>
+      
       <div class="recipe-steps">1. Slice ripe Fuyu persimmons. 2. Gently warm them in a pan with a splash of water until they are tender. 3. Serve over warm amaranth. Persimmons are a TCM superfood for &#x27;Moistening the Lungs&#x27; and stopping dry coughs.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Early Autumn California)</strong></li>
-<li>Pomegranates (Local CA - 6 total)</li>
+      <ul class="shop-list"><li>Pomegranates (Local CA - 6 total)</li>
+<li>Seitan (8 packs)</li>
 <li>Fuyu Persimmons (8-10 total)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
 <li>CA Apples (6 lbs)</li>
+<li>Chickpeas</li>
 <li>Cauliflower (4 large heads)</li>
+<li>Hemp Hearts &amp; Almonds (Moistening)</li>
 <li>Bell Peppers (Various - 8 total)</li>
+<li>Pumpkin Seeds &amp; Walnuts</li>
 <li>Broccoli &amp; Bok Choy</li>
 <li>Spinach &amp; Swiss Chard</li>
 <li>Kale &amp; Garlic</li>
 <li>Fresh Ginger Root</li>
-<li>Medjool Dates (2 lbs)</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>White Navy Beans &amp; Red Lentils</li>
-<li>Chickpeas</li>
-<li>Hemp Hearts &amp; Almonds (Moistening)</li>
-<li>Pumpkin Seeds &amp; Walnuts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa &amp; Amaranth (Moistening for CA dryness)</li>
+<li>Medjool Dates (2 lbs)</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Millet &amp; Buckwheat</li>
-<li>Steel-Cut Oats, Teff, &amp; Farro</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Persimmons (for Seals)</li>
-<li>Pears (for Seals)</li>
-<li>Pomegranate (for Seals)</li>
-</ul>
+<li>Steel-Cut Oats, Teff, &amp; Farro</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m8" data-month="8" hidden>
-<div class="month-eyebrow">Month 8 &middot; Autumn Quarter</div>
-<h2 class="month-title">The Harvest Moon <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
+<div class="month-eyebrow">Aug &middot; Autumn Quarter</div>
+<h2 class="month-title">California Descending Phase</h2>
 <p class="month-intro">WEEKS 29-32: MID-AUTUMN CALIFORNIA ALIGNMENT In October, the California sun begins to soften, and the Santa Ana winds may bring sudden dryness. To maintain Haligricity, we focus on &#x27;Nourishing the Yin&#x27; and &#x27;Moistening the Interior&#x27;. We use the peak harvest of Persimmons and Walnuts to protect the Lungs and Brain, while grounding with Winter Squash as the energy of the year begins its descent.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">29/36/43/50</td>
 <td>Warm Amaranth w/ Persimmons</td>
 <td>Millet, Roasted Butternut Squash, Red Lentils</td>
 <td>Wild Rice, Seitan medallions, Sautéed Broccoli</td>
-<td>Spiced Persimmon Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">30/37/44/51</td>
 <td>Warm Quinoa w/ Pomegranate &amp; Walnuts</td>
 <td>Brown Rice, Winter Squash, White Beans</td>
 <td>Farro, Swiss Chard, Seitan</td>
-<td>Stewed Pears w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">31/38/45/52</td>
 <td>Warm Buckwheat w/ Dates &amp; Cinnamon</td>
 <td>Quinoa, Broccoli, Chickpeas</td>
 <td>Wild Rice, Spinach, Red Lentils</td>
-<td>Baked Cinnamon Persimmons</td>
 </tr>
 <tr>
 <td class="tri-day">32/39/46/53</td>
 <td>Savory Teff w/ Ginger &amp; Herbs</td>
 <td>Millet, Winter Squash, Seitan</td>
 <td>Brown Rice, Mustard Greens, White Beans</td>
-<td>Cardamom-Stewed Pomegranate</td>
 </tr>
 <tr>
 <td class="tri-day">33/40/47/54</td>
 <td>Warm Steel-Cut Oats w/ Baked Pear</td>
 <td>Wild Rice, Bok Choy, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
-<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">34/41/48/55</td>
 <td>Warm Millet w/ Pumpkin Seeds</td>
 <td>Brown Rice, Roasted Butternut, Red Lentils</td>
 <td>Farro, Kale, White Beans</td>
-<td>Spiced Pear Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">35/42/49/56</td>
 <td>Warm Amaranth w/ Almonds &amp; Honey</td>
 <td>Quinoa, Winter Squash, Chickpeas</td>
 <td>Lentil &amp; Squash Stew over Brown Rice</td>
-<td>Stewed Persimmons w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">CA Butternut Squash &amp; Walnut Tetralty</div>
-      <div class="recipe-trinity">Farro (Grain) + Butternut Squash (Green/Yellow) + Seitan/Walnuts (Protein) + Spiced Persimmon Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
-      <div class="recipe-steps">1. Roast cubed butternut squash with a touch of sage. 2. Sauté Seitan with crushed California walnuts. 3. Serve over warm farro. Walnuts are shaped like the brain and, in TCM, nourish the Kidney and Brain energy for the darkening months.</div>
+      <div class="recipe-title">CA Butternut Squash &amp; Walnut Trinity</div>
+      <div class="recipe-trinity">Farro (Grain) + Butternut Squash (Green/Yellow) + Seitan/Walnuts (Protein)</div>
+      <div class="recipe-steps">1. Roast cubed butternut squash with a touch of sage. 2. Sauté Seitan with crushed California walnuts. 3. Serve over warm farro. Walnuts are shaped like the brain and, in TCM, nourish the Kidney and Brain energy for the darkening months. 2 0</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Persimmon &amp; Amaranth Bowl</div>
+      
       <div class="recipe-steps">1. Cook amaranth. 2. Slice Hachiya or Fuyu persimmons and warm them gently in a saucepan with a dash of water. 3. Serve over the amaranth with a sprinkle of hemp hearts. Persimmons are the &#x27;Gem of the Orient&#x27; in TCM, specifically used to moisten the Lungs during dry autumns.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Mid-Autumn California)</strong></li>
+      <ul class="shop-list"><li>White Navy Beans &amp; Red Lentils</li>
+<li>Chickpeas</li>
+<li>Almonds &amp; Pumpkin Seeds</li>
 <li>Fuyu &amp; Hachiya Persimmons (10 lbs)</li>
+<li>Hemp Hearts</li>
 <li>Pomegranates (6 total)</li>
 <li>Butternut or Delicata Squash (6 total)</li>
 <li>Broccoli &amp; Broccoli Rabe (8 heads)</li>
 <li>CA Apples &amp; Pears (8 lbs total)</li>
-<li>Medjool Dates (2 lbs)</li>
-<li>Kale, Swiss Chard, &amp; Mustard Greens</li>
-<li>Fresh Sage &amp; Rosemary</li>
-<li>Garlic &amp; Fresh Ginger</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Fresh CA Walnuts (4 lbs)</li>
-<li>White Navy Beans &amp; Red Lentils</li>
-<li>Chickpeas</li>
-<li>Almonds &amp; Pumpkin Seeds</li>
-<li>Hemp Hearts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Farro &amp; Buckwheat (Warming/Grounding)</li>
+<li>Medjool Dates (2 lbs)</li>
 <li>Wild Rice &amp; Brown Rice</li>
+<li>Kale, Swiss Chard, &amp; Mustard Greens</li>
 <li>Millet &amp; Quinoa (Hydrating)</li>
+<li>Fresh Sage &amp; Rosemary</li>
 <li>Amaranth &amp; Teff</li>
+<li>Garlic &amp; Fresh Ginger</li>
 <li>Steel-Cut Oats &amp; Flax</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Persimmons (for Seals)</li>
-<li>Pears (for Seals)</li>
-<li>Pomegranate (for Seals)</li>
-</ul>
+<li>Seitan (8 packs)</li>
+<li>Fresh CA Walnuts (4 lbs)</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m9" data-month="9" hidden>
-<div class="month-eyebrow">Month 9 &middot; Autumn Quarter</div>
-<h2 class="month-title">The Inland Retreat <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
+<div class="month-eyebrow">Sep &middot; Autumn Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 33-36: LATE AUTUMN CALIFORNIA ALIGNMENT In California, November is the &#x27;Great Condensing.&#x27; As the days shorten, we focus on &#x27;Consolidating the Spirit&#x27; and &#x27;Nourishing the Roots.&#x27; We use the final harvest of Persimmons to moisten the Lungs against dry winds, while utilizing Winter Squash and hearty Greens to ground our Haligricity center.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">33/40/47/54</td>
 <td>Warm Amaranth w/ Persimmons &amp; Ginger</td>
 <td>Millet, Roasted Butternut Squash, Red Lentils</td>
 <td>Wild Rice, Seitan, Steamed Kale</td>
-<td>Spiced Persimmon Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">34/41/48/55</td>
 <td>Warm Quinoa w/ Pomegranate &amp; Walnuts</td>
 <td>Brown Rice, Winter Squash, White Beans</td>
 <td>Farro, Sautéed Chard, Seitan</td>
-<td>Stewed Pears w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">35/42/49/56</td>
 <td>Warm Buckwheat w/ Dates &amp; Cinnamon</td>
 <td>Quinoa, Cauliflower, Chickpeas</td>
 <td>Wild Rice, Spinach, Red Lentils</td>
-<td>Baked Cinnamon Persimmons</td>
 </tr>
 <tr>
 <td class="tri-day">36/43/50/57</td>
 <td>Savory Teff w/ Garlic &amp; Herbs</td>
 <td>Millet, Winter Squash, Seitan</td>
 <td>Brown Rice, Mustard Greens, White Beans</td>
-<td>Cardamom-Stewed Pomegranate</td>
 </tr>
 <tr>
 <td class="tri-day">37/44/51/58</td>
 <td>Warm Steel-Cut Oats w/ Baked Pear</td>
 <td>Wild Rice, Bok Choy, White Beans</td>
 <td>Steel-Cut Oats (Savory), Kale, Seitan</td>
-<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">38/45/52/59</td>
 <td>Warm Millet w/ Pumpkin Seeds</td>
 <td>Brown Rice, Roasted Butternut, Red Lentils</td>
 <td>Farro, Swiss Chard, White Beans</td>
-<td>Spiced Pear Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">39/46/53/60</td>
 <td>Warm Amaranth w/ Almonds &amp; Cardamom</td>
 <td>Quinoa, Winter Squash, Chickpeas</td>
 <td>Lentil &amp; Squash Stew over Brown Rice</td>
-<td>Stewed Persimmons w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">CA Delicata Squash &amp; Seitan Sauté</div>
-      <div class="recipe-trinity">Farro (Grain) + Delicata Squash (Green/Yellow) + Seitan (Protein) + Spiced Persimmon Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-trinity">Farro (Grain) + Delicata Squash (Green/Yellow) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Roast Delicata squash rings with sage. 2. Sauté Seitan strips with garlic. 3. Serve over warm farro. Delicata is easy to prepare and provides the &#x27;Earth&#x27; energy needed for the California autumn transition.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Warm Persimmon &amp; Amaranth Awakening</div>
-      <div class="recipe-steps">1. Simmer sliced ripe persimmons in a pan with a splash of water and ginger. 2. Serve over warm amaranth. Persimmons are essential for moistening the throat as the Santa Ana winds or dry air move through California.</div>
+      
+      <div class="recipe-steps">1. Simmer sliced ripe persimmons in a pan with a splash of water and ginger. 2. Serve over warm amaranth. Persimmons are essential for moistening the throat as the Santa Ana winds or dry air move through California. 2 2</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Late Autumn California)</strong></li>
-<li>Fuyu &amp; Hachiya Persimmons (10 lbs)</li>
+      <ul class="shop-list"><li>Fuyu &amp; Hachiya Persimmons (10 lbs)</li>
+<li>Seitan (8 packs)</li>
 <li>Pomegranates (6 total)</li>
+<li>CA Walnuts (4 lbs)</li>
 <li>Butternut &amp; Delicata Squash (8 total)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
 <li>Cauliflower &amp; Broccoli (8 heads total)</li>
+<li>Chickpeas</li>
 <li>CA Apples &amp; Pears (8 lbs total)</li>
+<li>Almonds &amp; Pumpkin Seeds</li>
 <li>Medjool Dates (2 lbs)</li>
 <li>Kale, Swiss Chard, &amp; Mustard Greens</li>
 <li>Fresh Sage &amp; Rosemary</li>
 <li>Garlic &amp; Fresh Ginger</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>CA Walnuts (4 lbs)</li>
-<li>White Navy Beans &amp; Red Lentils</li>
-<li>Chickpeas</li>
-<li>Almonds &amp; Pumpkin Seeds</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Farro &amp; Buckwheat (Warming)</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Millet &amp; Quinoa</li>
 <li>Amaranth &amp; Teff</li>
-<li>Steel-Cut Oats &amp; Flax</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Cardamom Pods</li>
-<li>Cinnamon Sticks</li>
-<li>Whole Cloves</li>
-<li>Persimmons (for Seals)</li>
-<li>Pears (for Seals)</li>
-<li>Pomegranate (for Seals)</li>
-</ul>
+<li>Steel-Cut Oats &amp; Flax</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m10" data-month="10" hidden>
-<div class="month-eyebrow">Month 10 &middot; Winter Quarter</div>
-<h2 class="month-title">The Winter Rains <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
+<div class="month-eyebrow">Oct &middot; Winter Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 37-40: EARLY WINTER CALIFORNIA ALIGNMENT December in California is the &#x27;Season of Conservation.&#x27; While the air is crisp and the rain may arrive, we focus on &#x27;Consolidating the Jing&#x27; (Essence). We utilize the final bounty of Persimmons and the arrival of Citrus to keep the Qi moving, while grounding our Haligricity with hearty Black Beans and Walnuts to support the Kidney energy.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">37/44/51/58</td>
 <td>Warm Amaranth w/ Dates &amp; Walnuts</td>
 <td>Millet, Roasted Cauliflower, Black Beans</td>
 <td>Wild Rice, Seitan, Steamed Kale</td>
-<td>Jing Truffle (Date &amp; Tahini)</td>
 </tr>
 <tr>
 <td class="tri-day">38/45/52/59</td>
 <td>Warm Quinoa w/ Orange Zest &amp; Hemp</td>
 <td>Brown Rice, Broccoli, White Beans</td>
 <td>Buckwheat, Avocado (Warm), Seitan</td>
-<td>Date &amp; Almond Truffle</td>
 </tr>
 <tr>
 <td class="tri-day">39/46/53/60</td>
 <td>Warm Buckwheat w/ Pomegranate Seeds</td>
 <td>Wild Rice, Roasted Carrots, Chickpeas</td>
 <td>Quinoa, Spinach, Black Beans</td>
-<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
 </tr>
 <tr>
 <td class="tri-day">40/47/54/61</td>
 <td>Savory Teff w/ Garlic &amp; Ginger</td>
 <td>Buckwheat, Cauliflower, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
-<td>Jing Truffle w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">41/48/55/62</td>
 <td>Warm Steel-Cut Oats w/ Baked Pear</td>
 <td>Wild Rice, Kale, Chickpeas</td>
 <td>Buckwheat, Mustard Greens, Seitan</td>
-<td>Ginger-Cinnamon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">42/49/56/63</td>
 <td>Warm Millet w/ Sunflower Seeds</td>
 <td>Brown Rice, Broccoli, Black Beans</td>
 <td>Millet, Swiss Chard, Seitan</td>
-<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
 </tr>
 <tr>
 <td class="tri-day">43/50/57/64</td>
 <td>Warm Amaranth w/ Flax &amp; Cardamom</td>
 <td>Wild Rice, Carrots, White Beans</td>
 <td>Lentil &amp; Kale Stew over Buckwheat</td>
-<td>Warm Spiced Mandarins</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">CA Winter Kidney Tetralty: Black Beans &amp; Walnuts</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Kale (Green) + Black Beans/Walnuts (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
-      <div class="recipe-steps">1. Simmer black beans with a strip of kombu. 2. Sauté seitan with crushed California walnuts. 3. Serve over warm buckwheat with steamed kale. This combination provides the deep, salty-property energy required to nourish the Kidneys during the Winter solstice.</div>
+      <div class="recipe-title">CA Winter Kidney Trinity: Black Beans &amp; Walnuts</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Kale (Green) + Black Beans/Walnuts (Protein)</div>
+      <div class="recipe-steps">1. Simmer black beans with a strip of kombu. 2. Sauté seitan with crushed California walnuts. 3. Serve over warm buckwheat with steamed kale. This combination provides the deep, salty-property energy required to nourish the Kidneys during the Winter solstice. 2 4</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Citrus-Zest Warming Seitan</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Broccoli (Green) + Seitan (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Broccoli (Green) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Sauté seitan with minced ginger and garlic. 2. Add broccoli florets and the zest of one California orange. 3. The citrus zest acts as a &#x27;Qi-mover&#x27; to prevent stagnation during the darker days, while the wild rice grounds the energy.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Early Winter California)</strong></li>
+      <ul class="shop-list"><li>White Navy Beans &amp; Chickpeas</li>
+<li>CA Walnuts &amp; Almonds</li>
+<li>Pumpkin Seeds &amp; Hemp Hearts</li>
 <li>CA Oranges &amp; Mandarins (8 lbs)</li>
 <li>Pomegranates &amp; Persimmons (Final Harvest)</li>
 <li>Cauliflower &amp; Broccoli (10 heads total)</li>
 <li>Avocado (Local CA - 8 total)</li>
-<li>Large Carrots (4 lbs)</li>
-<li>Kale, Spinach, &amp; Mustard Greens (Bulk)</li>
-<li>Medjool Dates (2 lbs)</li>
-<li>Garlic &amp; Fresh Ginger Root</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Black Beans (Dry - 4 lbs)</li>
-<li>White Navy Beans &amp; Chickpeas</li>
-<li>CA Walnuts &amp; Almonds</li>
-<li>Pumpkin Seeds &amp; Hemp Hearts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Buckwheat (Warming for Winter)</li>
+<li>Large Carrots (4 lbs)</li>
 <li>Wild Rice &amp; Brown Rice</li>
+<li>Kale, Spinach, &amp; Mustard Greens (Bulk)</li>
 <li>Millet &amp; Quinoa</li>
+<li>Medjool Dates (2 lbs)</li>
 <li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
 <li>Flax Seeds &amp; Chia Seeds</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Fresh Ginger Root</li>
-<li>Cinnamon Sticks</li>
-<li>Ground Turmeric</li>
-<li>Unsweetened Plant Milk</li>
-<li>Medjool Dates (1 box)</li>
-<li>Stone-Ground Tahini</li>
-<li>Pink Rock Salt</li>
-<li>Almonds (for Truffles)</li>
-<li>Mandarins (for Seals)</li>
-</ul>
+<li>Seitan (8 packs)</li>
+<li>Black Beans (Dry - 4 lbs)</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m11" data-month="11" hidden>
-<div class="month-eyebrow">Month 11 &middot; Winter Quarter</div>
-<h2 class="month-title">The Coastal Chill <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
+<div class="month-eyebrow">Nov &middot; Winter Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 41-44: MID-WINTER CALIFORNIA ALIGNMENT In California, January is the peak of the &#x27;Water Element&#x27;. To maintain Haligricity, we focus on &#x27;Consolidating the Kidney Essence&#x27; (Jing) while navigating the wet, cool coastal air. We use dark, salty-property Black Beans and Walnuts for bone and kidney health, balanced by the bright, Qi-moving citrus of Blood Oranges and Kumquats.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">41/48/55/62</td>
 <td>Warm Amaranth w/ Dates &amp; Walnuts</td>
 <td>Millet, Roasted Broccoli, Black Beans</td>
 <td>Wild Rice, Seitan, Steamed Kale</td>
-<td>Jing Truffle (Date &amp; Tahini)</td>
 </tr>
 <tr>
 <td class="tri-day">42/49/56/63</td>
 <td>Warm Quinoa w/ Blood Orange Zest</td>
 <td>Brown Rice, Cauliflower, White Beans</td>
 <td>Buckwheat, Avocado (Warm), Seitan</td>
-<td>Date &amp; Almond Truffle</td>
 </tr>
 <tr>
 <td class="tri-day">43/50/57/64</td>
 <td>Warm Buckwheat w/ Kumquat Slices (Warm)</td>
 <td>Wild Rice, Carrots, Chickpeas</td>
 <td>Quinoa, Spinach, Black Beans</td>
-<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
 </tr>
 <tr>
 <td class="tri-day">44/51/58/65</td>
 <td>Savory Teff w/ Garlic &amp; Ginger</td>
 <td>Buckwheat, Broccoli, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
-<td>Jing Truffle w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">45/52/59/66</td>
 <td>Warm Steel-Cut Oats w/ Baked Apple</td>
 <td>Wild Rice, Kale, Chickpeas</td>
 <td>Buckwheat, Mustard Greens, Seitan</td>
-<td>Ginger-Cinnamon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">46/53/60/67</td>
 <td>Warm Millet w/ Sunflower Seeds</td>
 <td>Brown Rice, Roasted Carrots, Black Beans</td>
 <td>Millet, Swiss Chard, Seitan</td>
-<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
 </tr>
 <tr>
 <td class="tri-day">47/54/61/68</td>
 <td>Warm Amaranth w/ Flax &amp; Cardamom</td>
 <td>Wild Rice, Broccoli, White Beans</td>
 <td>Lentil &amp; Kale Stew over Buckwheat</td>
-<td>Warm Spiced Mandarins</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">CA Midnight Tetralty: Black Beans &amp; Avocado</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Kale/Warm Avocado (Green) + Black Beans (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
-      <div class="recipe-steps">1. Simmer black beans with ginger. 2. Warm thick slices of avocado gently in a pan (do not cook through). 3. Serve over hot buckwheat with steamed kale. The &#x27;healthy fats&#x27; of CA avocado nourish the Kidney Yin, while the dark beans protect the Jing.</div>
+      <div class="recipe-title">CA Midnight Trinity: Black Beans &amp; Avocado</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Kale/Warm Avocado (Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Simmer black beans with ginger. 2. Warm thick slices of avocado gently in a pan (do not cook through). 3. Serve over hot buckwheat with steamed kale. The &#x27;healthy fats&#x27; of CA avocado nourish the Kidney Yin, while the dark beans protect the Jing. 2 6</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Blood Orange &amp; Ginger Qi-Mover</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Broccoli (Green) + Seitan (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Broccoli (Green) + Seitan (Protein)</div>
       <div class="recipe-steps">1. Sauté seitan with fresh ginger. 2. Add broccoli and the zest and juice of half a Blood Orange at the very end. 3. This &#x27;Pungent-Sour&#x27; combination moves the stagnant Qi often felt during California&#x27;s rainy season.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Mid-Winter California)</strong></li>
+      <ul class="shop-list"><li>White Navy Beans &amp; Chickpeas</li>
+<li>CA Walnuts &amp; Almonds</li>
+<li>Hemp Hearts</li>
 <li>CA Blood Oranges &amp; Kumquats (Bulk)</li>
 <li>Avocado (Local CA - 8-10 total)</li>
 <li>Broccoli &amp; Cauliflower (10 heads total)</li>
 <li>Large Carrots (6 lbs)</li>
-<li>Kale, Spinach, &amp; Mustard Greens (Bulk)</li>
-<li>Medjool Dates (2 lbs)</li>
-<li>Garlic &amp; Fresh Ginger Root</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Black Beans (Dry - 6 lbs)</li>
-<li>White Navy Beans &amp; Chickpeas</li>
-<li>CA Walnuts &amp; Almonds</li>
-<li>Hemp Hearts</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Buckwheat (Essential warming grain)</li>
+<li>Kale, Spinach, &amp; Mustard Greens (Bulk)</li>
 <li>Wild Rice &amp; Brown Rice</li>
+<li>Medjool Dates (2 lbs)</li>
 <li>Millet &amp; Quinoa</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
 <li>Amaranth, Teff, &amp; Steel-Cut Oats</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Fresh Ginger Root</li>
-<li>Cinnamon Sticks</li>
-<li>Ground Turmeric</li>
-<li>Unsweetened Plant Milk</li>
-<li>Medjool Dates (1 box)</li>
-<li>Stone-Ground Tahini</li>
-<li>Pink Rock Salt</li>
-<li>Almonds (for Truffles)</li>
-<li>Mandarins (for Seals)</li>
-</ul>
+<li>Seitan (8 packs)</li>
+<li>Black Beans (Dry - 6 lbs)</li></ul>
     </div>
 </section>
 
   <section class="month-panel" id="m12" data-month="12" hidden>
-<div class="month-eyebrow">Month 12 &middot; Winter Quarter</div>
-<h2 class="month-title">The Spring Quickening <span style="font-size:.7em;opacity:.7">(Early Wood)</span></h2>
+<div class="month-eyebrow">Dec &middot; Winter Quarter</div>
+<h2 class="month-title">California Edition</h2>
 <p class="month-intro">WEEKS 45-48: LATE WINTER CALIFORNIA ALIGNMENT In California, February is the &#x27;Threshold Month.&#x27; While the nights are cool, the daylight hours begin to stir the Liver energy. To maintain Haligricity, we focus on &#x27;Final Consolidation&#x27; while gently waking the Qi. We use Avocado and Walnuts to finish nourishing the Kidney Yin, while using the first &#x27;Early Spring&#x27; Asparagus to begin cleansing the system for the coming year.</p>
-<h3 class="sub-h">28-Day Tetralty Schedule</h3>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Tetralty (Lunch)</th>
-<th>Evening Tetralty (Dinner)</th>
-<th>The Seal</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">45/52/59/66</td>
 <td>Warm Amaranth w/ Dates &amp; Walnuts</td>
 <td>Millet, Roasted Broccoli, Black Beans</td>
 <td>Wild Rice, Seitan, Steamed Kale</td>
-<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">46/53/60/67</td>
 <td>Warm Quinoa w/ Blood Orange Zest</td>
 <td>Brown Rice, Cauliflower, White Beans</td>
 <td>Buckwheat, Avocado (Warm), Seitan</td>
-<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">47/54/61/68</td>
 <td>Warm Buckwheat w/ Ginger &amp; Kumquats</td>
 <td>Wild Rice, Asparagus, Chickpeas</td>
 <td>Quinoa, Spinach, Black Beans</td>
-<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">48/55/62/69</td>
 <td>Savory Teff w/ Garlic &amp; Scallions</td>
 <td>Buckwheat, Broccoli, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
-<td>Stewed Mandarins w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">49/56/63/70</td>
 <td>Warm Steel-Cut Oats w/ Baked Pear</td>
 <td>Wild Rice, Asparagus, Chickpeas</td>
 <td>Buckwheat, Mustard Greens, Seitan</td>
-<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">50/57/64/71</td>
 <td>Warm Millet w/ Pumpkin Seeds</td>
 <td>Brown Rice, Roasted Carrots, Black Beans</td>
 <td>Millet, Swiss Chard, Seitan</td>
-<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">51/58/65/72</td>
 <td>Warm Amaranth w/ Almonds &amp; Cardamom</td>
 <td>Wild Rice, Broccoli, White Beans</td>
 <td>Lentil &amp; Asparagus Stew over Buckwheat</td>
-<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Tetralty Recipes</h3>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Early-Spring Tetralty: Asparagus &amp; Seitan</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + Seitan (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
-      <div class="recipe-steps">1. Sauté seitan with garlic. 2. Toss in fresh asparagus spears; cook only until bright green. 3. Serve over warm quinoa. Asparagus is the first sign of the &#x27;Wood&#x27; element; it clears heat from the blood and gently wakes up the Liver.</div>
+      <div class="recipe-title">Early-Spring Trinity: Asparagus &amp; Seitan</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Sauté seitan with garlic. 2. Toss in fresh asparagus spears; cook only until bright green. 3. Serve over warm quinoa. Asparagus is the first sign of the &#x27;Wood&#x27; element; it clears heat from the blood and gently wakes up the Liver. 2 8</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Kidney-Nourishing Walnut &amp; Avocado Bowl</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Warm Avocado (Green) + Walnuts (Protein) + Fennel &amp; Mint Brew (Seal)</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Warm Avocado (Green) + Walnuts (Protein)</div>
       <div class="recipe-steps">1. Simmer buckwheat. 2. Lightly sear seitan with crushed walnuts. 3. Top with warm avocado slices. This combination provides the deep healthy fats necessary to finish the Winter quarter with strong Kidney Yin.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li><strong>Produce (Late Winter California)</strong></li>
-<li>Early Asparagus (4 bunches)</li>
+      <ul class="shop-list"><li>Early Asparagus (4 bunches)</li>
+<li>Seitan (8 packs)</li>
 <li>Blood Oranges &amp; Kumquats (Bulk)</li>
+<li>Black Beans (Dry - 4 lbs)</li>
 <li>Avocado (Local CA - 8 total)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
 <li>Broccoli &amp; Cauliflower (8 heads total)</li>
+<li>CA Walnuts &amp; Almonds</li>
 <li>Scallions &amp; Spring Onions (6 bunches)</li>
 <li>Kale, Spinach, &amp; Mustard Greens (Bulk)</li>
 <li>Garlic &amp; Fresh Ginger Root</li>
 <li>Medjool Dates (2 lbs)</li>
-<li><strong>Proteins (Soy-Free)</strong></li>
-<li>Seitan (8 packs)</li>
-<li>Black Beans (Dry - 4 lbs)</li>
-<li>White Navy Beans &amp; Chickpeas</li>
-<li>CA Walnuts &amp; Almonds</li>
-<li><strong>Grains &amp; Seeds</strong></li>
 <li>Buckwheat &amp; Millet (Warming)</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Quinoa &amp; Amaranth</li>
-<li>Teff &amp; Steel-Cut Oats</li>
-<li><strong>The Seal (Digestive Finishers)</strong></li>
-<li>Cumin, Coriander &amp; Fennel Seeds</li>
-<li>Fresh Ginger Root</li>
-<li>Lemons</li>
-<li>Fresh Mint</li>
-<li>Dandelion Root Tea</li>
-<li>Cardamom Pods</li>
-<li>Mandarins (for Seals)</li>
-</ul>
+<li>Teff &amp; Steel-Cut Oats</li></ul>
     </div>
 </section>
 
@@ -1496,30 +1240,6 @@ function showMonth(num, btn) {
   document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
   btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
-}
-
-var _deferredInstallPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault(); _deferredInstallPrompt = e;
-  var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
-});
-window.addEventListener('appinstalled', function(){
-  var b = document.getElementById('installAppBtn'); if(b) b.style.display='none';
-});
-function installHaligricityApp(){
-  if(_deferredInstallPrompt){
-    _deferredInstallPrompt.prompt();
-    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    alert('To install: tap the Share icon, then "Add to Home Screen".');
-  } else {
-    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
-  }
-}
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
-  document.addEventListener('DOMContentLoaded', function(){
-    var b = document.getElementById('installAppBtn'); if(b) b.style.display='inline-block';
-  });
 }
 </script>
 </body>
