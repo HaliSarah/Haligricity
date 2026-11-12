@@ -3,7 +3,9 @@
   Title: Varessence — Quick Access App
   Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
   Date: 2026-11-11
-  Modified By: Claude (Cowork)
+  Modified By: Claude (Cowork) — 2026-11-11: Daily now runs Soul Retrieval,
+  Rising, Sunrise, Zenith, Sunset, Astral, Soul Offering (Sun Varessences live
+  only in this app); in-app Download button removed.
   Description: Installable quick-access app bundling every Varessence on the
   homepage — grouped exactly as they appear there (Daily, Dining, Sacred) —
   so a practitioner can pull one up instantly without scrolling the full site.
@@ -35,11 +37,6 @@
   }
   .wrap { max-width: 520px; margin: 0 auto; padding: 20px 18px 10px; }
 
-  #installAppBtn { position:fixed; top:14px; right:14px; z-index:999;
-    background:rgba(74,16,96,.85); color:#fff; border:1.5px solid rgba(255,255,255,.55);
-    border-radius:8px; padding:.5rem .9rem; font-size:.78rem; font-family:'Cinzel',serif;
-    letter-spacing:.06em; cursor:pointer; backdrop-filter:blur(4px); display:none; }
-  #installAppBtn:hover { background:rgba(74,16,96,1); }
 
   header { text-align:center; padding:36px 0 18px; }
   .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
@@ -92,8 +89,6 @@
 </style>
 </head>
 <body>
-<button id="installAppBtn" onclick="installHaligricityApp()">⬇ Download the App</button>
-
 <div class="wrap">
   <header>
     <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
@@ -111,11 +106,27 @@
   <!-- DAILY -->
   <section id="panel-daily" class="panel active">
     <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" loading="lazy" alt="Soul Retrieval Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Soul Retrieval</span> — Spoken once you realize you've woken up, or as you regain consciousness after a session.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
       <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Rising.png" loading="lazy" alt="Rising Varessence" onerror="this.style.opacity='0.3'">
       <p><span class="label">Rising</span> — Spoken at the opening of the day, hands at heart center: <em>"I honor myself, on this day, and shine my light, along the way."</em></p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" target="_blank">View</a>
         <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Rising.png" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Sunrise.jpeg" loading="lazy" alt="Sunrise Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Sunrise</span> — Spoken facing the rising sun, after the Rising Varessence: <em>"Gratitude fills my body with the energy of your body. Your light powers me. Your light powers me. Ashe'"</em></p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Sunrise.jpeg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Sunrise.jpeg" download>⬇ Download</a>
       </div>
     </div>
     <div class="vares-card">
@@ -127,11 +138,27 @@
       </div>
     </div>
     <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Sunset.jpeg" loading="lazy" alt="Sunset Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Sunset</span> — Spoken facing the setting sun, before the Astral Varessence: <em>"Gratitude fills my body for the day that you have brought me. Traveling so softly, I extend love to your copy. Ashe'"</em></p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Sunset.jpeg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Sunset.jpeg" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
       <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Astral.png" loading="lazy" alt="Astral Varessence" onerror="this.style.opacity='0.3'">
       <p><span class="label">Astral</span> — Spoken at the close of the day: <em>"Gratitude fills my heart, I've done my part. I send love from the end to the start."</em></p>
       <div class="vares-actions">
         <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/Astral.png" target="_blank">View</a>
         <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/Astral.png" download>⬇ Download</a>
+      </div>
+    </div>
+    <div class="vares-card">
+      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" loading="lazy" alt="Soul Offering Varessence" onerror="this.style.opacity='0.3'">
+      <p><span class="label">Soul Offering</span> — Spoken after the Astral Varessence in support of dreamwork, or before a channeling session.</p>
+      <div class="vares-actions">
+        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" target="_blank">View</a>
+        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" download>⬇ Download</a>
       </div>
     </div>
   </section>
@@ -176,22 +203,6 @@
       </div>
     </div>
     <div class="vares-card">
-      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" loading="lazy" alt="Soul Offering Varessence" onerror="this.style.opacity='0.3'">
-      <p><span class="label">Soul Offering</span> — Spoken after the Astral Varessence in support of dreamwork, or before a channeling session.</p>
-      <div class="vares-actions">
-        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" target="_blank">View</a>
-        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulOffering.jpg" download>⬇ Download</a>
-      </div>
-    </div>
-    <div class="vares-card">
-      <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" loading="lazy" alt="Soul Retrieval Varessence" onerror="this.style.opacity='0.3'">
-      <p><span class="label">Soul Retrieval</span> — Spoken once you realize you've woken up, or as you regain consciousness after a session.</p>
-      <div class="vares-actions">
-        <a class="mini-link" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" target="_blank">View</a>
-        <a class="mini-link solid" href="https://haligricity.iqproductionz.com/Varessence/SoulRetrieve.jpg" download>⬇ Download</a>
-      </div>
-    </div>
-    <div class="vares-card">
       <img class="vares-img" src="https://haligricity.iqproductionz.com/Varessence/Oath.jpg" loading="lazy" alt="The Haligric Oath" onerror="this.style.opacity='0.3'">
       <p><span class="label">The Haligric Oath</span> — Spoken during an initiation ceremony, or anytime in a sacred space, to focus one's intention to live a new way.</p>
       <div class="vares-actions">
@@ -223,35 +234,6 @@ function showPanel(name, btn) {
   btn.classList.add('active');
 }
 
-// WHY: identical install-prompt pattern already used on the DayEnergy app,
-// so "Add to Home Screen" behaves the same way across all Haligricity apps.
-var _deferredInstallPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault();
-  _deferredInstallPrompt = e;
-  var b = document.getElementById('installAppBtn');
-  if(b) b.style.display = 'inline-block';
-});
-window.addEventListener('appinstalled', function(){
-  var b = document.getElementById('installAppBtn');
-  if(b) b.style.display = 'none';
-});
-function installHaligricityApp(){
-  if(_deferredInstallPrompt){
-    _deferredInstallPrompt.prompt();
-    _deferredInstallPrompt.userChoice.then(function(){ _deferredInstallPrompt = null; });
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    alert('To install: tap the Share icon, then "Add to Home Screen".');
-  } else {
-    alert('To install: use your browser menu and choose "Install App" or "Add to Home Screen".');
-  }
-}
-if(/iphone|ipad|ipod|safari/i.test(navigator.userAgent) && !/chrome|crios|android/i.test(navigator.userAgent)){
-  document.addEventListener('DOMContentLoaded', function(){
-    var b = document.getElementById('installAppBtn');
-    if(b) b.style.display = 'inline-block';
-  });
-}
 </script>
 </body>
 </html>

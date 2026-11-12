@@ -1,6 +1,6 @@
 {
-  "name": "Haligricity — New England Food Guide",
-  "short_name": "New England",
+  "name": "Haligricity \u2014 New England Food Guide",
+  "short_name": "New England Food Guide",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
