@@ -2,7 +2,7 @@
   Title:       Haligricity Books — Shared Cart, Currency & Checkout
   Author:      Hali Sarah Parsons
   Date:        2026-10-30
-  Modified By: Claude
+  Modified By: Claude (2026-11-11: added the 8 Haligric Yearly Meal Guides)
   Description: Drop-in script for every book page. Reads data-* attributes on
                the page and builds: currency picker, book cards, product detail,
                cart count, and the full checkout (Stripe + Lulu shipping quote).
@@ -68,6 +68,64 @@
       cover: ART + 'gods.jpg', url: ORDER + '/Files/4x6/Gods/',
       specs: [['Companion', 'To the Foundational Texts'], ['Format', 'Paperback, perfect bound, matte'],
               ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '255'], ['ISBN', '978-0-557-69560-7']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    // WHY: the Haligric Yearly Meal Guides share this one cart. Each has its own
+    // order page under /FoodGuide/Order/<Region>/; prices must match the worker.
+    'mg-south': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume I: Texas & The Gulf Coast',
+      cover: ART + 'mg-south.jpg', url: SITE + '/FoodGuide/Order/South/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62238-2']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-new-england': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume II: New England & The Northeast',
+      cover: ART + 'mg-new-england.jpg', url: SITE + '/FoodGuide/Order/NewEngland/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62222-1']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-pacific-coast': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume III: California (The Golden State)',
+      cover: ART + 'mg-pacific-coast.jpg', url: SITE + '/FoodGuide/Order/PacificCoast/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62225-2']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-rockies': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume IV: The Rockies & High Plains',
+      cover: ART + 'mg-rockies.jpg', url: SITE + '/FoodGuide/Order/Rockies/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62218-4']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-pacific-northwest': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume V: The Pacific Northwest',
+      cover: ART + 'mg-pacific-northwest.jpg', url: SITE + '/FoodGuide/Order/PacificNorthwest/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62221-4']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-tropical-north': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume I: Tropical North Australia',
+      cover: ART + 'mg-tropical-north.jpg', url: SITE + '/FoodGuide/Order/TropicalNorth/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62217-7']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-subtropical-east-coast': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume II: Subtropical East Coast',
+      cover: ART + 'mg-subtropical-east-coast.jpg', url: SITE + '/FoodGuide/Order/SubtropicalEastCoast/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62213-9']],
+      price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
+    },
+    'mg-temperate-south': {
+      title: 'The Haligric Yearly Meal Guide', ed: 'Volume III: Temperate South Australia',
+      cover: ART + 'mg-temperate-south.jpg', url: SITE + '/FoodGuide/Order/TemperateSouth/',
+      specs: [['Format', 'Paperback, perfect bound, glossy'], ['Size', 'Pocket · 4.25 × 6.875 in'], ['Pages', '56'],
+              ['Interior', 'Full color on 80# white coated'], ['ISBN', '978-0-557-62212-2']],
       price: { USD: 2222, EUR: 2222, GBP: 2222, AUD: 3333, CAD: 3333 },
     },
     'real-magic': {

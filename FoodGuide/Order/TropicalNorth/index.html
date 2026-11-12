@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+  Title:       Order The Haligric Yearly Meal Guide — Volume I: Tropical North Australia | Haligricity
+  Author:      Hali Sarah Parsons
+  Date:        2026-11-11
+  Modified By: Claude
+  Description: Order page for one Haligric Yearly Meal Guide only. Cart, currency and checkout come from the shared
+               /HaligricFoundation/Order/assets/shop.js, so books added on any Haligricity page stay in the same cart.
+               Edit prices/books there and in the lulu-order worker.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order The Haligric Yearly Meal Guide — Volume I: Tropical North Australia | Haligricity</title>
+<meta name="description" content="The Haligric Yearly Meal Guide, Volume I: Tropical North Australia — a pocket-size, full-color, year-round eating plan for Tropical North Australia, printed on demand.">
+<link rel="canonical" href="https://haligricity.iqproductionz.com/FoodGuide/Order/TropicalNorth/">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Haligricity">
+<meta property="og:title" content="Order The Haligric Yearly Meal Guide — Volume I: Tropical North Australia | Haligricity">
+<meta property="og:description" content="The Haligric Yearly Meal Guide, Volume I: Tropical North Australia — a pocket-size, full-color, year-round eating plan for Tropical North Australia, printed on demand.">
+<meta property="og:url" content="https://haligricity.iqproductionz.com/FoodGuide/Order/TropicalNorth/">
+<meta property="og:image" content="https://haligricity.iqproductionz.com/HaligricFoundation/Order/assets/covers/mg-tropical-north.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/assets/shop.css">
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://haligricity.iqproductionz.com/HaligricFoundation/Order/assets/shop.js" defer></script>
+</head>
+<body>
+
+<nav class="rm-nav">
+  <div class="rm-nav-left">
+    <a class="rm-hali-link" href="https://haligricity.iqproductionz.com/">Haligricity</a>
+  </div>
+  <div class="rm-links">
+    <a class="rm-link" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/">Foundational Books</a>
+    <a class="rm-cart" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/Cart/" data-hb-cartlink>Cart</a>
+  </div>
+</nav>
+
+<main class="rm-wrap" style="padding-top:28px">
+  <p class="crumb"><a href="https://haligricity.iqproductionz.com/#s-food">← Back to the Meal Guides</a></p>
+  <div class="cur-bar"><label for="cur">Prices in</label><select id="cur" data-hb-currency></select></div>
+  <!-- WHY: Hali wants only this one guide on its page — no other books listed. -->
+  <section data-hb-product="mg-tropical-north"></section>
+
+  <p style="text-align:center;margin:34px 0 8px">
+    <a class="btn ghost" href="https://haligricity.iqproductionz.com/HaligricFoundation/Order/">See Haligric Foundational Books</a>
+  </p>
+
+  <div class="notice"><strong>Note:</strong> In compliance with international sanctions, orders cannot be shipped to Ukraine or Russia.</div>
+  <section data-hb-cartbar></section>
+</main>
+
+<footer class="rm-footer">
+  <p class="tag-line">You Are The Current &nbsp;&middot;&nbsp; Be More You &nbsp;&middot;&nbsp; Ashe.</p>
+  <p>&copy; 2026 Hali Sarah Parsons &nbsp;&middot;&nbsp;
+    <a href="https://haligricity.iqproductionz.com/">Haligricity</a> &nbsp;&middot;&nbsp;
+    <a href="https://IQProductionz.com/">I.Q. Productionz</a></p>
+</footer>
+</body>
+</html>
