@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--
+  Title: Subtropical East Coast Food Guide — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork) — 2026-11-12: removed the in-app Download PDF link.
+  Description: Installable quick-access app rendering the Subtropical East Coast
+  Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
+  + shopping list), generated from the source PDF via parse_guide.py.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subtropical East Coast Food Guide</title>
+<meta name="description" content="Brisbane · Sydney · Gold Coast · Nourishing Through the Humid Summer and the Mild Winter">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FFFDF0; --gold:#C9A227; --gold-border:#B8860B; --gold-pale:#FFFAEC;
+    --purple:#4A1060; --purple-mid:#6B2D8E; --purple-light:#EDE0F5;
+    --ink:#1A1A1A; --gray:#555; --line:#EEE8D0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
+
+  header { text-align:center; padding:36px 0 10px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  .eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--purple-mid); margin-top:14px; }
+  h1 { font-family:'Cinzel',serif; font-size:1.55rem; font-weight:600; color:var(--purple); margin:6px 0 6px; letter-spacing:.02em; }
+  .tagline { font-size:.86rem; color:var(--gray); font-style:italic; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 18px; }
+
+  details.intro-box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  details.intro-box summary { cursor:pointer; font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--purple); }
+  details.intro-box p { font-size:.88rem; line-height:1.7; margin-top:10px; }
+  details.intro-box p + p { margin-top:8px; }
+  details.intro-box h4 { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold-border); margin-top:14px; margin-bottom:4px; }
+
+  .month-tabs { position:sticky; top:0; z-index:50; background:var(--bg); display:flex; gap:6px; overflow-x:auto;
+    padding:10px 0; margin-bottom:6px; border-bottom:1px solid var(--line); -webkit-overflow-scrolling:touch; }
+  .month-tabs::-webkit-scrollbar { height:4px; }
+  .month-tab { flex:0 0 auto; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase;
+    background:#fff; border:1px solid var(--gold-border); color:var(--purple); border-radius:20px; padding:7px 13px;
+    cursor:pointer; white-space:nowrap; }
+  .month-tab.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .month-panel { padding:14px 2px 30px; }
+  .month-eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-border); }
+  .month-title { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:600; color:var(--purple); margin:4px 0 12px; }
+  .month-intro { font-size:.92rem; line-height:1.75; margin-bottom:16px; }
+  .sub-h { font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple);
+    margin:18px 0 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+
+  .tri-table-wrap { overflow-x:auto; margin-bottom:8px; border-radius:8px; border:1px solid var(--line); }
+  table.tri-table { border-collapse:collapse; width:100%; font-size:.78rem; min-width:560px; }
+  table.tri-table th { background:var(--purple); color:#fff; font-family:'Cinzel',serif; font-size:.64rem;
+    letter-spacing:.04em; text-transform:uppercase; padding:9px 10px; text-align:left; }
+  table.tri-table td { padding:9px 10px; border-top:1px solid var(--line); vertical-align:top; }
+  table.tri-table td.tri-day { font-family:'Cinzel',serif; font-weight:600; color:var(--gold-border); white-space:nowrap; }
+  table.tri-table tr:nth-child(even) td { background:#FFFCF2; }
+
+  .recipe-grid { display:flex; flex-direction:column; gap:12px; }
+  .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
+  .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
+  .recipe-steps { font-size:.86rem; line-height:1.7; }
+
+  .shop-box { background:var(--purple-light); border-radius:10px; padding:14px 16px; margin-top:16px; }
+  .shop-title { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple); margin-bottom:8px; }
+  .shop-list { columns:2; column-gap:18px; font-size:.82rem; line-height:1.6; list-style:disc; padding-left:18px; }
+  .shop-list li { break-inside:avoid; margin-bottom:4px; }
+  @media (max-width:480px) { .shop-list { columns:1; } }
+
+  .gap-note { background:#FAFAF8; border:1px dashed var(--purple-mid); border-radius:8px; padding:12px 14px;
+    font-size:.8rem; color:var(--purple); font-style:italic; margin:10px 0 20px; }
+
+
+  footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <div class="eyebrow">Eating as Practice</div>
+    <h1>Subtropical East Coast Food Guide</h1>
+    <p class="tagline">Brisbane · Sydney · Gold Coast · Nourishing Through the Humid Summer and the Mild Winter</p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <details class="intro-box">
+    <summary>The Subtropical East Coast Philosophy</summary>
+    <p>The Subtropical East Coast Haligric Guide is designed for the distinct but moderate seasonal rhythms of the eastern seaboard — where winters are mild and rarely frosty, summers are warm to hot with high humidity from November through March, and spring and autumn offer the best growing conditions of the year. This guide aligns your body with what the coastal valleys and hinterlands are actually producing in each season: abundant tropical fruits and leafy greens in the warm months; root vegetables, brassicas, and citrus in the mild winter.</p>
+    <h4>The Calendar Decoder</h4>
+    <p>Schedules are organized by date groups (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Logic: By repeating the same Trinity each Monday for a month, you establish a consistent rhythm that allows your body to align with the Subtropical East Coast&#x27;s unique seasonal shifts at a cellular level.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every day is a Trinity: One Grain + One Green + One Protein. On the Subtropical East Coast, we emphasize adaptable grains like brown rice and quinoa, seasonal greens including silverbeet, Asian leafy greens, and local brassicas, and clean proteins — tempeh, legumes, and seasonal pulses — to navigate the coast&#x27;s humidity without taxing digestion.</p>
+  </details>
+
+  <div class="gap-note">This guide currently covers Months 1, 4, and 7 (one representative month per season) — the remaining months listed in the original table of contents have not been written yet. More will be added here as they are completed.</div>
+
+  <nav class="month-tabs" id="monthTabs">
+    <button class="month-tab active" onclick="showMonth(1, this)">Jan</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Feb</button>
+    <button class="month-tab" onclick="showMonth(10, this)">Mar</button>
+  </nav>
+
+  <section class="month-panel" id="m1" data-month="1" >
+<div class="month-eyebrow">Jan &middot; Spring Quarter</div>
+<h2 class="month-title">Subtropical East Coast Edition</h2>
+<p class="month-intro">Subtropical Spring is characterized by rapidly warming temperatures and the flush of new growth after the mild winter. To anchor your Haligricity here, we focus on supporting the Liver&#x27;s natural spring upwelling while using the abundance of local spring greens — silverbeet, bok choy, Asian greens — to gently move Qi without over-stimulating the system.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Quinoa w/ Lemon Zest &amp; Pepitas</td>
+<td>Brown Rice, Silverbeet, Chickpeas</td>
+<td>Millet, Roasted Capsicum, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Steel-Cut Oats w/ Sliced Banana &amp; Chia</td>
+<td>Wild Rice, Bok Choy, Tempeh</td>
+<td>Farro, Wilted Spinach, Savory Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Savory Millet w/ Spring Herbs &amp; Hemp</td>
+<td>Quinoa, Asparagus, White Beans</td>
+<td>Buckwheat, Snow Peas, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Brown Rice w/ Avocado &amp; Sesame</td>
+<td>Brown Rice, Kale, Kidney Beans</td>
+<td>Wild Rice, Roasted Eggplant, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Amaranth w/ Mango &amp; Coconut</td>
+<td>Millet, Asian Greens, Adzuki Beans</td>
+<td>Farro, Bok Choy, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Oat Porridge w/ Strawberry &amp; Flax</td>
+<td>Quinoa, Silverbeet, Red Lentils</td>
+<td>Brown Rice, Fennel &amp; Celery, Tempeh</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Teff w/ Walnuts &amp; Figs</td>
+<td>Wild Rice, Spinach, White Beans</td>
+<td>Lentil &amp; Vegetable Stew over Millet</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Silverbeet &amp; Chickpea Spring Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Silverbeet (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Wash and roughly chop a large bunch of silverbeet — stems and leaves. 3. In a pan, warm chickpeas with garlic, cumin, and a squeeze of lemon. 4. Add silverbeet; stir for 2 minutes until wilted. 5. Serve over brown rice with a drizzle of extra virgin olive oil and fresh herbs. Silverbeet is one of the most abundant spring greens along the east coast; its slight bitterness moves Liver Qi gently.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Asparagus &amp; White Bean Quinoa Bowl</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + White Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook Quinoa. 2. Trim asparagus; roast at 200C for 12 minutes until just tender. 3. Warm white beans with garlic and fresh thyme. 4. Assemble quinoa, asparagus, and beans. 5. Finish with lemon tahini dressing. Asparagus is in peak season along the subtropical coast in spring; it supports the kidneys and gently moves stagnation.</div>
+    </div>
+</div>
+</section>
+
+  <section class="month-panel" id="m4" data-month="4" hidden>
+<div class="month-eyebrow">Feb &middot; Summer Quarter</div>
+<h2 class="month-title">The Humid Heat</h2>
+<p class="month-intro">Subtropical summer arrives with high humidity and heat from November through March. The digestive system is most vulnerable to heat accumulation during this period. We focus on cooling, light foods that do not burden the Spleen — hydrating vegetables, easily digestible grains like jasmine rice, and clean protein sources. Raw foods can be incorporated more freely during the peak heat months.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Cooling Oat Bowl w/ Cucumber &amp; Mint</td>
+<td>Jasmine Rice, Bok Choy, Mung Beans</td>
+<td>Wild Rice, Watercress, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Millet Porridge w/ Watermelon &amp; Lime</td>
+<td>Brown Rice, Asian Greens, Tempeh</td>
+<td>Quinoa, Zucchini, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Chilled Amaranth w/ Mango &amp; Coconut</td>
+<td>Wild Rice, Silverbeet, Adzuki Beans</td>
+<td>Millet, Cucumber &amp; Mint Salad, Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Teff w/ Banana &amp; Sesame</td>
+<td>Jasmine Rice, Bok Choy, Mung Beans</td>
+<td>Brown Rice, Water Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Brown Rice Congee w/ Ginger &amp; Shallot</td>
+<td>Millet, Asian Greens, Chickpeas</td>
+<td>Buckwheat, Bitter Greens, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Oat Porridge w/ Papaya &amp; Chia</td>
+<td>Brown Rice, Watercress, Tempeh</td>
+<td>Wild Rice, Bok Choy, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Quinoa w/ Berries &amp; Coconut Flakes</td>
+<td>Jasmine Rice, Silverbeet, Mung Beans</td>
+<td>Millet, Roasted Capsicum, Adzuki Beans</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Bok Choy &amp; Mung Bean Summer Bowl</div>
+      <div class="recipe-trinity">Jasmine Rice (Grain) + Bok Choy (Green) + Mung Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook Jasmine Rice. 2. Quarter baby bok choy lengthways; steam for 3-4 minutes. 3. Warm mung beans with ginger and a splash of coconut aminos. 4. Assemble with rice; top with toasted sesame seeds and a drizzle of sesame oil. 5. Serve at room temperature or slightly warm — avoid over-heating food in summer. Mung beans are the most effective cooling legume in summer conditions.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Mango &amp; Wild Rice Cooling Bowl</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Watercress (Green) + White Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook Wild Rice. 2. Wash watercress; do not cook — use fresh. 3. Warm white beans with garlic and lemon juice. 4. Dice fresh mango. 5. Arrange wild rice with white beans, fresh watercress, and mango slices. 6. Finish with lime juice and fresh mint. Fresh mango is in peak season and cools the body while providing natural sugars to sustain energy through the humid heat.</div>
+    </div>
+</div>
+</section>
+
+  <section class="month-panel" id="m10" data-month="10" hidden>
+<div class="month-eyebrow">Mar &middot; Winter Quarter</div>
+<h2 class="month-title">The Mild Winter</h2>
+<p class="month-intro">Subtropical winter is mild by most world standards — rarely below 10°C on the coast — but the body still benefits from warming, nourishing foods that support the Kidney energy through the shorter days and cooler nights. This is the best growing season for brassicas, root vegetables, and citrus — all of which make excellent Trinity partners during the mild winter months.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Oat Porridge w/ Citrus Zest &amp; Walnuts</td>
+<td>Brown Rice, Broccoli, Chickpeas</td>
+<td>Millet, Roasted Cauliflower, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Warm Brown Rice Congee w/ Ginger</td>
+<td>Wild Rice, Kale, Kidney Beans</td>
+<td>Farro, Silverbeet, Tempeh</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Savory Millet w/ Turmeric &amp; Sesame</td>
+<td>Quinoa, Brussel Sprouts, White Beans</td>
+<td>Buckwheat, Roasted Beetroot, Adzuki Beans</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Warm Buckwheat w/ Citrus &amp; Hemp Seeds</td>
+<td>Brown Rice, Cavolo Nero, Black Beans</td>
+<td>Wild Rice, Parsnip &amp; Kale, Lentil Stew</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Steel-Cut Oats w/ Walnut &amp; Cinnamon</td>
+<td>Millet, Broccoli, Chickpeas</td>
+<td>Quinoa, Roasted Sweet Potato, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Teff Porridge w/ Orange Zest &amp; Dates</td>
+<td>Brown Rice, Kale, Kidney Beans</td>
+<td>Amaranth, Silverbeet, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Amaranth w/ Prune &amp; Star Anise</td>
+<td>Wild Rice, Cavolo Nero, Tempeh</td>
+<td>Millet, Roasted Parsnip, Black-Eye Peas</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Broccoli &amp; Chickpea Winter Nourish Bowl</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Broccoli (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-steps">1. Cook Brown Rice. 2. Cut broccoli into florets; steam until bright green and just tender. 3. Warm chickpeas with cumin, coriander, and a pinch of turmeric. 4. Assemble with brown rice; top with a lemon-tahini drizzle and fresh parsley. Broccoli is at peak quality during the subtropical winter and provides the sulfur compounds that support detoxification through the cooler, slower season.</div>
+    </div>
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Cauliflower &amp; Red Lentil Winter Bowl</div>
+      <div class="recipe-trinity">Millet (Grain) + Roasted Cauliflower (Green/Vegetable) + Red Lentils (Protein)</div>
+      <div class="recipe-steps">1. Cook Millet. 2. Cut cauliflower into florets; toss with olive oil, cumin, and smoked paprika. Roast at 200C for 20 minutes until golden. 3. Simmer red lentils with garlic, ginger, and turmeric until soft. 4. Serve over millet with roasted cauliflower and lentils. 5. Finish with fresh coriander and a squeeze of lemon. Warming and grounding — ideal for the mild subtropical winter nights.</div>
+    </div>
+</div>
+</section>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+function showMonth(num, btn) {
+  document.querySelectorAll('.month-panel').forEach(function(p){ p.hidden = (p.dataset.month !== String(num)); });
+  document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+}
+</script>
+</body>
+</html>

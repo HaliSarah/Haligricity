@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<!--
+  Title: New England Food Guide — Quick Access App
+  Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
+  Date: 2026-11-11
+  Modified By: Claude (Cowork) — 2026-11-12: removed the in-app Download PDF link.
+  Description: Installable quick-access app rendering the New England
+  Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
+  + shopping list), generated from the source PDF via parse_guide.py.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New England Food Guide</title>
+<meta name="description" content="">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="app-icon-512.png">
+<meta name="theme-color" content="#4A1060">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FFFDF0; --gold:#C9A227; --gold-border:#B8860B; --gold-pale:#FFFAEC;
+    --purple:#4A1060; --purple-mid:#6B2D8E; --purple-light:#EDE0F5;
+    --ink:#1A1A1A; --gray:#555; --line:#EEE8D0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Georgia,'Cormorant Garamond',serif; background:var(--bg); color:var(--ink); min-height:100vh; padding-bottom:60px; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 18px 10px; }
+
+  header { text-align:center; padding:36px 0 10px; }
+  .wordmark { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold-border); text-decoration:none; }
+  .eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--purple-mid); margin-top:14px; }
+  h1 { font-family:'Cinzel',serif; font-size:1.55rem; font-weight:600; color:var(--purple); margin:6px 0 6px; letter-spacing:.02em; }
+  .tagline { font-size:.86rem; color:var(--gray); font-style:italic; }
+  .gold-divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto 18px; }
+
+  details.intro-box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  details.intro-box summary { cursor:pointer; font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--purple); }
+  details.intro-box p { font-size:.88rem; line-height:1.7; margin-top:10px; }
+  details.intro-box p + p { margin-top:8px; }
+  details.intro-box h4 { font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold-border); margin-top:14px; margin-bottom:4px; }
+
+  .month-tabs { position:sticky; top:0; z-index:50; background:var(--bg); display:flex; gap:6px; overflow-x:auto;
+    padding:10px 0; margin-bottom:6px; border-bottom:1px solid var(--line); -webkit-overflow-scrolling:touch; }
+  .month-tabs::-webkit-scrollbar { height:4px; }
+  .month-tab { flex:0 0 auto; font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase;
+    background:#fff; border:1px solid var(--gold-border); color:var(--purple); border-radius:20px; padding:7px 13px;
+    cursor:pointer; white-space:nowrap; }
+  .month-tab.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .month-panel { padding:14px 2px 30px; }
+  .month-eyebrow { font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-border); }
+  .month-title { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:600; color:var(--purple); margin:4px 0 12px; }
+  .month-intro { font-size:.92rem; line-height:1.75; margin-bottom:16px; }
+  .sub-h { font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple);
+    margin:18px 0 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+
+  .tri-table-wrap { overflow-x:auto; margin-bottom:8px; border-radius:8px; border:1px solid var(--line); }
+  table.tri-table { border-collapse:collapse; width:100%; font-size:.78rem; min-width:560px; }
+  table.tri-table th { background:var(--purple); color:#fff; font-family:'Cinzel',serif; font-size:.64rem;
+    letter-spacing:.04em; text-transform:uppercase; padding:9px 10px; text-align:left; }
+  table.tri-table td { padding:9px 10px; border-top:1px solid var(--line); vertical-align:top; }
+  table.tri-table td.tri-day { font-family:'Cinzel',serif; font-weight:600; color:var(--gold-border); white-space:nowrap; }
+  table.tri-table tr:nth-child(even) td { background:#FFFCF2; }
+
+  .recipe-grid { display:flex; flex-direction:column; gap:12px; }
+  .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
+  .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
+  .recipe-steps { font-size:.86rem; line-height:1.7; }
+
+  .shop-box { background:var(--purple-light); border-radius:10px; padding:14px 16px; margin-top:16px; }
+  .shop-title { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--purple); margin-bottom:8px; }
+  .shop-list { columns:2; column-gap:18px; font-size:.82rem; line-height:1.6; list-style:disc; padding-left:18px; }
+  .shop-list li { break-inside:avoid; margin-bottom:4px; }
+  @media (max-width:480px) { .shop-list { columns:1; } }
+
+  .gap-note { background:#FAFAF8; border:1px dashed var(--purple-mid); border-radius:8px; padding:12px 14px;
+    font-size:.8rem; color:var(--purple); font-style:italic; margin:10px 0 20px; }
+
+
+  footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
+  footer a { color:var(--purple-mid); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="wordmark" href="https://Haligricity.IQProductionz.com/">Haligricity</a>
+    <div class="eyebrow">Eating as Practice</div>
+    <h1>New England Food Guide</h1>
+    <p class="tagline"></p>
+    <div class="gold-divider"></div>
+  </header>
+
+  <details class="intro-box">
+    <summary>The New England Philosophy</summary>
+    <p>The New England Haligric Guide is calibrated for Northern Atlantic soils, maritime chill, short intense summers, and deep interior cold. As seasonal climate shifts accelerate, maintaining internal biological balance with your immediate bioregional landscape becomes paramount. This guide delivers the cellular resilience and metabolic grounding required to insulate against Nor&#x27;easters, navigate persistent spring dampness, and flourish through the northern seasons.</p>
+    <h4>The Calendar Decoder</h4>
+    <p>Schedules are organized by recurring date sequences (e.g., 1/8/15/22 ). These represent the Day of the Week (e.g., every Monday of that 28-day cycle). Batch Trinity Prep: Repetition is the anchor of cellular alignment. By preparing and repeating the same Trinity each Monday throughout the month, you remove kitchen friction and allow your digestive fire to sync effortlessly with the regional climate shifts.</p>
+    <h4>The Trinity Formula</h4>
+    <p>Every meal conforms to the Haligric Trinity: One Grain + One Green/Vegetable + One Protein . In New England, we prioritize warming grains like Buckwheat, Spelt, and Rye during the long freeze, mineral-rich Atlantic sea greens (dulse and kelp), sweet storage roots, and 100% clean, soy-free plant proteins to protect your kidney Jing and steady blood viscosity year-round.</p>
+  </details>
+
+  
+
+  <nav class="month-tabs" id="monthTabs">
+    <button class="month-tab active" onclick="showMonth(1, this)">Jan</button>
+    <button class="month-tab" onclick="showMonth(2, this)">Feb</button>
+    <button class="month-tab" onclick="showMonth(3, this)">Mar</button>
+    <button class="month-tab" onclick="showMonth(4, this)">Apr</button>
+    <button class="month-tab" onclick="showMonth(5, this)">May</button>
+    <button class="month-tab" onclick="showMonth(6, this)">Jun</button>
+    <button class="month-tab" onclick="showMonth(7, this)">Jul</button>
+    <button class="month-tab" onclick="showMonth(8, this)">Aug</button>
+    <button class="month-tab" onclick="showMonth(9, this)">Sep</button>
+    <button class="month-tab" onclick="showMonth(10, this)">Oct</button>
+    <button class="month-tab" onclick="showMonth(11, this)">Nov</button>
+    <button class="month-tab" onclick="showMonth(12, this)">Dec</button>
+  </nav>
+
+  <section class="month-panel" id="m1" data-month="1" >
+<div class="month-eyebrow">Jan &middot; Spring Quarter</div>
+<h2 class="month-title">New England Edition (The Mud Season &amp; Thaw)</h2>
+<p class="month-intro">4 WEEKS 1–4: EARLY SPRING NORTH ATLANTIC ALIGNMENT April in New England is &#x27;The Mud Season.&#x27; As the frozen ground thaws and snowmelt runs off the hills, the energy shifts into the Wood Phase. To maintain Haligricity, we focus on Smoothing the Liver Qi and Clearing Winter Dampness. We use sweet overwintered parsnips, pungent leeks and bitter dandelion greens to wake the body gently from the long freeze.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">1/8/15/22</td>
+<td>Warm Spelt Porridge w/ Stewed Apples &amp; Walnuts</td>
+<td>Rye Groats, Sautéed Parsnips &amp; Leeks, Seitan</td>
+<td>Wild Rice, Steamed Dandelion Greens, White Navy Beans</td>
+</tr>
+<tr>
+<td class="tri-day">2/9/16/23</td>
+<td>Warm Steel-Cut Oats w/ Cranberries &amp; Pumpkin Seeds</td>
+<td>Millet, Braised Leeks &amp; Carrots, Red Lentils</td>
+<td>Farro, Sautéed Radish Greens, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">3/10/17/24</td>
+<td>Warm Rye Porridge w/ Dried Blueberries</td>
+<td>Quinoa, Dandelion Greens, Chickpeas</td>
+<td>Brown Rice, Overwintered Carrots, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">4/11/18/25</td>
+<td>Savory Teff w/ Garlic, Parsley &amp; Dulse</td>
+<td>Rye, Steamed Cabbage &amp; Scallions, Seitan</td>
+<td>Barley, Sautéed Radishes &amp; Greens, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Amaranth w/ Dried Blueberries &amp; Walnuts</td>
+<td>Farro, Sautéed Leeks &amp; Parsnips, Red Lentils</td>
+<td>Wild Rice, Braised Collards, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Buckwheat Groats w/ Stewed Northern Apples</td>
+<td>Brown Rice, Steamed Spinach, White Navy Beans</td>
+<td>Millet, Turnip Greens, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Quinoa w/ Toasted Sunflower &amp; Cardamom</td>
+<td>Barley, Dandelion Greens, Red Lentils</td>
+<td>Lentil &amp; Root Thaw Stew over Hearty Farro</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Overwintered Parsnip &amp; Seitan Sauté</div>
+      <div class="recipe-trinity">Rye Groats (Grain) + Sweet Overwintered Parsnip &amp; Leeks (Green/Root) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Simmer rye groats until chewy and tender. 2. Slice parsnips into rounds and sear in olive oil with leeks until golden. The winter freeze turns parsnip starches into concentrated restorative sweetness. 3. Sauté seitan strips with garlic, black pepper, and splash of cider vinegar to mobilize Liver Qi.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Overwintered Parsnips (6 lbs)</li>
+<li>Seitan (Upton&#x27;s or homemade, 8 packs)</li>
+<li>Leeks &amp; Scallions (6 bunches)</li>
+<li>White Navy Beans (Dry or canned)</li>
+<li>Dandelion Greens &amp; Radishes</li>
+<li>Red Lentils &amp; Chickpeas</li>
+<li>Stored Winter Apples &amp; Carrots</li>
+<li>New England Walnuts</li>
+<li>Cranberries &amp; Dried Blueberries</li>
+<li>Raw Pumpkin &amp; Sunflower Seeds</li>
+<li>Fresh Garlic &amp; Ginger Root</li>
+<li>Rye Groats &amp; Spelt Porridge</li>
+<li>Steel-Cut Oats &amp; Pearled Barley</li>
+<li>Farro, Wild Rice &amp; Quinoa</li>
+<li>Buckwheat Groats &amp; Millet</li>
+<li>Maine Sea Dulse / Kelp flakes</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m2" data-month="2" hidden>
+<div class="month-eyebrow">Feb &middot; Spring Quarter</div>
+<h2 class="month-title">New England Edition (The Maple Run &amp; Rising Sap)</h2>
+<p class="month-intro">6 WEEKS 5–8 • THE MAPLE RUN &amp; RISING SAP • ACTIVE WOOD PHASE As northern nights freeze and days warm, the sugar maples run. The Earth pushes fluids vigorously upward. We introduce wild fiddlehead ferns, early watercress, pea tendrils, and pungent chives to break stagnant winter fats, using small drops of pure grade-A amber syrup for energetic rising.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">5/12/19/26</td>
+<td>Warm Spelt w/ Dried Cherries &amp; Maple</td>
+<td>Millet, Sautéed Fiddleheads, Red Lentils</td>
+<td>Black Rice, Seitan, Steamed Watercress</td>
+</tr>
+<tr>
+<td class="tri-day">6/13/20/27</td>
+<td>Savory Oats w/ Chives &amp; Garlic</td>
+<td>Wild Rice, Pea Tendrils, Chickpeas</td>
+<td>Farro, Sautéed Spring Leeks, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">7/14/21/28</td>
+<td>Warm Buckwheat w/ Apple Compote</td>
+<td>Quinoa, Steamed Spinach, Seitan</td>
+<td>Barley, Fiddleheads, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">8/15/22/29</td>
+<td>Warm Amaranth w/ Walnuts &amp; Nutmeg</td>
+<td>Brown Rice, Asparagus, Red Lentils</td>
+<td>Wild Rice, Bok Choy, Chickpea Mash</td>
+</tr>
+<tr>
+<td class="tri-day">9/16/23/30</td>
+<td>Warm Steel-Cut Oats w/ Pumpkin Seeds</td>
+<td>Barley, Pea Shoots, White Navy Beans</td>
+<td>Rye Groats, Broccoli Rabe, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">10/17/24/31</td>
+<td>Warm Teff w/ Blueberries &amp; Cinnamon</td>
+<td>Buckwheat, Swiss Chard, Kidney Beans</td>
+<td>Quinoa, Spring Chives, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">11/18/25/32</td>
+<td>Savory Rye Porridge w/ Parsley</td>
+<td>Farro, Dandelion Greens, Chickpeas</td>
+<td>Brown Rice, Watercress &amp; Scallions, Seitan</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Wild Fiddlehead &amp; Lentil Awakening</div>
+      <div class="recipe-trinity">Millet (Grain) + Steamed Fiddlehead Ferns (Green) + Red Lentils (Protein)</div>
+      <div class="recipe-steps">1. Clean ostrich fern fiddleheads thoroughly, trimming brown papery scales. 2. Steam or boil for 6–8 minutes (essential for proper digestion), then flash-sauté in olive oil with minced garlic. 3. Fold into tender cooked red lentils and warm fluffy millet with fresh cracked pepper and lemon.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Fresh Fiddleheads (3–4 lbs)</li>
+<li>Seitan (Upton&#x27;s or artisan, 8 packs)</li>
+<li>Watercress &amp; Pea Shoots</li>
+<li>Red Lentils &amp; Chickpeas</li>
+<li>Fresh Chives &amp; Scallions (4 bunches)</li>
+<li>White Navy Beans &amp; Red Kidney</li>
+<li>Early Greenhouse Asparagus</li>
+<li>Black Walnuts &amp; Pumpkin Seeds</li>
+<li>Broccoli Rabe &amp; Dandelion</li>
+<li>Hemp Hearts</li>
+<li>Lemons &amp; Fresh Garlic</li>
+<li>Millet &amp; Buckwheat Groats</li>
+<li>Farro, Wild Rice &amp; Rye</li>
+<li>Pure Vermont/Maine Maple Syrup</li>
+<li>Apple Cider Vinegar</li>
+<li>Cold-Pressed Olive Oil</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m3" data-month="3" hidden>
+<div class="month-eyebrow">Mar &middot; Spring Quarter</div>
+<h2 class="month-title">New England Edition (The Verdant Emergence)</h2>
+<p class="month-intro">8 WEEKS 9–12 • THE VERDANT EMERGENCE • WOOD TO FIRE INTEGRATION Late May and early June bring genuine warmth to New England. Lilacs bloom, asparagus peaks in the river valleys, and sugar snap peas climb the trellises. We anchor the digestive center (Stomach/Spleen) with lighter grains like quinoa and amaranth while maintaining moderate warmth to prevent sudden coastal chill fatigue.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">9/16/23/30</td>
+<td>Warm Millet w/ Fresh Strawberries</td>
+<td>Quinoa, Sugar Snap Peas, Red Lentils</td>
+<td>Black Rice, Seitan, Steamed Chard</td>
+</tr>
+<tr>
+<td class="tri-day">10/17/24/31</td>
+<td>Warm Amaranth w/ Sunflower Seeds</td>
+<td>Brown Rice, Asparagus Spears, Chickpeas</td>
+<td>Millet, Sautéed Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">11/18/25/32</td>
+<td>Warm Buckwheat w/ Blueberry Mash</td>
+<td>Wild Rice, Baby Bok Choy, Seitan</td>
+<td>Quinoa, Tender Green Beans, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">12/19/26/33</td>
+<td>Savory Oats w/ Garlic Scapes</td>
+<td>Barley, Radish Greens, Chickpea Mash</td>
+<td>Millet, Zucchini ribbons, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">13/20/27/34</td>
+<td>Warm Quinoa w/ Hemp &amp; Cinnamon</td>
+<td>Brown Rice, Steamed Broccoli, White Beans</td>
+<td>Steel-Cut Oats (Savory), Kale, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">14/21/28/35</td>
+<td>Warm Spelt Porridge w/ Maple Butter</td>
+<td>Wild Rice, Sugar Snap Peas, Seitan</td>
+<td>Quinoa, Summer Squash, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">15/22/29/36</td>
+<td>Warm Teff w/ Walnuts &amp; Ginger</td>
+<td>Buckwheat, Asparagus, Chickpeas</td>
+<td>Brown Rice, Collard Greens, Seitan</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Valley Asparagus &amp; Garlic Scape Trinity</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Asparagus &amp; Garlic Scapes (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Cook long-grain wild rice in vegetable broth. 2. Cut tender local asparagus spears into two-inch pieces; chop early curled garlic scapes. 3. Sauté with cubed seitan in a hot skillet until crisp-edged. 4. Finish with fresh lemon juice and nutritional yeast for clean, non-dairy richness.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Valley Asparagus (6–8 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Sugar Snap Peas (4 lbs)</li>
+<li>Red Lentils &amp; White Navy Beans</li>
+<li>Garlic Scapes &amp; Chives</li>
+<li>Chickpeas &amp; Red Kidney Beans</li>
+<li>Baby Spinach &amp; Swiss Chard</li>
+<li>Raw Sunflower Seeds &amp; Hemp Hearts</li>
+<li>Early Local Strawberries</li>
+<li>New England Walnuts</li>
+<li>Zucchini &amp; Summer Squash</li>
+<li>Quinoa &amp; Amaranth</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Spelt &amp; Pearled Barley</li>
+<li>Steel-Cut Oats &amp; Teff</li>
+<li>Cold-Pressed Sunflower Oil</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m4" data-month="4" hidden>
+<div class="month-eyebrow">Apr &middot; Summer Quarter</div>
+<h2 class="month-title">New England Edition (The Coastal Bloom)</h2>
+<p class="month-intro">10 WEEKS 13–16 • THE COASTAL BLOOM • EARLY FIRE PHASE July brings long northern daylight and warm maritime ocean breezes. We safeguard the Heart Fire and protect Yin fluids against dry summer winds and coastal humidity. Hydrating zucchini, crisp string beans, and sweet local strawberries are paired with cooling grains like millet and barley.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">13/20/27/34</td>
+<td>Warm Millet w/ Poached Rhubarb &amp; Berries</td>
+<td>Quinoa, Yellow Squash, White Navy Beans</td>
+<td>Wild Rice, Seitan strips, Dandelion Greens</td>
+</tr>
+<tr>
+<td class="tri-day">14/21/28/35</td>
+<td>Warm Amaranth w/ Hemp &amp; Cardamom</td>
+<td>Brown Rice, Green Beans, Red Lentils</td>
+<td>Millet, Steamed Spinach, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">15/22/29/36</td>
+<td>Warm Buckwheat w/ Blueberry Compote</td>
+<td>Quinoa, Steamed Bok Choy, Chickpeas</td>
+<td>Black Rice, Zucchini ribbons, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">16/23/30/37</td>
+<td>Savory Millet w/ Chopped Scallions</td>
+<td>Barley, Collard Greens, Kidney Beans</td>
+<td>Wild Rice, Sautéed Snap Peas, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">17/24/31/38</td>
+<td>Warm Quinoa w/ Ground Flax &amp; Cinnamon</td>
+<td>Brown Rice, Tender String Beans, Seitan</td>
+<td>Steel-Cut Oats (Savory), Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">18/25/32/39</td>
+<td>Warm Teff w/ Sunflower Butter</td>
+<td>Quinoa, Summer Squash, Chickpeas</td>
+<td>Millet, Dandelion Greens, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">19/26/33/40</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Maple</td>
+<td>Wild Rice, Swiss Chard, Seitan</td>
+<td>Lentil &amp; Green Bean Stew over Brown Rice</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Summer String Bean &amp; White Bean Skillet</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Crisp Local String Beans (Green) + White Navy Beans (Protein)</div>
+      <div class="recipe-steps">1. Cook brown rice until tender. 2. Snap fresh green beans and blanch in boiling water for 2 minutes, then plunge into cold water to lock chlorophyll. 3. Sauté with garlic, sweet yellow onions, and white navy beans. 4. Season with sea salt and fresh thyme to keep Heart Fire serene.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Fresh Snap/String Beans (5 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Yellow Summer Squash &amp; Zucchini</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Field Rhubarb &amp; Strawberries</li>
+<li>Chickpeas &amp; Dark Red Kidney</li>
+<li>Swiss Chard &amp; Dandelion Greens</li>
+<li>Hemp Hearts &amp; Sunflower Butter</li>
+<li>Fresh Thyme, Parsley &amp; Scallions</li>
+<li>Pumpkin Seeds</li>
+<li>Garlic &amp; Sweet Yellow Onions</li>
+<li>Millet (Premier cooling grain)</li>
+<li>Pearled Barley &amp; Quinoa</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Teff &amp; Buckwheat</li>
+<li>Extra Virgin Olive Oil</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m5" data-month="5" hidden>
+<div class="month-eyebrow">May &middot; Summer Quarter</div>
+<h2 class="month-title">New England Edition (The High Sun &amp; Mountain Bounty)</h2>
+<p class="month-intro">12 WEEKS 17–20 • THE HIGH SUN &amp; MOUNTAIN BOUNTY • PEAK FIRE &amp; EARTH BALANCE Late July through August brings high solar heat, wild Maine lowbush blueberries, sweet corn, and ripe field tomatoes. We maintain Stomach Fire with warm breakfasts while using sweet corn and summer cabbage to balance the spleen and replenish moisture depleted by the summer sun.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">17/24/31/38</td>
+<td>Warm Cornmeal Porridge w/ Wild Blueberries</td>
+<td>Quinoa, Roasted Sweet Corn, Chickpeas</td>
+<td>Wild Rice, Seitan, Sautéed Bell Peppers</td>
+</tr>
+<tr>
+<td class="tri-day">18/25/32/39</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Peach</td>
+<td>Brown Rice, Steamed Corn &amp; Chard, Red Lentils</td>
+<td>Millet, Collard Greens, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">19/26/33/40</td>
+<td>Warm Quinoa w/ Hemp &amp; Blackberry Mash</td>
+<td>Barley, Heirloom Tomato Stew, Seitan</td>
+<td>Wild Rice, Zucchini, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">20/27/34/41</td>
+<td>Savory Oats w/ Summer Savory Herbs</td>
+<td>Millet, Green Beans, Red Lentils</td>
+<td>Brown Rice, Sweet Corn &amp; Scallions, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">21/28/35/42</td>
+<td>Warm Amaranth w/ Sunflower Seeds</td>
+<td>Quinoa, Sautéed Bell Peppers, White Beans</td>
+<td>Steel-Cut Oats (Savory), Spinach, Chickpeas</td>
+</tr>
+<tr>
+<td class="tri-day">22/29/36/43</td>
+<td>Warm Buckwheat w/ Blueberries &amp; Walnuts</td>
+<td>Brown Rice, Sautéed Cabbage, Red Lentils</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">23/30/37/44</td>
+<td>Warm Teff w/ Chia &amp; Cardamom</td>
+<td>Wild Rice, Corn &amp; Snap Beans, Chickpeas</td>
+<td>Lentil &amp; Sweet Corn Chowder over Quinoa</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Sweet Corn &amp; Wild Rice Chowder Bowl</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Native Sweet Corn &amp; Chard (Green/Yellow) + Red Lentils (Protein)</div>
+      <div class="recipe-steps">1. Cut fresh sweet corn kernels from the cob. 2. Simmer red lentils with diced celery, sweet onions, and chopped Swiss chard until creamy. 3. Fold in the fresh sweet corn during the final 3 minutes of cooking to retain crunch. 4. Ladle over cooked wild rice for profound Earth-element harmonization.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Native Sweet Corn (12 ears)</li>
+<li>Seitan (8 packs)</li>
+<li>Wild Lowbush Blueberries (4 lbs)</li>
+<li>Red Lentils &amp; Chickpeas</li>
+<li>Heirloom Tomatoes &amp; Bell Peppers</li>
+<li>White Navy Beans &amp; Kidney Beans</li>
+<li>Green Cabbage &amp; Swiss Chard</li>
+<li>Hemp Hearts &amp; Walnuts</li>
+<li>Zucchini &amp; Summer Squash</li>
+<li>Raw Sunflower Seeds</li>
+<li>Fresh Celery &amp; Summer Savory</li>
+<li>Stoneground New England Cornmeal</li>
+<li>Wild Rice &amp; Millet</li>
+<li>Quinoa &amp; Pearled Barley</li>
+<li>Steel-Cut Oats &amp; Buckwheat</li>
+<li>Chia &amp; Flax Seeds</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m6" data-month="6" hidden>
+<div class="month-eyebrow">Jun &middot; Summer Quarter</div>
+<h2 class="month-title">New England Edition (The Late Ripening)</h2>
+<p class="month-intro">14 WEEKS 21–24 • THE LATE RIPENING • EARTH TRANSITION PHASE Late August signals the turning point. Fog rolls over the rocky coastline at night, and goldenrod blankets the hillsides. Governed by the Earth Element in traditional medicine, this period requires drying excess dampness with barley and millet while preparing the body for the crisp winds of autumn.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">21/28/35/42</td>
+<td>Warm Millet w/ Ripe Blackberries</td>
+<td>Barley, Steamed Green Beans, White Beans</td>
+<td>Wild Rice, Seitan, Braised Kale</td>
+</tr>
+<tr>
+<td class="tri-day">22/29/36/43</td>
+<td>Warm Amaranth w/ Hemp &amp; Cinnamon</td>
+<td>Quinoa, Sweet Corn &amp; Scallions, Chickpeas</td>
+<td>Millet, Green Beans, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">23/30/37/44</td>
+<td>Warm Quinoa w/ Concord Grapes</td>
+<td>Brown Rice, Sweet Peppers, White Beans</td>
+<td>Wild Rice, Steamed Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">24/31/38/45</td>
+<td>Savory Buckwheat w/ Parsley &amp; Dulse</td>
+<td>Millet, Summer Squash, Red Lentils</td>
+<td>Barley, Sautéed Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">25/32/39/46</td>
+<td>Warm Teff w/ Sunflower Seeds</td>
+<td>Quinoa, Braised Cabbage, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Kale, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">26/33/40/47</td>
+<td>Warm Cornmeal Porridge w/ Walnuts</td>
+<td>Brown Rice, Snap Peas &amp; Peppers, Seitan</td>
+<td>Wild Rice, Swiss Chard, Kidney Beans</td>
+</tr>
+<tr>
+<td class="tri-day">27/34/41/48</td>
+<td>Warm Steel-Cut Oats w/ Blueberries</td>
+<td>Barley, Collard Greens, Red Lentils</td>
+<td>Lentil &amp; Squash Chowder over Warm Millet</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Golden Late-Summer Barley &amp; Braised Kale</div>
+      <div class="recipe-trinity">Pearled Barley (Grain) + Curly Kale &amp; Sweet Peppers (Green) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Simmer pearled barley until nutty and plump (ideal for draining summer damp). 2. Tear curly kale leaves and braise with sweet red peppers and garlic. 3. Sauté seitan cutlets with cracked black pepper. 4. Combine and drizzle with toasted sunflower oil.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Early Concord Grapes &amp; Blackberries</li>
+<li>Seitan (8 packs)</li>
+<li>Sweet Bell Peppers (8 total)</li>
+<li>Chickpeas &amp; White Navy Beans</li>
+<li>Green Beans &amp; Summer Squash</li>
+<li>Red Lentils &amp; Kidney Beans</li>
+<li>Curly Kale &amp; Collard Greens</li>
+<li>Hemp Hearts &amp; Raw Walnuts</li>
+<li>Savoy Cabbage &amp; Swiss Chard</li>
+<li>Sunflower Seeds</li>
+<li>Yellow Onions &amp; Garlic</li>
+<li>Pearled Barley (Damp-clearing)</li>
+<li>Millet &amp; Wild Rice</li>
+<li>Quinoa &amp; Brown Rice</li>
+<li>Steel-Cut Oats &amp; Teff</li>
+<li>Maine Sea Dulse flakes</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m7" data-month="7" hidden>
+<div class="month-eyebrow">Jul &middot; Autumn Quarter</div>
+<h2 class="month-title">New England Edition (The Orchard Frost)</h2>
+<p class="month-intro">16 WEEKS 25–28 • THE ORCHARD FROST • EARLY METAL &amp; LUNG PHASE September brings crisp morning frost across the orchards of Vermont, New Hampshire, and Massachusetts. In TCM, Autumn is ruled by the Metal Element, governing the Lungs and Large Intestine. We counter crisp dry air with moistening apples, pears, daikon radishes, and root vegetables to protect mucous membranes and steady the breath.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">25/32/39/46</td>
+<td>Steel-Cut Oats w/ McIntosh Apples &amp; Cinnamon</td>
+<td>Wild Rice, Roasted Delicata Squash, Red Lentils</td>
+<td>Millet, Seitan strips, Sautéed Radishes</td>
+</tr>
+<tr>
+<td class="tri-day">26/33/40/47</td>
+<td>Warm Millet w/ Concord Grape Mash</td>
+<td>Brown Rice, Steamed Kale, White Beans</td>
+<td>Quinoa, Braised Cabbage, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">27/34/41/48</td>
+<td>Warm Amaranth w/ Walnuts &amp; Ginger</td>
+<td>Buckwheat, Roasted Carrots, Chickpeas</td>
+<td>Wild Rice, Spinach, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">28/35/42/49</td>
+<td>Savory Teff w/ Garlic &amp; Thyme</td>
+<td>Millet, Delicata Squash, Seitan</td>
+<td>Brown Rice, Turnip Greens, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">29/36/43/50</td>
+<td>Warm Quinoa w/ Sliced Pears &amp; Flax</td>
+<td>Wild Rice, Bok Choy, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Kale, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">30/37/44/51</td>
+<td>Warm Buckwheat w/ Pumpkin Seeds</td>
+<td>Brown Rice, Sweet Peppers, Red Lentils</td>
+<td>Millet, Swiss Chard, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">31/38/45/52</td>
+<td>Warm Cornmeal Porridge w/ Baked Apples</td>
+<td>Quinoa, Delicata Squash, Chickpeas</td>
+<td>Lentil &amp; Daikon Radish Stew over Brown Rice</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Roasted Delicata &amp; Seitan Skillet</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Delicata Squash &amp; Radishes (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-steps">1. Slice Delicata squash into rings (skin remains on and edible); roast at 400°F until tender and caramelized. 2. Sauté seitan strips with sliced white radishes and garlic. 3. Fold over cooked wild rice. The natural moisture and sweetness of delicata protects the Lungs as northern humidity drops.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Heritage Apples (McIntosh, Cortland - 8 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Delicata Squash (6 squash)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Daikon &amp; Red Radishes (6 bunches)</li>
+<li>Chickpeas &amp; Kidney Beans</li>
+<li>Bartlett Pears &amp; Concord Grapes</li>
+<li>New England Walnuts &amp; Pumpkin Seeds</li>
+<li>Kale &amp; Savoy Cabbage</li>
+<li>Ground Flax Seeds</li>
+<li>Garlic &amp; Fresh Thyme</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Steel-Cut Oats &amp; Millet</li>
+<li>Buckwheat Groats &amp; Quinoa</li>
+<li>Teff &amp; Amaranth</li>
+<li>Ground Cinnamon &amp; Nutmeg</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m8" data-month="8" hidden>
+<div class="month-eyebrow">Aug &middot; Autumn Quarter</div>
+<h2 class="month-title">New England Edition (The Crimson Canopy &amp; Gathering)</h2>
+<p class="month-intro">18 WEEKS 29–32 • THE CRIMSON CANOPY • METAL GATHERING &amp; JING BUILDING October displays the peak foliage of northern hardwoods. As leaves drop, biological energy moves deep into roots and tree sap retreats underground. We mimic nature by consolidating our &quot;Jing&quot; (deep life essence) with butternut squash, purple-top turnips, local cranberries, and hearty walnuts.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">29/36/43/50</td>
+<td>Warm Steel-Cut Oats w/ Cranberries &amp; Walnuts</td>
+<td>Wild Rice, Roasted Turnips, Seitan</td>
+<td>Millet, Steamed Broccoli, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">30/37/44/51</td>
+<td>Warm Millet w/ Pure Maple &amp; Pumpkin Seeds</td>
+<td>Brown Rice, Butternut Squash, White Beans</td>
+<td>Quinoa, Steamed Spinach, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">31/38/45/52</td>
+<td>Warm Amaranth w/ Baked Apple &amp; Nutmeg</td>
+<td>Buckwheat, Steamed Broccoli, Chickpeas</td>
+<td>Wild Rice, Braised Kale, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">32/39/46/53</td>
+<td>Savory Teff w/ Garlic, Onion &amp; Black Pepper</td>
+<td>Millet, Butternut Squash, Seitan</td>
+<td>Brown Rice, Turnip Greens, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">33/40/47/54</td>
+<td>Warm Quinoa w/ Stewed Pears</td>
+<td>Wild Rice, Sautéed Cabbage, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">34/41/48/55</td>
+<td>Warm Buckwheat w/ Flax &amp; Cinnamon</td>
+<td>Brown Rice, Roasted Turnips, Red Lentils</td>
+<td>Millet, Swiss Chard, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">35/42/49/56</td>
+<td>Warm Cornmeal Porridge w/ Walnut Butter</td>
+<td>Quinoa, Roasted Squash, Chickpeas</td>
+<td>Lentil &amp; Broccoli Stew over Brown Rice</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">New England Roasted Butternut &amp; Seitan Gathering</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Roasted Butternut Squash (Green/Orange) + Seitan &amp; Walnuts (Protein)</div>
+      <div class="recipe-steps">1. Peel and cube butternut squash; roast with a touch of maple and olive oil until edges caramelize. 2. Sauté seitan with chopped walnuts and fresh sage until aromatic. 3. Serve over warm short-grain brown rice. This combination anchors the wandering autumn spirit and tonifies Kidney essence.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Butternut Squash (10 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Purple-Top Turnips w/ Greens (6 lbs)</li>
+<li>Black Walnuts &amp; Common Walnuts (3 lbs)</li>
+<li>Fresh Cape Cod Cranberries (4 lbs)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Broccoli (8 heads)</li>
+<li>Chickpeas &amp; Kidney Beans</li>
+<li>Macoun or Honeycrisp Apples</li>
+<li>Pumpkin Seeds &amp; Hemp Hearts</li>
+<li>Fresh Sage, Garlic &amp; Onions</li>
+<li>Short-Grain Brown Rice &amp; Wild Rice</li>
+<li>Steel-Cut Oats &amp; Millet</li>
+<li>Buckwheat Groats &amp; Quinoa</li>
+<li>Teff &amp; Yellow Cornmeal</li>
+<li>Ground Flax Seeds</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m9" data-month="9" hidden>
+<div class="month-eyebrow">Sep &middot; Autumn Quarter</div>
+<h2 class="month-title">New England Edition (Root Cellar Solidification)</h2>
+<p class="month-intro">20 WEEKS 33–36 • THE ROOT CELLAR SOLIDIFICATION • INTERIORITY PHASE November strips the trees bare. Flurries dust the higher elevations, and the ground hardens with overnight freezes. We transition fully to root cellar staples: sugar pumpkins, storage cabbage, beets, and warming spices like ginger, black pepper, and rosemary to stimulate circulation as temperatures plummet.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">33/40/47/54</td>
+<td>Warm Millet w/ Walnuts &amp; Stewed Cranberries</td>
+<td>Wild Rice, Roasted Sugar Pumpkin, Red Lentils</td>
+<td>Brown Rice, Seitan, Braised Green Cabbage</td>
+</tr>
+<tr>
+<td class="tri-day">34/41/48/55</td>
+<td>Warm Buckwheat w/ Baked Apple &amp; Cloves</td>
+<td>Quinoa, Steamed Broccoli, White Beans</td>
+<td>Millet, Kale, Seitan Medallions</td>
+</tr>
+<tr>
+<td class="tri-day">35/42/49/56</td>
+<td>Warm Amaranth w/ Pumpkin Seeds &amp; Ginger</td>
+<td>Buckwheat, Winter Squash, Chickpeas</td>
+<td>Wild Rice, Sautéed Spinach, Red Lentils</td>
+</tr>
+<tr>
+<td class="tri-day">36/43/50/57</td>
+<td>Savory Teff w/ Garlic, Rosemary &amp; Black Pepper</td>
+<td>Millet, Roasted Pumpkin, Seitan</td>
+<td>Brown Rice, Steamed Broccoli, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">37/44/51/58</td>
+<td>Warm Steel-Cut Oats w/ Baked Pears &amp; Cardamom</td>
+<td>Wild Rice, Braised Cabbage, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Kale, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">38/45/52/59</td>
+<td>Warm Cornmeal Porridge w/ Walnut Butter</td>
+<td>Brown Rice, Roasted Squash, Red Lentils</td>
+<td>Millet, Swiss Chard, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">39/46/53/60</td>
+<td>Warm Quinoa w/ Flax &amp; Nutmeg</td>
+<td>Buckwheat, Steamed Broccoli, Chickpeas</td>
+<td>Lentil &amp; Cabbage Stew over Hearty Wild Rice</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Sugar Pumpkin &amp; Braised Winter Cabbage Stew</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Roasted Sugar Pumpkin &amp; Cabbage (Green/Orange) + Red Lentils (Protein)</div>
+      <div class="recipe-steps">1. Roast New England sugar pumpkin cubes until edges blister. 2. Shred green cabbage and braise in a heavy Dutch oven with yellow onion, garlic, and cracked pepper. 3. Stir in cooked red lentils and pumpkin cubes. 4. Serve over steamed wild rice for deep internal warmth.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>New England Sugar Pumpkins (4 pumpkins)</li>
+<li>Seitan (8 packs)</li>
+<li>Green Storage Cabbage (4 large heads)</li>
+<li>Red Lentils &amp; White Navy Beans</li>
+<li>Broccoli &amp; Red Beets (6 lbs each)</li>
+<li>Chickpeas &amp; Dark Kidney Beans</li>
+<li>Storage Apples &amp; Pears</li>
+<li>Raw Walnuts &amp; Pumpkin Seeds</li>
+<li>Kale &amp; Swiss Chard</li>
+<li>Flax Seeds &amp; Hemp Hearts</li>
+<li>Garlic, Yellow Onions &amp; Rosemary</li>
+<li>Wild Rice &amp; Short-Grain Brown Rice</li>
+<li>Warming Buckwheat Groats &amp; Millet</li>
+<li>Steel-Cut Oats &amp; Quinoa</li>
+<li>Amaranth &amp; Stoneground Cornmeal</li>
+<li>Teff Groats</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m10" data-month="10" hidden>
+<div class="month-eyebrow">Oct &middot; Winter Quarter</div>
+<h2 class="month-title">New England Edition (Deep Maritime Cold)</h2>
+<p class="month-intro">22 WEEKS 37–40 • DEEP MARITIME COLD • EARLY WATER ELEMENT &amp; KIDNEYS December brings sub-freezing temperatures, maritime sleet, and early dark afternoons. In TCM, this begins the Water Element phase, which governs the Kidneys and the skeletal system. We use warming buckwheat, dark black beans, and mineral-packed Maine sea greens (dulse and kelp) to fortify bone density and preserve internal Yang.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">37/44/51/58</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Dried Cranberries</td>
+<td>Wild Rice, Roasted Rutabaga, Black Beans</td>
+<td>Millet, Steamed Kale &amp; Dulse, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">38/45/52/59</td>
+<td>Warm Steel-Cut Oats w/ Apple Compote</td>
+<td>Brown Rice, Spinach, White Navy Beans</td>
+<td>Buckwheat, Steamed Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">39/46/53/60</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Ginger</td>
+<td>Wild Rice, Roasted Carrots, Chickpeas</td>
+<td>Quinoa, Braised Collards, Black Beans</td>
+</tr>
+<tr>
+<td class="tri-day">40/47/54/61</td>
+<td>Savory Teff w/ Garlic &amp; Black Pepper</td>
+<td>Buckwheat, Braised Cabbage, Seitan</td>
+<td>Brown Rice, Sautéed Spinach, White Beans</td>
+</tr>
+<tr>
+<td class="tri-day">41/48/55/62</td>
+<td>Warm Amaranth w/ Walnuts &amp; Cinnamon</td>
+<td>Wild Rice, Kale &amp; Carrots, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">42/49/56/63</td>
+<td>Warm Cornmeal Porridge w/ Walnut Butter</td>
+<td>Brown Rice, Roasted Rutabaga, Black Beans</td>
+<td>Millet, Swiss Chard, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">43/50/57/64</td>
+<td>Warm Quinoa w/ Flax &amp; Nutmeg</td>
+<td>Wild Rice, Carrots &amp; Garlic, White Beans</td>
+<td>Lentil &amp; Rutabaga Stew over Warm Buckwheat</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Atlantic Dulse &amp; Black Bean Kidney Fortifier</div>
+      <div class="recipe-trinity">Buckwheat Groats (Grain) + Roasted Rutabaga &amp; Maine Dulse (Green/Root) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Simmer dry black beans with a strip of Maine kelp or kombu, garlic cloves, and bay leaf until creamy. 2. Roast rutabaga chunks until sweet and tender. 3. Serve over steaming kasha (toasted buckwheat groats). 4. Garnish with a sprinkle of Maine sea dulse flakes. In TCM, salty, mineral-dense sea vegetables directly nourish Kidney Jing during peak winter cold.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Yellow Rutabagas &amp; Turnips (8 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Large Storage Carrots (6 lbs)</li>
+<li>Black Turtle Beans (Dry, 6 lbs)</li>
+<li>Storage Cabbage &amp; Broccoli (6 heads)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Hardy Kale &amp; Collard Greens</li>
+<li>Red Lentils</li>
+<li>Storage Apples</li>
+<li>Raw Walnuts &amp; Pumpkin Seeds</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Toasted Buckwheat (Kasha - Most warming)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Steel-Cut Oats &amp; Millet</li>
+<li>Maine Sea Dulse Flakes &amp; Kelp Strips</li>
+<li>Whole Teff &amp; Amaranth</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m11" data-month="11" hidden>
+<div class="month-eyebrow">Nov &middot; Winter Quarter</div>
+<h2 class="month-title">New England Edition (Nor&#x27;easter Chill &amp; Frozen Soil)</h2>
+<p class="month-intro">24 WEEKS 41–44 • NOR&#x27;EASTER CHILL &amp; FROZEN SOIL • DEEP WATER &amp; BONE HEALTH January brings howling blizzards and sub-zero wind chills. The earth is locked under hard ice. Our practice focuses entirely on &#x27;Warming the Kidneys&#x27; and &#x27;Steeling the Bones.&#x27; Deep red beets build rich red blood cells, hearty black beans fortify essence, and high-calcium winter greens protect skeletal integrity.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">41/48/55/62</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Pure Maple</td>
+<td>Wild Rice, Roasted Red Beets, Black Beans</td>
+<td>Millet, Braised Collards, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">42/49/56/63</td>
+<td>Warm Steel-Cut Oats w/ Stewed Cranberries</td>
+<td>Brown Rice, Roasted Parsnips, White Beans</td>
+<td>Buckwheat, Steamed Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">43/50/57/64</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Cinnamon</td>
+<td>Wild Rice, Roasted Carrots, Chickpeas</td>
+<td>Quinoa, Steamed Kale, Black Beans</td>
+</tr>
+<tr>
+<td class="tri-day">44/51/58/65</td>
+<td>Savory Teff w/ Garlic, Ginger &amp; Sea Salt</td>
+<td>Buckwheat, Braised Cabbage, Seitan</td>
+<td>Brown Rice, Spinach, White Navy Beans</td>
+</tr>
+<tr>
+<td class="tri-day">45/52/59/66</td>
+<td>Warm Amaranth w/ Walnuts &amp; Cardamom</td>
+<td>Wild Rice, Steamed Collards, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">46/53/60/67</td>
+<td>Warm Cornmeal Porridge w/ Walnut Butter</td>
+<td>Brown Rice, Roasted Beets, Black Beans</td>
+<td>Millet, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">47/54/61/68</td>
+<td>Warm Quinoa w/ Ground Flax &amp; Nutmeg</td>
+<td>Wild Rice, Parsnips &amp; Garlic, White Beans</td>
+<td>Lentil &amp; Roasted Beet Stew over Buckwheat</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Deep Red Blood-Builder: Roasted Beets &amp; Black Beans</div>
+      <div class="recipe-trinity">Buckwheat Groats (Grain) + Roasted Red Beets &amp; Greens (Root/Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Roast whole unpeeled beets wrapped tightly until fork-tender; slip skins off and dice into jewel cubes. 2. Simmer black beans with minced ginger, garlic, and a pinch of allspice. 3. Toss with roasted beets and serve hot over buckwheat kasha. This formula directly builds hemoglobin and protects internal warmth during blizzards.</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Red Beets &amp; Golden Beets (8 lbs)</li>
+<li>Seitan (8 packs)</li>
+<li>Winter Parsnips &amp; Carrots (6 lbs)</li>
+<li>Black Beans (Dry, 6 lbs)</li>
+<li>Collard Greens &amp; Curly Kale (8 bunches)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Mustard Greens &amp; Green Cabbage</li>
+<li>Red Lentils</li>
+<li>Cape Cod Cranberries (Frozen or fresh)</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Ginger Root, Garlic &amp; Onions</li>
+<li>Toasted Buckwheat (Kasha)</li>
+<li>Rye Groats &amp; Spelt</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Millet &amp; Steel-Cut Oats</li>
+<li>Whole Teff &amp; Amaranth</li></ul>
+    </div>
+</section>
+
+  <section class="month-panel" id="m12" data-month="12" hidden>
+<div class="month-eyebrow">Dec &middot; Winter Quarter</div>
+<h2 class="month-title">New England Edition (The Late Thaw &amp; Ascending Qi)</h2>
+<p class="month-intro">26 WEEKS 45–48 • THE LATE THAW &amp; WHISPERING WOOD • ASCENDING QI TRANSITION Late February and early March in New England bring the first stirrings beneath the snow. While sub-freezing mornings persist, midday solar angle steepens. We maintain deep Kidney support with root vegetables while introducing early pungent scallions, sprouts, and lemon zest to gently awaken Liver Qi for the coming spring cycle.</p>
+<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<div class="tri-table-wrap"><table class="tri-table"><thead><tr>
+<th>Day</th>
+<th>Warm Rising (Breakfast)</th>
+<th>Mid-Day Trinity (Lunch)</th>
+<th>Evening Trinity (Dinner)</th>
+</tr></thead><tbody>
+<tr>
+<td class="tri-day">45/52/59/66</td>
+<td>Warm Buckwheat w/ Walnuts &amp; Maple</td>
+<td>Wild Rice, Roasted Beets, Black Beans</td>
+<td>Millet, Sautéed Scallions, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">46/53/60/67</td>
+<td>Warm Steel-Cut Oats w/ Lemon Zest &amp; Maple</td>
+<td>Brown Rice, Steamed Spinach, White Beans</td>
+<td>Buckwheat, Steamed Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">47/54/61/68</td>
+<td>Warm Millet w/ Pumpkin Seeds &amp; Ginger</td>
+<td>Wild Rice, Roasted Carrots, Chickpeas</td>
+<td>Quinoa, Braised Kale, Black Beans</td>
+</tr>
+<tr>
+<td class="tri-day">48/55/62/69</td>
+<td>Savory Teff w/ Garlic &amp; Fresh Scallions</td>
+<td>Buckwheat, Braised Cabbage, Seitan</td>
+<td>Brown Rice, Spinach, White Navy Beans</td>
+</tr>
+<tr>
+<td class="tri-day">49/56/63/70</td>
+<td>Warm Amaranth w/ Walnuts &amp; Lemon Zest</td>
+<td>Wild Rice, Early Spring Greens, Chickpeas</td>
+<td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">50/57/64/71</td>
+<td>Warm Cornmeal Porridge w/ Walnut Butter</td>
+<td>Brown Rice, Roasted Beets, Black Beans</td>
+<td>Millet, Mustard Greens, Seitan</td>
+</tr>
+<tr>
+<td class="tri-day">51/58/65/72</td>
+<td>Warm Quinoa w/ Ground Flax &amp; Cardamom</td>
+<td>Wild Rice, Carrots &amp; Garlic, White Beans</td>
+<td>Lentil &amp; Beet Stew over Buckwheat Groats</td>
+</tr>
+</tbody></table></div>
+<h3 class="sub-h">Regional Trinity Recipes</h3>
+<div class="recipe-grid">
+<div class="recipe-card">
+      <div class="recipe-title">Late Thaw Blood-Root &amp; Scallion Stir-Fry</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Beets &amp; Early Scallions (Root/Pungent Green) + Black Beans (Protein)</div>
+      <div class="recipe-steps">1. Dice roasted winter storage beets into thin half-moons. 2. Sauté scallions (spring onions) and garlic in olive oil until sweet and fragrant. 3. Add simmered black beans and a touch of lemon zest to invigorate dormant Qi. 4. Serve over steamed buckwheat. This dish bridges Water (storage) and Wood (spring ascending growth).</div>
+    </div>
+</div>
+<div class="shop-box">
+      <div class="shop-title">Shopping List</div>
+      <ul class="shop-list"><li>Red Beets &amp; Carrots (6 lbs each)</li>
+<li>Seitan (8 packs)</li>
+<li>Fresh Scallions / Green Onions (6 bunches)</li>
+<li>Black Beans (Dry, 4 lbs)</li>
+<li>Spinach &amp; Early Greenhouse Greens</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Storage Cabbage &amp; Broccoli</li>
+<li>Red Lentils</li>
+<li>Fresh Lemons (for sour Qi wake-up)</li>
+<li>New England Walnuts &amp; Pumpkin Seeds</li>
+<li>Garlic &amp; Fresh Ginger Root</li>
+<li>Buckwheat Groats &amp; Millet</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Steel-Cut Oats &amp; Quinoa</li>
+<li>Whole Teff &amp; Amaranth</li>
+<li>Spelt &amp; Stoneground Cornmeal</li></ul>
+    </div>
+</section>
+
+  <footer>
+    <p><a href="https://Haligricity.IQProductionz.com/">Haligricity</a> &middot; You Are The Current. &middot; Ashe.</p>
+  </footer>
+</div>
+
+<script>
+function showMonth(num, btn) {
+  document.querySelectorAll('.month-panel').forEach(function(p){ p.hidden = (p.dataset.month !== String(num)); });
+  document.querySelectorAll('.month-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  btn.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+}
+</script>
+</body>
+</html>

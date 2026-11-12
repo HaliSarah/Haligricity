@@ -3,7 +3,7 @@
   Title: The South Food Guide — Quick Access App
   Author: Hali Sarah Parsons (I.Q. Productionz / Haligricity)
   Date: 2026-11-11
-  Modified By: Claude (Cowork)
+  Modified By: Claude (Cowork) — 2026-11-12: removed the in-app Download PDF link. — 2026-11-12: content rebuilt from the updated guide (all months complete, Tetralty).
   Description: Installable quick-access app rendering the The South
   Haligric Yearly Meal Guide PDF as navigable month tabs (schedule + recipes
   + shopping list), generated from the source PDF via parse_guide.py.
@@ -71,6 +71,7 @@
   .recipe-grid { display:flex; flex-direction:column; gap:12px; }
   .recipe-card { background:#fff; border:1.5px solid var(--gold-border); border-radius:10px; padding:14px 16px; }
   .recipe-title { font-family:'Cinzel',serif; font-size:.9rem; font-weight:600; color:var(--purple); margin-bottom:6px; }
+  .shop-list li strong { color:var(--purple); }
   .recipe-trinity { font-size:.78rem; font-style:italic; color:var(--gold-border); margin-bottom:8px; }
   .recipe-steps { font-size:.86rem; line-height:1.7; }
 
@@ -83,9 +84,6 @@
   .gap-note { background:#FAFAF8; border:1px dashed var(--purple-mid); border-radius:8px; padding:12px 14px;
     font-size:.8rem; color:var(--purple); font-style:italic; margin:10px 0 20px; }
 
-  .pdf-link-row { text-align:center; margin:10px 0 6px; }
-  .pdf-link-row a { font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--purple-mid); text-decoration:none; border-bottom:1px solid var(--purple-mid); padding-bottom:1px; }
 
   footer { text-align:center; margin-top:30px; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
     color:rgba(0,0,0,.3); font-family:'Cinzel',serif; }
@@ -107,13 +105,12 @@
     <summary>The Southern Philosophy</summary>
     <p>The Southern Haligric Guide is specifically calibrated for the Gulf Coast and the Texas plains. As global climate shifts, maintaining biological harmony with your immediate environment becomes a priority. This guide provides the metabolic stability needed to navigate intense solar heat and returning coastal dampness.</p>
     <h4>The Calendar Decoder</h4>
-    <p>The schedules are grouped by numbers (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday). Batch Trinity Prep: By repeating the same Trinity each Monday, you simplify your kitchen rhythm and allow your body to adjust to the season on a cellular level through consistency.</p>
-    <h4>The Trinity Formula</h4>
-    <p>Every day is a Trinity: One Grain + One Green + One Protein. This formula ensures blood sugar stability and provides the specific elemental properties needed to drain dampness or cool the blood as the Texas temperatures rise.</p>
+    <p>The schedules are grouped by numbers (e.g., 1/8/15/22). These represent the Day of the Week (e.g., every Monday).</p>
+    <p>Batch Tetralty Prep: By repeating the same Tetralty each Monday, you simplify your kitchen rhythm and allow your body to adjust to the season on a cellular level through consistency.</p>
+    <h4>The Tetralty Formula</h4>
+    <p>Every day is a Tetralty: One Grain + One Green + One Protein + One Digestive Seal. This four-fold structure mirrors the four pillars of Haligricity — Thinking, Feeling, Doing and Being — ensuring cellular satiety, elemental balance and metabolic equilibrium without digestive fatigue. This formula ensures blood sugar stability and provides the specific elemental properties needed to drain dampness or cool the blood as the Texas temperatures rise.</p>
+    <p>The Seal is a small digestive finisher taken after lunch and dinner. It completes the six Vedic tastes and needs no cooking: a warm Digestive Brew (cumin, coriander, fennel, ginger and lemon) in the damp and spring months, a cooling brew or fresh fruit in peak heat, a Spiced Orchard Anchor of gently stewed fruit in late summer and autumn, and a Mineral Jing Truffle (a date filled with tahini or nuts) in deep winter. No refined sugar — sweetness comes only from fruit, dates and warm spices.</p>
   </details>
-
-  <div class="pdf-link-row"><a href="https://Haligricity.IQProductionz.com/FoodGuide/USA/South/The-South.pdf" target="_blank" rel="noopener">⬇ Download the full PDF</a></div>
-  
 
   <nav class="month-tabs" id="monthTabs">
     <button class="month-tab active" onclick="showMonth(1, this)">Jan</button>
@@ -132,1116 +129,1373 @@
 
   <section class="month-panel" id="m1" data-month="1" >
 <div class="month-eyebrow">Jan &middot; Spring Quarter</div>
-<h2 class="month-title">Texas Edition (The Lush Stirring)</h2>
+<h2 class="month-title">The Lush Stirring <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
 <p class="month-intro">WEEKS 1-4: EARLY SPRING GULF COAST ALIGNMENT March in Texas is &#x27;The Lush Stirring.&#x27; As the humidity rises and the bluebonnets emerge, the energy shifts into the Wood Phase. To maintain Haligricity, we focus on Smoothing the Liver Qi and Clearing Winter Dampness. We use Pungent Radishes and Green Onions to mobilize energy and Asparagus to drain the heavy fluids of the Gulf winter.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">1/8/15/22</td>
 <td>Warm Quinoa w/ Fresh Berries</td>
 <td>Millet, Asparagus, White Beans</td>
 <td>Wild Rice, Seitan, Steamed Spinach</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">2/9/16/23</td>
 <td>Warm Steel-Cut Oats w/ Flax Seeds</td>
 <td>Brown Rice, Radishes &amp; Greens, Chickpeas</td>
 <td>Farro, Spring Onions, Seitan</td>
+<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">3/10/17/24</td>
 <td>Warm Millet w/ Pumpkin Seeds</td>
 <td>Barley, Asparagus, Red Lentils</td>
 <td>Quinoa, Mustard Greens, White Beans</td>
+<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">4/11/18/25</td>
 <td>Savory Teff w/ Garlic &amp; Parsley</td>
 <td>Millet, Spinach, Seitan</td>
 <td>Brown Rice, Asparagus, Chickpeas</td>
+<td>Stewed Strawberries w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Amaranth w/ Grapefruit Zest</td>
 <td>Barley, Radishes, White Beans</td>
 <td>Wild Rice, Mustard Greens, Seitan</td>
+<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Warm Cornmeal Mush w/ Walnuts</td>
 <td>Brown Rice, Spinach, Red Lentils</td>
 <td>Millet, Swiss Chard, Seitan</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Quinoa w/ Cardamom</td>
 <td>Wild Rice, Asparagus, Chickpeas</td>
 <td>Lentil &amp; Radish Stew over Farro</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Spring Trinity: Asparagus &amp; Seitan</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + Seitan (Protein)</div>
+      <div class="recipe-title">Texas Spring Tetralty: Asparagus &amp; Seitan</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Asparagus (Green) + Seitan (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
       <div class="recipe-steps">1. Lightly sauté seitan. 2. Flash-sauté asparagus with a hint of lemon. 3. Serve over cooling quinoa. Asparagus is the master at moving stagnant fluids in the humid Texas spring.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Pungent Radish &quot;Qi-Mover&quot;</div>
-      
       <div class="recipe-steps">1. Sauté radishes and their greens with spring onions. 2. The pungent property of radishes breaks up the &#x27;heavy&#x27; winter energy and stirs the Liver Qi to prevent seasonal allergies and sluggishness.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Asparagus (8 bunches)</li>
-<li>Seitan (8 packs)</li>
+      <ul class="shop-list"><li><strong>Produce (Moving &amp; Clearing)</strong></li>
+<li>Asparagus (8 bunches)</li>
 <li>Radishes with Greens (6 bunches)</li>
-<li>White Navy Beans &amp; Red Lentils</li>
 <li>Spring Onions &amp; Leeks</li>
-<li>Chickpeas</li>
 <li>Fresh Spinach &amp; Mustard Greens</li>
-<li>Walnuts &amp; Pumpkin Seeds</li>
 <li>Berries (Strawberries/Blackberries)</li>
 <li>Grapefruit (Texas Star)</li>
 <li>Garlic &amp; Fresh Ginger</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Chickpeas</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li><strong>Grains &amp; Seeds</strong></li>
 <li>Quinoa &amp; Millet (Light/Moving)</li>
 <li>Barley (Damp-draining for humidity)</li>
 <li>Wild Rice &amp; Brown Rice</li>
-<li>Farro, Amaranth, &amp; Teff</li></ul>
+<li>Farro, Amaranth, &amp; Teff</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Strawberries (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m2" data-month="2" hidden>
 <div class="month-eyebrow">Feb &middot; Spring Quarter</div>
-<h2 class="month-title">The Luminous Resonance Phase</h2>
-<p class="month-intro">WEEKS 5-8: MID-SPRING TEXAS ALIGNMENT In Mid-Spring, Texas pulses with rapid growth. We focus on &quot;Moving Qi&quot; and expanding our Haligricity. We introduce bitter and pungent seasonal foods like radishes and spring onions to wake up the liver while maintaining the Trinity&#x27;s grounding structure.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h2 class="month-title">The Rising Sap <span style="font-size:.7em;opacity:.7">(Wood Phase)</span></h2>
+<p class="month-intro">WEEKS 5-8: MID-SPRING TEXAS ALIGNMENT In Mid-Spring, Texas pulses with rapid growth. We focus on &quot;Moving Qi&quot; and expanding our Haligricity. We introduce bitter and pungent seasonal foods like radishes and spring onions to wake up the liver while maintaining the Tetralty&#x27;s grounding structure.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">5/12/19/26</td>
 <td>Warm Oats w/ Strawberries &amp; Hemp</td>
 <td>Millet, Sugar Snap Peas, Red Lentils</td>
 <td>Black Rice, Seitan, Sautéed Radish Greens</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">6/13/20/27</td>
 <td>Savory Quinoa w/ Leeks &amp; Sage</td>
 <td>Wild Rice, Bok Choy, Chickpeas</td>
 <td>Farro, Spring Onions, White Beans</td>
+<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">7/14/21/28</td>
 <td>Warm Buckwheat w/ Blackberry Compote</td>
 <td>Quinoa, Steamed Spinach, Seitan</td>
 <td>Millet, Collard Greens, Kidney Beans</td>
+<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">8/15/22/29</td>
 <td>Warm Amaranth w/ Walnuts &amp; Ginger</td>
 <td>Brown Rice, Asparagus, Red Lentils</td>
 <td>Wild Rice, Kale, Chickpea Mash</td>
+<td>Stewed Strawberries w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">9/16/23/30</td>
 <td>Warm Spelt Porridge w/ Pumpkin Seeds</td>
 <td>Barley, Snap Peas, White Beans</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">10/17/24/31</td>
 <td>Warm Millet w/ Pecans &amp; Cinnamon</td>
 <td>Buckwheat, Swiss Chard, Kidney Beans</td>
 <td>Quinoa, Spring Onions, Red Lentils</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">11/18/25/32</td>
 <td>Savory Oats w/ Garlic &amp; Radishes</td>
 <td>Farro, Dandelion Greens, Chickpeas</td>
 <td>Brown Rice, Bok Choy, Seitan</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Zesty Seitan &amp; Spring Onion Sauté</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Spring Onions/Bok Choy (Green) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Spring Onions/Bok Choy (Green) + Seitan (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
       <div class="recipe-steps">1. Cook brown rice. 2. Slice 3-4 Texas spring onions and 1 pack of Seitan. 3. Sauté together with minced ginger and 1 bunch of chopped Bok Choy. 4. Season with 2 tbsp Coconut Aminos and a squeeze of lemon. 5. Serve warm to circulate the blood.</div>
     </div>
 <div class="recipe-card">
-      <div class="recipe-title">Snap Pea &amp; Red Lentil Trinity</div>
-      <div class="recipe-trinity">Millet (Grain) + Sugar Snap Peas (Green) + Red Lentils (Protein)</div>
+      <div class="recipe-title">Snap Pea &amp; Red Lentil Tetralty</div>
+      <div class="recipe-trinity">Millet (Grain) + Sugar Snap Peas (Green) + Red Lentils (Protein) + Fennel &amp; Mint Brew (Seal)</div>
       <div class="recipe-steps">1. Boil 1 cup Millet in 2 cups water until fluffy. 2. Sauté sugar snap peas (whole) for 3 minutes until crisp-tender. 3. Mix with cooked red lentils. 4. Stir in a teaspoon of tahini for grounding. 5. Garnish with fresh radishes for a pungent TCM &quot;Qi-moving&quot; kick.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Savory Buckwheat &amp; &quot;Bitter&quot; Greens</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Dandelion/Collard Greens (Green) + Chickpeas (Protein)</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Dandelion/Collard Greens (Green) + Chickpeas (Protein) + CCF Brew w/ Lemon (Seal)</div>
       <div class="recipe-steps">1. Rinse buckwheat and cook until tender. 2. Steam dandelion greens or collards to reduce bitterness. 3. Sauté chickpeas with garlic and cumin. 4. Layer greens over the buckwheat and top with the chickpeas. 5. This clears Heat and supports Liver health.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Chickpeas (Dry or Canned)</li>
-<li>White Navy Beans &amp; Kidney Beans</li>
-<li>Hemp Hearts &amp; Pumpkin Seeds</li>
+      <ul class="shop-list"><li><strong>Produce (Mid-Spring Texas)</strong></li>
 <li>Sugar Snap Peas (4-5 lbs)</li>
-<li>Texas Pecans &amp; Walnuts</li>
 <li>Texas Spring Onions (3-4 bunches)</li>
 <li>Radishes with Greens (3 bunches)</li>
 <li>Dandelion Greens (2 bunches)</li>
 <li>Bok Choy &amp; Collard Greens</li>
-<li>Millet &amp; Amaranth</li>
 <li>Swiss Chard &amp; Spinach</li>
-<li>Quinoa &amp; Buckwheat Groats</li>
 <li>Asparagus (Still in season!)</li>
-<li>Brown Rice &amp; Wild Rice</li>
 <li>Fresh Texas Strawberries (4-6 lbs)</li>
-<li>Farro &amp; Barley</li>
 <li>Blackberries (Local if available)</li>
-<li>Steel-Cut Oats &amp; Spelt</li>
 <li>Fresh Ginger &amp; Garlic</li>
-<li>Flax Seeds &amp; Chia Seeds</li>
 <li>Yellow Onions &amp; Lemons</li>
-<li>Coconut Aminos</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
 <li>Seitan (Uptons or similar - 6-8 packs)</li>
-<li>Tahini &amp; Olive Oil</li>
 <li>Red Lentils (Dry)</li>
-<li>Cumin, Cinnamon, Sage, Ginger Powder</li></ul>
+<li>Chickpeas (Dry or Canned)</li>
+<li>White Navy Beans &amp; Kidney Beans</li>
+<li>Hemp Hearts &amp; Pumpkin Seeds</li>
+<li>Texas Pecans &amp; Walnuts</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Millet &amp; Amaranth</li>
+<li>Quinoa &amp; Buckwheat Groats</li>
+<li>Brown Rice &amp; Wild Rice</li>
+<li>Farro &amp; Barley</li>
+<li>Steel-Cut Oats &amp; Spelt</li>
+<li>Flax Seeds &amp; Chia Seeds</li>
+<li><strong>Pantry</strong></li>
+<li>Coconut Aminos</li>
+<li>Tahini &amp; Olive Oil</li>
+<li>Cumin, Cinnamon, Sage, Ginger Powder</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Strawberries (for Seals)</li>
+</ul>
     </div>
+<div class="gap-note"><strong>Haligric Practice: Moving the Qi</strong> — As the weather warms, your body wants to expand. While eating your Warm Rising breakfast, focus your Thinking on the movement of energy from your core to your limbs. Use the pungent flavor of radishes and onions in your meals to help &quot;unlock&quot; any winter stagnation in your Tetralty.</div>
 </section>
 
   <section class="month-panel" id="m3" data-month="3" hidden>
 <div class="month-eyebrow">Mar &middot; Spring Quarter</div>
-<h2 class="month-title">The Haligricity Integration</h2>
-<p class="month-intro">WEEKS 9-12: LATE SPRING TEXAS ALIGNMENT As Texas moves toward the heat of June, we anchor our Haligricity. The &quot;Stomach Fire&quot; must remain stable while the external heat rises. We shift toward lighter grains like Millet and cooling produce like Zucchini and Peaches, ensuring the Trinity provides grounding without heaviness.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h2 class="month-title">The Solar Bridge <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
+<p class="month-intro">WEEKS 9-12: LATE SPRING TEXAS ALIGNMENT As Texas moves toward the heat of June, we anchor our Haligricity. The &quot;Stomach Fire&quot; must remain stable while the external heat rises. We shift toward lighter grains like Millet and cooling produce like Zucchini and Peaches, ensuring the Tetralty provides grounding without heaviness.</p>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">9/16/23/30</td>
 <td>Warm Millet w/ Texas Peaches</td>
 <td>Quinoa, Summer Squash, Red Lentils</td>
 <td>Black Rice, Seitan, Steamed Collards</td>
+<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">10/17/24/31</td>
 <td>Warm Amaranth w/ Pecans &amp; Cardamom</td>
 <td>Brown Rice, Zucchini, Chickpeas</td>
 <td>Millet, Okra (Sautéed), White Beans</td>
+<td>Fresh Strawberries w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">11/18/25/32</td>
 <td>Warm Buckwheat w/ Blueberry Compote</td>
 <td>Wild Rice, Swiss Chard, Seitan</td>
 <td>Quinoa, Green Beans, Red Lentils</td>
+<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">12/19/26/33</td>
 <td>Savory Oats w/ Spring Onions</td>
 <td>Barley, Spinach, Chickpea Mash</td>
 <td>Millet, Summer Squash, Seitan</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">13/20/27/34</td>
 <td>Warm Quinoa w/ Hemp &amp; Cinnamon</td>
 <td>Brown Rice, Broccoli, White Beans</td>
 <td>Steel-Cut Oats (Savory), Kale, Red Lentils</td>
+<td>Fresh Grapefruit w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">14/21/28/35</td>
 <td>Warm Millet w/ Sunflower Seeds</td>
 <td>Wild Rice, Bok Choy, Seitan</td>
 <td>Quinoa, Zucchini, Kidney Beans</td>
+<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">15/22/29/36</td>
 <td>Warm Teff w/ Walnuts &amp; Ginger</td>
 <td>Buckwheat, Green Beans, Chickpeas</td>
 <td>Brown Rice, Collard Greens, Seitan</td>
+<td>Fresh Blackberries w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Summer Squash &amp; Seitan &quot;Shield&quot;</div>
-      <div class="recipe-trinity">Black Rice (Grain) + Summer Squash (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Black Rice (Grain) + Summer Squash (Green/Yellow) + Seitan (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
       <div class="recipe-steps">1. Simmer Black Rice. 2. Cube 2 yellow summer squashes and 1 pack of Seitan. 3. Sauté with garlic and a pinch of turmeric (for inflammation). 4. Add a splash of Coconut Aminos. 5. This meal is light on the stomach but high in protein to sustain your &quot;Doing&quot; through the heat.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Texas Peach &amp; Millet Morning</div>
-      
       <div class="recipe-steps">1. Cook 1 cup Millet in 2 cups water until fluffy. 2. Slice 1 fresh Texas peach and sauté briefly in a pan with a drop of water and cinnamon until warm. 3. Top the millet with the peaches and a handful of Texas pecans. 4. Millet is a cooling grain in TCM, perfect for the late Texas spring.</div>
     </div>
 <div class="recipe-card">
-      <div class="recipe-title">Sautéed Okra &amp; White Bean Trinity</div>
-      <div class="recipe-trinity">Millet (Grain) + Okra (Green) + White Beans (Protein)</div>
-      <div class="recipe-steps">1. Slice fresh okra into rounds. 2. Sauté in a hot pan with onions and cumin until the edges are crisp (this removes the &quot;sliminess&quot;). 3. Add rinsed white beans and cook until heated through. 4. Serve over warm millet. Okra is a Texas staple that helps regulate blood sugar. 1 0</div>
+      <div class="recipe-title">Sautéed Okra &amp; White Bean Tetralty</div>
+      <div class="recipe-trinity">Millet (Grain) + Okra (Green) + White Beans (Protein) + Fresh Grapefruit w/ Mint (Seal)</div>
+      <div class="recipe-steps">1. Slice fresh okra into rounds. 2. Sauté in a hot pan with onions and cumin until the edges are crisp (this removes the &quot;sliminess&quot;). 3. Add rinsed white beans and cook until heated through. 4. Serve over warm millet. Okra is a Texas staple that helps regulate blood sugar.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Kidney Beans</li>
-<li>Hemp Hearts &amp; Sunflower Seeds</li>
-<li>Texas Pecans &amp; Walnuts</li>
+      <ul class="shop-list"><li><strong>Produce (Late Spring Texas)</strong></li>
 <li>Yellow Summer Squash (8-10 total)</li>
 <li>Zucchini (6-8 total)</li>
 <li>Fresh Okra (2-3 lbs)</li>
 <li>Texas Peaches (Local - 12 total)</li>
-<li>Millet (Primary cooling grain)</li>
 <li>Collard Greens (4 large bunches)</li>
-<li>Quinoa &amp; Wild Rice</li>
 <li>Swiss Chard &amp; Spinach</li>
-<li>Black Rice &amp; Brown Rice</li>
 <li>Green Beans (4 lbs)</li>
-<li>Buckwheat &amp; Barley</li>
 <li>Spring Onions &amp; Garlic</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
 <li>Fresh Ginger &amp; Lemons</li>
-<li>Flax Seeds &amp; Chia Seeds</li>
 <li>Blueberries (Local TX)</li>
-<li>Coconut Aminos</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
 <li>Seitan (Uptons or similar - 8 packs)</li>
-<li>Turmeric, Cumin, Cardamom, Cinnamon</li>
 <li>Red Lentils (Dry)</li>
+<li>Chickpeas &amp; White Navy Beans</li>
+<li>Kidney Beans</li>
+<li>Hemp Hearts &amp; Sunflower Seeds</li>
+<li>Texas Pecans &amp; Walnuts</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Millet (Primary cooling grain)</li>
+<li>Quinoa &amp; Wild Rice</li>
+<li>Black Rice &amp; Brown Rice</li>
+<li>Buckwheat &amp; Barley</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Flax Seeds &amp; Chia Seeds</li>
+<li><strong>Pantry</strong></li>
+<li>Coconut Aminos</li>
+<li>Turmeric, Cumin, Cardamom, Cinnamon</li>
 <li>Olive Oil &amp; Tahini</li>
-<li>Chickpeas &amp; White Navy Beans</li></ul>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Strawberries (for Seals)</li>
+<li>Grapefruit (for Seals)</li>
+<li>Blackberries (for Seals)</li>
+</ul>
     </div>
+<div class="gap-note"><strong>Haligricity Integration: The Grounded Circle</strong> — In Month 3, we define our Haligricity. As you eat, visualize your &quot;Hala&quot; (the luminous circle) expanding as your core is nourished. Late spring can be a time of volatile Texas weather; keep your Feeling calm by ensuring your Doing (eating these meals) is consistent. You are the grounded center of the storm.</div>
 </section>
 
   <section class="month-panel" id="m4" data-month="4" hidden>
 <div class="month-eyebrow">Apr &middot; Summer Quarter</div>
-<h2 class="month-title">The Heart-Fire Phase</h2>
+<h2 class="month-title">The Solar Peak <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
 <p class="month-intro">WEEKS 13-16: EARLY SUMMER TEXAS ALIGNMENT As the Texas Summer ignites, we enter the Heart-Fire season. The external heat is intense, so we focus on &quot;Clearing Summer-Heat&quot; and nourishing &#x27;Yin&#x27; fluids. We use cooling, hydrating foods like Watermelon and Okra while maintaining the Warm Rising breakfast to ensure our internal digestive fire isn&#x27;t extinguished by cold beverages.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">13/20/27/34</td>
 <td>Warm Millet w/ Simmered Peaches</td>
 <td>Quinoa, Sautéed Okra, Black-Eyed Peas</td>
 <td>Wild Rice, Seitan strips, Dandelion Greens</td>
+<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">14/21/28/35</td>
 <td>Warm Amaranth w/ Hemp &amp; Cardamom</td>
 <td>Brown Rice, Summer Squash, Red Lentils</td>
 <td>Millet, Steamed Spinach, White Beans</td>
+<td>Fresh Peaches w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">15/22/29/36</td>
 <td>Warm Buckwheat w/ Blackberry Compote</td>
 <td>Quinoa, Bok Choy, Chickpeas</td>
 <td>Black Rice, Zucchini, Seitan</td>
+<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">16/23/30/37</td>
 <td>Savory Millet w/ Spring Onions</td>
 <td>Barley, Collard Greens, Kidney Beans</td>
 <td>Wild Rice, Okra, Red Lentils</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">17/24/31/38</td>
 <td>Warm Quinoa w/ Flax &amp; Cinnamon</td>
 <td>Brown Rice, Green Beans, Seitan</td>
 <td>Steel-Cut Oats (Savory), Spinach, White Beans</td>
+<td>Fresh Figs w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">18/25/32/39</td>
 <td>Warm Teff Porridge w/ Sunflower Seeds</td>
 <td>Quinoa, Summer Squash, Chickpeas</td>
 <td>Millet, Dandelion Greens, Red Lentils</td>
+<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">19/26/33/40</td>
 <td>Warm Buckwheat w/ Pecans</td>
 <td>Wild Rice, Swiss Chard, Seitan</td>
 <td>Lentil &amp; Okra Stew over Brown Rice</td>
+<td>Fresh Watermelon w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Black-Eyed Pea &amp; Okra Trinity</div>
-      <div class="recipe-trinity">Quinoa (Grain) + Okra (Green) + Black-Eyed Peas (Protein)</div>
+      <div class="recipe-title">Texas Black-Eyed Pea &amp; Okra Tetralty</div>
+      <div class="recipe-trinity">Quinoa (Grain) + Okra (Green) + Black-Eyed Peas (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
       <div class="recipe-steps">1. Cook Quinoa. 2. Sauté 1 cup sliced okra in a pan until edges are brown (this reduces &#x27;damp&#x27; texture). 3. Add 1.5 cups cooked black-eyed peas and season with garlic, cumin, and a splash of Coconut Aminos. 4. Serve over the quinoa. Black-eyed peas are highly grounding for the Texas heat.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Heart-Clearing Dandelion &amp; Seitan</div>
-      <div class="recipe-trinity">Millet (Grain) + Dandelion Greens (Green) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Millet (Grain) + Dandelion Greens (Green) + Seitan (Protein) + Coriander-Seed Cooler (Seal)</div>
       <div class="recipe-steps">1. Boil 1 cup Millet in 2 cups water. 2. Sauté Seitan strips until crispy. 3. Add 1 bunch of chopped dandelion greens; sauté until wilted. 4. The bitterness of the dandelion greens clears the &#x27;Heart-Fire&#x27; associated with the summer season. 5. Finish with a squeeze of lemon.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Cooling Summer Squash Sauté</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Summer Squash (Green/Yellow) + Red Lentils (Protein)</div>
-      <div class="recipe-steps">1. Simmer Wild Rice. 2. Slice yellow squash and zucchini into rounds. 3. Sauté with onions and a pinch of turmeric. 4. Mix in cooked red lentils. 5. This meal is hydrating and light for hot Texas afternoons. 1 3</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Summer Squash (Green/Yellow) + Red Lentils (Protein) + Fresh Figs w/ Mint (Seal)</div>
+      <div class="recipe-steps">1. Simmer Wild Rice. 2. Slice yellow squash and zucchini into rounds. 3. Sauté with onions and a pinch of turmeric. 4. Mix in cooked red lentils. 5. This meal is hydrating and light for hot Texas afternoons.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Chickpeas &amp; White Navy Beans</li>
-<li>Kidney Beans</li>
-<li>Hemp Hearts &amp; Sunflower Seeds</li>
+      <ul class="shop-list"><li><strong>Produce (Early Summer Texas)</strong></li>
 <li>Fresh Okra (4-5 lbs)</li>
-<li>Texas Pecans</li>
 <li>Summer Squash &amp; Zucchini (10 total)</li>
 <li>Watermelon (for afternoon snacks)</li>
 <li>Texas Peaches (Local - 8-10 total)</li>
 <li>Dandelion Greens (4 bunches - clears heat)</li>
-<li>Millet (Primary cooling grain)</li>
 <li>Spinach &amp; Collard Greens (4 bunches each)</li>
-<li>Quinoa &amp; Wild Rice</li>
 <li>Swiss Chard &amp; Green Beans</li>
-<li>Black Rice &amp; Brown Rice</li>
 <li>Yellow Onions &amp; Garlic</li>
-<li>Buckwheat &amp; Barley</li>
 <li>Fresh Ginger Root</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
 <li>Blackberries (Local TX)</li>
-<li>Flax Seeds &amp; Chia Seeds</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
 <li>Seitan (Uptons or similar - 8 packs)</li>
-<li>Coconut Aminos</li>
 <li>Black-Eyed Peas (Dry or Canned - 6 units)</li>
-<li>Turmeric, Cumin, Cardamom, Cinnamon</li>
 <li>Red Lentils (Dry - 2 lbs)</li>
-<li>Olive Oil &amp; Tahini</li></ul>
+<li>Chickpeas &amp; White Navy Beans</li>
+<li>Kidney Beans</li>
+<li>Hemp Hearts &amp; Sunflower Seeds</li>
+<li>Texas Pecans</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Millet (Primary cooling grain)</li>
+<li>Quinoa &amp; Wild Rice</li>
+<li>Black Rice &amp; Brown Rice</li>
+<li>Buckwheat &amp; Barley</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Flax Seeds &amp; Chia Seeds</li>
+<li><strong>Pantry</strong></li>
+<li>Coconut Aminos</li>
+<li>Turmeric, Cumin, Cardamom, Cinnamon</li>
+<li>Olive Oil &amp; Tahini</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Peaches (for Seals)</li>
+<li>Figs (for Seals)</li>
+<li>Watermelon (for Seals)</li>
+</ul>
     </div>
+<div class="gap-note"><strong>Haligric Practice: Radiating the Light</strong> — As the Texas sun reaches its zenith, your Haligricity must be radiant but calm. Summer is about the Heart. Use the hydration from watermelon (eaten at room temp) and the grounding of black-eyed peas to ensure your Feeling stays cool even when your Doing is busy. You are a radiant part of the Texas whole.</div>
 </section>
 
   <section class="month-panel" id="m5" data-month="5" hidden>
 <div class="month-eyebrow">May &middot; Summer Quarter</div>
-<h2 class="month-title">Peak Fire &amp; Earth Stability</h2>
+<h2 class="month-title">The Humid Intensity <span style="font-size:.7em;opacity:.7">(Fire Phase)</span></h2>
 <p class="month-intro">WEEKS 17-20: MID-SUMMER TEXAS ALIGNMENT In July, the Texas sun is relentless. We enter the Peak Fire phase. To maintain Haligricity, we focus on &#x27;Nourishing the Earth&#x27; (the Spleen/Stomach) to ensure we don&#x27;t burn out. We use sweet, grounding summer vegetables like Corn and Eggplant, alongside hydrating Tomatoes, while strictly maintaining the Warm Rising habit to stabilize the core against air conditioning and cold drinks.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">17/24/31/38</td>
 <td>Warm Cornmeal Mush w/ Berries</td>
 <td>Quinoa, Roasted Eggplant, Chickpeas</td>
 <td>Wild Rice, Seitan, Sautéed Bell Peppers</td>
+<td>Fennel &amp; Mint Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">18/25/32/39</td>
 <td>Warm Millet w/ Sunflower Seeds</td>
 <td>Brown Rice, Steamed Corn, Red Lentils</td>
 <td>Millet, Collard Greens, White Beans</td>
+<td>Fresh Peaches w/ Lime &amp; Mint</td>
 </tr>
 <tr>
 <td class="tri-day">19/26/33/40</td>
 <td>Warm Quinoa w/ Hemp &amp; Peach</td>
 <td>Barley, Sautéed Tomatoes, Seitan</td>
 <td>Wild Rice, Zucchini, Kidney Beans</td>
+<td>Coriander-Seed Cooler</td>
 </tr>
 <tr>
 <td class="tri-day">20/27/34/41</td>
 <td>Savory Oats w/ Summer Squash</td>
 <td>Millet, Green Beans, Red Lentils</td>
 <td>Brown Rice, Okra, Seitan</td>
+<td>Rose &amp; Cardamom Brew (room temp)</td>
 </tr>
 <tr>
 <td class="tri-day">21/28/35/42</td>
 <td>Warm Amaranth w/ Flax</td>
 <td>Quinoa, Bell Peppers, White Beans</td>
 <td>Steel-Cut Oats (Savory), Spinach, Chickpeas</td>
+<td>Fresh Figs w/ Mint</td>
 </tr>
 <tr>
 <td class="tri-day">22/29/36/43</td>
 <td>Warm Buckwheat w/ Walnuts</td>
 <td>Brown Rice, Eggplant, Red Lentils</td>
 <td>Millet, Swiss Chard, Seitan</td>
+<td>CCF Cooler w/ Lime</td>
 </tr>
 <tr>
 <td class="tri-day">23/30/37/44</td>
 <td>Warm Teff w/ Chia &amp; Cardamom</td>
 <td>Wild Rice, Corn &amp; Peppers, Chickpeas</td>
 <td>Lentil &amp; Tomato Stew over Quinoa</td>
+<td>Fresh Watermelon w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Trinity: Corn, Pepper &amp; Seitan</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Bell Peppers/Corn (Green/Yellow) + Seitan (Protein)</div>
-      <div class="recipe-steps">1. Simmer Wild Rice. 2. Sauté sliced bell peppers and fresh corn off the cob. 3. Add Seitan strips and a pinch of smoked paprika. 4. Finish with Coconut Aminos. Corn is a sweet, grounding &#x27;Earth&#x27; food that supports digestion in the heat. 1 5</div>
+      <div class="recipe-title">Texas Tetralty: Corn, Pepper &amp; Seitan</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Bell Peppers/Corn (Green/Yellow) + Seitan (Protein) + Fennel &amp; Mint Cooler (Seal)</div>
+      <div class="recipe-steps">1. Simmer Wild Rice. 2. Sauté sliced bell peppers and fresh corn off the cob. 3. Add Seitan strips and a pinch of smoked paprika. 4. Finish with Coconut Aminos. Corn is a sweet, grounding &#x27;Earth&#x27; food that supports digestion in the heat.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Roasted Eggplant &amp; Chickpea Bowl</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Eggplant (Green/Purple) + Chickpeas (Protein)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Eggplant (Green/Purple) + Chickpeas (Protein) + Coriander-Seed Cooler (Seal)</div>
       <div class="recipe-steps">1. Cube eggplant and roast at 400°F until soft. 2. Sauté chickpeas with garlic and cumin. 3. Serve over warm brown rice with a dollop of tahini. Eggplant is cooling in nature and clears &#x27;Blood Heat&#x27;.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Fresh Sweet Corn (12 ears)</li>
-<li>Seitan (8 packs)</li>
+      <ul class="shop-list"><li><strong>Produce (Mid-Summer Texas)</strong></li>
+<li>Fresh Sweet Corn (12 ears)</li>
 <li>Bell Peppers (Various - 10 total)</li>
-<li>Red Lentils &amp; Chickpeas</li>
 <li>Large Eggplants (4 total)</li>
-<li>White Navy Beans &amp; Kidney Beans</li>
 <li>Tomatoes (Local - 6-8 lbs)</li>
-<li>Hemp Hearts &amp; Sunflower Seeds</li>
 <li>Summer Squash &amp; Zucchini</li>
-<li>Walnuts &amp; Flax Seeds</li>
 <li>Fresh Peaches &amp; Melons</li>
 <li>Collard Greens &amp; Swiss Chard</li>
 <li>Green Beans (4 lbs)</li>
 <li>Garlic, Onions, &amp; Ginger</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>Red Lentils &amp; Chickpeas</li>
+<li>White Navy Beans &amp; Kidney Beans</li>
+<li>Hemp Hearts &amp; Sunflower Seeds</li>
+<li>Walnuts &amp; Flax Seeds</li>
+<li><strong>Grains &amp; Seeds</strong></li>
 <li>Millet &amp; Quinoa (Cooling)</li>
 <li>Cornmeal (Grounding Earth element)</li>
 <li>Brown Rice &amp; Wild Rice</li>
 <li>Barley &amp; Buckwheat</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li></ul>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Limes</li>
+<li>Fresh Mint</li>
+<li>Cardamom Pods</li>
+<li>Dried Rose Petals</li>
+<li>Peaches (for Seals)</li>
+<li>Figs (for Seals)</li>
+<li>Watermelon (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m6" data-month="6" hidden>
 <div class="month-eyebrow">Jun &middot; Summer Quarter</div>
-<h2 class="month-title">The Great Grounding</h2>
+<h2 class="month-title">The Earth Transition <span style="font-size:.7em;opacity:.7">(Late Summer)</span></h2>
 <p class="month-intro">WEEKS 21-24: LATE SUMMER TEXAS ALIGNMENT August in Texas is the &quot;Dog Days.&quot; In TCM, this is the true Late Summer, governed entirely by the Earth Element. To stabilize your Haligricity before the autumn shift, we focus on resolving &quot;Damp-Heat.&quot; We use drying grains like Millet and Barley alongside the final bounty of Okra and Southern Peas to anchor the center.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">21/28/35/42</td>
 <td>Warm Millet w/ Fresh Figs</td>
 <td>Barley, Sautéed Okra, Black-Eyed Peas</td>
 <td>Wild Rice, Seitan, Steamed Collards</td>
+<td>Spiced Peach Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">22/29/36/43</td>
 <td>Warm Amaranth w/ Hemp &amp; Ginger</td>
 <td>Quinoa, Eggplant, Chickpeas</td>
 <td>Millet, Green Beans, Red Lentils</td>
+<td>Stewed Figs w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">23/30/37/44</td>
 <td>Warm Quinoa w/ Cinnamon &amp; Melon</td>
 <td>Brown Rice, Bell Peppers, White Beans</td>
 <td>Wild Rice, Okra, Seitan</td>
+<td>Baked Cinnamon Peaches</td>
 </tr>
 <tr>
 <td class="tri-day">24/31/38/45</td>
 <td>Savory Buckwheat w/ Garlic Chives</td>
 <td>Millet, Summer Squash, Red Lentils</td>
 <td>Barley, Spinach, Seitan</td>
+<td>Cardamom-Stewed Watermelon</td>
 </tr>
 <tr>
 <td class="tri-day">25/32/39/46</td>
 <td>Warm Teff w/ Flax &amp; Cardamom</td>
 <td>Quinoa, Eggplant, Black-Eyed Peas</td>
 <td>Steel-Cut Oats (Savory), Kale, Chickpeas</td>
+<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">26/33/40/47</td>
 <td>Warm Cornmeal Mush w/ Walnuts</td>
 <td>Brown Rice, Okra &amp; Peppers, Seitan</td>
 <td>Wild Rice, Swiss Chard, White Beans</td>
+<td>Spiced Fig Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">27/34/41/48</td>
 <td>Warm Steel-Cut Oats w/ Peaches</td>
 <td>Barley, Collard Greens, Red Lentils</td>
 <td>Lentil &amp; Okra Stew over Millet</td>
+<td>Stewed Peaches w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">The Texas Earth Trinity: Okra &amp; Southern Peas</div>
-      <div class="recipe-trinity">Millet (Grain) + Okra (Green) + Black-Eyed Peas (Protein)</div>
-      <div class="recipe-steps">1. Cook Millet until fluffy. 2. Sauté okra with cumin and sea salt until the &quot;slime&quot; (dampness) is gone. 3. Mix in cooked black-eyed peas. 4. This combination is the ultimate &quot;Damp-Heat&quot; resolver for the Texas August. It grounds the Spleen and stabilizes the blood sugar. 1 7</div>
+      <div class="recipe-title">The Texas Earth Tetralty: Okra &amp; Southern Peas</div>
+      <div class="recipe-trinity">Millet (Grain) + Okra (Green) + Black-Eyed Peas (Protein) + Spiced Peach Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Cook Millet until fluffy. 2. Sauté okra with cumin and sea salt until the &quot;slime&quot; (dampness) is gone. 3. Mix in cooked black-eyed peas. 4. This combination is the ultimate &quot;Damp-Heat&quot; resolver for the Texas August. It grounds the Spleen and stabilizes the blood sugar.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Ginger-Steamed Eggplant &amp; Seitan</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Eggplant (Green/Purple) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Eggplant (Green/Purple) + Seitan (Protein) + Baked Cinnamon Peaches (Seal)</div>
       <div class="recipe-steps">1. Steam eggplant cubes with fresh ginger slices. 2. Sauté seitan medallions. 3. Serve over wild rice. The ginger helps the body process the &quot;Earth&quot; energy of the eggplant without creating stagnant dampness.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Fresh Okra (6 lbs)</li>
-<li>Seitan (8 packs)</li>
+      <ul class="shop-list"><li><strong>Produce (Late Summer Texas)</strong></li>
+<li>Fresh Okra (6 lbs)</li>
 <li>Black-Eyed Peas (Dry or fresh shelled)</li>
-<li>Black-Eyed Peas &amp; Chickpeas</li>
 <li>Texas Figs (Local - 4 lbs)</li>
-<li>Red Lentils &amp; White Navy Beans</li>
 <li>Large Eggplants (4 total)</li>
-<li>Hemp Hearts &amp; Walnuts</li>
 <li>Bell Peppers (10 total)</li>
-<li>Sunflower Seeds &amp; Flax</li>
 <li>Collard Greens &amp; Kale</li>
 <li>Summer Squash &amp; Zucchini</li>
 <li>Cantaloupe/Honeydew Melons</li>
 <li>Garlic, Onions, &amp; Ginger</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>Black-Eyed Peas &amp; Chickpeas</li>
+<li>Red Lentils &amp; White Navy Beans</li>
+<li>Hemp Hearts &amp; Walnuts</li>
+<li>Sunflower Seeds &amp; Flax</li>
+<li><strong>Grains &amp; Seeds</strong></li>
 <li>Millet (Primary Earth grain)</li>
 <li>Barley (Damp-leaching)</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Quinoa &amp; Amaranth</li>
-<li>Steel-Cut Oats, Teff, &amp; Buckwheat</li></ul>
+<li>Steel-Cut Oats, Teff, &amp; Buckwheat</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Peaches (for Seals)</li>
+<li>Figs (for Seals)</li>
+<li>Watermelon (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m7" data-month="7" hidden>
 <div class="month-eyebrow">Jul &middot; Autumn Quarter</div>
-<h2 class="month-title">The Metal &amp; Lung Phase</h2>
+<h2 class="month-title">The First Breath <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
 <p class="month-intro">WEEKS 25-28: EARLY AUTUMN TEXAS ALIGNMENT September in Texas is a &#x27;False Fall.&#x27; While the temperature remains high, the &#x27;Metal&#x27; energy of Autumn begins to descend. We focus on &#x27;Moistening the Lungs&#x27; to protect against the coming dry winds. We introduce white, pungent foods like Radishes and Garlic, while shifting toward more grounding Sweet Potatoes and warming Grains.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">25/32/39/46</td>
 <td>Warm Steel-Cut Oats w/ Sliced Apples</td>
 <td>Wild Rice, Sweet Potatoes, Red Lentils</td>
 <td>Millet, Seitan strips, Sautéed Radishes</td>
+<td>Spiced Pear Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">26/33/40/47</td>
 <td>Warm Millet w/ Pomegranate Seeds</td>
 <td>Brown Rice, Okra, White Beans</td>
 <td>Quinoa, Collard Greens, Seitan</td>
+<td>Stewed Persimmons w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">27/34/41/48</td>
 <td>Warm Amaranth w/ Hemp &amp; Ginger</td>
 <td>Buckwheat, Bell Peppers, Chickpeas</td>
 <td>Wild Rice, Spinach, Red Lentils</td>
+<td>Baked Cinnamon Pears</td>
 </tr>
 <tr>
 <td class="tri-day">28/35/42/49</td>
 <td>Savory Teff w/ Garlic Chives</td>
 <td>Millet, Sweet Potatoes, Seitan</td>
 <td>Brown Rice, Zucchini, White Beans</td>
+<td>Cardamom-Stewed Figs</td>
 </tr>
 <tr>
 <td class="tri-day">29/36/43/50</td>
 <td>Warm Quinoa w/ Flax &amp; Cinnamon</td>
 <td>Wild Rice, Bok Choy, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Kale, Seitan</td>
+<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">30/37/44/51</td>
 <td>Warm Buckwheat w/ Walnuts</td>
 <td>Brown Rice, Peppers, Red Lentils</td>
 <td>Millet, Swiss Chard, White Beans</td>
+<td>Spiced Persimmon Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">31/38/45/52</td>
 <td>Warm Cornmeal Mush w/ Pumpkin Seeds</td>
 <td>Quinoa, Sweet Potatoes, Chickpeas</td>
 <td>Lentil &amp; Radish Stew over Brown Rice</td>
+<td>Stewed Pears w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Sweet Potato &amp; Seitan Trinity</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Sweet Potatoes (Green/Yellow) + Seitan (Protein)</div>
+      <div class="recipe-title">Texas Sweet Potato &amp; Seitan Tetralty</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Sweet Potatoes (Green/Yellow) + Seitan (Protein) + Spiced Pear Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
       <div class="recipe-steps">1. Roast cubed sweet potatoes with cinnamon. 2. Sauté Seitan strips with garlic and a touch of black pepper. 3. Serve over wild rice. Sweet potatoes ground the &#x27;Earth&#x27; energy as we transition into &#x27;Metal&#x27;.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Lung-Moistening Radish Sauté</div>
-      <div class="recipe-trinity">Millet (Grain) + Radishes (Green/White) + White Beans (Protein)</div>
-      <div class="recipe-steps">1. Slice radishes and sauté with their greens until tender. 2. Add white beans and a splash of Coconut Aminos. 3. Serve over warm millet. White foods in TCM specifically nourish the Lung energy during Autumn. 1 9</div>
+      <div class="recipe-trinity">Millet (Grain) + Radishes (Green/White) + White Beans (Protein) + Baked Cinnamon Pears (Seal)</div>
+      <div class="recipe-steps">1. Slice radishes and sauté with their greens until tender. 2. Add white beans and a splash of Coconut Aminos. 3. Serve over warm millet. White foods in TCM specifically nourish the Lung energy during Autumn.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Sweet Potatoes (10 lbs)</li>
-<li>Seitan (8 packs)</li>
+      <ul class="shop-list"><li><strong>Produce (Early Autumn Texas)</strong></li>
+<li>Sweet Potatoes (10 lbs)</li>
 <li>Daikon or Red Radishes (6 bunches)</li>
-<li>White Navy Beans &amp; Red Lentils</li>
 <li>Texas Apples (6 lbs)</li>
-<li>Chickpeas</li>
 <li>Pomegranates (Local if available - 4 total)</li>
-<li>Hemp Hearts &amp; Walnuts</li>
 <li>Okra (Final 2 lbs)</li>
-<li>Pumpkin Seeds &amp; Flax</li>
 <li>Bell Peppers &amp; Garlic</li>
 <li>Spinach &amp; Collard Greens</li>
 <li>Bok Choy &amp; Kale</li>
 <li>Fresh Ginger Root</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Chickpeas</li>
+<li>Hemp Hearts &amp; Walnuts</li>
+<li>Pumpkin Seeds &amp; Flax</li>
+<li><strong>Grains &amp; Seeds</strong></li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Millet &amp; Quinoa</li>
 <li>Steel-Cut Oats &amp; Buckwheat</li>
 <li>Amaranth &amp; Teff</li>
-<li>Cornmeal</li></ul>
+<li>Cornmeal</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Pears (for Seals)</li>
+<li>Persimmons (for Seals)</li>
+<li>Figs (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m8" data-month="8" hidden>
 <div class="month-eyebrow">Aug &middot; Autumn Quarter</div>
-<h2 class="month-title">The Gathering &amp; Strengthening</h2>
+<h2 class="month-title">The Crisp Descent <span style="font-size:.7em;opacity:.7">(Metal Phase)</span></h2>
 <p class="month-intro">WEEKS 29-32: MID-AUTUMN TEXAS ALIGNMENT October in Texas finally brings the &#x27;Great Descent&#x27; of energy. As the temperature fluctuates between late-heat and early-cold, our Haligricity depends on internal stabilization. We focus on &#x27;Gathering&#x27; energy inward. We use grounding Sweet Potatoes and the white-element Turnip to support the Lungs, while utilizing Texas Pecans to nourish the Kidneys and Brain for the coming winter.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">29/36/43/50</td>
 <td>Warm Steel-Cut Oats w/ Texas Pecans</td>
 <td>Wild Rice, Roasted Turnips, Seitan</td>
 <td>Millet, Broccoli, Red Lentils</td>
+<td>Spiced Pear Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">30/37/44/51</td>
 <td>Warm Millet w/ Pumpkin &amp; Pumpkin Seeds</td>
 <td>Brown Rice, Sweet Potato, White Beans</td>
 <td>Quinoa, Spinach, Seitan</td>
+<td>Stewed Persimmons w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">31/38/45/52</td>
 <td>Warm Amaranth w/ Pomegranate &amp; Walnuts</td>
 <td>Buckwheat, Broccoli, Chickpeas</td>
 <td>Wild Rice, Kale, Red Lentils</td>
+<td>Baked Cinnamon Pears</td>
 </tr>
 <tr>
 <td class="tri-day">32/39/46/53</td>
 <td>Savory Teff w/ Garlic &amp; Ginger</td>
 <td>Millet, Sweet Potato, Seitan</td>
 <td>Brown Rice, Turnip Greens, White Beans</td>
+<td>Cardamom-Stewed Figs</td>
 </tr>
 <tr>
 <td class="tri-day">33/40/47/54</td>
 <td>Warm Quinoa w/ Baked Apple</td>
 <td>Wild Rice, Bok Choy, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">34/41/48/55</td>
 <td>Warm Buckwheat w/ Flax &amp; Cinnamon</td>
 <td>Brown Rice, Roasted Turnips, Red Lentils</td>
 <td>Millet, Swiss Chard, White Beans</td>
+<td>Spiced Persimmon Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">35/42/49/56</td>
 <td>Warm Cornmeal Mush w/ Pecan Butter</td>
 <td>Quinoa, Sweet Potato, Chickpeas</td>
 <td>Lentil &amp; Broccoli Stew over Brown Rice</td>
+<td>Stewed Pears w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Texas Pecan &amp; Sweet Potato Grounding</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Sweet Potatoes (Green/Yellow) + Seitan/Pecans (Protein)</div>
-      <div class="recipe-steps">1. Roast sweet potatoes until caramelized. 2. Sauté Seitan strips with a handful of Texas pecans. 3. Serve over warm brown rice. Pecans are traditionally used in this phase to build &#x27;Jing&#x27; (Essence) for the colder months. 2 1</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Sweet Potatoes (Green/Yellow) + Seitan/Pecans (Protein) + Spiced Pear Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Roast sweet potatoes until caramelized. 2. Sauté Seitan strips with a handful of Texas pecans. 3. Serve over warm brown rice. Pecans are traditionally used in this phase to build &#x27;Jing&#x27; (Essence) for the colder months.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">White Turnip &amp; Lung Support Sauté</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Turnips (Green/White) + White Beans (Protein)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Turnips (Green/White) + White Beans (Protein) + Baked Cinnamon Pears (Seal)</div>
       <div class="recipe-steps">1. Dice turnips and sauté with garlic until tender. 2. Add white navy beans and a splash of Coconut Aminos. 3. Serve over wild rice. Turnips provide the &#x27;Metal&#x27; element pungency to keep the Lung energy moving during the Texas cedar pollen season.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>White Navy Beans &amp; Red Lentils</li>
-<li>Chickpeas</li>
-<li>Walnuts &amp; Pumpkin Seeds</li>
+      <ul class="shop-list"><li><strong>Produce (Mid-Autumn Texas)</strong></li>
 <li>Sweet Potatoes (12 lbs)</li>
-<li>Flax Seeds</li>
 <li>White Turnips with Greens (6 bunches)</li>
 <li>Broccoli (8 heads)</li>
 <li>Pumpkins / Winter Squash (4 total)</li>
 <li>Pomegranates (6 total)</li>
-<li>Wild Rice &amp; Brown Rice</li>
 <li>Texas Apples (6 lbs)</li>
-<li>Millet (Drying/Grounding)</li>
 <li>Kale &amp; Spinach</li>
-<li>Quinoa &amp; Buckwheat</li>
 <li>Swiss Chard &amp; Bok Choy</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
 <li>Garlic &amp; Fresh Ginger</li>
-<li>Cornmeal</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
 <li>Seitan (8 packs)</li>
-<li>Texas Pecans (4 lbs)</li></ul>
+<li>Texas Pecans (4 lbs)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Chickpeas</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li>Flax Seeds</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Millet (Drying/Grounding)</li>
+<li>Quinoa &amp; Buckwheat</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Cornmeal</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Pears (for Seals)</li>
+<li>Persimmons (for Seals)</li>
+<li>Figs (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m9" data-month="9" hidden>
 <div class="month-eyebrow">Sep &middot; Autumn Quarter</div>
-<h2 class="month-title">The Interiority &amp; Solidification</h2>
+<h2 class="month-title">The Final Harvest <span style="font-size:.7em;opacity:.7">(Transition)</span></h2>
 <p class="month-intro">WEEKS 33-36: LATE AUTUMN TEXAS ALIGNMENT November in Texas marks the final descent. The energy of the year is now fully moving toward the roots. To stabilize your Haligricity, we focus on &#x27;Solidifying the Essence&#x27; (Jing). We use hearty Winter Squash and Cabbage to build internal substance, while utilizing the warming pungency of Ginger and Garlic to move the blood as the air finally turns cold.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">33/40/47/54</td>
 <td>Warm Millet w/ Texas Pecans &amp; Ginger</td>
 <td>Wild Rice, Roasted Pumpkin, Red Lentils</td>
 <td>Brown Rice, Seitan, Steamed Cabbage</td>
+<td>Spiced Pear Anchor (Cinnamon &amp; Cardamom)</td>
 </tr>
 <tr>
 <td class="tri-day">34/41/48/55</td>
 <td>Warm Buckwheat w/ Apple &amp; Cinnamon</td>
 <td>Quinoa, Broccoli, White Beans</td>
 <td>Millet, Kale, Seitan</td>
+<td>Stewed Persimmons w/ Clove</td>
 </tr>
 <tr>
 <td class="tri-day">35/42/49/56</td>
 <td>Warm Amaranth w/ Persimmons &amp; Walnuts</td>
 <td>Buckwheat, Winter Squash, Chickpeas</td>
 <td>Wild Rice, Spinach, Red Lentils</td>
+<td>Baked Cinnamon Pears</td>
 </tr>
 <tr>
 <td class="tri-day">36/43/50/57</td>
 <td>Savory Teff w/ Garlic &amp; Black Pepper</td>
 <td>Millet, Pumpkin, Seitan</td>
 <td>Brown Rice, Broccoli, White Beans</td>
+<td>Cardamom-Stewed Figs</td>
 </tr>
 <tr>
 <td class="tri-day">37/44/51/58</td>
 <td>Warm Steel-Cut Oats w/ Baked Pear</td>
 <td>Wild Rice, Cabbage, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Kale, Seitan</td>
+<td>Warm CCF Brew</td>
 </tr>
 <tr>
 <td class="tri-day">38/45/52/59</td>
 <td>Warm Cornmeal Mush w/ Pecan Butter</td>
 <td>Brown Rice, Roasted Squash, Red Lentils</td>
 <td>Millet, Swiss Chard, White Beans</td>
+<td>Spiced Persimmon Anchor</td>
 </tr>
 <tr>
 <td class="tri-day">39/46/53/60</td>
 <td>Warm Quinoa w/ Flax &amp; Cardamom</td>
 <td>Buckwheat, Broccoli, Chickpeas</td>
 <td>Lentil &amp; Cabbage Stew over Wild Rice</td>
+<td>Stewed Pears w/ Ginger</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Trinity: Pumpkin &amp; Pecan Sauté</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Pumpkin/Squash (Green/Yellow) + Seitan/Pecans (Protein)</div>
-      <div class="recipe-steps">1. Roast small sugar pumpkin cubes. 2. Sauté Seitan with a handful of Texas pecans and minced ginger. 3. Serve over warm wild rice. Pumpkin is a supreme &#x27;Earth&#x27; element food that builds the Qi for the winter months. 2 3</div>
+      <div class="recipe-title">Texas Tetralty: Pumpkin &amp; Pecan Sauté</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Pumpkin/Squash (Green/Yellow) + Seitan/Pecans (Protein) + Spiced Pear Anchor (Cinnamon &amp; Cardamom) (Seal)</div>
+      <div class="recipe-steps">1. Roast small sugar pumpkin cubes. 2. Sauté Seitan with a handful of Texas pecans and minced ginger. 3. Serve over warm wild rice. Pumpkin is a supreme &#x27;Earth&#x27; element food that builds the Qi for the winter months.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Interior Warming Cabbage &amp; Bean Sauté</div>
-      <div class="recipe-trinity">Brown Rice (Grain) + Cabbage (Green) + White Beans (Protein)</div>
+      <div class="recipe-trinity">Brown Rice (Grain) + Cabbage (Green) + White Beans (Protein) + Baked Cinnamon Pears (Seal)</div>
       <div class="recipe-steps">1. Shred green cabbage and sauté with garlic until tender but slightly charred. 2. Add white navy beans and a splash of Coconut Aminos. 3. Cabbage is warming and helps clear heat from the stomach while providing the fiber needed for autumn digestion.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>White Navy Beans &amp; Red Lentils</li>
-<li>Chickpeas</li>
-<li>Walnuts &amp; Pumpkin Seeds</li>
+      <ul class="shop-list"><li><strong>Produce (Late Autumn Texas)</strong></li>
 <li>Sugar Pumpkins / Butternut Squash (8 total)</li>
 <li>Green Cabbage (4 large heads)</li>
 <li>Broccoli (10 heads)</li>
 <li>Texas Persimmons &amp; Apples</li>
-<li>Wild Rice &amp; Brown Rice</li>
 <li>Spinach, Kale, &amp; Swiss Chard</li>
-<li>Millet &amp; Buckwheat (Warming)</li>
 <li>Garlic &amp; Fresh Ginger Root</li>
-<li>Quinoa &amp; Amaranth</li>
 <li>Pears (Local if available)</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>Texas Pecans (4 lbs)</li>
+<li>White Navy Beans &amp; Red Lentils</li>
+<li>Chickpeas</li>
+<li>Walnuts &amp; Pumpkin Seeds</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Millet &amp; Buckwheat (Warming)</li>
+<li>Quinoa &amp; Amaranth</li>
 <li>Steel-Cut Oats, Teff, &amp; Cornmeal</li>
 <li>Flax Seeds &amp; Hemp Hearts</li>
-<li>Seitan (8 packs)</li>
-<li>Texas Pecans (4 lbs)</li></ul>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Cardamom Pods</li>
+<li>Cinnamon Sticks</li>
+<li>Whole Cloves</li>
+<li>Pears (for Seals)</li>
+<li>Persimmons (for Seals)</li>
+<li>Figs (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m10" data-month="10" hidden>
 <div class="month-eyebrow">Oct &middot; Winter Quarter</div>
-<h2 class="month-title">The Deep Storage &amp; Kidneys</h2>
+<h2 class="month-title">The Mild Deep <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
 <p class="month-intro">WEEKS 37-40: EARLY WINTER TEXAS ALIGNMENT December in Texas is the time of the Water Element. In TCM, this governs the Kidneys—the foundation of your life force. To maintain Haligricity, we focus on &#x27;Conserving the Yang&#x27; and &#x27;Nourishing the Yin&#x27;. We use dark, salty- property foods like Black Beans and Seaweed, while leveraging the famous Rio Grande Valley Citrus to keep the Qi moving during the colder damp days.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">37/44/51/58</td>
 <td>Warm Buckwheat w/ Pecans &amp; Dates</td>
 <td>Wild Rice, Roasted Turnips, Black Beans</td>
 <td>Millet, Steamed Kale, Seitan</td>
+<td>Jing Truffle (Date &amp; Tahini)</td>
 </tr>
 <tr>
 <td class="tri-day">38/45/52/59</td>
 <td>Warm Steel-Cut Oats w/ Grapefruit Zest</td>
 <td>Brown Rice, Spinach, White Beans</td>
 <td>Buckwheat, Broccoli, Seitan</td>
+<td>Date &amp; Pecan Truffle</td>
 </tr>
 <tr>
 <td class="tri-day">39/46/53/60</td>
 <td>Warm Millet w/ Pumpkin Seeds &amp; Ginger</td>
 <td>Wild Rice, Roasted Carrots, Chickpeas</td>
 <td>Quinoa, Collard Greens, Black Beans</td>
+<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
 </tr>
 <tr>
 <td class="tri-day">40/47/54/61</td>
 <td>Savory Teff w/ Garlic &amp; Black Pepper</td>
 <td>Buckwheat, Cabbage, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
+<td>Jing Truffle w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">41/48/55/62</td>
 <td>Warm Amaranth w/ Walnut &amp; Cinnamon</td>
 <td>Wild Rice, Kale, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+<td>Ginger-Cinnamon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">42/49/56/63</td>
 <td>Warm Cornmeal Mush w/ Pecan Butter</td>
 <td>Brown Rice, Roasted Turnips, Black Beans</td>
 <td>Millet, Swiss Chard, Seitan</td>
+<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
 </tr>
 <tr>
 <td class="tri-day">43/50/57/64</td>
 <td>Warm Quinoa w/ Flax &amp; Cardamom</td>
 <td>Wild Rice, Carrots &amp; Garlic, White Beans</td>
 <td>Lentil &amp; Turnip Stew over Buckwheat</td>
+<td>Warm Spiced Meyer Lemon</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">The Texas Kidney Trinity: Black Beans &amp; Turnips</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Turnips/Greens (Green/White) + Black Beans (Protein)</div>
-      <div class="recipe-steps">1. Roast turnips until tender. 2. Simmer black beans with a piece of kombu (seaweed) if available, or just garlic and cumin. 3. Serve over buckwheat. Black beans are shaped like kidneys and, in TCM, are the premier food for strengthening them during winter. 2 5</div>
+      <div class="recipe-title">The Texas Kidney Tetralty: Black Beans &amp; Turnips</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Turnips/Greens (Green/White) + Black Beans (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
+      <div class="recipe-steps">1. Roast turnips until tender. 2. Simmer black beans with a piece of kombu (seaweed) if available, or just garlic and cumin. 3. Serve over buckwheat. Black beans are shaped like kidneys and, in TCM, are the premier food for strengthening them during winter.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Rio Grande Winter Warming Stir-Fry</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Kale/Citrus Zest (Green) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Kale/Citrus Zest (Green) + Seitan (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
       <div class="recipe-steps">1. Sauté seitan with plenty of ginger and garlic. 2. Add chopped kale and a teaspoon of fresh grapefruit or orange zest. 3. The citrus zest helps &#x27;circulate the Qi&#x27; to prevent winter depression while the kale builds the blood.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>White Navy Beans &amp; Chickpeas</li>
-<li>Texas Pecans &amp; Walnuts</li>
-<li>Pumpkin Seeds &amp; Flax</li>
+      <ul class="shop-list"><li><strong>Produce (Early Winter Texas)</strong></li>
 <li>Texas Grapefruit &amp; Oranges (6 lbs)</li>
 <li>White Turnips &amp; Rutabagas (6 lbs)</li>
 <li>Large Carrots (4 lbs)</li>
 <li>Kale, Spinach, &amp; Collard Greens (Bulk)</li>
-<li>Buckwheat (Most warming grain)</li>
 <li>Cabbage &amp; Broccoli (6 heads total)</li>
-<li>Wild Rice &amp; Brown Rice</li>
 <li>Garlic &amp; Fresh Ginger Root</li>
-<li>Millet &amp; Quinoa</li>
 <li>Fresh Dates or Figs (Dried)</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>Black Beans (Dry - 4 lbs)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Texas Pecans &amp; Walnuts</li>
+<li>Pumpkin Seeds &amp; Flax</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Buckwheat (Most warming grain)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Millet &amp; Quinoa</li>
 <li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
 <li>Cornmeal</li>
-<li>Seitan (8 packs)</li>
-<li>Black Beans (Dry - 4 lbs)</li></ul>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Cinnamon Sticks</li>
+<li>Ground Turmeric</li>
+<li>Unsweetened Plant Milk</li>
+<li>Medjool Dates (1 box)</li>
+<li>Stone-Ground Tahini</li>
+<li>Pink Rock Salt</li>
+<li>Pecans (for Truffles)</li>
+<li>Meyer Lemon (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m11" data-month="11" hidden>
 <div class="month-eyebrow">Nov &middot; Winter Quarter</div>
-<h2 class="month-title">Deep Storage &amp; Bone Health</h2>
+<h2 class="month-title">The Damp Chill <span style="font-size:.7em;opacity:.7">(Water Phase)</span></h2>
 <p class="month-intro">WEEKS 41-44: MID-WINTER TEXAS ALIGNMENT January in Texas brings the sharpest &#x27;Northers&#x27;. The Water Element is at its peak. To maintain Haligricity, we focus on &#x27;Warming the Kidneys&#x27; and &#x27;Steeling the Bones&#x27;. We use deep-red Beets to nourish the blood and Black Beans to protect the Kidney essence, balanced by warming Texas Pecans to keep the brain sharp during the shorter days.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">41/48/55/62</td>
 <td>Warm Buckwheat w/ Pecans &amp; Maple</td>
 <td>Wild Rice, Roasted Beets, Black Beans</td>
 <td>Millet, Collard Greens, Seitan</td>
+<td>Jing Truffle (Date &amp; Tahini)</td>
 </tr>
 <tr>
 <td class="tri-day">42/49/56/63</td>
 <td>Warm Steel-Cut Oats w/ Meyer Lemon Zest</td>
 <td>Brown Rice, Turnips, White Beans</td>
 <td>Buckwheat, Broccoli, Seitan</td>
+<td>Date &amp; Pecan Truffle</td>
 </tr>
 <tr>
 <td class="tri-day">43/50/57/64</td>
 <td>Warm Millet w/ Pumpkin Seeds &amp; Cinnamon</td>
 <td>Wild Rice, Carrots, Chickpeas</td>
 <td>Quinoa, Kale, Black Beans</td>
+<td>Warm Golden Milk (Turmeric &amp; Ginger)</td>
 </tr>
 <tr>
 <td class="tri-day">44/51/58/65</td>
 <td>Savory Teff w/ Garlic &amp; Ginger</td>
 <td>Buckwheat, Cabbage, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
+<td>Jing Truffle w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">45/52/59/66</td>
 <td>Warm Amaranth w/ Walnut &amp; Dates</td>
 <td>Wild Rice, Collards, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+<td>Ginger-Cinnamon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">46/53/60/67</td>
 <td>Warm Cornmeal Mush w/ Pecan Butter</td>
 <td>Brown Rice, Roasted Beets, Black Beans</td>
 <td>Millet, Mustard Greens, Seitan</td>
+<td>Date &amp; Tahini Truffle w/ Pink Salt</td>
 </tr>
 <tr>
 <td class="tri-day">47/54/61/68</td>
 <td>Warm Quinoa w/ Flax &amp; Cardamom</td>
 <td>Wild Rice, Turnips &amp; Garlic, White Beans</td>
 <td>Lentil &amp; Beet Stew over Buckwheat</td>
+<td>Warm Spiced Meyer Lemon</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
       <div class="recipe-title">Deep Texas Blood-Builder: Beets &amp; Black Beans</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Beets (Green/Purple) + Black Beans (Protein)</div>
-      <div class="recipe-steps">1. Roast beets in their skins; peel and dice. 2. Simmer black beans with plenty of garlic and a pinch of salt. 3. Serve over buckwheat. This Trinity is specifically designed to nourish the &#x27;Blood&#x27; and &#x27;Kidney Essence&#x27; during the coldest Texas month. 2 7</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Beets (Green/Purple) + Black Beans (Protein) + Jing Truffle (Date &amp; Tahini) (Seal)</div>
+      <div class="recipe-steps">1. Roast beets in their skins; peel and dice. 2. Simmer black beans with plenty of garlic and a pinch of salt. 3. Serve over buckwheat. This Tetralty is specifically designed to nourish the &#x27;Blood&#x27; and &#x27;Kidney Essence&#x27; during the coldest Texas month.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Texas Winter Bone Broth (Vegan/Soy-Free)</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Collard Greens (Green) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Collard Greens (Green) + Seitan (Protein) + Warm Golden Milk (Turmeric &amp; Ginger) (Seal)</div>
       <div class="recipe-steps">1. Slow-simmer Seitan with garlic, ginger, and Meyer Lemon zest. 2. Add chopped collard greens and cook until tender. 3. Serve over wild rice. Collards are exceptionally high in calcium to &#x27;Steel the Bones&#x27; in the Water phase.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>White Navy Beans &amp; Chickpeas</li>
-<li>Texas Pecans &amp; Walnuts</li>
-<li>Pumpkin Seeds &amp; Flax</li>
+      <ul class="shop-list"><li><strong>Produce (Mid-Winter Texas)</strong></li>
 <li>Red Beets &amp; Turnips (8 lbs total)</li>
 <li>Texas Meyer Lemons &amp; Grapefruit (Bulk)</li>
 <li>Large Carrots (6 lbs)</li>
 <li>Collard Greens &amp; Kale (8 large bunches)</li>
-<li>Buckwheat &amp; Rye (Maximum warmth)</li>
 <li>Spinach &amp; Mustard Greens</li>
-<li>Wild Rice &amp; Brown Rice</li>
 <li>Cabbage &amp; Broccoli (8 heads total)</li>
-<li>Millet &amp; Quinoa</li>
 <li>Garlic &amp; Fresh Ginger Root</li>
-<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
 <li>Dried Medjool Dates (2 lbs)</li>
-<li>Cornmeal</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
 <li>Seitan (8 packs)</li>
-<li>Black Beans (Dry - 6 lbs)</li></ul>
+<li>Black Beans (Dry - 6 lbs)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Texas Pecans &amp; Walnuts</li>
+<li>Pumpkin Seeds &amp; Flax</li>
+<li><strong>Grains &amp; Seeds</strong></li>
+<li>Buckwheat &amp; Rye (Maximum warmth)</li>
+<li>Wild Rice &amp; Brown Rice</li>
+<li>Millet &amp; Quinoa</li>
+<li>Steel-Cut Oats, Amaranth, &amp; Teff</li>
+<li>Cornmeal</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Cinnamon Sticks</li>
+<li>Ground Turmeric</li>
+<li>Unsweetened Plant Milk</li>
+<li>Medjool Dates (1 box)</li>
+<li>Stone-Ground Tahini</li>
+<li>Pink Rock Salt</li>
+<li>Pecans (for Truffles)</li>
+<li>Meyer Lemon (for Seals)</li>
+</ul>
     </div>
 </section>
 
   <section class="month-panel" id="m12" data-month="12" hidden>
 <div class="month-eyebrow">Dec &middot; Winter Quarter</div>
-<h2 class="month-title">The Final Storage &amp; Ascending Qi</h2>
+<h2 class="month-title">The Quickening <span style="font-size:.7em;opacity:.7">(Early Wood)</span></h2>
 <p class="month-intro">WEEKS 45-48: LATE WINTER TEXAS ALIGNMENT February in Texas is a month of &#x27;The Great Shift.&#x27; While the mornings remain cold (Water Phase), the first hints of Spring (Wood Phase) appear in the wind. To maintain Haligricity, we focus on &#x27;Final Storage&#x27; while introducing &#x27;Early Movement.&#x27; We use Beets to finish nourishing the blood and Spring Onions to begin waking up the Liver for the coming quarter.</p>
-<h3 class="sub-h">28-Day Trinity Schedule</h3>
+<h3 class="sub-h">28-Day Tetralty Schedule</h3>
 <div class="tri-table-wrap"><table class="tri-table"><thead><tr>
 <th>Day</th>
 <th>Warm Rising (Breakfast)</th>
-<th>Mid-Day Trinity (Lunch)</th>
-<th>Evening Trinity (Dinner)</th>
+<th>Mid-Day Tetralty (Lunch)</th>
+<th>Evening Tetralty (Dinner)</th>
+<th>The Seal</th>
 </tr></thead><tbody>
 <tr>
 <td class="tri-day">45/52/59/66</td>
 <td>Warm Buckwheat w/ Pecans &amp; Dates</td>
 <td>Wild Rice, Roasted Beets, Black Beans</td>
 <td>Millet, Spring Onions, Seitan</td>
+<td>CCF Brew (Cumin, Coriander &amp; Fennel)</td>
 </tr>
 <tr>
 <td class="tri-day">46/53/60/67</td>
 <td>Warm Steel-Cut Oats w/ Grapefruit</td>
 <td>Brown Rice, Spinach, White Beans</td>
 <td>Buckwheat, Broccoli, Seitan</td>
+<td>Ginger-Lemon Brew</td>
 </tr>
 <tr>
 <td class="tri-day">47/54/61/68</td>
 <td>Warm Millet w/ Pumpkin Seeds &amp; Ginger</td>
 <td>Wild Rice, Roasted Carrots, Chickpeas</td>
 <td>Quinoa, Kale, Black Beans</td>
+<td>Fennel &amp; Mint Brew</td>
 </tr>
 <tr>
 <td class="tri-day">48/55/62/69</td>
 <td>Savory Teff w/ Garlic &amp; Scallions</td>
 <td>Buckwheat, Cabbage, Seitan</td>
 <td>Brown Rice, Spinach, White Beans</td>
+<td>Stewed Meyer Lemon w/ Ginger</td>
 </tr>
 <tr>
 <td class="tri-day">49/56/63/70</td>
 <td>Warm Amaranth w/ Walnut &amp; Meyer Lemon</td>
 <td>Wild Rice, Spring Greens, Chickpeas</td>
 <td>Steel-Cut Oats (Savory), Broccoli, Seitan</td>
+<td>CCF Brew w/ Lemon</td>
 </tr>
 <tr>
 <td class="tri-day">50/57/64/71</td>
 <td>Warm Cornmeal Mush w/ Pecan Butter</td>
 <td>Brown Rice, Roasted Beets, Black Beans</td>
 <td>Millet, Mustard Greens, Seitan</td>
+<td>Dandelion Root &amp; Ginger Brew</td>
 </tr>
 <tr>
 <td class="tri-day">51/58/65/72</td>
 <td>Warm Quinoa w/ Flax &amp; Cardamom</td>
 <td>Wild Rice, Carrots, White Beans</td>
 <td>Lentil &amp; Beet Stew over Buckwheat</td>
+<td>Ginger-Lemon Brew w/ Cardamom</td>
 </tr>
 </tbody></table></div>
-<h3 class="sub-h">Regional Trinity Recipes</h3>
+<h3 class="sub-h">Regional Tetralty Recipes</h3>
 <div class="recipe-grid">
 <div class="recipe-card">
-      <div class="recipe-title">Texas Blood-Root Trinity: Beets &amp; Spring Onions</div>
-      <div class="recipe-trinity">Buckwheat (Grain) + Beets/Spring Onions (Green/Purple) + Black Beans (Protein)</div>
-      <div class="recipe-steps">1. Roast beets; slice thinly. 2. Sauté spring onions (early green onions) until soft. 3. Serve over buckwheat with black beans. This meal bridges the gap between Winter (roots) and Spring (onions), keeping the blood rich but the energy moving. 2 9</div>
+      <div class="recipe-title">Texas Blood-Root Tetralty: Beets &amp; Spring Onions</div>
+      <div class="recipe-trinity">Buckwheat (Grain) + Beets/Spring Onions (Green/Purple) + Black Beans (Protein) + CCF Brew (Cumin, Coriander &amp; Fennel) (Seal)</div>
+      <div class="recipe-steps">1. Roast beets; slice thinly. 2. Sauté spring onions (early green onions) until soft. 3. Serve over buckwheat with black beans. This meal bridges the gap between Winter (roots) and Spring (onions), keeping the blood rich but the energy moving.</div>
     </div>
 <div class="recipe-card">
       <div class="recipe-title">Citrus-Ginger Qi Stir-Fry</div>
-      <div class="recipe-trinity">Wild Rice (Grain) + Spinach (Green) + Seitan (Protein)</div>
+      <div class="recipe-trinity">Wild Rice (Grain) + Spinach (Green) + Seitan (Protein) + Fennel &amp; Mint Brew (Seal)</div>
       <div class="recipe-steps">1. Sauté seitan with fresh ginger. 2. At the end, toss in fresh spinach and a splash of Meyer Lemon juice. 3. The sour-pungent combination prepares the Liver for the Wood Element phase beginning next month.</div>
     </div>
 </div>
 <div class="shop-box">
       <div class="shop-title">Shopping List</div>
-      <ul class="shop-list"><li>Red Beets (8 lbs)</li>
-<li>Seitan (8 packs)</li>
+      <ul class="shop-list"><li><strong>Produce (Late Winter Texas)</strong></li>
+<li>Red Beets (8 lbs)</li>
 <li>Spring Onions / Scallions (6 bunches)</li>
-<li>Black Beans (Dry - 4 lbs)</li>
 <li>Texas Meyer Lemons &amp; Grapefruit (Bulk)</li>
-<li>White Navy Beans &amp; Chickpeas</li>
 <li>Spinach &amp; Early Spring Greens (Bulk)</li>
-<li>Texas Pecans &amp; Walnuts</li>
 <li>Carrots (6 lbs)</li>
 <li>Cabbage &amp; Broccoli (6 heads total)</li>
 <li>Garlic &amp; Fresh Ginger Root</li>
+<li><strong>Proteins (Soy-Free)</strong></li>
+<li>Seitan (8 packs)</li>
+<li>Black Beans (Dry - 4 lbs)</li>
+<li>White Navy Beans &amp; Chickpeas</li>
+<li>Texas Pecans &amp; Walnuts</li>
+<li><strong>Grains &amp; Seeds</strong></li>
 <li>Buckwheat &amp; Millet</li>
 <li>Wild Rice &amp; Brown Rice</li>
 <li>Quinoa &amp; Amaranth</li>
-<li>Steel-Cut Oats, Teff, &amp; Cornmeal</li></ul>
+<li>Steel-Cut Oats, Teff, &amp; Cornmeal</li>
+<li><strong>The Seal (Digestive Finishers)</strong></li>
+<li>Cumin, Coriander &amp; Fennel Seeds</li>
+<li>Fresh Ginger Root</li>
+<li>Lemons</li>
+<li>Fresh Mint</li>
+<li>Dandelion Root Tea</li>
+<li>Cardamom Pods</li>
+<li>Meyer Lemon (for Seals)</li>
+</ul>
     </div>
 </section>
 
