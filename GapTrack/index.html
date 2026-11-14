@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Haligric Gap Tracker</title>
+<style>
+  :root{
+    --bg:#FFFDF0; --gold:#C9A227; --gold-border:#B8860B; --gold-pale:#FFFAEC;
+    --purple:#4A1060; --purple-mid:#6B2D8E; --purple-light:#EDE0F5; --ink:#1A1A1A; --gray:#555;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg); color:var(--ink); font-family:Georgia,'Cormorant Garamond',serif; margin:0; padding:24px 16px 60px;}
+  h1{font-family:'Cinzel',Georgia,serif; color:var(--purple); text-align:center; font-size:1.6rem; letter-spacing:.04em; margin:0 0 6px;}
+  p.sub{text-align:center; color:var(--gray); font-style:italic; margin:0 0 28px; font-size:.95rem;}
+  .tabs{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; max-width:900px; margin:0 auto 28px;}
+  .tab-btn{
+    font-family:'Cinzel',Georgia,serif; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase;
+    background:#fff; border:1.5px solid var(--gold-border); color:var(--gold-border);
+    padding:10px 18px; border-radius:999px; cursor:pointer; transition:all .2s;
+  }
+  .tab-btn:hover{background:var(--gold-pale);}
+  .tab-btn.active{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .panel{display:none; max-width:900px; margin:0 auto;}
+  .panel.active{display:block;}
+  .panel-desc{text-align:center; color:var(--gray); font-size:.88rem; margin-bottom:20px; font-style:italic;}
+  .group{margin-bottom:26px;}
+  .group h2{font-family:'Cinzel',Georgia,serif; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; color:var(--purple-mid); border-bottom:1px solid var(--purple-light); padding-bottom:6px; margin-bottom:12px;}
+  .pills{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--gold-pale); border:1px solid var(--gold-border); color:var(--ink);
+    padding:7px 13px; border-radius:999px; font-size:.85rem; text-decoration:none;
+    transition:all .15s;
+  }
+  .pill:hover{background:var(--gold); color:#fff; border-color:var(--gold);}
+  .pill .flag{
+    background:var(--purple); color:#fff; font-size:.65rem; font-weight:bold;
+    border-radius:50%; width:16px; height:16px; display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .note{font-size:.8rem; color:var(--gray); margin-top:14px; font-style:italic; line-height:1.6; border-top:1px dashed var(--purple-light); padding-top:10px;}
+  .count{opacity:.75; font-size:.9em;}
+</style>
+</head>
+<body>
+
+<h1>Haligric Video Pipeline &mdash; Gap Tracker</h1>
+<p class="sub">Every pill links straight to the live PDF. Click a tab to filter by what's missing.</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="t1">Audio exists, clip missing <span class="count">(5)</span></button>
+  <button class="tab-btn" data-tab="t2">Clip exists, audio missing <span class="count">(15)</span></button>
+  <button class="tab-btn" data-tab="t3">Nothing yet <span class="count">(65)</span></button>
+  <button class="tab-btn" data-tab="t4">New (Nov) <span class="count">(3)</span></button>
+</div>
+
+<!-- TAB 1: AUDIO EXISTS, CLIP MISSING -->
+<div class="panel active" id="t1">
+  <p class="panel-desc">Audio is recorded and sitting in Drive. Still need a 10-second clip for each before these can build.</p>
+  <div class="group">
+    <h2>Energy</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Celtic_Tree_Astrology_Ogham_master.pdf" target="_blank">Celtic Tree Astrology / Ogham <span>(CelticTreee.wav)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/BloodTypePersonality_master.pdf" target="_blank">Blood Type Personality <span>(BloodType.wav)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Maya_Zodiac_master.pdf" target="_blank">Maya Zodiac <span>(Maya Zodiac.wav)</span></a>
+    </div>
+  </div>
+  <div class="group">
+    <h2>Haligric Foundation</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/The_Sacred_Name_master.pdf" target="_blank">The Sacred Name <span>(ScredName.wav)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Adaptation_Guide.pdf" target="_blank">Haligricity Adaptation Guide <span>(Adaptation Guide.wav)</span></a>
+    </div>
+  </div>
+  <p class="note">"Maya Zodiac" is the Energy/Zodiac doc &mdash; different from the History Collection Maya (Taíno &amp; Garifuna), which is already live.</p>
+</div>
+
+<!-- TAB 2: CLIP EXISTS, AUDIO MISSING -->
+<div class="panel" id="t2">
+  <p class="panel-desc">10-second clip is in Drive. Still need narration recorded for each. Items with a <span class="flag">2</span> badge have two raw clips waiting to be combined (forward+forward, then reversed as a pair) once audio's ready.</p>
+  <div class="group">
+    <h2>History Collection</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ari_master.pdf" target="_blank">Ari <span>(Ari.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Asaro_master.pdf" target="_blank">Asaro <span>(Asaro.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Banna_Bashada_master.pdf" target="_blank">Banna / Bashada <span>(Banna.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christianity_Edges_master.pdf" target="_blank">Christianity Edges <span>(Christian Edges.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Eastern_Orthodoxy_master.pdf" target="_blank">Eastern Orthodoxy <span>(EasternOrthedox.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ewe_Zangbeto_master.pdf" target="_blank">Ewe / Zangbeto <span>(Ewe.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Guarani_master.pdf" target="_blank">Guarani <span>(Guarani.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Himba_master.pdf" target="_blank">Himba <span class="flag">?</span> <span>(guessing "Nambia.mp4")</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Ainu_Japan_master.pdf" target="_blank">Ainu / Japan <span class="flag">2</span> <span>(Ainu.mp4 + Ainu2.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Rosicrucianism_Complete_Deep_Dive.pdf" target="_blank">Rosicrucianism <span class="flag">2</span> <span>(Rosecrusion.mp4 + Rosacrusionism2.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Spiritism_Espiritismo_Kardec_Trincado_Deep_Dive.pdf" target="_blank">Spiritism / Espiritismo <span class="flag">2</span> <span>(Spiritism.mp4 + Spritism 2.mp4)</span></a>
+    </div>
+  </div>
+  <div class="group">
+    <h2>Haligric Foundation</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/FengShui_master.pdf" target="_blank">Feng Shui <span class="flag">?</span> <span>(FengShui.mp4 &mdash; or is this for Body_Feng_Shui instead?)</span></a>
+    </div>
+  </div>
+  <div class="group">
+    <h2>Energy</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Chinese_Zodiac_Sexagenary_Cycle_Bazi_Deep_Dive.pdf" target="_blank">Chinese Zodiac / Bazi <span>(ChineseZodiac.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Vedic_Astrology_Jyotish_Complete_Deep_Dive.pdf" target="_blank">Vedic Astrology / Jyotish <span>(Vedic.mp4)</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Western_Astrology_Complete_Deep_Dive.pdf" target="_blank">Western Astrology <span>(WesternAstrology.mp4)</span></a>
+    </div>
+  </div>
+  <p class="note">Chinese Zodiac also has an identically-named PDF sitting at the History Collection root &mdash; same doc, two locations.</p>
+</div>
+
+<!-- TAB 3: NOTHING -->
+<div class="panel" id="t3">
+  <p class="panel-desc">No audio, no clip, no video anywhere. Nothing started yet.</p>
+  <div class="group">
+    <h2>History Collection</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Alevism_Bektashi_master.pdf" target="_blank">Alevism / Bektashi</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Anglicanism_master.pdf" target="_blank">Anglicanism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Apache_Nations_master.pdf" target="_blank">Apache Nations</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Baptist_Tradition_master.pdf" target="_blank">Baptist Tradition</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Basque_master.pdf" target="_blank">Basque</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Bhagavad-Gita-For-Awakeninging-full-2-2021.pdf" target="_blank">Bhagavad Gita</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cathar_master.pdf" target="_blank">Cathar</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christian_Science_master.pdf" target="_blank">Christian Science</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christianity_Denominations_master.pdf" target="_blank">Christianity Denominations</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christianity_Mystical_Tradition_master.pdf" target="_blank">Christianity Mystical Tradition</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christianity_Origins_master.pdf" target="_blank">Christianity Origins</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Christianity_QuickRef_master.pdf" target="_blank">Christianity QuickRef</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Daoism_master.pdf" target="_blank">Daoism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Dogon_master.pdf" target="_blank">Dogon</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Eastern_Polynesia_master.pdf" target="_blank">Eastern Polynesia</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Evangelical_Christianity_master.pdf" target="_blank">Evangelical Christianity</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Great_Basin_Plateau_master.pdf" target="_blank">Great Basin / Plateau</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Great_Lakes_Northeast_master.pdf" target="_blank">Great Lakes / Northeast</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hamar_master.pdf" target="_blank">Hamar</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Hoodoo_master.pdf" target="_blank">Hoodoo</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jehovahs_Witnesses_master.pdf" target="_blank">Jehovah's Witnesses</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Jewish_Hebrew_Heritage_Deep_Dive.pdf" target="_blank">Jewish / Hebrew Heritage</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/LDS_Mormon_master.pdf" target="_blank">LDS / Mormon</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Lithuanian_master.pdf" target="_blank">Lithuanian</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Mission_master.pdf" target="_blank">Mission</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Pentecostalism_master.pdf" target="_blank">Pentecostalism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Philippine_Indigenous_master.pdf" target="_blank">Philippine Indigenous</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Reformed_Calvinism_master.pdf" target="_blank">Reformed Calvinism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Roman_Catholicism_master.pdf" target="_blank">Roman Catholicism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Shingon_master.pdf" target="_blank">Shingon</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Slavic_Paganism_master.pdf" target="_blank">Slavic Paganism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Southeast_Asian_Indigenous_master.pdf" target="_blank">Southeast Asian Indigenous</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Spiritualist_Movement_master.pdf" target="_blank">Spiritualist Movement</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/The_Indwelling_Divine_Seven_Paths.pdf" target="_blank">The Indwelling Divine / Seven Paths</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tohono_Oodham_Yaqui_master.pdf" target="_blank">Tohono O'odham / Yaqui</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Transcendentalist_Movement_master.pdf" target="_blank">Transcendentalist Movement</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Yazidism_master.pdf" target="_blank">Yazidism</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zaouli_Guro_master.pdf" target="_blank">Zaouli / Guro</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Zurvanism_master.pdf" target="_blank">Zurvanism</a>
+    </div>
+  </div>
+  <div class="group">
+    <h2>Haligric Foundation</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/1_Structural_Systems_Skeleton_Muscle_Skin.pdf" target="_blank">Structural Systems (Skeleton/Muscle/Skin)</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/2_Regulatory_Transport_Systems.pdf" target="_blank">Regulatory / Transport Systems</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/3_Processing_Reproductive_Etheric_Systems.pdf" target="_blank">Processing / Reproductive / Etheric Systems</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/4_Acupuncture_Meridians_and_Key_Points.pdf" target="_blank">Acupuncture Meridians &amp; Key Points</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Body_Feng_Shui_Complete_Deep_Dive.pdf" target="_blank">Body Feng Shui</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Combined_Collection.pdf" target="_blank">Combined Collection</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Fasting_Across_Cultures_and_Faiths.pdf" target="_blank">Fasting Across Cultures &amp; Faiths</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Gods_of_the_World_Compendium.pdf" target="_blank">Gods of the World Compendium</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Book_of_Rituals.pdf" target="_blank">Haligric Book of Rituals</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Book_of_WellBeing.pdf" target="_blank">Haligric Book of WellBeing</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Controversial_Manual.pdf" target="_blank">Haligric Controversial Manual</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligric_Synthesis_of_Dates_to_Honor.pdf" target="_blank">Synthesis of Dates to Honor</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_A_Philosophy.pdf" target="_blank">Haligricity: A Philosophy</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Haligricity_Convergences_Compilation.pdf" target="_blank">Haligricity Convergences Compilation</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/SacredSpeech_master.pdf" target="_blank">Sacred Speech</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Sacred_Self_Care_Compendium.pdf" target="_blank">Sacred Self-Care Compendium</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/SovereignSpeech_master.pdf" target="_blank">Sovereign Speech</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/The_Dreamworld_Complete_Deep_Dive.pdf" target="_blank">The Dreamworld</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HaligricFoundation/Vitruvian_Man_master.pdf" target="_blank">Vitruvian Man</a>
+    </div>
+  </div>
+  <div class="group">
+    <h2>Energy</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Healing/Pranic_Healing_master.pdf" target="_blank">Pranic Healing</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Healing/Quantum_Healing_master.pdf" target="_blank">Quantum Healing</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Healing/Reiki_master.pdf" target="_blank">Reiki</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Numerology_master.pdf" target="_blank">Numerology</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Palmistry_Chiromancy_Complete_Deep_Dive.pdf" target="_blank">Palmistry / Chiromancy</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/EgyptianZodiac_master.pdf" target="_blank">Egyptian Zodiac</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/Images/NativeAmerican.pdf" target="_blank">Zodiac/Images/NativeAmerican <span class="flag">?</span></a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/Energy/Zodiac/NativeAmericanZodiac_master.pdf" target="_blank">Native American Zodiac</a>
+    </div>
+  </div>
+  <p class="note">"Zodiac/Images/NativeAmerican.pdf" looks like a stray scan sitting in the Images subfolder, not a real deep-dive doc &mdash; flagging rather than assuming.</p>
+</div>
+
+<!-- TAB 4: NEW (NOVEMBER) -->
+<div class="panel" id="t4">
+  <p class="panel-desc">Brand-new traditions added in November &mdash; not remakes of anything already covered. Need video AND audio built from scratch, but you said hold off on these for now.</p>
+  <div class="group">
+    <h2>History Collection</h2>
+    <div class="pills">
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Buddhism_master.pdf" target="_blank">Buddhism (general)</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Cao_Dai_master.pdf" target="_blank">Cao Dai</a>
+      <a class="pill" href="https://Haligricity.IQProductionz.com/HistoryCollection/Tenrikyo_master.pdf" target="_blank">Tenrikyo</a>
+    </div>
+  </div>
+  <p class="note">"Buddhism (general)" is broader than the Tibetan Vajrayana Buddhism &amp; Bon video already live &mdash; treating it as new/distinct rather than a duplicate.</p>
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
